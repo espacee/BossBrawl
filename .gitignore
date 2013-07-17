@@ -11,3 +11,6 @@
 *.lai
 *.la
 *.a
+
+# Qt Creator user file for CMakeLists.txt
+CMakeLists.txt.user
