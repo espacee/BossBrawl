@@ -15,6 +15,8 @@ include_directories(${SFML_INCLUDE_DIR})
 
 add_executable(bosskiller
     BossKiller.cpp
+    ScreenGameLoop.cpp
+    ScreenGameLoop.h
 )
 
 target_link_libraries(bosskiller ${SFML_LIBRARIES})
