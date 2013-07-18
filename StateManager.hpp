@@ -1,5 +1,5 @@
-#ifndef STATEMANAGER_H
-#define STATEMANAGER_H
+#ifndef STATEMANAGER_HPP
+#define STATEMANAGER_HPP
 
 #include "State.hpp"
 
@@ -20,4 +20,4 @@ private:
     int currentState;
 };
 
-#endif // STATEMANAGER_H
+#endif // STATEMANAGER_HPP

@@ -1,5 +1,5 @@
-#ifndef GAMESTATE_H
-#define GAMESTATE_H
+#ifndef GAMESTATE_HPP
+#define GAMESTATE_HPP
 
 #include "State.hpp"
 
@@ -11,4 +11,4 @@ public:
 
 };
 
-#endif // GAMESTATE_H
+#endif // GAMESTATE_HPP

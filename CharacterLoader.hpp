@@ -1,5 +1,5 @@
-#ifndef CHARACTERLOADER_H
-#define CHARACTERLOADER_H
+#ifndef CHARACTERLOADER_HPP
+#define CHARACTERLOADER_HPP
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
@@ -23,4 +23,4 @@ private:
 
 };
 
-#endif //!CHARACTERLOADER_H
+#endif // CHARACTERLOADER_HPP

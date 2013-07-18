@@ -1,5 +1,5 @@
-#ifndef STATE_H
-#define STATE_H
+#ifndef STATE_HPP
+#define STATE_HPP
 
 #include <SFML/Graphics.hpp>
 
@@ -13,4 +13,4 @@ public :
     virtual int Loop (sf::RenderWindow &w) = 0;
 };
 
-#endif // STATE_H
+#endif // STATE_HPP

@@ -1,5 +1,5 @@
-#ifndef MENUSTATE_H
-#define MENUSTATE_H
+#ifndef MENUSTATE_HPP
+#define MENUSTATE_HPP
 
 #include "State.hpp"
 
@@ -11,4 +11,4 @@ public:
 
 };
 
-#endif // MENUSTATE_H
+#endif // MENUSTATE_HPP
