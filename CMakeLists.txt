@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 2.8)
 
 # Add additional flags to gcc and clang
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_COMPILER_IS_CLANGXX OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-    add_definitions("-std=c++11 -pedantic -Wall -Wextra -Wshadow")
+    add_definitions("-std=c++03 -pedantic -Wall -Wextra -Wshadow")
 endif()
 
 # Find packages
