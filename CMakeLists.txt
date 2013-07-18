@@ -14,9 +14,13 @@ find_package(SFML 2 COMPONENTS graphics window audio system REQUIRED)
 include_directories(${SFML_INCLUDE_DIR})
 
 add_executable(bosskiller
-    BossKiller.cpp
-    ScreenGameLoop.cpp
-    ScreenGameLoop.h
+BossKiller.cpp
+CharacterLoader.cpp
+CharacterLoader.h
+MainMenu.cpp
+MainMenu.h
+ScreenGameLoop.cpp
+ScreenGameLoop.h
 )
 
 target_link_libraries(bosskiller ${SFML_LIBRARIES})
