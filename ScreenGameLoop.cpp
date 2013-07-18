@@ -3,19 +3,18 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
+sf::RenderWindow Screen(sf::VideoMode(1280, 720), "1280x720 Screen!");
 
 
 
-ScreenGameLoop::ScreenGameLoop()
+
+
+
+
+void Gameloop()
 {
 
 	
-    
-
-	sf::RenderWindow Screen(sf::VideoMode(1280, 720), "1280x720 Screen!");
-
-
-
     while (Screen.isOpen())
     {
         sf::Event event;
@@ -36,6 +35,22 @@ ScreenGameLoop::ScreenGameLoop()
         
         Screen.display();
     }
+
+
+}
+
+
+ScreenGameLoop::ScreenGameLoop()
+{
+
+	Gameloop();
+    
+
+	
+
+
+
+    
 
 
 

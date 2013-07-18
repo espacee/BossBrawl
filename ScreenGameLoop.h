@@ -6,6 +6,11 @@ class ScreenGameLoop
 {
 public:
 	ScreenGameLoop();
+	
+	
+	
+	
+	void Gameloop();
 
 
 
