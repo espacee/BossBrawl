@@ -36,6 +36,8 @@ int GameState::Loop(sf::RenderWindow &w)
 
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Left)
                 player.Player.move(-10, 0);
+			if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
+				w.close();
 
         }
 
