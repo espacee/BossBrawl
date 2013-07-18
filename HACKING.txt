@@ -1,0 +1,3 @@
+Conventions:
+- C++ source file names are CamelCase if they define classes,
+  lowercase otherwise
