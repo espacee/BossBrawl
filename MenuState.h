@@ -1,7 +1,7 @@
 #ifndef MENUSTATE_H
 #define MENUSTATE_H
 
-#include "state.h"
+#include "State.h"
 
 class MenuState : public State
 {

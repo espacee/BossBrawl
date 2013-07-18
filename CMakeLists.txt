@@ -16,14 +16,14 @@ include_directories(${SFML_INCLUDE_DIR})
 add_executable(bosskiller
 CharacterLoader.cpp
 CharacterLoader.h
-gamestate.cpp
-gamestate.h
+GameState.cpp
+GameState.h
+MenuState.cpp
+MenuState.h
+State.h
+StateManager.cpp
+StateManager.h
 main.cpp
-menustate.cpp
-menustate.h
-state.h
-statemanager.cpp
-statemanager.h
 )
 
 target_link_libraries(bosskiller ${SFML_LIBRARIES})

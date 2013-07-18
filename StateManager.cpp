@@ -1,4 +1,4 @@
-#include "statemanager.h"
+#include "StateManager.h"
 
 StateManager::StateManager()
 {

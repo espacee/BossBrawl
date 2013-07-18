@@ -1,10 +1,10 @@
 #ifndef STATEMANAGER_H
 #define STATEMANAGER_H
 
-#include "state.h"
+#include "State.h"
 
-#include "menustate.h"
-#include "gamestate.h"
+#include "MenuState.h"
+#include "GameState.h"
 
 class StateManager
 {
