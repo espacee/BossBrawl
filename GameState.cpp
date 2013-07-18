@@ -1,6 +1,6 @@
-#include "GameState.h"
+#include "GameState.hpp"
 
-#include "CharacterLoader.h"
+#include "CharacterLoader.hpp"
 
 GameState::GameState()
 {

@@ -1,3 +1,5 @@
 Conventions:
 - C++ source file names are CamelCase if they define classes,
   lowercase otherwise
+
+- C++ header files have the extension .hpp

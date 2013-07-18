@@ -1,4 +1,4 @@
-#include "CharacterLoader.h"
+#include "CharacterLoader.hpp"
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
