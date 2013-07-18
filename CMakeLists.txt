@@ -22,7 +22,8 @@ main.cpp
 menustate.cpp
 menustate.h
 state.h
-statesList.h
+statemanager.cpp
+statemanager.h
 )
 
 target_link_libraries(bosskiller ${SFML_LIBRARIES})
