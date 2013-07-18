@@ -14,3 +14,6 @@
 
 # Qt Creator user file for CMakeLists.txt
 CMakeLists.txt.user
+
+# User specific game settings file
+settings.cfg

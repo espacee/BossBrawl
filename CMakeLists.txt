@@ -24,6 +24,8 @@ State.hpp
 StateManager.cpp
 StateManager.hpp
 main.cpp
+config.cpp
+config.hpp
 )
 
 target_link_libraries(bosskiller ${SFML_LIBRARIES})
