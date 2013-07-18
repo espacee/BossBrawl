@@ -3,8 +3,7 @@
 
 int main()
 {
-    
-	ScreenGameLoop::ScreenGameLoop();
-
+    ScreenGameLoop screenGameLoop;
+    screenGameLoop.Gameloop();
     return 0;
 }
