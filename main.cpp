@@ -1,12 +1,23 @@
-#include <iostream>
-#include "ScreenGameLoop.h"
+#include <sfml/Graphics.hpp>
+#include "statesList.h"
 
-int main()
+int main(int argc, char** argv)
 {
-    ScreenGameLoop screenGameLoop;
+    std::vector<State*> states;
+    int currentState = GAME;
 
+    sf::RenderWindow w(sf::VideoMode(800, 600, 32), "window");
+    w.setFramerateLimit(60);
 
-    screenGameLoop.Gameloop();
-    
-	return 0;
+        MenuState s1;
+        states.push_back (&s1);
+        GameState s2;
+        states.push_back (&s2);
+
+    while (currentState != EXIT)
+    {
+        currentState = states[currentState]->Loop(w);
+    }
+
+    return 0;
 }
