@@ -1,7 +1,7 @@
 #ifndef STATE_H
 #define STATE_H
 
-#include <sfml/Graphics.hpp>
+#include <SFML/Graphics.hpp>
 
 enum { EXIT=-1,
        MENU=0,

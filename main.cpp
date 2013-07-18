@@ -1,4 +1,4 @@
-#include <sfml/Graphics.hpp>
+#include <SFML/Graphics.hpp>
 #include "statesList.h"
 
 int main(int argc, char** argv)
