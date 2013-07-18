@@ -1,22 +1,18 @@
-#include <SFML/Graphics.hpp>
-#include "statesList.h"
+#include <sfml/Graphics.hpp>
 
-int main(int argc, char** argv)
+#include "statemanager.h"
+
+int main()
 {
-    std::vector<State*> states;
-    int currentState = GAME;
+    StateManager m;
+    m.SetCurrentState(MENU);
 
-    sf::RenderWindow w(sf::VideoMode(800, 600, 32), "window");
+    sf::RenderWindow w(sf::VideoMode(800, 600, 32), "Window");
     w.setFramerateLimit(60);
 
-        MenuState s1;
-        states.push_back (&s1);
-        GameState s2;
-        states.push_back (&s2);
-
-    while (currentState != EXIT)
+    while (m.GetCurrentState() != EXIT)
     {
-        currentState = states[currentState]->Loop(w);
+        m.Loop(w);
     }
 
     return 0;

@@ -17,7 +17,7 @@ int MenuState::Loop(sf::RenderWindow &w)
                 if (event.type == sf::Event::Closed)
                     w.close();
 
-                if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Up)
+                if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
                     return GAME;
 
             }
