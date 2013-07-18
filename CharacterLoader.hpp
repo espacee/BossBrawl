@@ -8,17 +8,17 @@
 class CharacterLoader
 {
 public:
-	CharacterLoader();
-	void LoadPlayer();
+    CharacterLoader();
+    void LoadPlayer();
 
 
-	//sprites
-	sf::Sprite Player;
+    //sprites
+    sf::Sprite Player;
 
 private:
-	sf::Texture PlayerText;
-	
-	
+    sf::Texture PlayerText;
+
+
 
 
 };
