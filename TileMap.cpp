@@ -17,7 +17,7 @@ void TileMap::LoadTiles()
     sprites.push_back(sf::Sprite(*textures.back()));
 
     sf::Texture tileSet;
-    if(tileSet.loadFromFile("res/img/tileSet.png"))
+    if(tileSet.loadFromFile("res/img/tileset.png"))
     {
         int ts_width = tileSet.getSize().x;
         int ts_height = tileSet.getSize().y;
@@ -27,7 +27,7 @@ void TileMap::LoadTiles()
             for(int i=0;i<ts_width;i+=GRID_SIZE)
             {
                 sf::Texture* temp = new sf::Texture();
-                temp->loadFromFile("res/img/tileSet.png", sf::IntRect(i,j, GRID_SIZE, GRID_SIZE));
+                temp->loadFromFile("res/img/tileset.png", sf::IntRect(i,j, GRID_SIZE, GRID_SIZE));
 
                 textures.push_back(temp);
                 sprites.push_back(sf::Sprite(*textures.back()));
