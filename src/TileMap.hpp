@@ -7,9 +7,9 @@
 #include "Layer.hpp"
 
 /**
- * @brief A tile-based map
+ * @brief A tile-based layered map
  *
- * The tile data is stored as a multi dimensional vector of tile ids.
+ * The tile data is stored as a multi dimensional vector of tile ids in each layer.
  * The special id '0' stands for 'air', a.k.a 'empty' tile.
  */
 class TileMap
@@ -24,9 +24,9 @@ public:
     unsigned int GetTile(unsigned int layer, unsigned int x, unsigned int y) const;
 
     /**
-     * @brief Fill the map with a specific tile
-     * @param id The tile to fill the map with. If it is 0, the function will
-     *           fill the map with empty tiles, i.e. clear the map.
+     * @brief Fill the layer with a specific tile
+     * @param id The tile to fill the layer with. If it is 0, the function will
+     *           fill the layer with empty tiles, i.e. clear the layer.
      */
     void FillLayer(unsigned int layer, unsigned int id);
 
