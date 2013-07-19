@@ -16,9 +16,9 @@ public:
 
     void LoadTiles();
 
-    void Resize(unsigned int new_hLength, uint new_vLength);
-    void SetTile(unsigned int x, uint y, uint id);
-    unsigned int GetTile(uint x, uint y) const;
+    void Resize(unsigned int new_hLength, unsigned int new_vLength);
+    void SetTile(unsigned int x, unsigned int y, unsigned int id);
+    unsigned int GetTile(unsigned int x, unsigned int y) const;
 
     /**
      * @brief Fill the map with a specific tile
@@ -34,7 +34,7 @@ public:
 
     void Draw(sf::RenderWindow &w);
 
-    bool TileExists(unsigned int x, uint y) const;
+    bool TileExists(unsigned int x, unsigned int y) const;
     bool SpriteExists(unsigned int id) const;
 
 private:
