@@ -12,6 +12,7 @@ class State
 {
 public :
     virtual int Loop (sf::RenderWindow &w) = 0;
+    virtual ~State() {}
 };
 
 #endif // STATE_HPP

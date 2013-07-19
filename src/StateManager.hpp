@@ -10,6 +10,7 @@ class StateManager
 {
 public:
     StateManager();
+    ~StateManager();
     void SetCurrentState(int newState);
     int GetCurrentState();
 
