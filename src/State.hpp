@@ -11,7 +11,7 @@ enum { EXIT=-1,
 class State
 {
 public :
-    virtual int Loop (sf::RenderWindow &w) = 0;
+    virtual int Loop () = 0;
     virtual ~State() {}
 };
 

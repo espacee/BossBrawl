@@ -28,6 +28,8 @@ src/TileMap.hpp
 src/config.cpp
 src/config.hpp
 src/main.cpp
+src/graphics.cpp
+src/graphics.hpp
 )
 
 target_link_libraries(bosskiller ${SFML_LIBRARIES})

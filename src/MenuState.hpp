@@ -7,7 +7,7 @@ class MenuState : public State
 {
 public:
     MenuState();
-    virtual int Loop(sf::RenderWindow &w);
+    virtual int Loop();
 
 };
 

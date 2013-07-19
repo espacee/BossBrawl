@@ -2,19 +2,18 @@
 
 #include "StateManager.hpp"
 #include "config.hpp"
+#include "graphics.hpp"
 
 int main()
 {
     StateManager m;
     m.SetCurrentState(MENU);
     config::Load();
-
-    sf::RenderWindow w(sf::VideoMode(config::windowWidth, config::windowHeight, 32), "Window");
-    w.setFramerateLimit(60);
+    graphics::Init();
 
     while (m.GetCurrentState() != EXIT)
     {
-        m.Loop(w);
+        m.Loop();
     }
 
     config::Save();

@@ -14,7 +14,7 @@ public:
     void SetCurrentState(int newState);
     int GetCurrentState() const;
 
-    void Loop(sf::RenderWindow &w);
+    void Loop();
 
 private:
     std::vector<State*> states;

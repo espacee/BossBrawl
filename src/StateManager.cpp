@@ -18,9 +18,9 @@ int StateManager::GetCurrentState() const
     return currentState;
 }
 
-void StateManager::Loop(sf::RenderWindow &w)
+void StateManager::Loop()
 {
-    currentState = states[currentState]->Loop(w);
+    currentState = states[currentState]->Loop();
 }
 
 StateManager::~StateManager()

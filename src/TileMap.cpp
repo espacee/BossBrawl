@@ -1,5 +1,7 @@
 #include "TileMap.hpp"
 
+#include "graphics.hpp"
+
 TileMap::TileMap()
 {
     LoadTiles();
@@ -105,7 +107,7 @@ bool TileMap::LayerExists(unsigned int layer) const
     return layer < layers.size();
 }
 
-void TileMap::Display(sf::RenderWindow &w)
+void TileMap::Display()
 {
     for(unsigned int k=0;k<nb_layers;k++)
     {
@@ -118,7 +120,7 @@ void TileMap::Display(sf::RenderWindow &w)
                 {
                     sprites[id].setPosition(layers[k].GetX()+(int)(i*GRID_SIZE),
                                             layers[k].GetY()+(int)(j*GRID_SIZE));
-                    w.draw(sprites[id]);
+                    graphics::window.draw(sprites[id]);
                 }
             }
         }

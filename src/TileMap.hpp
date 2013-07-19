@@ -40,7 +40,7 @@ public:
     bool SpriteExists(unsigned int id) const;
     bool LayerExists(unsigned int layer) const;
 
-    void Display(sf::RenderWindow &w);
+    void Display();
 
 private:
     std::vector< Layer > layers;

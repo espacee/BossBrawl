@@ -1,13 +1,16 @@
 #include "GameState.hpp"
 
+#include "graphics.hpp"
+
 GameState::GameState()
 {
 
 }
 
-int GameState::Loop(sf::RenderWindow &w)
+int GameState::Loop()
 {
-    w.setTitle("GAME");
+    using graphics::window;
+    window.setTitle("GAME");
 
     sf::Texture playerTexture;
     playerTexture.loadFromFile("res/img/player.png", sf::IntRect(32 ,0,32 , 32));
@@ -26,15 +29,15 @@ int GameState::Loop(sf::RenderWindow &w)
     map.SetTile(2,9,9,4);
 
     sf::Event event;
-    while (w.isOpen())
+    while (window.isOpen())
     {
-        while (w.pollEvent(event))
+        while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
-                w.close();
+                window.close();
 
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
-                w.close();
+                window.close();
 
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
                 return MENU;
@@ -53,12 +56,12 @@ int GameState::Loop(sf::RenderWindow &w)
 
         }
 
-        w.clear(sf::Color(0,0,0));
+        window.clear(sf::Color(0,0,0));
 
-        w.draw(player);
-        map.Display(w);
+        window.draw(player);
+        map.Display();
 
-        w.display();
+        window.display();
     }
 
     return EXIT;
