@@ -25,7 +25,7 @@ void TileMap::LoadTiles()
 }
 
 
-void TileMap::Resize(uint new_hLength, uint new_vLength)
+void TileMap::Resize(unsigned int new_hLength, uint new_vLength)
 {
     if(new_hLength>=1 && new_vLength>=1)
     {
@@ -35,7 +35,7 @@ void TileMap::Resize(uint new_hLength, uint new_vLength)
 
         map.resize(new_hLength);
 
-        for(uint i=0; i<new_hLength; i++)
+        for(unsigned int i=0; i<new_hLength; i++)
         {
             map[i].resize(new_vLength, 0);
         }
@@ -46,7 +46,7 @@ void TileMap::Resize(uint new_hLength, uint new_vLength)
     }
 }
 
-void TileMap::SetTile(uint x, uint y, uint id)
+void TileMap::SetTile(unsigned int x, uint y, uint id)
 {
     if(TileExists(x,y) && SpriteExists(id))
     {
@@ -54,7 +54,7 @@ void TileMap::SetTile(uint x, uint y, uint id)
     }
 }
 
-uint TileMap::GetTile(uint x, uint y) const
+unsigned int TileMap::GetTile(uint x, uint y) const
 {
     if(TileExists(x,y))
     {
@@ -66,7 +66,7 @@ uint TileMap::GetTile(uint x, uint y) const
     }
 }
 
-void TileMap::Fill(uint id)
+void TileMap::Fill(unsigned int id)
 {
     if (id == 0)
     {
@@ -75,9 +75,9 @@ void TileMap::Fill(uint id)
 
     if(SpriteExists(id))
     {
-        for(uint i=0; i<hLength; i++)
+        for(unsigned int i=0; i<hLength; i++)
         {
-            for(uint j=0; j<vLength; j++)
+            for(unsigned int j=0; j<vLength; j++)
             {
                 map[i][j]=id;
             }
@@ -85,31 +85,31 @@ void TileMap::Fill(uint id)
     }
 }
 
-uint TileMap::GetHLength() const
+unsigned int TileMap::GetHLength() const
 {
     return hLength;
 }
 
-uint TileMap::GetVLength() const
+unsigned int TileMap::GetVLength() const
 {
     return vLength;
 }
 
-uint TileMap::GetWidth() const
+unsigned int TileMap::GetWidth() const
 {
     return width;
 }
 
-uint TileMap::GetHeight() const
+unsigned int TileMap::GetHeight() const
 {
     return height;
 }
 
 void TileMap::Draw(sf::RenderWindow &w)
 {
-    for(uint i=0; i<hLength; i++)
+    for(unsigned int i=0; i<hLength; i++)
     {
-        for(uint j=0; j<vLength; j++)
+        for(unsigned int j=0; j<vLength; j++)
         {
             const int id = map[i][j];
 
@@ -122,12 +122,12 @@ void TileMap::Draw(sf::RenderWindow &w)
     }
 }
 
-bool TileMap::TileExists(uint x, uint y) const
+bool TileMap::TileExists(unsigned int x, uint y) const
 {
     return x < hLength && y < vLength;
 }
 
-bool TileMap::SpriteExists(uint id) const
+bool TileMap::SpriteExists(unsigned int id) const
 {
     return id < sprites.size();
 }
