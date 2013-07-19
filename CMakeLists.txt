@@ -14,8 +14,6 @@ find_package(SFML 2 COMPONENTS graphics window audio system REQUIRED)
 include_directories(${SFML_INCLUDE_DIR})
 
 add_executable(bosskiller
-src/CharacterLoader.cpp
-src/CharacterLoader.hpp
 src/GameState.cpp
 src/GameState.hpp
 src/MenuState.cpp
