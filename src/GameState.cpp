@@ -56,10 +56,10 @@ int GameState::Loop()
 
         }
 
-		window.clear(sf::Color(0,0,0));
+        window.clear(sf::Color(0,0,0));
         map.Display();
-		window.draw(player);
-		window.display();
+        window.draw(player);
+        window.display();
     }
 
     return EXIT;
