@@ -3,6 +3,8 @@
 
 #include "State.hpp"
 
+#include "TileMap.hpp"
+
 class GameState : public State
 {
 public:
