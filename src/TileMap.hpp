@@ -3,8 +3,6 @@
 
 #include <SFML/Graphics.hpp>
 
-#define GRID_SIZE 40
-
 typedef unsigned int uint;
 
 /**
@@ -42,6 +40,7 @@ public:
     bool SpriteExists(uint id) const;
 
 private:
+    static const int GRID_SIZE = 40;
     std::vector< std::vector<uint> > map;
     uint hLength, vLength, width, height;
 
