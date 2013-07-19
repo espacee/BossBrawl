@@ -50,9 +50,10 @@ int GameState::Loop()
                 return MENU;
 
              if(event.type == sf::Event::MouseWheelMoved && event.mouseWheel.delta == 1)
-                 view.zoom(1.20);
-             if(event.type == sf::Event::MouseWheelMoved && event.mouseWheel.delta == -1)
                  view.zoom(0.80);
+             if(event.type == sf::Event::MouseWheelMoved && event.mouseWheel.delta == -1)
+                 view.zoom(1.20);
+              
 
         }
 
