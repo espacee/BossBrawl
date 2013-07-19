@@ -15,10 +15,6 @@ int GameState::Loop(sf::RenderWindow &w)
 
     TileMap map;
 
-    // here you can play with the map
-    map.Resize(10,10);
-    map.Fill(4);
-
     sf::Event event;
     while (w.isOpen())
     {
@@ -49,7 +45,6 @@ int GameState::Loop(sf::RenderWindow &w)
 
         w.clear(sf::Color(0,0,0));
 
-        map.Draw(w);
         w.draw(player);
 
         w.display();

@@ -2,10 +2,9 @@
 
 TileMap::TileMap()
 {
-    Resize(1,1);
-    Fill(0);
-    LoadTiles();
-    x_coord = y_coord = 0;
+    nb_layers=0;
+    lastLayerID=0;
+    AddLayer();
 }
 
 void TileMap::LoadTiles()
@@ -28,117 +27,80 @@ void TileMap::LoadTiles()
 }
 
 
-void TileMap::Resize(unsigned int new_hLength, unsigned int new_vLength)
+void TileMap::ResizeLayer(unsigned int layer, unsigned int new_hLength, unsigned int new_vLength)
 {
-    if(new_hLength>=1 && new_vLength>=1)
-    {
-
-        hLength = new_hLength;
-        vLength = new_vLength;
-
-        map.resize(new_hLength);
-
-        for(unsigned int i=0; i<new_hLength; i++)
-        {
-            map[i].resize(new_vLength, 0);
-        }
-
-        width = hLength*GRID_SIZE;
-        height = vLength*GRID_SIZE;
-
-    }
+    if(LayerExists(layer))
+        layers[layer].Resize(new_hLength, new_vLength);
 }
 
-void TileMap::SetTile(unsigned int x, unsigned int y, unsigned int id)
+void TileMap::SetTile(unsigned int x, unsigned int y, unsigned int layer, unsigned int id)
 {
-    if(TileExists(x,y) && SpriteExists(id))
-    {
-        map[x][y] = id;
-    }
+    if(LayerExists(layer))
+        layers[layer].SetTile(x,y,id);
 }
 
-unsigned int TileMap::GetTile(unsigned int x, unsigned int y) const
+unsigned int TileMap::GetTile(unsigned int x, unsigned int y, unsigned int layer) const
 {
-    if(TileExists(x,y))
-    {
-        return map[x][y];
-    }
+    if(LayerExists(layer))
+        return layers[layer].GetTile(x,y);
     else
+        return 0;
+}
+
+void TileMap::FillLayer(unsigned int id, unsigned int layer)
+{
+    if(LayerExists(layer))
     {
-        return map[0][0];
+        layers[layer].Fill(id);
     }
 }
 
-void TileMap::Fill(unsigned int id)
+void TileMap::MoveLayer(int x_offset, int y_offset, unsigned int layer)
 {
-    if(SpriteExists(id))
+    if(LayerExists(layer))
     {
-        for(unsigned int i=0; i<hLength; i++)
-        {
-            for(unsigned int j=0; j<vLength; j++)
-            {
-                map[i][j]=id;
-            }
-        }
+        layers[layer].Move(x_offset, y_offset);
     }
 }
 
-void TileMap::Move(int x_offset, int y_offset)
+void TileMap::SetLayerPosition(int new_x_coord, int new_y_coord,unsigned int layer)
 {
-    x_coord+=x_offset;
-    y_coord+=y_offset;
-}
-
-void TileMap::SetPosition(int new_x_coord, int new_y_coord)
-{
-    x_coord = new_x_coord;
-    y_coord = new_y_coord;
-}
-
-unsigned int TileMap::GetHLength() const
-{
-    return hLength;
-}
-
-unsigned int TileMap::GetVLength() const
-{
-    return vLength;
-}
-
-unsigned int TileMap::GetWidth() const
-{
-    return width;
-}
-
-unsigned int TileMap::GetHeight() const
-{
-    return height;
-}
-
-void TileMap::Draw(sf::RenderWindow &w)
-{
-    for(unsigned int i=0; i<hLength; i++)
+    if(LayerExists(layer))
     {
-        for(unsigned int j=0; j<vLength; j++)
-        {
-            const int id = map[i][j];
-            if (id)
-            {
-
-                sprites[id].setPosition(x_coord + (int)i*GRID_SIZE,y_coord + (int)j*GRID_SIZE);
-                w.draw(sprites[id]);
-
-            }
-        }
+        layers[layer].SetPosition(new_x_coord, new_y_coord);
     }
 }
 
-bool TileMap::TileExists(unsigned int x, unsigned int y) const
+void TileMap::AddLayer()
 {
-    return x < hLength && y < vLength;
+    nb_layers++;
+    lastLayerID++;
+    layers.push_back(Layer());
+}
+
+void TileMap::PopLayer()
+{
+    if(nb_layers>1)
+    {
+        layers.pop_back();
+        nb_layers--;
+    }
+}
+
+bool TileMap::TileExists(unsigned int x, unsigned int y, unsigned int layer) const
+{
+    if(LayerExists(layer))
+        return layers[layer].TileExists(x,y);
+    else
+        return false;
 }
 
 bool TileMap::SpriteExists(unsigned int id) const
 {
     return id < sprites.size();
+}
+
+bool TileMap::LayerExists(unsigned int layer) const
+{
+    return layer < layers.size();
 }

@@ -3,6 +3,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "Layer.hpp"
+
 /**
  * @brief A tile-based map
  *
@@ -16,34 +18,31 @@ public:
 
     void LoadTiles();
 
-    void Resize(unsigned int new_hLength, unsigned int new_vLength);
-    void SetTile(unsigned int x, unsigned int y, unsigned int id);
-    unsigned int GetTile(unsigned int x, unsigned int y) const;
+    void ResizeLayer(unsigned int layer, unsigned int new_hLength, unsigned int new_vLength);
+    void SetTile(unsigned int x, unsigned int y, unsigned int layer, unsigned int id);
+    unsigned int GetTile(unsigned int x, unsigned int y, unsigned int layer) const;
 
     /**
      * @brief Fill the map with a specific tile
      * @param id The tile to fill the map with. If it is 0, the function will
      *           fill the map with empty tiles, i.e. clear the map.
      */
-    void Fill(unsigned int id);
+    void FillLayer(unsigned int layer, unsigned int id);
 
-    void Move(int x_offset, int y_offset);
-    void SetPosition(int new_x_coord, int new_y_coord);
+    void MoveLayer(int x_offset, int y_offset, unsigned int layer);
+    void SetLayerPosition(int new_x_coord, int new_y_coord, unsigned int layer);
 
-    unsigned int GetHLength() const;
-    unsigned int GetVLength() const;
-    unsigned int GetWidth() const;
-    unsigned int GetHeight() const;
+    void AddLayer();
+    void PopLayer();
 
-    void Draw(sf::RenderWindow &w);
-
-    bool TileExists(unsigned int x, unsigned int y) const;
+    bool TileExists(unsigned int x, unsigned int y, unsigned int layer) const;
     bool SpriteExists(unsigned int id) const;
+    bool LayerExists(unsigned int layer) const;
 
 private:
-    static const int GRID_SIZE = 40;
-    std::vector< std::vector<unsigned int> > map;
-    unsigned int hLength, vLength, width, height;
+    std::vector< Layer > layers;
+    unsigned int nb_layers;
+    unsigned int lastLayerID;
 
     std::vector< sf::Sprite > sprites;
     sf::Texture tileSet;
