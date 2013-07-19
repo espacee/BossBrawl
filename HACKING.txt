@@ -4,4 +4,4 @@ Conventions for C++ source code:
 - Indentation is 4 spaces
 
 Features not to be used in C++ source code:
-- constexpr (not supported in VS2012
+- constexpr (not supported in VS2012)
