@@ -26,7 +26,10 @@ int GameState::Loop()
 
     map.AddLayer();
     map.ResizeLayer(2,10,10);
-    map.SetTile(2,9,9,4);
+    map.SetTile(2,16,16,16);
+
+    
+    
 
     sf::Event event;
     while (window.isOpen())
@@ -42,19 +45,20 @@ int GameState::Loop()
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
                 return MENU;
 
-            if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Up)
-                player.move(0, -10);
-
-            if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Right)
-                player.move(10, 0);
-
-            if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Down)
-                player.move(0, 10);
-
-            if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Left)
-                player.move(-10, 0);
-
         }
+
+        /*** KEYBOARD PLAYER STUFF ***/
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+            player.move(0, -10);
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+            player.move(10, 0);
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+            player.move(0, 10);
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+            player.move(-10, 0);
+
+       /*** END KEYBOARD PLAYER STUFF  ***/
 
         window.clear(sf::Color(0,0,0));
         map.Display();
