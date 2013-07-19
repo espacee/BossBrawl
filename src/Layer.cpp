@@ -77,6 +77,16 @@ void Layer::SetPosition(int new_x_coord, int new_y_coord)
     y_coord = new_y_coord;
 }
 
+int Layer::GetX() const
+{
+    return x_coord;
+}
+
+int Layer::GetY() const
+{
+    return y_coord;
+}
+
 unsigned int Layer::GetHLength() const
 {
     return hLength;

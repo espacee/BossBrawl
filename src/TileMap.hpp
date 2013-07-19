@@ -2,6 +2,7 @@
 #define TILEMAP_HPP
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 #include "Layer.hpp"
 
@@ -19,8 +20,8 @@ public:
     void LoadTiles();
 
     void ResizeLayer(unsigned int layer, unsigned int new_hLength, unsigned int new_vLength);
-    void SetTile(unsigned int x, unsigned int y, unsigned int layer, unsigned int id);
-    unsigned int GetTile(unsigned int x, unsigned int y, unsigned int layer) const;
+    void SetTile(unsigned int layer, unsigned int y, unsigned int x, unsigned int id);
+    unsigned int GetTile(unsigned int layer, unsigned int x, unsigned int y) const;
 
     /**
      * @brief Fill the map with a specific tile
@@ -39,6 +40,8 @@ public:
     bool SpriteExists(unsigned int id) const;
     bool LayerExists(unsigned int layer) const;
 
+    void Display(sf::RenderWindow &w);
+
 private:
     std::vector< Layer > layers;
     unsigned int nb_layers;
@@ -46,8 +49,6 @@ private:
 
     std::vector< sf::Sprite > sprites;
     sf::Texture tileSet;
-
-    int x_coord, y_coord;
 
 };
 

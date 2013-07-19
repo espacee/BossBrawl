@@ -25,6 +25,8 @@ public:
 
     void Move(int x_offset, int y_offset);
     void SetPosition(int new_x_coord, int new_y_coord);
+    int GetX() const;
+    int GetY() const;
 
     unsigned int GetHLength() const;
     unsigned int GetVLength() const;

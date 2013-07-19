@@ -14,6 +14,16 @@ int GameState::Loop(sf::RenderWindow &w)
     sf::Sprite player(playerTexture);
 
     TileMap map;
+    map.ResizeLayer(0,5,5);
+    map.FillLayer(0,2);
+
+    map.AddLayer();
+    map.ResizeLayer(1,2,2);
+    map.FillLayer(1,20);
+
+    map.AddLayer();
+    map.ResizeLayer(2,10,10);
+    map.SetTile(2,9,9,4);
 
     sf::Event event;
     while (w.isOpen())
@@ -46,6 +56,7 @@ int GameState::Loop(sf::RenderWindow &w)
         w.clear(sf::Color(0,0,0));
 
         w.draw(player);
+        map.Display(w);
 
         w.display();
     }

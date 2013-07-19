@@ -2,6 +2,7 @@
 
 TileMap::TileMap()
 {
+    LoadTiles();
     nb_layers=0;
     lastLayerID=0;
     AddLayer();
@@ -26,20 +27,19 @@ void TileMap::LoadTiles()
     }
 }
 
-
 void TileMap::ResizeLayer(unsigned int layer, unsigned int new_hLength, unsigned int new_vLength)
 {
     if(LayerExists(layer))
         layers[layer].Resize(new_hLength, new_vLength);
 }
 
-void TileMap::SetTile(unsigned int x, unsigned int y, unsigned int layer, unsigned int id)
+void TileMap::SetTile(unsigned int layer, unsigned int x, unsigned int y, unsigned int id)
 {
     if(LayerExists(layer)  && SpriteExists(id))
         layers[layer].SetTile(x,y,id);
 }
 
-unsigned int TileMap::GetTile(unsigned int x, unsigned int y, unsigned int layer) const
+unsigned int TileMap::GetTile(unsigned int layer, unsigned int x, unsigned int y) const
 {
     if(LayerExists(layer))
         return layers[layer].GetTile(x,y);
@@ -47,7 +47,7 @@ unsigned int TileMap::GetTile(unsigned int x, unsigned int y, unsigned int layer
         return 0;
 }
 
-void TileMap::FillLayer(unsigned int id, unsigned int layer)
+void TileMap::FillLayer(unsigned int layer, unsigned int id)
 {
     if(LayerExists(layer) && SpriteExists(id))
     {
@@ -103,4 +103,24 @@ bool TileMap::SpriteExists(unsigned int id) const
 bool TileMap::LayerExists(unsigned int layer) const
 {
     return layer < layers.size();
+}
+
+void TileMap::Display(sf::RenderWindow &w)
+{
+    for(unsigned int k=0;k<nb_layers;k++)
+    {
+        for(unsigned int i=0;i<layers[k].GetHLength();i++)
+        {
+            for(unsigned int j=0;j<layers[k].GetVLength();j++)
+            {
+                unsigned int id=layers[k].GetTile(i,j);
+                if(id)
+                {
+                    sprites[id].setPosition(layers[k].GetX()+(int)(i*GRID_SIZE),
+                                            layers[k].GetY()+(int)(j*GRID_SIZE));
+                    w.draw(sprites[id]);
+                }
+            }
+        }
+    }
 }
