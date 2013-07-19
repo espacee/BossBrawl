@@ -39,10 +39,7 @@ void Layer::Resize(unsigned int new_hLength, unsigned int new_vLength)
 
 void Layer::SetTile(unsigned int x, unsigned int y, unsigned int id)
 {
-    /*if(TileExists(x,y) && SpriteExists(id))
-    {
         map[x][y] = id;
-    }*/
 }
 
 unsigned int Layer::GetTile(unsigned int x, unsigned int y) const
@@ -59,16 +56,13 @@ unsigned int Layer::GetTile(unsigned int x, unsigned int y) const
 
 void Layer::Fill(unsigned int id)
 {
-    /*if(SpriteExists(id))
+    for(unsigned int i=0; i<hLength; i++)
     {
-        for(unsigned int i=0; i<hLength; i++)
+        for(unsigned int j=0; j<vLength; j++)
         {
-            for(unsigned int j=0; j<vLength; j++)
-            {
-                map[i][j]=id;
-            }
+            map[i][j]=id;
         }
-    }*/
+    }
 }
 
 void Layer::Move(int x_offset, int y_offset)

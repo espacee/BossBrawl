@@ -35,7 +35,7 @@ void TileMap::ResizeLayer(unsigned int layer, unsigned int new_hLength, unsigned
 
 void TileMap::SetTile(unsigned int x, unsigned int y, unsigned int layer, unsigned int id)
 {
-    if(LayerExists(layer))
+    if(LayerExists(layer)  && SpriteExists(id))
         layers[layer].SetTile(x,y,id);
 }
 
@@ -49,7 +49,7 @@ unsigned int TileMap::GetTile(unsigned int x, unsigned int y, unsigned int layer
 
 void TileMap::FillLayer(unsigned int id, unsigned int layer)
 {
-    if(LayerExists(layer))
+    if(LayerExists(layer) && SpriteExists(id))
     {
         layers[layer].Fill(id);
     }
