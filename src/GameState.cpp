@@ -1,6 +1,7 @@
 #include "GameState.hpp"
 
 #include "graphics.hpp"
+#include "config.hpp"
 
 GameState::GameState()
 {
@@ -9,6 +10,12 @@ GameState::GameState()
 
 int GameState::Loop()
 {
+    //view
+    sf::View view;
+    view.reset(sf::FloatRect(0,0 , config::windowWidth, config::windowHeight));
+    view.setViewport(sf::FloatRect(0,0, 1.0f,1.0f));
+
+
     using graphics::window;
     window.setTitle("GAME");
 
@@ -20,14 +27,11 @@ int GameState::Loop()
     map.ResizeLayer(0,5,5);
     map.FillLayer(0,2);
 
-    map.AddLayer();
-    map.ResizeLayer(1,2,2);
-    map.FillLayer(1,20);
+    
 
     map.AddLayer();
-    map.ResizeLayer(2,10,10);
-    map.SetTile(2,16,16,16);
-
+    map.ResizeLayer(1,32,18);
+    map.FillLayer(1,2);
     
     
 
@@ -45,9 +49,14 @@ int GameState::Loop()
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
                 return MENU;
 
+             if(event.type == sf::Event::MouseWheelMoved && event.mouseWheel.delta == 1)
+                 view.zoom(1.20);
+             if(event.type == sf::Event::MouseWheelMoved && event.mouseWheel.delta == -1)
+                 view.zoom(0.80);
+
         }
 
-        /*** KEYBOARD PLAYER STUFF ***/
+        /*** KEYBOARD PLAYER  STUFF ***/
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
             player.move(0, -10);
@@ -58,7 +67,11 @@ int GameState::Loop()
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
             player.move(-10, 0);
 
+        
+
        /*** END KEYBOARD PLAYER STUFF  ***/
+
+        window.setView(view);
 
         window.clear(sf::Color(0,0,0));
         map.Display();
