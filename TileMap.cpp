@@ -22,9 +22,9 @@ void TileMap::LoadTiles()
         int ts_width = tileSet.getSize().x;
         int ts_height = tileSet.getSize().y;
 
-        for(int j=0;j<ts_height;j+=GRID_SIZE)
+        for(int j=0; j<ts_height; j+=GRID_SIZE)
         {
-            for(int i=0;i<ts_width;i+=GRID_SIZE)
+            for(int i=0; i<ts_width; i+=GRID_SIZE)
             {
                 sf::Texture* temp = new sf::Texture();
                 temp->loadFromFile("res/img/tileset.png", sf::IntRect(i,j, GRID_SIZE, GRID_SIZE));
@@ -41,7 +41,7 @@ void TileMap::LoadTiles()
 void TileMap::Resize(uint new_hLength, uint new_vLength)
 {
     if(new_hLength>=1 && new_vLength>=1)
-        {
+    {
 
         hLength = new_hLength;
         vLength = new_vLength;
@@ -56,7 +56,7 @@ void TileMap::Resize(uint new_hLength, uint new_vLength)
         width = hLength*GRID_SIZE;
         height = vLength*GRID_SIZE;
 
-        }
+    }
 }
 
 void TileMap::SetTile(uint x, uint y, uint id)
@@ -83,9 +83,9 @@ void TileMap::Fill(uint id)
 {
     if(SpriteExist(id))
     {
-        for(uint i=0; i<hLength;i++)
+        for(uint i=0; i<hLength; i++)
         {
-            for(uint j=0;j<vLength;j++)
+            for(uint j=0; j<vLength; j++)
             {
                 map[i][j]=id;
             }
@@ -115,9 +115,9 @@ uint TileMap::GetHeight()
 
 void TileMap::Draw(sf::RenderWindow &w)
 {
-    for(uint i=0;i<hLength;i++)
+    for(uint i=0; i<hLength; i++)
     {
-        for(uint j=0;j<vLength;j++)
+        for(uint j=0; j<vLength; j++)
         {
             sprites[map[i][j]].setPosition(i*GRID_SIZE,j*GRID_SIZE);
             w.draw(sprites[map[i][j]]);
