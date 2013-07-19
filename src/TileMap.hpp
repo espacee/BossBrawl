@@ -20,7 +20,7 @@ public:
     void LoadTiles();
 
     void ResizeLayer(unsigned int layer, unsigned int new_hLength, unsigned int new_vLength);
-    void SetTile(unsigned int layer, unsigned int y, unsigned int x, unsigned int id);
+    void SetTile(unsigned int layer, unsigned int x, unsigned int y, unsigned int id);
     unsigned int GetTile(unsigned int layer, unsigned int x, unsigned int y) const;
 
     /**

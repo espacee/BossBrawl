@@ -39,7 +39,8 @@ void Layer::Resize(unsigned int new_hLength, unsigned int new_vLength)
 
 void Layer::SetTile(unsigned int x, unsigned int y, unsigned int id)
 {
-    map[x][y] = id;
+    if(TileExists(x,y))
+        map[x][y] = id;
 }
 
 unsigned int Layer::GetTile(unsigned int x, unsigned int y) const
