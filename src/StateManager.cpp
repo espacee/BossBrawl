@@ -25,8 +25,8 @@ void StateManager::Loop(sf::RenderWindow &w)
 
 StateManager::~StateManager()
 {
-    for (std::vector<State*>::iterator it = states.begin(), end = states.end(); it != end; ++it)
+    for (auto s : states)
     {
-        delete *it;
+        delete s;
     }
 }
