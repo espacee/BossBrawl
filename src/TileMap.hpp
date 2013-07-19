@@ -22,7 +22,7 @@ public:
 
     void Resize(uint new_hLength, uint new_vLength);
     void SetTile(uint x, uint y, uint id);
-    uint GetTile(uint x, uint y);
+    uint GetTile(uint x, uint y) const;
 
     /**
      * @brief Fill the map with a specific tile
@@ -31,15 +31,15 @@ public:
      */
     void Fill(uint id);
 
-    uint GetHLength();
-    uint GetVLength();
-    uint GetWidth();
-    uint GetHeight();
+    uint GetHLength() const;
+    uint GetVLength() const;
+    uint GetWidth() const;
+    uint GetHeight() const;
 
     void Draw(sf::RenderWindow &w);
 
-    bool TileExist(uint x, uint y);
-    bool SpriteExist(uint id);
+    bool TileExist(uint x, uint y) const;
+    bool SpriteExist(uint id) const;
 
 private:
     std::vector< std::vector<uint> > map;

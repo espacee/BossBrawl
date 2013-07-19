@@ -12,7 +12,7 @@ public:
     StateManager();
     ~StateManager();
     void SetCurrentState(int newState);
-    int GetCurrentState();
+    int GetCurrentState() const;
 
     void Loop(sf::RenderWindow &w);
 

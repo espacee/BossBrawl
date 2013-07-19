@@ -13,7 +13,7 @@ void StateManager::SetCurrentState(int newState)
     currentState = newState;
 }
 
-int StateManager::GetCurrentState()
+int StateManager::GetCurrentState() const
 {
     return currentState;
 }
