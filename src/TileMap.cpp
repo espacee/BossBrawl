@@ -5,10 +5,13 @@ TileMap::TileMap()
     Resize(1,1);
     Fill(0);
     LoadTiles();
+    x_coord = y_coord = 0;
 }
 
 void TileMap::LoadTiles()
 {
+    sprites.push_back(sf::Sprite());
+
     if(tileSet.loadFromFile("res/img/tileset.png"))
     {
         int ts_width = tileSet.getSize().x;
@@ -68,11 +71,6 @@ unsigned int TileMap::GetTile(unsigned int x, unsigned int y) const
 
 void TileMap::Fill(unsigned int id)
 {
-    if (id == 0)
-    {
-        return;
-    }
-
     if(SpriteExists(id))
     {
         for(unsigned int i=0; i<hLength; i++)
@@ -83,6 +81,18 @@ void TileMap::Fill(unsigned int id)
             }
         }
     }
+}
+
+void TileMap::Move(int x_offset, int y_offset)
+{
+    x_coord+=x_offset;
+    y_coord+=y_offset;
+}
+
+void TileMap::SetPosition(int new_x_coord, int new_y_coord)
+{
+    x_coord = new_x_coord;
+    y_coord = new_y_coord;
 }
 
 unsigned int TileMap::GetHLength() const
@@ -112,11 +122,12 @@ void TileMap::Draw(sf::RenderWindow &w)
         for(unsigned int j=0; j<vLength; j++)
         {
             const int id = map[i][j];
-
             if (id)
             {
-                sprites[id].setPosition(i*GRID_SIZE,j*GRID_SIZE);
+
+                sprites[id].setPosition(x_coord + (int)i*GRID_SIZE,y_coord + (int)j*GRID_SIZE);
                 w.draw(sprites[id]);
+
             }
         }
     }
