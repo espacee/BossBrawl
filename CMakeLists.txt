@@ -16,6 +16,8 @@ include_directories(${SFML_INCLUDE_DIR})
 add_executable(bosskiller
 src/GameState.cpp
 src/GameState.hpp
+src/Layer.cpp
+src/Layer.hpp
 src/MenuState.cpp
 src/MenuState.hpp
 src/State.hpp
