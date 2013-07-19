@@ -26,6 +26,8 @@ StateManager.hpp
 main.cpp
 config.cpp
 config.hpp
+TileMap.cpp
+TileMap.hpp
 )
 
 target_link_libraries(bosskiller ${SFML_LIBRARIES})
