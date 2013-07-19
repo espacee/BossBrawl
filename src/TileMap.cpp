@@ -75,7 +75,7 @@ void TileMap::AddLayer()
 {
     nb_layers++;
     lastLayerID++;
-    layers.push_back(Layer());
+    layers.push_back(Layer(lastLayerID));
 }
 
 void TileMap::PopLayer()
