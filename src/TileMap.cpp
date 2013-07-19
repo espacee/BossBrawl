@@ -109,11 +109,11 @@ bool TileMap::LayerExists(unsigned int layer) const
 
 void TileMap::Display()
 {
-    for(unsigned int k=0;k<nb_layers;k++)
+    for(unsigned int k=0; k<nb_layers; k++)
     {
-        for(unsigned int i=0;i<layers[k].GetHLength();i++)
+        for(unsigned int i=0; i<layers[k].GetHLength(); i++)
         {
-            for(unsigned int j=0;j<layers[k].GetVLength();j++)
+            for(unsigned int j=0; j<layers[k].GetVLength(); j++)
             {
                 unsigned int id=layers[k].GetTile(i,j);
                 if(id)
