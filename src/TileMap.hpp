@@ -7,6 +7,12 @@
 
 typedef unsigned int uint;
 
+/**
+ * @brief A tile-based map
+ *
+ * The tile data is stored as a multi dimensional vector of tile ids.
+ * The special id '0' stands for 'air', a.k.a 'empty' tile.
+ */
 class TileMap
 {
 public:
@@ -17,6 +23,12 @@ public:
     void Resize(uint new_hLength, uint new_vLength);
     void SetTile(uint x, uint y, uint id);
     uint GetTile(uint x, uint y);
+
+    /**
+     * @brief Fill the map with a specific tile
+     * @param id The tile to fill the map with. If it is 0, the function will
+     *           fill the map with empty tiles, i.e. clear the map.
+     */
     void Fill(uint id);
 
     uint GetHLength();
