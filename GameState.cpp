@@ -18,7 +18,7 @@ int GameState::Loop(sf::RenderWindow &w)
 
     // here you can play with the map
     map.Resize(10,10);
-    map.Fill(19);
+    map.Fill(18);
 
     sf::Event event;
     while (w.isOpen())

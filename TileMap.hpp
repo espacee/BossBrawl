@@ -34,7 +34,7 @@ private:
     uint hLength, vLength, width, height;
 
     std::vector< sf::Sprite > sprites;
-    std::vector< sf::Texture*> textures;
+    sf::Texture tileSet;
 
 };
 

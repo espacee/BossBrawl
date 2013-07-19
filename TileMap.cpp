@@ -4,19 +4,11 @@ TileMap::TileMap()
 {
     Resize(1,1);
     Fill(0);
-
     LoadTiles();
 }
 
 void TileMap::LoadTiles()
 {
-
-    sf::Texture* air = new sf::Texture();
-    air->create(GRID_SIZE,GRID_SIZE);
-    textures.push_back(air);
-    sprites.push_back(sf::Sprite(*textures.back()));
-
-    sf::Texture tileSet;
     if(tileSet.loadFromFile("res/img/tileset.png"))
     {
         int ts_width = tileSet.getSize().x;
@@ -26,12 +18,7 @@ void TileMap::LoadTiles()
         {
             for(int i=0; i<ts_width; i+=GRID_SIZE)
             {
-                sf::Texture* temp = new sf::Texture();
-                temp->loadFromFile("res/img/tileset.png", sf::IntRect(i,j, GRID_SIZE, GRID_SIZE));
-
-                textures.push_back(temp);
-                sprites.push_back(sf::Sprite(*textures.back()));
-
+                sprites.push_back(sf::Sprite(tileSet, sf::IntRect(i, j, GRID_SIZE, GRID_SIZE)));
             }
         }
     }
@@ -81,6 +68,11 @@ uint TileMap::GetTile(uint x, uint y)
 
 void TileMap::Fill(uint id)
 {
+    if (id == 0)
+    {
+        return;
+    }
+
     if(SpriteExist(id))
     {
         for(uint i=0; i<hLength; i++)
@@ -119,8 +111,13 @@ void TileMap::Draw(sf::RenderWindow &w)
     {
         for(uint j=0; j<vLength; j++)
         {
-            sprites[map[i][j]].setPosition(i*GRID_SIZE,j*GRID_SIZE);
-            w.draw(sprites[map[i][j]]);
+            const int id = map[i][j];
+
+            if (id)
+            {
+                sprites[id].setPosition(i*GRID_SIZE,j*GRID_SIZE);
+                w.draw(sprites[id]);
+            }
         }
     }
 }
