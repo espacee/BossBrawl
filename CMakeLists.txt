@@ -14,20 +14,20 @@ find_package(SFML 2 COMPONENTS graphics window audio system REQUIRED)
 include_directories(${SFML_INCLUDE_DIR})
 
 add_executable(bosskiller
-CharacterLoader.cpp
-CharacterLoader.hpp
-GameState.cpp
-GameState.hpp
-MenuState.cpp
-MenuState.hpp
-State.hpp
-StateManager.cpp
-StateManager.hpp
-main.cpp
-config.cpp
-config.hpp
-TileMap.cpp
-TileMap.hpp
+src/CharacterLoader.cpp
+src/CharacterLoader.hpp
+src/GameState.cpp
+src/GameState.hpp
+src/MenuState.cpp
+src/MenuState.hpp
+src/State.hpp
+src/StateManager.cpp
+src/StateManager.hpp
+src/TileMap.cpp
+src/TileMap.hpp
+src/config.cpp
+src/config.hpp
+src/main.cpp
 )
 
 target_link_libraries(bosskiller ${SFML_LIBRARIES})
