@@ -38,8 +38,8 @@ public:
 
     void Draw(sf::RenderWindow &w);
 
-    bool TileExist(uint x, uint y) const;
-    bool SpriteExist(uint id) const;
+    bool TileExists(uint x, uint y) const;
+    bool SpriteExists(uint id) const;
 
 private:
     std::vector< std::vector<uint> > map;
