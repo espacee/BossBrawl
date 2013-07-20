@@ -14,6 +14,10 @@ find_package(SFML 2 COMPONENTS graphics window audio system REQUIRED)
 include_directories(${SFML_INCLUDE_DIR})
 
 add_executable(bosskiller
+src/Camera.cpp
+src/Camera.hpp
+src/EditorState.cpp
+src/EditorState.hpp
 src/GameState.cpp
 src/GameState.hpp
 src/Layer.cpp
@@ -27,9 +31,9 @@ src/TileMap.cpp
 src/TileMap.hpp
 src/config.cpp
 src/config.hpp
-src/main.cpp
 src/graphics.cpp
 src/graphics.hpp
+src/main.cpp
 )
 
 target_link_libraries(bosskiller ${SFML_LIBRARIES})
