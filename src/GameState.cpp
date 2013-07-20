@@ -5,16 +5,27 @@
 
 GameState::GameState()
 {
-    playerTexture.loadFromFile("res/img/player.png", sf::IntRect(32 ,0,32 , 32));
-    button1text.loadFromFile("res/img/button1.png");
-    player.setTexture(playerTexture);
-    button1.setTexture(button1text);
 
+    /** Game Items **/
+    playerTexture.loadFromFile("res/img/player.png", sf::IntRect(32 ,0,32 , 32));
+    
+    player.setTexture(playerTexture);
+    /** Game Items END **/
+
+
+    /** HUD Items **/
+    button1text.loadFromFile("res/img/button1.png");
+    
+    button1.setTexture(button1text);
+    /** HUD Items END **/
+    
+    
     map.ResizeLayer(0,5,5);
     map.FillLayer(0,2);
     map.AddLayer();
     map.ResizeLayer(1,32,18);
     map.FillLayer(1,2);
+
 }
 
 void GameState::OnSet()
@@ -29,13 +40,13 @@ void GameState::OnUpdate()
     /*** KEYBOARD PLAYER  STUFF ***/
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-        player.move(0, -10);
+        player.move(0, -7);
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-        player.move(10, 0);
+        player.move(7, 0);
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-        player.move(0, 10);
+        player.move(0, 7);
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-        player.move(-10, 0);
+        player.move(-7, 0);
 
     /*** END KEYBOARD PLAYER STUFF  ***/
 
@@ -45,6 +56,10 @@ void GameState::OnUpdate()
         camera.EditorCamera();
 
 
+    //camera 
+    camera.view.setCenter(player.getPosition().x, player.getPosition().y);
+
+    //Draw Here for the game
     camera.SetView(1);
     window.clear(sf::Color(0,0,0));
     map.Display();
@@ -53,6 +68,7 @@ void GameState::OnUpdate()
 
     camera.SetView(2); // Only Draw after this if you want it on the HUD
     window.draw(button1);
+
 }
 
 void GameState::OnEvent(const sf::Event &event)
@@ -77,3 +93,4 @@ void GameState::OnEvent(const sf::Event &event)
     if(event.type == sf::Event::MouseWheelMoved && event.mouseWheel.delta == -1)
         camera.ZoomOut();
 }
+

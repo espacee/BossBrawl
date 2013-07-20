@@ -1,23 +1,22 @@
 #include "Camera.hpp"
 #include "config.hpp"
-
+#include "GameState.hpp"
 #include <iostream>
+
 
 Camera::Camera()
 {
+     GameState gamestate;
 
     view.reset(sf::FloatRect(0,0 , config::windowWidth, config::windowHeight));
     view.setViewport(sf::FloatRect(0,0, 1.0f,1.0f));
 
     EditorHUD.reset(sf::FloatRect(0,0 , config::windowWidth, config::windowHeight));
     EditorHUD.setViewport(sf::FloatRect(0,0, 1.0f,1.0f));
-
 }
-
 
 void Camera::GameCamera()
 {
-
 
 }
 
@@ -51,5 +50,7 @@ void Camera::SetView(int i)
     else if (i == 2)
         graphics::window.setView(EditorHUD);
 }
+
+
 
 

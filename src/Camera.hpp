@@ -13,8 +13,7 @@ public:
     void ZoomIn();
     void ZoomOut();
     void SetView(int i);
-
-private:
+   
     sf::View view;
     sf::View EditorHUD;
 };
