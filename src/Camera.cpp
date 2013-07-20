@@ -46,9 +46,9 @@ void Camera::ZoomOut()
 
 void Camera::SetView(int i)
 {
-    if (int i = 1)
+    if (i == 1)
         graphics::window.setView(view);
-    else if (int i = 2)
+    else if (i == 2)
         graphics::window.setView(EditorHUD);
 }
 
