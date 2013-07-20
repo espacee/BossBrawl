@@ -17,5 +17,5 @@ int main()
     }
 
     config::Save();
-    return 0; 
+    return 0;
 }

@@ -25,7 +25,7 @@ int MenuState::Loop()
 
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
                 return GAME;
-            
+
 
         }
 

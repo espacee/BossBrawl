@@ -24,19 +24,19 @@ void Camera::GameCamera()
 void Camera::EditorCamera()
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-            view.move(0, -10);
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-            view.move(10, 0);
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-            view.move(0, 10);
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-            view.move(-10, 0);
+        view.move(0, -10);
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+        view.move(10, 0);
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+        view.move(0, 10);
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+        view.move(-10, 0);
 }
 
 void Camera::ZoomIn()
 {
-    view.zoom(0.80);    
-    
+    view.zoom(0.80);
+
 }
 
 void Camera::ZoomOut()

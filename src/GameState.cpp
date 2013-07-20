@@ -23,7 +23,7 @@ int GameState::Loop()
     sf::Texture button1text;
     button1text.loadFromFile("res/img/button1.png");
     sf::Sprite button1(button1text);
-    
+
 
     TileMap map;
     map.ResizeLayer(0,5,5);
@@ -33,7 +33,7 @@ int GameState::Loop()
     map.AddLayer();
     map.ResizeLayer(1,32,18);
     map.FillLayer(1,2);
-    
+
 
     sf::Event event;
     while (window.isOpen())
@@ -52,11 +52,11 @@ int GameState::Loop()
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F4)
                 return EDITOR;
 
-             if(event.type == sf::Event::MouseWheelMoved && event.mouseWheel.delta == 1)
-                 camera.ZoomIn();
+            if(event.type == sf::Event::MouseWheelMoved && event.mouseWheel.delta == 1)
+                camera.ZoomIn();
 
-             if(event.type == sf::Event::MouseWheelMoved && event.mouseWheel.delta == -1)
-                 camera.ZoomOut();
+            if(event.type == sf::Event::MouseWheelMoved && event.mouseWheel.delta == -1)
+                camera.ZoomOut();
         }
 
         /*** KEYBOARD PLAYER  STUFF ***/
@@ -69,14 +69,14 @@ int GameState::Loop()
             player.move(0, 10);
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
             player.move(-10, 0);
-        
-       /*** END KEYBOARD PLAYER STUFF  ***/
+
+        /*** END KEYBOARD PLAYER STUFF  ***/
 
         /*** EDITOR MODE WHEN PRESSING CONTROL AND ZQSD/WASD AT THE SAME TIME ***/
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
             camera.EditorCamera();
-        
+
 
         camera.SetView(1);
         window.clear(sf::Color(0,0,0));
