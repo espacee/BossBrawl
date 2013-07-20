@@ -3,10 +3,11 @@
 #include "GameState.hpp"
 #include <iostream>
 
+ GameState gamestate;
 
 Camera::Camera()
 {
-     GameState gamestate;
+    
 
     view.reset(sf::FloatRect(0,0 , config::windowWidth, config::windowHeight));
     view.setViewport(sf::FloatRect(0,0, 1.0f,1.0f));
