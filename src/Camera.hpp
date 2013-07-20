@@ -10,11 +10,13 @@ public:
 
     void GameCamera();
     void EditorCamera();
-    void ZoomIn(void);
-    void ZoomOut(void);
+    void ZoomIn();
+    void ZoomOut();
+    void SetView(int i);
 
 private:
     sf::View view;
+    sf::View EditorHUD;
 };
 
 #endif //!CAMERA_HPP

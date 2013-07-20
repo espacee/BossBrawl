@@ -54,9 +54,11 @@ int GameState::Loop()
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
                 return MENU;
 
-            if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F4)
+            if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F4){
                 return EDITOR;
+                
 
+            }
              if(event.type == sf::Event::MouseWheelMoved && event.mouseWheel.delta == 1)
                  camera.ZoomIn();
 
@@ -87,7 +89,6 @@ int GameState::Loop()
 
 
         camera.SetView(1);
-
         window.clear(sf::Color(0,0,0));
         map.Display();
         window.draw(player);
