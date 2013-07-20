@@ -5,7 +5,8 @@
 
 enum { EXIT=-1,
        MENU=0,
-       GAME=1
+       GAME=1,
+       EDITOR=2
      };
 
 class State

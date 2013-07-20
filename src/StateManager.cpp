@@ -4,6 +4,7 @@ StateManager::StateManager()
 {
     states.push_back(new MenuState);
     states.push_back(new GameState);
+    states.push_back(new EditorState);
 
     SetCurrentState(MENU);
 }
