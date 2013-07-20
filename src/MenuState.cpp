@@ -1,37 +1,26 @@
 #include "MenuState.hpp"
 
 #include "graphics.hpp"
+#include "stateDriver.hpp"
 
-MenuState::MenuState()
+void MenuState::OnSet()
 {
-
+    graphics::window.setTitle("MENU");
 }
 
-int MenuState::Loop()
+void MenuState::OnUpdate()
 {
     using graphics::window;
-    window.setTitle("MENU");
 
-    sf::Event event;
-    while (window.isOpen())
-    {
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
+    window.clear(sf::Color::Red);
+    window.display();
+}
 
-            if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
-                window.close();
+void MenuState::OnEvent(const sf::Event &event)
+{
+    if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
+        stateDriver::RequestQuit();
 
-            if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
-                return GAME;
-
-
-        }
-
-        window.clear(sf::Color(255,0,0));
-        window.display();
-    }
-
-    return EXIT;
+    if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
+        stateDriver::SetState("game");
 }

@@ -6,9 +6,9 @@
 class MenuState : public State
 {
 public:
-    MenuState();
-    virtual int Loop();
-
+    virtual void OnSet();
+    virtual void OnUpdate();
+    virtual void OnEvent(const sf::Event &event);
 };
 
 #endif // MENUSTATE_HPP

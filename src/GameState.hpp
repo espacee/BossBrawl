@@ -4,13 +4,24 @@
 #include "State.hpp"
 
 #include "TileMap.hpp"
+#include "Camera.hpp"
+
+#include <SFML/Graphics.hpp>
 
 class GameState : public State
 {
 public:
     GameState();
-    virtual int Loop();
-
+    void OnSet();
+    void OnUpdate();
+    void OnEvent(const sf::Event &event);
+private:
+    Camera camera;
+    TileMap map;
+    sf::Texture playerTexture;
+    sf::Sprite player;
+    sf::Texture button1text;
+    sf::Sprite button1;
 };
 
 #endif // GAMESTATE_HPP

@@ -25,8 +25,6 @@ src/Layer.hpp
 src/MenuState.cpp
 src/MenuState.hpp
 src/State.hpp
-src/StateManager.cpp
-src/StateManager.hpp
 src/TileMap.cpp
 src/TileMap.hpp
 src/config.cpp
@@ -34,6 +32,8 @@ src/config.hpp
 src/graphics.cpp
 src/graphics.hpp
 src/main.cpp
+src/stateDriver.cpp
+src/stateDriver.hpp
 )
 
 target_link_libraries(bosskiller ${SFML_LIBRARIES})

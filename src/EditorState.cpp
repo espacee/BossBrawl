@@ -1,37 +1,31 @@
 #include "EditorState.hpp"
-#include "GameState.hpp"
+
 #include "graphics.hpp"
+#include "stateDriver.hpp"
 
-GameState gamestate;
-
-EditorState::EditorState()
+void EditorState::OnSet()
 {
-
+    graphics::window.setTitle("Level Editor");
 }
 
-int EditorState::Loop()
+void EditorState::OnUpdate()
 {
-
     using graphics::window;
-    window.setTitle("Level Editor");
 
-    sf::Event event;
-    while (window.isOpen())
-    {
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
+    window.clear();
+}
 
-            if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
-                window.close();
+void EditorState::OnEvent(const sf::Event &event)
+{
+    using graphics::window;
 
-            if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return) {
-                return GAME;
-            }
-        }
-        window.clear();
-        window.display();
+    if (event.type == sf::Event::Closed)
+        window.close();
+
+    if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
+        window.close();
+
+    if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return) {
+        stateDriver::SetState("game");
     }
-    return EXIT;
 }

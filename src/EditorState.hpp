@@ -6,10 +6,9 @@
 class EditorState : public State
 {
 public:
-    EditorState();
-    virtual int Loop();
-
-
+    virtual void OnSet();
+    virtual void OnUpdate();
+    virtual void OnEvent(const sf::Event &event);
 };
 
 #endif //!EDITORSTATE_HPP

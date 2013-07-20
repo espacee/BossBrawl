@@ -1,21 +1,24 @@
 #include <SFML/Graphics.hpp>
 
-#include "StateManager.hpp"
+#include "stateDriver.hpp"
 #include "config.hpp"
 #include "graphics.hpp"
+#include "MenuState.hpp"
+#include "GameState.hpp"
+#include "EditorState.hpp"
 
 int main()
 {
-    StateManager m;
-    m.SetCurrentState(MENU);
     config::Load();
     graphics::Init();
 
-    while (m.GetCurrentState() != EXIT)
-    {
-        m.Loop();
-    }
+    stateDriver::AddState(new MenuState, "menu");
+    stateDriver::AddState(new GameState, "game");
+    stateDriver::AddState(new EditorState, "editor");
+    stateDriver::SetState("menu");
+
+    int ret = stateDriver::Exec();
 
     config::Save();
-    return 0;
+    return ret;
 }
