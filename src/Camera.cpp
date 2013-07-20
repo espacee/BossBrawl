@@ -12,7 +12,6 @@ Camera::Camera()
     EditorHUD.reset(sf::FloatRect(0,0 , config::windowWidth, config::windowHeight));
     EditorHUD.setViewport(sf::FloatRect(0,0, 1.0f,1.0f));
 
-
 }
 
 
@@ -32,7 +31,6 @@ void Camera::EditorCamera()
             view.move(0, 10);
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
             view.move(-10, 0);
-
 }
 
 void Camera::ZoomIn()
@@ -52,9 +50,6 @@ void Camera::SetView(int i)
         graphics::window.setView(view);
     else if (int i = 2)
         graphics::window.setView(EditorHUD);
-
-
-
 }
 
 

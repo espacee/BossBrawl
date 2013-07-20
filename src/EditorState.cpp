@@ -11,6 +11,7 @@ EditorState::EditorState()
 
 int EditorState::Loop()
 {
+    
     using graphics::window;
     window.setTitle("Level Editor");
 
@@ -25,14 +26,12 @@ int EditorState::Loop()
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
                 window.close();
 
-            if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
-                return GAME;
-
+            if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return){
+                return GAME;   
+            }
         }
-
-        window.clear(sf::Color(255,0,0));
-        window.display();
+        window.clear();
+        window.display();  
     }
-
     return EXIT;
 }

@@ -13,9 +13,6 @@ int GameState::Loop()
 
     Camera camera;
 
-    
-
-
     using graphics::window;
     window.setTitle("GAME");
 
@@ -32,12 +29,10 @@ int GameState::Loop()
     map.ResizeLayer(0,5,5);
     map.FillLayer(0,2);
 
-    
 
     map.AddLayer();
     map.ResizeLayer(1,32,18);
     map.FillLayer(1,2);
-    
     
 
     sf::Event event;
@@ -54,18 +49,14 @@ int GameState::Loop()
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
                 return MENU;
 
-            if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F4){
+            if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F4)
                 return EDITOR;
-                
 
-            }
              if(event.type == sf::Event::MouseWheelMoved && event.mouseWheel.delta == 1)
                  camera.ZoomIn();
 
              if(event.type == sf::Event::MouseWheelMoved && event.mouseWheel.delta == -1)
                  camera.ZoomOut();
-              
-
         }
 
         /*** KEYBOARD PLAYER  STUFF ***/
@@ -86,7 +77,6 @@ int GameState::Loop()
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
             camera.EditorCamera();
         
-
 
         camera.SetView(1);
         window.clear(sf::Color(0,0,0));
