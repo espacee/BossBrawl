@@ -13,7 +13,6 @@ void MenuState::OnUpdate()
     using graphics::window;
 
     window.clear(sf::Color::Red);
-    window.display();
 }
 
 void MenuState::OnEvent(const sf::Event &event)
