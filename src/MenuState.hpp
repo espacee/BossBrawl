@@ -12,7 +12,10 @@ public:
     virtual void onEvent(const sf::Event &event);
 
 private:
-    Button testButton;
+    Button btn1;
+    Button btn2;
+    Button btn3;
+    Button btn4;
 };
 
 #endif // MENUSTATE_HPP

@@ -12,8 +12,7 @@ Button::Button(std::string string)
 
     setPosition(0,0);
 
-    background = sf::Color::Red;
-    hover = pressed = false;
+    hovered = pressed = released = false;
 
     create(string);
 }
@@ -151,44 +150,46 @@ void Button::processEvents(const sf::Event &event)
 {
     if (event.type == sf::Event::MouseMoved)
     {
-        if(event.mouseMove.x>x && event.mouseMove.x<x+width && event.mouseMove.y>y && event.mouseMove.y<y+height)
+        if(event.mouseMove.x>x &&
+           event.mouseMove.y>y &&
+           event.mouseMove.x<x+width &&
+           event.mouseMove.y<y+height)
         {
-            hover =true;
+            hovered = true;
         }
         else
         {
-            hover = false;
+            hovered = false;
         }
     }
 
     if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
     {
-        pressed = true;
-    }
-    else
-    {
-        pressed =false;
+        if(hovered)
+            pressed = true;
     }
 
-    if(hover)
+    if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left)
     {
-        if(pressed)
-        {
-            background = sf::Color::Green;
-        }
-        else
-        {
-            background = sf::Color::Blue;
-        }
+        pressed = false;
+        if(hovered)
+            released = true;
     }
     else
     {
-        background = sf::Color::Red;
+        released = false;
     }
 }
 
 void Button::display()
 {
+    background = sf::Color(100,100,100);
+    if(hovered)
+        background = sf::Color(0,170,240);
+    if(pressed)
+        background = sf::Color(0,80,170);
+    released = false;
+
     renderTexture.clear(background);
 
     renderTexture.draw(text);
