@@ -8,18 +8,18 @@ GameState::GameState()
 
     /** Game Items **/
     playerTexture.loadFromFile("res/img/player.png", sf::IntRect(32 ,0,32 , 32));
-    
+
     player.setTexture(playerTexture);
     /** Game Items END **/
 
 
     /** HUD Items **/
     button1text.loadFromFile("res/img/button1.png");
-    
+
     button1.setTexture(button1text);
     /** HUD Items END **/
-    
-    
+
+
     map.ResizeLayer(0,5,5);
     map.FillLayer(0,2);
     map.AddLayer();
@@ -56,7 +56,7 @@ void GameState::OnUpdate()
         camera.EditorCamera();
 
 
-    //camera 
+    //camera
     camera.view.setCenter(player.getPosition().x, player.getPosition().y);
 
     //Draw Here for the game
