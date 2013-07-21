@@ -12,9 +12,9 @@ class GameState : public State
 {
 public:
     GameState();
-    void OnSet();
-    void OnUpdate();
-    void OnEvent(const sf::Event &event);
+    void onSet();
+    void onUpdate();
+    void onEvent(const sf::Event &event);
 
 private:
     Camera camera;

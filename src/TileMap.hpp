@@ -17,11 +17,11 @@ class TileMap
 public:
     TileMap();
 
-    void LoadTiles();
+    void loadTiles();
 
-    void ResizeLayer(unsigned int layer, unsigned int new_hLength, unsigned int new_vLength);
-    void SetTile(unsigned int layer, unsigned int x, unsigned int y, unsigned int id);
-    unsigned int GetTile(unsigned int layer, unsigned int x, unsigned int y) const;
+    void resizeLayer(unsigned int layer, unsigned int new_hLength, unsigned int new_vLength);
+    void setTile(unsigned int layer, unsigned int x, unsigned int y, unsigned int id);
+    unsigned int getTile(unsigned int layer, unsigned int x, unsigned int y) const;
 
     /**
      * @brief Fill a layer with a specific tile
@@ -30,19 +30,19 @@ public:
      * @param id The tile to fill the layer with. If it is 0, the function will
      *           fill the layer with empty tiles, i.e. clear the layer.
      */
-    void FillLayer(unsigned int layer, unsigned int id);
+    void fillLayer(unsigned int layer, unsigned int id);
 
-    void MoveLayer(int x_offset, int y_offset, unsigned int layer);
-    void SetLayerPosition(int new_x_coord, int new_y_coord, unsigned int layer);
+    void moveLayer(int x_offset, int y_offset, unsigned int layer);
+    void setLayerPosition(int new_x_coord, int new_y_coord, unsigned int layer);
 
-    void AddLayer();
-    void PopLayer();
+    void addLayer();
+    void popLayer();
 
-    bool TileExists(unsigned int x, unsigned int y, unsigned int layer) const;
-    bool SpriteExists(unsigned int id) const;
-    bool LayerExists(unsigned int layer) const;
+    bool tileExists(unsigned int x, unsigned int y, unsigned int layer) const;
+    bool spriteExists(unsigned int id) const;
+    bool layerExists(unsigned int layer) const;
 
-    void Display();
+    void display();
 
 private:
     std::vector< Layer > layers;

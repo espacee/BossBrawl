@@ -18,12 +18,12 @@ namespace config
  * It first loads the defaults, then, if the configuration file exists,
  * loads the configuration from it.
  */
-void Load();
+void load();
 
 /**
  * @brief Save the configuration to the default configuration file
  */
-void Save();
+void save();
 
 /**
  * @brief Width of the game window

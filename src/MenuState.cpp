@@ -3,30 +3,30 @@
 #include "graphics.hpp"
 #include "stateDriver.hpp"
 
-void MenuState::OnSet()
+void MenuState::onSet()
 {
     graphics::window.setTitle("menu");
-    testButton.Create("Button");
-    testButton.SetGeometry(200,200,400,130);
+    testButton.create("Button");
+    testButton.setGeometry(200,200,400,130);
 
 }
 
-void MenuState::OnUpdate()
+void MenuState::onUpdate()
 {
     using graphics::window;
 
     window.clear(sf::Color(60,60,60));
 
-    testButton.Display();
+    testButton.display();
 }
 
-void MenuState::OnEvent(const sf::Event &event)
+void MenuState::onEvent(const sf::Event &event)
 {
     if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
-        stateDriver::RequestQuit();
+        stateDriver::requestQuit();
 
     if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
-        stateDriver::SetState("game");
+        stateDriver::setState("game");
 
-    testButton.ProcessEvents(event);
+    testButton.processEvents(event);
 }

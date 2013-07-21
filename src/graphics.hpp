@@ -9,7 +9,7 @@ namespace graphics
 extern sf::RenderWindow window;
 extern sf::Font font;
 
-void Init();
+void init();
 
 }
 

@@ -7,9 +7,9 @@
 class MenuState : public State
 {
 public:
-    virtual void OnSet();
-    virtual void OnUpdate();
-    virtual void OnEvent(const sf::Event &event);
+    virtual void onSet();
+    virtual void onUpdate();
+    virtual void onEvent(const sf::Event &event);
 
 private:
     Button testButton;

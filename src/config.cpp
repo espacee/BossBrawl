@@ -28,7 +28,7 @@ void extract_assert(std::istream& stream, T& value)
     }
 }
 
-void Load()
+void load()
 {
     setDefaults();
     std::ifstream file(DEFAULT_CONFIG_FILENAME);
@@ -68,7 +68,7 @@ void Load()
     }
 }
 
-void Save()
+void save()
 {
     std::ofstream file(DEFAULT_CONFIG_FILENAME);
 

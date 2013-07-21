@@ -3,25 +3,25 @@
 #include "graphics.hpp"
 #include "stateDriver.hpp"
 
-void EditorState::OnSet()
+void EditorState::onSet()
 {
     graphics::window.setTitle("editor");
 }
 
-void EditorState::OnUpdate()
+void EditorState::onUpdate()
 {
     using graphics::window;
 
     window.clear();
 }
 
-void EditorState::OnEvent(const sf::Event &event)
+void EditorState::onEvent(const sf::Event &event)
 {
     using graphics::window;
 
     if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
-        stateDriver::RequestQuit();
+        stateDriver::requestQuit();
 
     if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F4)
-        stateDriver::SetState("game");
+        stateDriver::setState("game");
 }

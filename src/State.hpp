@@ -9,17 +9,17 @@ public :
     /**
      * @brief Called whenever the current state is set to this state
      */
-    virtual void OnSet() {}
+    virtual void onSet() {}
 
     /**
      * @brief Called every frame
      */
-    virtual void OnUpdate() {}
+    virtual void onUpdate() {}
 
     /**
      * @brief Called every time an event happens
      */
-    virtual void OnEvent(const sf::Event& event) {
+    virtual void onEvent(const sf::Event& event) {
         (void)(event);
     }
 

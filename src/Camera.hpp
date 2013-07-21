@@ -8,11 +8,11 @@ class Camera
 public:
     Camera();
 
-    void GameCamera();
-    void EditorCamera();
-    void ZoomIn();
-    void ZoomOut();
-    void SetView(int i);
+    void gameCamera();
+    void editorCamera();
+    void zoomIn();
+    void zoomOut();
+    void setView(int i);
 
     sf::View view;
     sf::View EditorHUD;

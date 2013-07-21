@@ -3,20 +3,20 @@
 Layer::Layer()
 {
     layerID = 9999;
-    Resize(1,1);
-    Fill(0);
+    resize(1,1);
+    fill(0);
     x_coord = y_coord = 0;
 }
 
 Layer::Layer(unsigned int new_layerID)
 {
     layerID = new_layerID;
-    Resize(1,1);
-    Fill(0);
+    resize(1,1);
+    fill(0);
     x_coord = y_coord = 0;
 }
 
-void Layer::Resize(unsigned int new_hLength, unsigned int new_vLength)
+void Layer::resize(unsigned int new_hLength, unsigned int new_vLength)
 {
     if(new_hLength>=1 && new_vLength>=1)
     {
@@ -37,15 +37,15 @@ void Layer::Resize(unsigned int new_hLength, unsigned int new_vLength)
     }
 }
 
-void Layer::SetTile(unsigned int x, unsigned int y, unsigned int id)
+void Layer::setTile(unsigned int x, unsigned int y, unsigned int id)
 {
-    if(TileExists(x,y))
+    if(tileExists(x,y))
         map[x][y] = id;
 }
 
-unsigned int Layer::GetTile(unsigned int x, unsigned int y) const
+unsigned int Layer::getTile(unsigned int x, unsigned int y) const
 {
-    if(TileExists(x,y))
+    if(tileExists(x,y))
     {
         return map[x][y];
     }
@@ -55,7 +55,7 @@ unsigned int Layer::GetTile(unsigned int x, unsigned int y) const
     }
 }
 
-void Layer::Fill(unsigned int id)
+void Layer::fill(unsigned int id)
 {
     for(unsigned int i=0; i<hLength; i++)
     {
@@ -66,49 +66,49 @@ void Layer::Fill(unsigned int id)
     }
 }
 
-void Layer::Move(int x_offset, int y_offset)
+void Layer::move(int x_offset, int y_offset)
 {
     x_coord+=x_offset;
     y_coord+=y_offset;
 }
 
-void Layer::SetPosition(int new_x_coord, int new_y_coord)
+void Layer::setPosition(int new_x_coord, int new_y_coord)
 {
     x_coord = new_x_coord;
     y_coord = new_y_coord;
 }
 
-int Layer::GetX() const
+int Layer::getX() const
 {
     return x_coord;
 }
 
-int Layer::GetY() const
+int Layer::getY() const
 {
     return y_coord;
 }
 
-unsigned int Layer::GetHLength() const
+unsigned int Layer::getHLength() const
 {
     return hLength;
 }
 
-unsigned int Layer::GetVLength() const
+unsigned int Layer::getVLength() const
 {
     return vLength;
 }
 
-unsigned int Layer::GetWidth() const
+unsigned int Layer::getWidth() const
 {
     return width;
 }
 
-unsigned int Layer::GetHeight() const
+unsigned int Layer::getHeight() const
 {
     return height;
 }
 
-bool Layer::TileExists(unsigned int x, unsigned int y) const
+bool Layer::tileExists(unsigned int x, unsigned int y) const
 {
     return x < hLength && y < vLength;
 }

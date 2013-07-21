@@ -5,35 +5,34 @@
 
 class Button
 {
-
 public:
     Button(std::string string="");
 
-    void Create(std::string string="");
-    void SetText(std::string string);
-    void SetCharacterSize(unsigned int characterSize);
+    void create(std::string string="");
+    void setText(std::string string);
+    void setCharacterSize(unsigned int characterSize);
 
-    void ResetGeometry();
-    void SetGeometry(int new_x, int new_y, unsigned int new_width, unsigned int new_height);
-    void SetSize(unsigned int new_width, unsigned int new_height);
-    void SetWidth(unsigned int new_width);
-    void SetHeight(unsigned int new_height);
-    void SetPosition(int new_x, int new_y);
-    void Move(int x_offset, int y_offset);
-    void SetX(int new_x);
-    void SetY(int new_y);
+    void resetGeometry();
+    void setGeometry(int new_x, int new_y, unsigned int new_width, unsigned int new_height);
+    void setSize(unsigned int new_width, unsigned int new_height);
+    void setWidth(unsigned int new_width);
+    void setHeight(unsigned int new_height);
+    void setPosition(int new_x, int new_y);
+    void move(int x_offset, int y_offset);
+    void setX(int new_x);
+    void setY(int new_y);
 
-    sf::Vector2i GetSize() const;
+    sf::Vector2i getSize() const;
     unsigned int getWidth() const;
-    unsigned int GetHeight() const;
-    sf::Vector2i GetPosition() const;
-    int GetX() const;
-    int GetY() const;
+    unsigned int getHeight() const;
+    sf::Vector2i getPosition() const;
+    int getX() const;
+    int getY() const;
 
-    void ProcessEvents(const sf::Event &event);
-    void Display();
+    void processEvents(const sf::Event &event);
+    void display();
 private:
-    void ResizeTexture();
+    void resizeTexture();
 
     sf::RenderTexture renderTexture;
     sf::Text text;

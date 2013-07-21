@@ -11,12 +11,12 @@ Camera::Camera()
     EditorHUD.setViewport(sf::FloatRect(0,0, 1.0f,1.0f));
 }
 
-void Camera::GameCamera()
+void Camera::gameCamera()
 {
 
 }
 
-void Camera::EditorCamera()
+void Camera::editorCamera()
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
         view.move(0, -10);
@@ -28,18 +28,18 @@ void Camera::EditorCamera()
         view.move(-10, 0);
 }
 
-void Camera::ZoomIn()
+void Camera::zoomIn()
 {
     view.zoom(0.80);
 
 }
 
-void Camera::ZoomOut()
+void Camera::zoomOut()
 {
     view.zoom(1.20);
 }
 
-void Camera::SetView(int i)
+void Camera::setView(int i)
 {
     if (i == 1)
         graphics::window.setView(view);

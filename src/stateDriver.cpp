@@ -12,7 +12,7 @@ bool m_running;
 std::map<std::string, State*> m_states;
 State* m_currentState;
 
-int Exec()
+int exec()
 {
     m_running = true;
 
@@ -22,7 +22,7 @@ int Exec()
 
         while (graphics::window.pollEvent(event))
         {
-            m_currentState->OnEvent(event);
+            m_currentState->onEvent(event);
 
             if (event.type == sf::Event::Closed)
             {
@@ -30,19 +30,19 @@ int Exec()
             }
         }
 
-        m_currentState->OnUpdate();
+        m_currentState->onUpdate();
         graphics::window.display();
     }
 
     return 0;
 }
 
-void AddState(State *state, const std::string &name)
+void addState(State *state, const std::string &name)
 {
     m_states[name] = state;
 }
 
-void SetState(const std::string &name)
+void setState(const std::string &name)
 {
     auto it = m_states.find(name);
 
@@ -53,10 +53,10 @@ void SetState(const std::string &name)
     }
 
     m_currentState = it->second;
-    m_currentState->OnSet();
+    m_currentState->onSet();
 }
 
-void RequestQuit()
+void requestQuit()
 {
     m_running = false;
 }

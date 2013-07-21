@@ -4,13 +4,13 @@
 
 TileMap::TileMap()
 {
-    LoadTiles();
+    loadTiles();
     nb_layers=0;
     lastLayerID=0;
-    AddLayer();
+    addLayer();
 }
 
-void TileMap::LoadTiles()
+void TileMap::loadTiles()
 {
     sprites.push_back(sf::Sprite());
 
@@ -29,58 +29,58 @@ void TileMap::LoadTiles()
     }
 }
 
-void TileMap::ResizeLayer(unsigned int layer, unsigned int new_hLength, unsigned int new_vLength)
+void TileMap::resizeLayer(unsigned int layer, unsigned int new_hLength, unsigned int new_vLength)
 {
-    if(LayerExists(layer))
-        layers[layer].Resize(new_hLength, new_vLength);
+    if(layerExists(layer))
+        layers[layer].resize(new_hLength, new_vLength);
 }
 
-void TileMap::SetTile(unsigned int layer, unsigned int x, unsigned int y, unsigned int id)
+void TileMap::setTile(unsigned int layer, unsigned int x, unsigned int y, unsigned int id)
 {
-    if(LayerExists(layer)  && SpriteExists(id))
-        layers[layer].SetTile(x,y,id);
+    if(layerExists(layer)  && spriteExists(id))
+        layers[layer].setTile(x,y,id);
 }
 
-unsigned int TileMap::GetTile(unsigned int layer, unsigned int x, unsigned int y) const
+unsigned int TileMap::getTile(unsigned int layer, unsigned int x, unsigned int y) const
 {
-    if(LayerExists(layer))
-        return layers[layer].GetTile(x,y);
+    if(layerExists(layer))
+        return layers[layer].getTile(x,y);
     else
         return 0;
 }
 
-void TileMap::FillLayer(unsigned int layer, unsigned int id)
+void TileMap::fillLayer(unsigned int layer, unsigned int id)
 {
-    if(LayerExists(layer) && SpriteExists(id))
+    if(layerExists(layer) && spriteExists(id))
     {
-        layers[layer].Fill(id);
+        layers[layer].fill(id);
     }
 }
 
-void TileMap::MoveLayer(int x_offset, int y_offset, unsigned int layer)
+void TileMap::moveLayer(int x_offset, int y_offset, unsigned int layer)
 {
-    if(LayerExists(layer))
+    if(layerExists(layer))
     {
-        layers[layer].Move(x_offset, y_offset);
+        layers[layer].move(x_offset, y_offset);
     }
 }
 
-void TileMap::SetLayerPosition(int new_x_coord, int new_y_coord,unsigned int layer)
+void TileMap::setLayerPosition(int new_x_coord, int new_y_coord,unsigned int layer)
 {
-    if(LayerExists(layer))
+    if(layerExists(layer))
     {
-        layers[layer].SetPosition(new_x_coord, new_y_coord);
+        layers[layer].setPosition(new_x_coord, new_y_coord);
     }
 }
 
-void TileMap::AddLayer()
+void TileMap::addLayer()
 {
     nb_layers++;
     lastLayerID++;
     layers.push_back(Layer(lastLayerID));
 }
 
-void TileMap::PopLayer()
+void TileMap::popLayer()
 {
     if(nb_layers>1)
     {
@@ -89,37 +89,37 @@ void TileMap::PopLayer()
     }
 }
 
-bool TileMap::TileExists(unsigned int x, unsigned int y, unsigned int layer) const
+bool TileMap::tileExists(unsigned int x, unsigned int y, unsigned int layer) const
 {
-    if(LayerExists(layer))
-        return layers[layer].TileExists(x,y);
+    if(layerExists(layer))
+        return layers[layer].tileExists(x,y);
     else
         return false;
 }
 
-bool TileMap::SpriteExists(unsigned int id) const
+bool TileMap::spriteExists(unsigned int id) const
 {
     return id < sprites.size();
 }
 
-bool TileMap::LayerExists(unsigned int layer) const
+bool TileMap::layerExists(unsigned int layer) const
 {
     return layer < layers.size();
 }
 
-void TileMap::Display()
+void TileMap::display()
 {
     for(unsigned int k=0; k<nb_layers; k++)
     {
-        for(unsigned int i=0; i<layers[k].GetHLength(); i++)
+        for(unsigned int i=0; i<layers[k].getHLength(); i++)
         {
-            for(unsigned int j=0; j<layers[k].GetVLength(); j++)
+            for(unsigned int j=0; j<layers[k].getVLength(); j++)
             {
-                unsigned int id=layers[k].GetTile(i,j);
+                unsigned int id=layers[k].getTile(i,j);
                 if(id)
                 {
-                    sprites[id].setPosition(layers[k].GetX()+(int)(i*GRID_SIZE),
-                                            layers[k].GetY()+(int)(j*GRID_SIZE));
+                    sprites[id].setPosition(layers[k].getX()+(int)(i*GRID_SIZE),
+                                            layers[k].getY()+(int)(j*GRID_SIZE));
                     graphics::window.draw(sprites[id]);
                 }
             }

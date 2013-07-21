@@ -8,7 +8,7 @@ namespace graphics
 sf::RenderWindow window;
 sf::Font font;
 
-void Init()
+void init()
 {
     window.create(sf::VideoMode(config::windowWidth, config::windowHeight, 32), "Window");
     window.setFramerateLimit(60);

@@ -8,17 +8,17 @@ GameState::GameState()
     playerTexture.loadFromFile("res/img/player.png", sf::IntRect(32 ,0,32 , 32));
     player.setTexture(playerTexture);
 
-    map.ResizeLayer(0,5,5);
-    map.FillLayer(0,2);
+    map.resizeLayer(0,5,5);
+    map.fillLayer(0,2);
 
 }
 
-void GameState::OnSet()
+void GameState::onSet()
 {
     graphics::window.setTitle("game");
 }
 
-void GameState::OnUpdate()
+void GameState::onUpdate()
 {
     using graphics::window;
 
@@ -38,38 +38,38 @@ void GameState::OnUpdate()
     /*** EDITOR MODE WHEN PRESSING CONTROL AND ZQSD/WASD AT THE SAME TIME ***/
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
-        camera.EditorCamera();
+        camera.editorCamera();
 
 
     //camera
     camera.view.setCenter(player.getPosition().x, player.getPosition().y);
 
     //Draw Here for the game
-    camera.SetView(1);
+    camera.setView(1);
     window.clear(sf::Color(0,0,0));
-    map.Display();
+    map.display();
     window.draw(player);
 
-    camera.SetView(2);
+    camera.setView(2);
 
 }
 
-void GameState::OnEvent(const sf::Event &event)
+void GameState::onEvent(const sf::Event &event)
 {
     using graphics::window;
 
     if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
-        stateDriver::RequestQuit();
+        stateDriver::requestQuit();
 
     if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
-        stateDriver::SetState("menu");
+        stateDriver::setState("menu");
 
     if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F4)
-        stateDriver::SetState("editor");
+        stateDriver::setState("editor");
 
     if(event.type == sf::Event::MouseWheelMoved && event.mouseWheel.delta == 1)
-        camera.ZoomIn();
+        camera.zoomIn();
 
     if(event.type == sf::Event::MouseWheelMoved && event.mouseWheel.delta == -1)
-        camera.ZoomOut();
+        camera.zoomOut();
 }

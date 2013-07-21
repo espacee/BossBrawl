@@ -9,16 +9,16 @@
 
 int main()
 {
-    config::Load();
-    graphics::Init();
+    config::load();
+    graphics::init();
 
-    stateDriver::AddState(new MenuState, "menu");
-    stateDriver::AddState(new GameState, "game");
-    stateDriver::AddState(new EditorState, "editor");
-    stateDriver::SetState("menu");
+    stateDriver::addState(new MenuState, "menu");
+    stateDriver::addState(new GameState, "game");
+    stateDriver::addState(new EditorState, "editor");
+    stateDriver::setState("menu");
 
-    int ret = stateDriver::Exec();
+    int ret = stateDriver::exec();
 
-    config::Save();
+    config::save();
     return ret;
 }

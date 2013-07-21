@@ -4,31 +4,30 @@
 
 Button::Button(std::string string)
 {
-
     text.setFont(graphics::font);
+    setCharacterSize(16);
 
-    SetCharacterSize(16);
     horizontalPadding = 40;
     verticalPadding=20;
 
-    Create(string);
+    create(string);
 
     background = sf::Color::Red;
 }
 
-void Button::Create(std::string string)
+void Button::create(std::string string)
 {
-    SetText(string);
+    setText(string);
 
-    ResetGeometry();
+    resetGeometry();
 }
 
-void Button::SetText(std::string string)
+void Button::setText(std::string string)
 {
     text.setString(string);
 }
 
-void Button::SetCharacterSize(unsigned int characterSize)
+void Button::setCharacterSize(unsigned int characterSize)
 {
     text.setCharacterSize(characterSize);
 
@@ -37,27 +36,27 @@ void Button::SetCharacterSize(unsigned int characterSize)
                    text.getCharacterSize()/4);
 }
 
-void Button::ResetGeometry()
+void Button::resetGeometry()
 {
     if(text.getString()=="")
     {
-        SetSize(30,30);
+        setSize(30,30);
     }
     else
     {
-        SetSize(text.getGlobalBounds().width+horizontalPadding,
+        setSize(text.getGlobalBounds().width+horizontalPadding,
                 text.getGlobalBounds().height+verticalPadding);
     }
 }
 
-void Button::SetGeometry(int new_x, int new_y, unsigned int new_width, unsigned int new_height)
+void Button::setGeometry(int new_x, int new_y, unsigned int new_width, unsigned int new_height)
 {
-    SetPosition(new_x,new_y);
-    SetSize(new_width, new_height);
+    setPosition(new_x,new_y);
+    setSize(new_width, new_height);
 
 }
 
-void Button::SetSize(unsigned int new_width, unsigned int new_height)
+void Button::setSize(unsigned int new_width, unsigned int new_height)
 {
     if(new_width>0)
     width = new_width;
@@ -65,48 +64,48 @@ void Button::SetSize(unsigned int new_width, unsigned int new_height)
     if(new_height>0)
     height = new_height;
 
-    ResizeTexture();
+    resizeTexture();
 }
 
-void Button::SetWidth(unsigned int new_width)
+void Button::setWidth(unsigned int new_width)
 {
     if(new_width>0)
     width = new_width;
 
-    ResizeTexture();
+    resizeTexture();
 }
 
-void Button::SetHeight(unsigned int new_height)
+void Button::setHeight(unsigned int new_height)
 {
     if(new_height>0)
     height = new_height;
 
-    ResizeTexture();
+    resizeTexture();
 }
 
-void Button::SetPosition(int new_x, int new_y)
+void Button::setPosition(int new_x, int new_y)
 {
-    SetX(new_x);
-    SetY(new_y);
+    setX(new_x);
+    setY(new_y);
 }
 
-void Button::Move(int x_offset, int y_offset)
+void Button::move(int x_offset, int y_offset)
 {
     x+= x_offset;
     y+= y_offset;
 }
 
-void Button::SetX(int new_x)
+void Button::setX(int new_x)
 {
     x = new_x;
 }
 
-void Button::SetY(int new_y)
+void Button::setY(int new_y)
 {
     y = new_y;
 }
 
-sf::Vector2i Button::GetSize() const
+sf::Vector2i Button::getSize() const
 {
     return sf::Vector2i(width, height);
 }
@@ -116,27 +115,27 @@ unsigned int Button::getWidth() const
     return width;
 }
 
-unsigned int Button::GetHeight() const
+unsigned int Button::getHeight() const
 {
     return height;
 }
 
-sf::Vector2i Button::GetPosition() const
+sf::Vector2i Button::getPosition() const
 {
     return sf::Vector2i(x,y);
 }
 
-int Button::GetX() const
+int Button::getX() const
 {
     return x;
 }
 
-int Button::GetY() const
+int Button::getY() const
 {
     return y;
 }
 
-void Button::ResizeTexture()
+void Button::resizeTexture()
 {
     renderTexture.create(width,
                          height);
@@ -145,7 +144,7 @@ void Button::ResizeTexture()
                      (int)(height/2-text.getGlobalBounds().height/2));
 }
 
-void Button::ProcessEvents(const sf::Event &event)
+void Button::processEvents(const sf::Event &event)
 {
     if (event.type == sf::Event::MouseMoved)
     {
@@ -160,7 +159,7 @@ void Button::ProcessEvents(const sf::Event &event)
     }
 }
 
-void Button::Display()
+void Button::display()
 {
     renderTexture.clear(background);
 
