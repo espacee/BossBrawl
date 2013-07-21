@@ -1,4 +1,6 @@
-Boss-Killer
+BossBrawl
 ===========
 
-2D SFML Game
+A 2D platformer action game written in C++ using SFML.
+
+http://bossbrawl.blogspot.com/
