@@ -10,7 +10,7 @@ namespace config
 int windowWidth;
 int windowHeight;
 
-const char* const FILENAME = "settings.cfg";
+const char* const DEFAULT_CONFIG_FILENAME = "settings.cfg";
 
 void setDefaults()
 {
@@ -31,7 +31,7 @@ void extract_assert(std::istream& stream, T& value)
 void Load()
 {
     setDefaults();
-    std::ifstream file(FILENAME);
+    std::ifstream file(DEFAULT_CONFIG_FILENAME);
 
     if (!file)
     {
@@ -70,11 +70,11 @@ void Load()
 
 void Save()
 {
-    std::ofstream file(FILENAME);
+    std::ofstream file(DEFAULT_CONFIG_FILENAME);
 
     if (!file)
     {
-        std::cerr << "Failed opening \"" << FILENAME << "\" for writing.\n";
+        std::cerr << "Failed opening \"" << DEFAULT_CONFIG_FILENAME << "\" for writing.\n";
         return;
     }
 
