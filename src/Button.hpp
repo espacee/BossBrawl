@@ -5,6 +5,7 @@
 
 class Button
 {
+
 public:
     Button(std::string string="");
 
@@ -29,6 +30,7 @@ public:
     int GetX() const;
     int GetY() const;
 
+    void ProcessEvents(const sf::Event &event);
     void Display();
 private:
     void ResizeTexture();
@@ -38,6 +40,7 @@ private:
     int x, y;
     unsigned int width, height;
     int horizontalPadding, verticalPadding;
+    sf::Color background;
 };
 
 #endif // BUTTON_HPP

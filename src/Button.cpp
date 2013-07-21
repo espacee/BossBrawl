@@ -4,18 +4,16 @@
 
 Button::Button(std::string string)
 {
-    SetCharacterSize(16);
 
+    text.setFont(graphics::font);
+
+    SetCharacterSize(16);
     horizontalPadding = 40;
     verticalPadding=20;
 
-    // HARDCODED FIX FOR THE TEXT CUTOFF PROBLEM
-    text.setFont(graphics::font);
-    text.setOrigin(text.getCharacterSize()/15,
-                   text.getCharacterSize()/4);
-
     Create(string);
 
+    background = sf::Color::Red;
 }
 
 void Button::Create(std::string string)
@@ -33,6 +31,10 @@ void Button::SetText(std::string string)
 void Button::SetCharacterSize(unsigned int characterSize)
 {
     text.setCharacterSize(characterSize);
+
+    // HARDCODED FIX FOR THE TEXT CUTOFF PROBLEM
+    text.setOrigin(text.getCharacterSize()/15,
+                   text.getCharacterSize()/4);
 }
 
 void Button::ResetGeometry()
@@ -143,9 +145,24 @@ void Button::ResizeTexture()
                      (int)(height/2-text.getGlobalBounds().height/2));
 }
 
+void Button::ProcessEvents(const sf::Event &event)
+{
+    if (event.type == sf::Event::MouseMoved)
+    {
+        if(event.mouseMove.x>x && event.mouseMove.x<x+width && event.mouseMove.y>y && event.mouseMove.y<y+height)
+        {
+            background=sf::Color::Blue;
+        }
+        else
+        {
+            background=sf::Color::Red;
+        }
+    }
+}
+
 void Button::Display()
 {
-    renderTexture.clear(sf::Color::Red);
+    renderTexture.clear(background);
 
     renderTexture.draw(text);
 
@@ -153,5 +170,6 @@ void Button::Display()
 
     sf::Sprite renderSprite(renderTexture.getTexture());
     renderSprite.setPosition(x,y);
+
     graphics::window.draw(renderSprite);
 }
