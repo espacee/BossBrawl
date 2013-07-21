@@ -24,7 +24,9 @@ public:
     unsigned int GetTile(unsigned int layer, unsigned int x, unsigned int y) const;
 
     /**
-     * @brief Fill the layer with a specific tile
+     * @brief Fill a layer with a specific tile
+     *
+     * @param layer The layer to fill
      * @param id The tile to fill the layer with. If it is 0, the function will
      *           fill the layer with empty tiles, i.e. clear the layer.
      */
