@@ -13,6 +13,8 @@ Button::Button(std::string string)
     create(string);
 
     background = sf::Color::Red;
+    hover = false;
+    pressed = false;
 }
 
 void Button::create(std::string string)
@@ -150,12 +152,37 @@ void Button::processEvents(const sf::Event &event)
     {
         if(event.mouseMove.x>x && event.mouseMove.x<x+width && event.mouseMove.y>y && event.mouseMove.y<y+height)
         {
-            background=sf::Color::Blue;
+            hover =true;
         }
         else
         {
-            background=sf::Color::Red;
+            hover = false;
         }
+    }
+
+    if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
+    {
+        pressed = true;
+    }
+    else
+    {
+        pressed =false;
+    }
+
+    if(hover)
+    {
+        if(pressed)
+        {
+            background = sf::Color::Green;
+        }
+        else
+        {
+            background = sf::Color::Blue;
+        }
+    }
+    else
+    {
+        background = sf::Color::Red;
     }
 }
 

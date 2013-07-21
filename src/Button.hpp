@@ -40,6 +40,7 @@ private:
     unsigned int width, height;
     int horizontalPadding, verticalPadding;
     sf::Color background;
+    bool hover, pressed;
 };
 
 #endif // BUTTON_HPP
