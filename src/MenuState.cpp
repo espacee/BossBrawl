@@ -7,7 +7,6 @@ void MenuState::onSet()
 {
     graphics::window.setTitle("menu");
     testButton.create("Button");
-    testButton.setGeometry(200,200,400,130);
 
 }
 

@@ -10,11 +10,12 @@ Button::Button(std::string string)
     horizontalPadding = 40;
     verticalPadding=20;
 
-    create(string);
+    setPosition(0,0);
 
     background = sf::Color::Red;
-    hover = false;
-    pressed = false;
+    hover = pressed = false;
+
+    create(string);
 }
 
 void Button::create(std::string string)
