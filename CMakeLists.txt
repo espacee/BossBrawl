@@ -14,6 +14,8 @@ find_package(SFML 2 COMPONENTS graphics window audio system REQUIRED)
 include_directories(${SFML_INCLUDE_DIR})
 
 add_executable(bosskiller
+src/Button.cpp
+src/Button.hpp
 src/Camera.cpp
 src/Camera.hpp
 src/EditorState.cpp
