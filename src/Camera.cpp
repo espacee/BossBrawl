@@ -1,6 +1,6 @@
 #include "Camera.hpp"
+
 #include "config.hpp"
-#include <iostream>
 
 Camera::Camera()
 {

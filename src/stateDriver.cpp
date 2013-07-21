@@ -61,6 +61,4 @@ void RequestQuit()
     m_running = false;
 }
 
-
-
 }

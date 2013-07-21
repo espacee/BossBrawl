@@ -5,14 +5,18 @@
 
 void MenuState::OnSet()
 {
-    graphics::window.setTitle("MENU");
+    graphics::window.setTitle("menu");
+    testButton.Create("Button");
+
 }
 
 void MenuState::OnUpdate()
 {
     using graphics::window;
 
-    window.clear(sf::Color::Red);
+    window.clear(sf::Color(60,60,60));
+
+    testButton.Display();
 }
 
 void MenuState::OnEvent(const sf::Event &event)

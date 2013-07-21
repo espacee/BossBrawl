@@ -5,32 +5,17 @@
 
 GameState::GameState()
 {
-
-    /** Game Items **/
     playerTexture.loadFromFile("res/img/player.png", sf::IntRect(32 ,0,32 , 32));
-
     player.setTexture(playerTexture);
-    /** Game Items END **/
-
-
-    /** HUD Items **/
-    button1text.loadFromFile("res/img/button1.png");
-
-    button1.setTexture(button1text);
-    /** HUD Items END **/
-
 
     map.ResizeLayer(0,5,5);
     map.FillLayer(0,2);
-    map.AddLayer();
-    map.ResizeLayer(1,32,18);
-    map.FillLayer(1,2);
 
 }
 
 void GameState::OnSet()
 {
-    graphics::window.setTitle("GAME");
+    graphics::window.setTitle("game");
 }
 
 void GameState::OnUpdate()
@@ -65,9 +50,7 @@ void GameState::OnUpdate()
     map.Display();
     window.draw(player);
 
-
-    camera.SetView(2); // Only Draw after this if you want it on the HUD
-    window.draw(button1);
+    camera.SetView(2);
 
 }
 
@@ -75,11 +58,8 @@ void GameState::OnEvent(const sf::Event &event)
 {
     using graphics::window;
 
-    if (event.type == sf::Event::Closed)
-        window.close();
-
     if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
-        window.close();
+        stateDriver::RequestQuit();
 
     if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
         stateDriver::SetState("menu");
@@ -93,4 +73,3 @@ void GameState::OnEvent(const sf::Event &event)
     if(event.type == sf::Event::MouseWheelMoved && event.mouseWheel.delta == -1)
         camera.ZoomOut();
 }
-

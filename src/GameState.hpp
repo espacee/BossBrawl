@@ -21,8 +21,6 @@ private:
     TileMap map;
     sf::Texture playerTexture;
     sf::Sprite player;
-    sf::Texture button1text;
-    sf::Sprite button1;
 };
 
 #endif // GAMESTATE_HPP

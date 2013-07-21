@@ -5,7 +5,7 @@
 
 void EditorState::OnSet()
 {
-    graphics::window.setTitle("Level Editor");
+    graphics::window.setTitle("editor");
 }
 
 void EditorState::OnUpdate()
@@ -19,13 +19,9 @@ void EditorState::OnEvent(const sf::Event &event)
 {
     using graphics::window;
 
-    if (event.type == sf::Event::Closed)
-        window.close();
-
     if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
-        window.close();
+        stateDriver::RequestQuit();
 
-    if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return) {
+    if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F4)
         stateDriver::SetState("game");
-    }
 }
