@@ -2,6 +2,7 @@ Conventions for C++ source code:
 - File names are CamelCase if they define classes, lowercase otherwise
 - Header files have the extension .hpp
 - Indentation is 4 spaces
+- Function names are camelCase()
 
 Features not to be used in C++ source code:
 - constexpr (not supported in VS2012)
