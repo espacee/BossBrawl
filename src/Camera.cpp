@@ -1,52 +1,56 @@
 #include "Camera.hpp"
 
-#include "config.hpp"
+#include "graphics.hpp"
 
 Camera::Camera()
 {
-    view.reset(sf::FloatRect(0,0 , config::windowWidth, config::windowHeight));
-    view.setViewport(sf::FloatRect(0,0, 1.0f,1.0f));
+    targetPoint = sf::Vector2f(0,0);
 
-    EditorHUD.reset(sf::FloatRect(0,0 , config::windowWidth, config::windowHeight));
-    EditorHUD.setViewport(sf::FloatRect(0,0, 1.0f,1.0f));
+    view = graphics::window.getDefaultView();
+    view.setCenter(targetPoint);
 }
 
-void Camera::gameCamera()
+void Camera::cameraMode()
 {
-
+    graphics::window.setView(view);
 }
 
-void Camera::editorCamera()
+void Camera::hudMode()
 {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-        view.move(0, -10);
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-        view.move(10, 0);
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-        view.move(0, 10);
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-        view.move(-10, 0);
+    graphics::window.setView(graphics::window.getDefaultView());
 }
 
-void Camera::zoomIn()
+void Camera::setTarget(sf::Vector2f new_target)
 {
-    view.zoom(0.80);
-
+    targetPoint = new_target;
 }
 
-void Camera::zoomOut()
+void Camera::setTarget(int x_target, int y_target)
 {
-    view.zoom(1.20);
+    targetPoint = sf::Vector2f(x_target, y_target);
 }
 
-void Camera::setView(int i)
+void Camera::moveTarget(sf::Vector2f offset)
 {
-    if (i == 1)
-        graphics::window.setView(view);
-    else if (i == 2)
-        graphics::window.setView(EditorHUD);
+    targetPoint+=offset;
 }
 
+void Camera::moveTarget(int x_offset, int y_offset)
+{
+    targetPoint+=sf::Vector2f(x_offset, y_offset);
+}
 
+sf::Vector2f Camera::getTarget() const
+{
+    return targetPoint;
+}
 
+void Camera::update()
+{
+    view.setCenter(targetPoint);
+}
 
+sf::View Camera::getView() const
+{
+    return view;
+}

@@ -12,7 +12,6 @@
 class GameState : public State
 {
 public:
-    GameState();
     void onSet();
     void onUpdate();
     void onEvent(const sf::Event &event);
@@ -20,12 +19,6 @@ public:
 private:
     Camera camera;
     TileMap map;
-    sf::Texture playerTexture;
-    sf::Sprite player;
-
-    Button buttonlayer;
-    Button buttonresizelayer;
-    Button buttonfilllayer;
 };
 
 #endif // GAMESTATE_HPP
