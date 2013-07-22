@@ -13,7 +13,6 @@ void MenuState::onSet()
     quitButton.create("Quit");
     quitButton.setWidth(200);
     quitButton.setPosition(50,gameButton.getY()+gameButton.getHeight()+10);
-
 }
 
 void MenuState::onUpdate()

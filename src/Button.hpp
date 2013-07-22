@@ -11,6 +11,8 @@ public:
     void create(std::string string="");
     void setText(std::string string);
     void setCharacterSize(unsigned int characterSize);
+    void setIcon(std::string iconPath);
+    void removeIcon();
 
     void resetGeometry();
     void setGeometry(int new_x, int new_y, unsigned int new_width, unsigned int new_height);
@@ -43,6 +45,9 @@ private:
     unsigned int width, height;
     int horizontalPadding, verticalPadding;
     sf::Color backgroundColor;
+    sf::Texture iconTexture;
+    sf::Sprite iconSprite;
+    bool icon;
 };
 
 #endif // BUTTON_HPP

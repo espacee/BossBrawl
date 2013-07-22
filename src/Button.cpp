@@ -38,16 +38,41 @@ void Button::setCharacterSize(unsigned int characterSize)
                    text.getCharacterSize()/4);
 }
 
+void Button::setIcon(std::string iconPath)
+{
+
+    if(iconTexture.loadFromFile(iconPath))
+    {
+        icon = true;
+        iconSprite.setTexture(iconTexture);
+    }
+
+    update();
+}
+
+void Button::removeIcon()
+{
+    icon = false;
+}
+
 void Button::resetGeometry()
 {
-    if(text.getString()=="")
+    if(icon)
     {
-        setSize(30,30);
+        setSize(iconSprite.getGlobalBounds().width,
+        iconSprite.getGlobalBounds().height);
     }
     else
     {
-        setSize(text.getGlobalBounds().width+horizontalPadding,
-                text.getGlobalBounds().height+verticalPadding);
+        if(text.getString()=="")
+        {
+         setSize(30,30);
+        }
+        else
+        {
+            setSize(text.getGlobalBounds().width+horizontalPadding,
+            text.getGlobalBounds().height+verticalPadding);
+        }
     }
 }
 
@@ -153,6 +178,8 @@ void Button::update()
 
     text.setPosition(x+(int)(width/2-text.getGlobalBounds().width/2),
                      y+(int)(height/2-text.getGlobalBounds().height/2));
+    iconSprite.setPosition(x+(int)(width/2-iconSprite.getGlobalBounds().width/2),
+                           y+(int)(height/2-iconSprite.getGlobalBounds().height/2));
 }
 
 void Button::processEvents(const sf::Event &event)
@@ -163,8 +190,8 @@ void Button::processEvents(const sf::Event &event)
         (
             event.mouseMove.x > x &&
             event.mouseMove.y > y &&
-            event.mouseMove.x < x + width &&
-            event.mouseMove.y < y + height
+            event.mouseMove.x < x + (int)width &&
+            event.mouseMove.y < y + (int)height
         )
         {
             hovered = true;
@@ -207,5 +234,8 @@ void Button::display()
 
     background.setFillColor(backgroundColor);
     graphics::window.draw(background);
-    graphics::window.draw(text);
+    if(icon)
+        graphics::window.draw(iconSprite);
+    else
+        graphics::window.draw(text);
 }
