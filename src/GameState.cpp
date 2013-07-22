@@ -60,5 +60,8 @@ void GameState::onEvent(const sf::Event &event)
     toolbar.Fill.processEvents(event);
     toolbar.SelectTile.processEvents(event);
     toolbar.Layer.processEvents(event);
+    toolbar.RemoveLayer.processEvents(event);
+    toolbar.AddLayer.processEvents(event);
+   
 
 }
