@@ -35,14 +35,14 @@ public:
     bool hovered, pressed, released;
 
 private:
-    void resizeTexture();
+    void update();
 
-    sf::RenderTexture renderTexture;
+    sf::RectangleShape background;
     sf::Text text;
     int x, y;
     unsigned int width, height;
     int horizontalPadding, verticalPadding;
-    sf::Color background;
+    sf::Color backgroundColor;
 };
 
 #endif // BUTTON_HPP

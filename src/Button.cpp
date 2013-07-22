@@ -10,15 +10,15 @@ Button::Button(std::string string)
     horizontalPadding = 40;
     verticalPadding=20;
 
-    setPosition(0,0);
-
-    hovered = pressed = released = false;
-
     create(string);
 }
 
 void Button::create(std::string string)
 {
+
+    setPosition(0,0);
+    hovered = pressed = released = false;
+
     setText(string);
 
     resetGeometry();
@@ -66,7 +66,7 @@ void Button::setSize(unsigned int new_width, unsigned int new_height)
     if(new_height>0)
     height = new_height;
 
-    resizeTexture();
+    update();
 }
 
 void Button::setWidth(unsigned int new_width)
@@ -74,7 +74,7 @@ void Button::setWidth(unsigned int new_width)
     if(new_width>0)
     width = new_width;
 
-    resizeTexture();
+    update();
 }
 
 void Button::setHeight(unsigned int new_height)
@@ -82,29 +82,37 @@ void Button::setHeight(unsigned int new_height)
     if(new_height>0)
     height = new_height;
 
-    resizeTexture();
+    update();
 }
 
 void Button::setPosition(int new_x, int new_y)
 {
-    setX(new_x);
-    setY(new_y);
+    x = new_x;
+    y = new_y;
+
+    update();
 }
 
 void Button::move(int x_offset, int y_offset)
 {
     x+= x_offset;
     y+= y_offset;
+
+    update();
 }
 
 void Button::setX(int new_x)
 {
     x = new_x;
+
+    update();
 }
 
 void Button::setY(int new_y)
 {
     y = new_y;
+
+    update();
 }
 
 sf::Vector2i Button::getSize() const
@@ -137,13 +145,14 @@ int Button::getY() const
     return y;
 }
 
-void Button::resizeTexture()
+void Button::update()
 {
-    renderTexture.create(width,
-                         height);
+    background.setSize(sf::Vector2f(width,
+                                    height));
+    background.setPosition(x,y);
 
-    text.setPosition((int)(width/2-text.getGlobalBounds().width/2),
-                     (int)(height/2-text.getGlobalBounds().height/2));
+    text.setPosition(x+(int)(width/2-text.getGlobalBounds().width/2),
+                     y+(int)(height/2-text.getGlobalBounds().height/2));
 }
 
 void Button::processEvents(const sf::Event &event)
@@ -155,7 +164,7 @@ void Button::processEvents(const sf::Event &event)
            event.mouseMove.x<x+width &&
            event.mouseMove.y<y+height)
         {
-            hovered = true;     
+            hovered = true;
         }
         else
         {
@@ -183,21 +192,17 @@ void Button::processEvents(const sf::Event &event)
 
 void Button::display()
 {
-    background = sf::Color(100,100,100);
+    backgroundColor = sf::Color(100,100,100);
+
     if(hovered)
-        background = sf::Color(0,170,240);
+        backgroundColor = sf::Color(0,170,240);
+
     if(pressed)
-        background = sf::Color(0,80,170);
+        backgroundColor = sf::Color(0,80,170);
+
     released = false;
 
-    renderTexture.clear(background);
-
-    renderTexture.draw(text);
-
-    renderTexture.display();
-
-    sf::Sprite renderSprite(renderTexture.getTexture());
-    renderSprite.setPosition(x,y);
-
-    graphics::window.draw(renderSprite);
+    background.setFillColor(backgroundColor);
+    graphics::window.draw(background);
+    graphics::window.draw(text);
 }

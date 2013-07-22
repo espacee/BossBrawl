@@ -12,10 +12,8 @@ public:
     virtual void onEvent(const sf::Event &event);
 
 private:
-    Button btn1;
-    Button btn2;
-    Button btn3;
-    Button btn4;
+    Button gameButton;
+    Button quitButton;
 };
 
 #endif // MENUSTATE_HPP

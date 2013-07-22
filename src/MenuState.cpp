@@ -6,15 +6,13 @@
 void MenuState::onSet()
 {
     graphics::window.setTitle("menu");
-    btn1.create("Hover me and i move right");
-    btn2.create("Press me and i move down");
-    btn3.create("Click me");
-    btn4.create("Go to GameState");
+    gameButton.create("Play");
+    gameButton.setWidth(200);
+    gameButton.setPosition(50,50);
 
-    btn1.setPosition(10,10);
-    btn2.setPosition(10, btn1.getY()+btn1.getHeight()+5);
-    btn3.setPosition(graphics::window.getSize().x - btn3.getWidth()-500,10);
-    btn4.setPosition(400,400);
+    quitButton.create("Quit");
+    quitButton.setWidth(200);
+    quitButton.setPosition(50,gameButton.getY()+gameButton.getHeight()+10);
 
 }
 
@@ -24,19 +22,13 @@ void MenuState::onUpdate()
 
     window.clear(sf::Color(60,60,60));
 
-    if(btn1.hovered)
-        btn1.move(1,0);
-    if(btn2.pressed)
-        btn2.move(0,1);
-    if(btn3.released)
-        btn3.setWidth(btn3.getWidth()+20);
-    if(btn4.released)
+    if(gameButton.released)
         stateDriver::setState("game");
+    if(quitButton.released)
+        stateDriver::requestQuit();
 
-    btn1.display();
-    btn2.display();
-    btn3.display();
-    btn4.display();
+    gameButton.display();
+    quitButton.display();
 
 }
 
@@ -48,9 +40,7 @@ void MenuState::onEvent(const sf::Event &event)
     if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
         stateDriver::setState("game");
 
-    btn1.processEvents(event);
-    btn2.processEvents(event);
-    btn3.processEvents(event);
-    btn4.processEvents(event);
+    gameButton.processEvents(event);
+    quitButton.processEvents(event);
 
 }

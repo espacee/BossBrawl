@@ -54,6 +54,14 @@ void GameState::onUpdate()
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
         camera.editorCamera();
 
+    if(buttonlayer.released)
+        map.fillLayer(0,1);
+
+    if(buttonresizelayer.released)
+        map.fillLayer(0,7);
+
+    if(buttonfilllayer.released)
+        map.fillLayer(0,15);
 
     //camera
     camera.view.setCenter(player.getPosition().x, player.getPosition().y);
@@ -70,27 +78,6 @@ void GameState::onUpdate()
     buttonlayer.display();
     buttonresizelayer.display();
     buttonfilllayer.display();
-
-     /** PUT EVENTS FOR BUTTONS **/
-
-     if(buttonlayer.hovered)
-        buttonlayer.move(0, 5);
-         
-      if(buttonresizelayer.hovered)
-         buttonresizelayer.move(0, 5);
-
-      if(buttonfilllayer.hovered)
-         buttonfilllayer.move(0, 5);
-
-    
-    if(buttonlayer.released)
-        buttonlayer.setWidth(buttonlayer.getWidth()+20);
-
-
-    /** PUT EVENTS FOR BUTTONS END **/
-
-
-
 
 }
 
