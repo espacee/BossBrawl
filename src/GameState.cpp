@@ -18,17 +18,6 @@ void GameState::onSet()
 {
     graphics::window.setTitle("game");
 
-    // Buttons
-
-    buttonlayer.create("Add Layer");
-    buttonresizelayer.create("Resize Layer");
-    buttonfilllayer.create("Fill Layer");
-
-    buttonlayer.setPosition( 10, 10);
-    buttonresizelayer.setPosition( ( 10 + buttonlayer.getWidth() + 5), 10);
-    buttonfilllayer.setPosition((10 + buttonlayer.getWidth() + 5 + buttonresizelayer.getWidth() + 5), 10);
-
-
 }
 
 void GameState::onUpdate()
@@ -53,6 +42,8 @@ void GameState::onUpdate()
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
         camera.editorCamera();
+   
+    /** BUTTON EVENTS **/
 
     if(buttonlayer.released)
         map.fillLayer(0,1);
@@ -62,6 +53,8 @@ void GameState::onUpdate()
 
     if(buttonfilllayer.released)
         map.fillLayer(0,15);
+
+    /** BUTTON EVENTS END **/
 
     //camera
     camera.view.setCenter(player.getPosition().x, player.getPosition().y);
@@ -100,6 +93,20 @@ void GameState::onEvent(const sf::Event &event)
     if(event.type == sf::Event::MouseWheelMoved && event.mouseWheel.delta == -1)
         camera.zoomOut();
 
+
+    if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F3)
+    {
+    // Buttons
+    buttonlayer.create("Add Layer");
+    buttonresizelayer.create("Resize Layer");
+    buttonfilllayer.create("Fill Layer");
+
+    buttonlayer.setPosition( 10, 10);
+    buttonresizelayer.setPosition( ( 10 + buttonlayer.getWidth() + 5), 10);
+    buttonfilllayer.setPosition((10 + buttonlayer.getWidth() + 5 + buttonresizelayer.getWidth() + 5), 10);
+    }
+
+    //ProcessEvents
     buttonlayer.processEvents(event);
     buttonresizelayer.processEvents(event);
     buttonfilllayer.processEvents(event);
