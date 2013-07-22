@@ -11,7 +11,7 @@ sf::Font font;
 void init()
 {
     window.create(sf::VideoMode(config::windowWidth, config::windowHeight, 32), "Window");
-    window.setFramerateLimit(60);
+    window.setVerticalSyncEnabled(true);
 
     font.loadFromFile("res/font/arial.ttf");
 }

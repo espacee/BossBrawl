@@ -25,6 +25,7 @@ private:
 
     sf::Vector2f targetPoint;
     sf::View view;
+    float smooth;
 
 };
 

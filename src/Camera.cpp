@@ -8,6 +8,7 @@ Camera::Camera()
 
     view = graphics::window.getDefaultView();
     view.setCenter(targetPoint);
+    smooth=20;
 }
 
 void Camera::cameraMode()

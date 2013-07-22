@@ -8,20 +8,20 @@ class Editor
 {
 public:
     Editor();
-    void toolBar();
-    void displayToolbarButtons();
-    void processToolbarButtons();
+    void init();
+    void display();
+    void processEvents(const sf::Event &event);
+    void setEnabled(bool enable);
+    bool getEnabled() const;
 
+private:
+    sf::RectangleShape topPanel;
+    Button penButton;
+    Button eraserButton;
+    Button fillButton;
+    Button handButton;
 
-    Button Draw;
-    Button Eraser;
-    Button Fill;
-    Button SelectTile;
-    Button Layer;
-    Button AddLayer;
-    Button RemoveLayer;
-
-    sf::RectangleShape Toolbar;
+    bool enabled;
 
 };
 

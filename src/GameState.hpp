@@ -6,6 +6,7 @@
 #include "TileMap.hpp"
 #include "Camera.hpp"
 #include "Button.hpp"
+#include "Editor.hpp"
 
 #include <SFML/Graphics.hpp>
 
@@ -24,7 +25,11 @@ private:
     TileMap map;
     sf::Text fpsText;
 
-    bool showToolbar;
+    sf::Texture testTargetTexture;
+    sf::Sprite testTarget;
+
+    Editor editorHUD;
+
 };
 
 #endif // GAMESTATE_HPP
