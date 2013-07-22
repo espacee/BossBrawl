@@ -18,7 +18,8 @@ public:
     Button Fill;
     Button SelectTile;
     Button Layer;
-
+    Button AddLayer;
+    Button RemoveLayer;
 
     sf::RectangleShape Toolbar;
 
