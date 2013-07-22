@@ -5,6 +5,7 @@
 
 #include "TileMap.hpp"
 #include "Camera.hpp"
+#include "Button.hpp"
 
 #include <SFML/Graphics.hpp>
 
@@ -21,6 +22,10 @@ private:
     TileMap map;
     sf::Texture playerTexture;
     sf::Sprite player;
+
+    Button buttonlayer;
+    Button buttonresizelayer;
+    Button buttonfilllayer;
 };
 
 #endif // GAMESTATE_HPP

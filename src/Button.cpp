@@ -155,7 +155,7 @@ void Button::processEvents(const sf::Event &event)
            event.mouseMove.x<x+width &&
            event.mouseMove.y<y+height)
         {
-            hovered = true;
+            hovered = true;     
         }
         else
         {
