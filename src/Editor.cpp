@@ -5,7 +5,7 @@
 
 Editor::Editor()
 {
-    
+
 
 }
 
@@ -28,7 +28,7 @@ void Editor::toolBar()
     RemoveLayer.create("Remove Layer");
 
 
-    
+
     Layer.setPosition(10, 5);
     SelectTile.setPosition(( 10 + Layer.getWidth() + 5), 5);
     Draw.setPosition(( 10+ Layer.getWidth() + 5 + SelectTile.getWidth() + 5), 5);
@@ -44,7 +44,7 @@ void Editor::toolBar()
     AddLayer.setPosition(10, ( 5 + Layer.getHeight() + 5));
     RemoveLayer.setPosition(10, (5 + Layer.getHeight() + 5 + AddLayer.getHeight() + 5));
 
- 
+
 }
 
 void Editor::displayToolbarButtons()
@@ -64,13 +64,13 @@ void Editor::displayToolbarButtons()
     SelectTile.display();
     Layer.display();
 
-    
+
 
 }
 
 void Editor::processToolbarButtons()
 {
-    
+
 
 }
 

@@ -61,10 +61,10 @@ void Button::setGeometry(int new_x, int new_y, unsigned int new_width, unsigned 
 void Button::setSize(unsigned int new_width, unsigned int new_height)
 {
     if(new_width>0)
-    width = new_width;
+        width = new_width;
 
     if(new_height>0)
-    height = new_height;
+        height = new_height;
 
     update();
 }
@@ -72,7 +72,7 @@ void Button::setSize(unsigned int new_width, unsigned int new_height)
 void Button::setWidth(unsigned int new_width)
 {
     if(new_width>0)
-    width = new_width;
+        width = new_width;
 
     update();
 }
@@ -80,7 +80,7 @@ void Button::setWidth(unsigned int new_width)
 void Button::setHeight(unsigned int new_height)
 {
     if(new_height>0)
-    height = new_height;
+        height = new_height;
 
     update();
 }
@@ -159,10 +159,13 @@ void Button::processEvents(const sf::Event &event)
 {
     if (event.type == sf::Event::MouseMoved)
     {
-        if(event.mouseMove.x>x &&
-           event.mouseMove.y>y &&
-           event.mouseMove.x<x+width &&
-           event.mouseMove.y<y+height)
+        if
+        (
+            event.mouseMove.x > x &&
+            event.mouseMove.y > y &&
+            event.mouseMove.x < x + width &&
+            event.mouseMove.y < y + height
+        )
         {
             hovered = true;
         }

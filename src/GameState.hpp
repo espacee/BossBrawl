@@ -16,8 +16,8 @@ public:
     void onUpdate();
     void onEvent(const sf::Event &event);
 
-    
-    
+
+
 private:
     Camera camera;
     TileMap map;

@@ -11,7 +11,7 @@ public:
     void toolBar();
     void displayToolbarButtons();
     void processToolbarButtons();
-    
+
 
     Button Draw;
     Button Eraser;

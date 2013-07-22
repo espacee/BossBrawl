@@ -25,19 +25,19 @@ void GameState::onUpdate()
     camera.update();
 
     window.clear(sf::Color(0,0,0));
-        
+
     camera.cameraMode();
     map.display();
 
 
     camera.hudMode();
-    if (showToolbar == true){
+    if (showToolbar == true) {
         window.draw(toolbar.Toolbar);
         toolbar.displayToolbarButtons();
-        
-     }
-        
-    
+
+    }
+
+
 }
 
 void GameState::onEvent(const sf::Event &event)
@@ -50,7 +50,7 @@ void GameState::onEvent(const sf::Event &event)
     if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
         stateDriver::setState("menu");
 
-    if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Tab){
+    if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Tab) {
         showToolbar = !showToolbar;
 
     }
@@ -62,6 +62,6 @@ void GameState::onEvent(const sf::Event &event)
     toolbar.Layer.processEvents(event);
     toolbar.RemoveLayer.processEvents(event);
     toolbar.AddLayer.processEvents(event);
-   
+
 
 }
