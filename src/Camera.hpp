@@ -19,6 +19,8 @@ public:
 
     sf::View getView() const;
 
+    void setSmooth(int new_smooth);
+
     void update();
 
 private:

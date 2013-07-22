@@ -8,7 +8,7 @@ Camera::Camera()
 
     view = graphics::window.getDefaultView();
     view.setCenter(targetPoint);
-    smooth=20;
+    smooth=2;
 }
 
 void Camera::cameraMode()
@@ -46,12 +46,18 @@ sf::Vector2f Camera::getTarget() const
     return targetPoint;
 }
 
-void Camera::update()
-{
-    view.setCenter(targetPoint);
-}
-
 sf::View Camera::getView() const
 {
     return view;
+}
+
+void Camera::setSmooth(int new_smooth)
+{
+    smooth = new_smooth;
+}
+
+void Camera::update()
+{
+    view.setCenter(view.getCenter().x+(targetPoint.x-view.getCenter().x)/smooth,
+                   view.getCenter().y+(targetPoint.y-view.getCenter().y)/smooth);
 }

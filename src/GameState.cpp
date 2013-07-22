@@ -23,6 +23,8 @@ void GameState::onSet()
     editorHUD.init();
     editorHUD.setEnabled(false);
 
+    camera.setSmooth(20);
+
 }
 
 void GameState::onUpdate()
