@@ -1,3 +1,11 @@
+# Annoying files i want to ignore
+*.exe
+*.md
+*.debug
+*.release
+*.dll
+*.pro.user
+
 # Compiled Object files
 *.slo
 *.lo
