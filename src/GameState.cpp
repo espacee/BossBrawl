@@ -52,6 +52,7 @@ void GameState::onEvent(const sf::Event &event)
 
     if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Tab){
         showToolbar = !showToolbar;
+
     }
 
     toolbar.Draw.processEvents(event);
