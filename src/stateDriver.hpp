@@ -12,6 +12,7 @@ void addState(State* state, const std::string& name);
 void setState(const std::string& name);
 int exec();
 void requestQuit();
+int getFps();
 
 }
 

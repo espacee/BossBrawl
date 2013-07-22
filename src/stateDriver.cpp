@@ -11,10 +11,13 @@ namespace stateDriver
 bool m_running;
 std::map<std::string, State*> m_states;
 State* m_currentState;
+int m_fps;
 
 int exec()
 {
     m_running = true;
+    sf::Clock fpsClock;
+    int frames = 0;
 
     while (m_running)
     {
@@ -32,6 +35,14 @@ int exec()
 
         m_currentState->onUpdate();
         graphics::window.display();
+        ++frames;
+
+        if (fpsClock.getElapsedTime().asSeconds() > 1.0f)
+        {
+            m_fps = frames;
+            fpsClock.restart();
+            frames = 0;
+        }
     }
 
     return 0;
@@ -59,6 +70,11 @@ void setState(const std::string &name)
 void requestQuit()
 {
     m_running = false;
+}
+
+int getFps()
+{
+    return m_fps;
 }
 
 }

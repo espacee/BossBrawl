@@ -7,6 +7,11 @@
 
 Editor toolbar;
 
+GameState::GameState()
+{
+    fpsText.setFont(graphics::font);
+}
+
 void GameState::onSet()
 {
     graphics::window.setTitle("game");
@@ -36,6 +41,9 @@ void GameState::onUpdate()
         toolbar.displayToolbarButtons();
 
     }
+
+    fpsText.setString("Fps: " + std::to_string(stateDriver::getFps()));
+    window.draw(fpsText);
 
 
 }
