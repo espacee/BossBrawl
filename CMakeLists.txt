@@ -1,4 +1,4 @@
-project(BossKiller)
+project(BossBrawl)
 cmake_minimum_required(VERSION 2.8)
 
 # Add additional flags to gcc and clang
@@ -13,13 +13,13 @@ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake/Modules" ${CMAKE_MODULE_PATH})
 find_package(SFML 2 COMPONENTS graphics window audio system REQUIRED)
 include_directories(${SFML_INCLUDE_DIR})
 
-add_executable(bosskiller
+add_executable(bossbrawl
 src/Button.cpp
 src/Button.hpp
 src/Camera.cpp
 src/Camera.hpp
-src/EditorState.cpp
-src/EditorState.hpp
+src/Editor.cpp
+src/Editor.hpp
 src/GameState.cpp
 src/GameState.hpp
 src/Layer.cpp
@@ -38,4 +38,4 @@ src/stateDriver.cpp
 src/stateDriver.hpp
 )
 
-target_link_libraries(bosskiller ${SFML_LIBRARIES})
+target_link_libraries(bossbrawl ${SFML_LIBRARIES})
