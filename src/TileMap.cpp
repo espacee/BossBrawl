@@ -34,13 +34,11 @@ void TileMap::resizeLayer(unsigned int layer, unsigned int new_hLength, unsigned
     if(layerExists(layer))
         layers[layer].resize(new_hLength, new_vLength);
 }
-
 void TileMap::setTile(unsigned int layer, unsigned int x, unsigned int y, unsigned int id)
 {
     if(layerExists(layer)  && spriteExists(id))
         layers[layer].setTile(x,y,id);
 }
-
 unsigned int TileMap::getTile(unsigned int layer, unsigned int x, unsigned int y) const
 {
     if(layerExists(layer))
@@ -64,7 +62,6 @@ void TileMap::moveLayer(int x_offset, int y_offset, unsigned int layer)
         layers[layer].move(x_offset, y_offset);
     }
 }
-
 void TileMap::setLayerPosition(int new_x_coord, int new_y_coord,unsigned int layer)
 {
     if(layerExists(layer))
@@ -72,7 +69,6 @@ void TileMap::setLayerPosition(int new_x_coord, int new_y_coord,unsigned int lay
         layers[layer].setPosition(new_x_coord, new_y_coord);
     }
 }
-
 void TileMap::addLayer()
 {
     nb_layers++;
@@ -88,7 +84,14 @@ void TileMap::popLayer()
         nb_layers--;
     }
 }
+int TileMap::getLayerSize()
+{
 
+   return layers.size();
+
+
+
+}
 bool TileMap::tileExists(unsigned int x, unsigned int y, unsigned int layer) const
 {
     if(layerExists(layer))
@@ -96,7 +99,6 @@ bool TileMap::tileExists(unsigned int x, unsigned int y, unsigned int layer) con
     else
         return false;
 }
-
 bool TileMap::spriteExists(unsigned int id) const
 {
     return id < sprites.size();
@@ -106,7 +108,6 @@ bool TileMap::layerExists(unsigned int layer) const
 {
     return layer < layers.size();
 }
-
 void TileMap::display()
 {
     for(unsigned int k=0; k<nb_layers; k++)

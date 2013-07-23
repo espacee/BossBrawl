@@ -1,14 +1,15 @@
 #include "Editor.hpp"
 #include "GameState.hpp"
 #include "graphics.hpp"
+#include "TileMap.hpp"
 
+TileMap tilemap;
 
 Editor::Editor()
 {
     init();
     enabled = false;
 }
-
 void Editor::init()
 {
     topPanel.setPosition(0,0);
@@ -33,8 +34,11 @@ void Editor::init()
     removeLayer.create("Remove Layer");
     removeLayer.setPosition(addLayer.getX(), addLayer.getY() + addLayer.getHeight() + 2);
     removeLayer.setHeight(handButton.getHeight());
-}
 
+    layerText.setFont(graphics::font);
+    layerText.setPosition(addLayer.getX() + addLayer.getWidth() +10, 1);
+    layerText.setCharacterSize(20);
+}
 void Editor::display()
 {
     graphics::window.draw(topPanel);
@@ -49,7 +53,6 @@ void Editor::display()
     if(addLayer.hovered || removeLayer.hovered)
         removeLayer.display();
 }
-
 void Editor::processEvents(const sf::Event &event)
 {
     penButton.processEvents(event);
@@ -66,8 +69,9 @@ void Editor::setEnabled(bool enable)
 {
     enabled = enable;
 }
-
 bool Editor::getEnabled() const
 {
     return enabled;
 }
+
+

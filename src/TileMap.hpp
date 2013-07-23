@@ -38,6 +38,8 @@ public:
     void addLayer();
     void popLayer();
 
+    int getLayerSize();
+
     bool tileExists(unsigned int x, unsigned int y, unsigned int layer) const;
     bool spriteExists(unsigned int id) const;
     bool layerExists(unsigned int layer) const;
@@ -51,7 +53,6 @@ private:
 
     std::vector< sf::Sprite > sprites;
     sf::Texture tileSet;
-
 };
 
 #endif // TILEMAP_HPP

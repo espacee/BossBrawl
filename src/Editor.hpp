@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Button.hpp"
+#include "TileMap.hpp"
 
 class Editor
 {
@@ -14,8 +15,8 @@ public:
     void setEnabled(bool enable);
     bool getEnabled() const;
 
-private:
-    sf::RectangleShape topPanel;
+    sf::Text layerText;
+
     Button penButton;
     Button eraserButton;
     Button fillButton;
@@ -25,9 +26,11 @@ private:
     Button addLayer;
     Button removeLayer;
 
+private:
+    sf::RectangleShape topPanel;
+    TileMap map;
     bool enabled;
 
 };
-
 
 #endif //!EDITOR_HPP

@@ -14,7 +14,6 @@ void MenuState::onSet()
     quitButton.setWidth(200);
     quitButton.setPosition(50,gameButton.getY()+gameButton.getHeight()+10);
 }
-
 void MenuState::onUpdate()
 {
     using graphics::window;
@@ -28,7 +27,6 @@ void MenuState::onUpdate()
 
     gameButton.display();
     quitButton.display();
-
 }
 
 void MenuState::onEvent(const sf::Event &event)
@@ -41,5 +39,4 @@ void MenuState::onEvent(const sf::Event &event)
 
     gameButton.processEvents(event);
     quitButton.processEvents(event);
-
 }
