@@ -14,8 +14,13 @@ public:
     void processEvents(const sf::Event &event);
     void setEnabled(bool enable);
     bool getEnabled() const;
+    void tileSelection();
+
+    int selection;
 
     sf::Text layerText;
+
+
 
     Button penButton;
     Button eraserButton;
@@ -23,6 +28,8 @@ public:
     Button handButton;
 
     Button selectTile;
+    Button tile1;
+    Button tile2;
     Button addLayer;
     Button removeLayer;
 
