@@ -23,6 +23,16 @@ void Editor::init()
     fillButton.setPosition(eraserButton.getX()+eraserButton.getWidth()+2,1);
     handButton.setIcon("res/img/icons/hand.png");
     handButton.setPosition(fillButton.getX()+fillButton.getWidth()+2,1);
+
+    selectTile.create("Select Tile");
+    selectTile.setPosition(handButton.getX()+handButton.getWidth()+2, 1);
+    selectTile.setHeight(handButton.getHeight());
+    addLayer.create(("Add Layer"));
+    addLayer.setPosition(selectTile.getX()+ selectTile.getWidth() + 2, 1);
+    addLayer.setHeight(handButton.getHeight());
+    removeLayer.create("Remove Layer");
+    removeLayer.setPosition(addLayer.getX(), addLayer.getY() + addLayer.getHeight() + 2);
+    removeLayer.setHeight(handButton.getHeight());
 }
 
 void Editor::display()
@@ -32,6 +42,12 @@ void Editor::display()
     eraserButton.display();
     fillButton.display();
     handButton.display();
+
+    selectTile.display();
+    addLayer.display();
+
+    if(addLayer.hovered || removeLayer.hovered)
+        removeLayer.display();
 }
 
 void Editor::processEvents(const sf::Event &event)
@@ -40,6 +56,10 @@ void Editor::processEvents(const sf::Event &event)
     eraserButton.processEvents(event);
     fillButton.processEvents(event);
     handButton.processEvents(event);
+
+    selectTile.processEvents(event);
+    addLayer.processEvents(event);
+    removeLayer.processEvents(event);
 }
 
 void Editor::setEnabled(bool enable)

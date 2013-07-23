@@ -21,6 +21,10 @@ private:
     Button fillButton;
     Button handButton;
 
+    Button selectTile;
+    Button addLayer;
+    Button removeLayer;
+
     bool enabled;
 
 };
