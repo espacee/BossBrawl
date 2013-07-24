@@ -14,6 +14,13 @@ int exec();
 void requestQuit();
 int getFps();
 
+/**
+ * @brief Delete all owned states
+ *
+ * Used before quit, to ensure proper cleanup
+ */
+void deleteStates();
+
 }
 
 #endif // STATEDRIVER_HPP

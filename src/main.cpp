@@ -20,5 +20,7 @@ int main()
     int ret = stateDriver::exec();
 
     config::save();
+    stateDriver::deleteStates();
+
     return ret;
 }

@@ -77,4 +77,12 @@ int getFps()
     return m_fps;
 }
 
+void deleteStates()
+{
+    for (auto pair : m_states)
+    {
+        delete pair.second;
+    }
+}
+
 }
