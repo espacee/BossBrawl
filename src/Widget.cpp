@@ -12,6 +12,7 @@ Widget::Widget()
     hoverColor = sf::Color(100,100,100);
     pressColor = sf::Color(100,100,100);
     backgroundColor = normalColor;
+    setBackgroundColor(normalColor);
     hovered = false;
     pressed = false;
     released = false;

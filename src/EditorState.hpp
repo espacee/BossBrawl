@@ -18,6 +18,7 @@ private:
 
     Camera camera;
     TileMap map;
+    Editor editorHUD;
 };
 
 #endif // EDITORSTATE_HPP

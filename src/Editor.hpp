@@ -16,9 +16,16 @@ public:
     void display();
     void processEvents(const sf::Event &event);
 
-
 private:
+    Widget topPanel;
+    Widget rightPanel;
 
+    IconButton penButton;
+    IconButton eraserButton;
+    IconButton fillButton;
+    IconButton handButton;
+
+    TextButton tileSetButton;
 };
 
 #endif //!EDITOR_HPP

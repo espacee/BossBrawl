@@ -2,7 +2,6 @@
 #define MENUSTATE_HPP
 
 #include "State.hpp"
-#include "Button.hpp"
 #include "TextButton.hpp"
 #include "IconButton.hpp"
 

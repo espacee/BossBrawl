@@ -76,7 +76,7 @@ void IconButton::setIcon(std::string iconPath)
         iconSprite.setTexture(iconTexture, true);
     }
 
-    remake();
+    resetGeometry();
 }
 
 void IconButton::remake()
