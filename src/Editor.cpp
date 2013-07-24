@@ -2,6 +2,7 @@
 #include "GameState.hpp"
 #include "graphics.hpp"
 #include "TileMap.hpp"
+#include "config.hpp"
 
 TileMap tilemap;
 
@@ -15,6 +16,10 @@ void Editor::init()
     topPanel.setPosition(0,0);
     topPanel.setSize(sf::Vector2f((graphics::window.getSize().x), 32));
     topPanel.setFillColor(sf::Color(60,60,60));
+
+    sidePanel.setPosition((config::windowWidth / 6)*5, 0);
+    sidePanel.setSize(sf::Vector2f(config::windowWidth/6, config::windowHeight));
+    sidePanel.setFillColor(sf::Color(80,80,80));
 
     penButton.setIcon("res/img/icons/pen.png");
     penButton.setPosition(1,1);
@@ -49,7 +54,9 @@ void Editor::init()
 }
 void Editor::display()
 {
+    graphics::window.draw(sidePanel);
     graphics::window.draw(topPanel);
+
     penButton.display();
     eraserButton.display();
     fillButton.display();

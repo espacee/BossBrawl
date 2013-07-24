@@ -35,6 +35,7 @@ public:
 
 private:
     sf::RectangleShape topPanel;
+    sf::RectangleShape sidePanel;
     TileMap map;
     bool enabled;
 
