@@ -86,10 +86,11 @@ void GameState::onEvent(const sf::Event &event)
     if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
         stateDriver::setState("menu");
 
-    if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Tab)
+    if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Tab){
+        stateDriver::setState("editor");
         editorHUD.setEnabled(!editorHUD.getEnabled());
 
-
+}
 
    // if( editorHUD.selectTile.hovered && event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Z)
     if( editorHUD.selectTile.hovered && event.type == sf::Event::MouseWheelMoved && event.mouseWheel.x > 1)
