@@ -20,6 +20,8 @@ src/Camera.cpp
 src/Camera.hpp
 src/Editor.cpp
 src/Editor.hpp
+src/EditorState.cpp
+src/EditorState.hpp
 src/GameState.cpp
 src/GameState.hpp
 src/Layer.cpp
