@@ -13,6 +13,8 @@ Editor::Editor()
 }
 void Editor::init()
 {
+    currentLayer = 0;
+
     topPanel.setPosition(0,0);
     topPanel.setSize(sf::Vector2f((graphics::window.getSize().x), 32));
     topPanel.setFillColor(sf::Color(60,60,60));
@@ -113,5 +115,22 @@ void Editor::tileSelection()
     if(selection > 2 )
         selection = 1;
 }
+void Editor::layerButtons()
+{
 
+    /** Button Events **/
+    if(addLayer.released){
+        map.addLayer();
+        currentLayer++;
+        map.resizeLayer(currentLayer, 10, 10);
+    }
+    else if(removeLayer.released){
+        map.popLayer();
+        currentLayer--;
+    }
+    /** Button Events **/
+
+}
+
+// if((event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) && editorHUD.currentLayer != 0)
 

@@ -46,10 +46,12 @@ public:
 
     void display();
 
-private:
-    std::vector< Layer > layers;
     unsigned int nb_layers;
     unsigned int lastLayerID;
+private:
+    std::vector< Layer > layers;
+
+
 
     std::vector< sf::Sprite > sprites;
     sf::Texture tileSet;

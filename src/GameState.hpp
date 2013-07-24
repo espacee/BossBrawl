@@ -18,6 +18,7 @@ public:
     void onUpdate();
     void onEvent(const sf::Event &event);
 
+
 private:
     Camera camera;
     TileMap map;
@@ -25,6 +26,8 @@ private:
     sf::Texture testTargetTexture;
     sf::Sprite testTarget;
     Editor editorHUD;
+
+
 };
 
 #endif // GAMESTATE_HPP

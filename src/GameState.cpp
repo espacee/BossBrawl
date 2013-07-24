@@ -6,6 +6,9 @@
 
 GameState::GameState()
 {
+
+
+
     fpsText.setFont(graphics::font);
     map.fillLayer(0,1);
 
@@ -42,6 +45,9 @@ void GameState::onUpdate()
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         testTarget.move(-10,0);
 
+
+
+
     /** Counts Layer Size **/
    std::string layers = "Layer(s): " + std::to_string(map.getLayerSize());
     editorHUD.layerText.setString(layers);
@@ -53,12 +59,7 @@ void GameState::onUpdate()
 
     window.clear(sf::Color(0,0,0));
 
-    /** Button Events **/
-    if(editorHUD.addLayer.released)
-        map.addLayer();
-    else if(editorHUD.removeLayer.released)
-        map.popLayer();
-    /** Button Events **/
+   editorHUD.layerButtons();
 
     camera.cameraMode();
     map.display();
@@ -87,6 +88,8 @@ void GameState::onEvent(const sf::Event &event)
 
     if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Tab)
         editorHUD.setEnabled(!editorHUD.getEnabled());
+
+
 
    // if( editorHUD.selectTile.hovered && event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Z)
     if( editorHUD.selectTile.hovered && event.type == sf::Event::MouseWheelMoved && event.mouseWheel.x > 1)

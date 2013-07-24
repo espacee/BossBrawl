@@ -15,8 +15,10 @@ public:
     void setEnabled(bool enable);
     bool getEnabled() const;
     void tileSelection();
+    void layerButtons();
 
     int selection;
+     int currentLayer;
 
     sf::Text layerText;
 
