@@ -2,7 +2,10 @@
 #define EDITORSTATE_HPP
 
 #include "State.hpp"
-#include "Button.hpp"
+
+#include "TileMap.hpp"
+#include "Camera.hpp"
+#include "Editor.hpp"
 
 class EditorState : public State
 {
@@ -13,7 +16,8 @@ public:
 
 private:
 
-
+    Camera camera;
+    TileMap map;
 };
 
 #endif // EDITORSTATE_HPP

@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 
-const int GRID_SIZE = 40;
+constexpr int GRID_SIZE = 40;
 
 class Layer
 {

@@ -40,10 +40,11 @@ private:
     void update();
 
     sf::RectangleShape background;
-    sf::Text text;
+
     int x, y;
     unsigned int width, height;
     int horizontalPadding, verticalPadding;
+    sf::Text text;
     sf::Color backgroundColor;
     sf::Texture iconTexture;
     sf::Sprite iconSprite;

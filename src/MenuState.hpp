@@ -3,6 +3,8 @@
 
 #include "State.hpp"
 #include "Button.hpp"
+#include "TextButton.hpp"
+#include "IconButton.hpp"
 
 class MenuState : public State
 {
@@ -12,8 +14,9 @@ public:
     virtual void onEvent(const sf::Event &event);
 
 private:
-    Button gameButton;
-    Button quitButton;
+    TextButton playButton;
+    TextButton editorButton;
+    TextButton quitButton;
 };
 
 #endif // MENUSTATE_HPP

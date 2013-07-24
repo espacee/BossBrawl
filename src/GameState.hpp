@@ -5,8 +5,6 @@
 
 #include "TileMap.hpp"
 #include "Camera.hpp"
-#include "Button.hpp"
-#include "Editor.hpp"
 
 #include <SFML/Graphics.hpp>
 
@@ -25,8 +23,6 @@ private:
     sf::Text fpsText;
     sf::Texture testTargetTexture;
     sf::Sprite testTarget;
-    Editor editorHUD;
-
 
 };
 
