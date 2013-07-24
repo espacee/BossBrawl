@@ -87,7 +87,7 @@ void TileMap::popLayer()
 int TileMap::getLayerSize()
 {
 
-   return layers.size();
+    return layers.size();
 
 
 
