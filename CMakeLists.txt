@@ -14,8 +14,6 @@ find_package(SFML 2 COMPONENTS graphics window audio system REQUIRED)
 include_directories(${SFML_INCLUDE_DIR})
 
 add_executable(bossbrawl
-src/Button.cpp
-src/Button.hpp
 src/Camera.cpp
 src/Camera.hpp
 src/Editor.cpp
@@ -24,13 +22,19 @@ src/EditorState.cpp
 src/EditorState.hpp
 src/GameState.cpp
 src/GameState.hpp
+src/IconButton.cpp
+src/IconButton.hpp
 src/Layer.cpp
 src/Layer.hpp
 src/MenuState.cpp
 src/MenuState.hpp
 src/State.hpp
+src/TextButton.cpp
+src/TextButton.hpp
 src/TileMap.cpp
 src/TileMap.hpp
+src/Widget.cpp
+src/Widget.hpp
 src/config.cpp
 src/config.hpp
 src/graphics.cpp
