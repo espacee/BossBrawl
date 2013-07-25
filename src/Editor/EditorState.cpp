@@ -2,6 +2,13 @@
 
 #include "Core/graphics.hpp"
 #include "Core/stateDriver.hpp"
+#include "Core/config.hpp"
+
+EditorState::EditorState() :
+    camera(sf::Vector2f(config::windowWidth, config::windowHeight))
+{
+
+}
 
 void EditorState::onSet()
 {

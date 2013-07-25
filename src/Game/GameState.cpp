@@ -2,9 +2,11 @@
 
 #include "Core/graphics.hpp"
 #include "Core/stateDriver.hpp"
+#include "Core/config.hpp"
 
 
-GameState::GameState()
+GameState::GameState() :
+    camera(sf::Vector2f(config::windowWidth, config::windowHeight))
 {
     fpsText.setFont(graphics::font);
     map.fillLayer(0,1);
@@ -20,7 +22,7 @@ GameState::GameState()
 void GameState::onSet()
 {
     graphics::window.setTitle("game");
-    camera.setSmooth(20);
+    camera.setSpeed(20);
 }
 void GameState::onUpdate()
 {
@@ -41,11 +43,11 @@ void GameState::onUpdate()
 
     window.clear(sf::Color(0,0,0));
 
-    camera.cameraMode();
+    camera.apply(graphics::window);
     map.display();
     window.draw(testTarget);
 
-    camera.hudMode();
+    graphics::window.setView(graphics::window.getDefaultView());
 
     fpsText.setString("Fps: " + std::to_string(stateDriver::getFps()));
     window.draw(fpsText);

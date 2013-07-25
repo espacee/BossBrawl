@@ -13,6 +13,7 @@
 class EditorState : public State
 {
 public:
+    EditorState();
     virtual void onSet();
     virtual void onUpdate();
     virtual void onEvent(const sf::Event &event);

@@ -1,63 +1,45 @@
 #include "Core/Camera.hpp"
 
-#include "Core/graphics.hpp"
-
-Camera::Camera()
+Camera::Camera(sf::Vector2f size)
 {
-    targetPoint = sf::Vector2f(0,0);
-
-    view = graphics::window.getDefaultView();
-    view.setCenter(targetPoint);
-    smooth=2;
+    m_view.setSize(size);
+    m_targetPoint = sf::Vector2f(0,0);
+    m_view.setCenter(m_targetPoint);
+    m_speed=2;
 }
 
-void Camera::cameraMode()
+void Camera::apply(sf::RenderTarget &renderTarget)
 {
-    graphics::window.setView(view);
+    renderTarget.setView(m_view);
 }
 
-void Camera::hudMode()
+void Camera::setTarget(const sf::Vector2f& point)
 {
-    graphics::window.setView(graphics::window.getDefaultView());
+    m_targetPoint = point;
 }
 
-void Camera::setTarget(sf::Vector2f new_target)
+void Camera::moveTarget(const sf::Vector2f &offset)
 {
-    targetPoint = new_target;
-}
-
-void Camera::setTarget(int x_target, int y_target)
-{
-    targetPoint = sf::Vector2f(x_target, y_target);
-}
-
-void Camera::moveTarget(sf::Vector2f offset)
-{
-    targetPoint+=offset;
-}
-
-void Camera::moveTarget(int x_offset, int y_offset)
-{
-    targetPoint+=sf::Vector2f(x_offset, y_offset);
+    m_targetPoint += offset;
 }
 
 sf::Vector2f Camera::getTarget() const
 {
-    return targetPoint;
+    return m_targetPoint;
 }
 
 sf::View Camera::getView() const
 {
-    return view;
+    return m_view;
 }
 
-void Camera::setSmooth(int new_smooth)
+void Camera::setSpeed(float speed)
 {
-    smooth = new_smooth;
+    m_speed = speed;
 }
 
 void Camera::update()
 {
-    view.setCenter(view.getCenter().x+(targetPoint.x-view.getCenter().x)/smooth,
-                   view.getCenter().y+(targetPoint.y-view.getCenter().y)/smooth);
+    m_view.setCenter(m_view.getCenter().x+(m_targetPoint.x-m_view.getCenter().x)/m_speed,
+                   m_view.getCenter().y+(m_targetPoint.y-m_view.getCenter().y)/m_speed);
 }
