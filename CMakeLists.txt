@@ -15,8 +15,8 @@ include_directories(${SFML_INCLUDE_DIR})
 include_directories(src)
 
 add_executable(bossbrawl
-src/Core/Camera.cpp
-src/Core/Camera.hpp
+src/Util/Camera.cpp
+src/Util/Camera.hpp
 src/Core/State.hpp
 src/Core/config.cpp
 src/Core/config.hpp

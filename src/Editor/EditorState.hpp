@@ -4,7 +4,7 @@
 #include "Core/State.hpp"
 
 #include "Map/TileMap.hpp"
-#include "Core/Camera.hpp"
+#include "Util/Camera.hpp"
 #include "Editor/Editor.hpp"
 
 /**
