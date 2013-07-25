@@ -18,54 +18,6 @@ void IconButton::resetGeometry()
 {
     setSize(iconSprite.getGlobalBounds().width,
             iconSprite.getGlobalBounds().height);
-    remake();
-}
-
-void IconButton::setGeometry(int new_x, int new_y, int new_width, int new_height)
-{
-    x = new_x;
-    y = new_y;
-    width = new_width;
-    height = new_height;
-    remake();
-}
-
-void IconButton::setSize(int new_width, int new_height)
-{
-    width = new_width;
-    height = new_height;
-    remake();
-}
-
-void IconButton::setWidth(int new_width)
-{
-    width = new_width;
-    remake();
-}
-
-void IconButton::setHeight(int new_height)
-{
-    height = new_height;
-    remake();
-}
-
-void IconButton::setPosition(int new_x, int new_y)
-{
-    x = new_x;
-    y = new_y;
-    remake();
-}
-
-void IconButton::setX(int new_x)
-{
-    x = new_x;
-    remake();
-}
-
-void IconButton::setY(int new_y)
-{
-    y = new_y;
-    remake();
 }
 
 void IconButton::setIcon(std::string iconPath)
@@ -79,13 +31,6 @@ void IconButton::setIcon(std::string iconPath)
     resetGeometry();
 }
 
-void IconButton::remake()
-{
-    Widget::remake();
-    iconSprite.setPosition(x+(int)(width/2-iconSprite.getGlobalBounds().width/2),
-                           y+(int)(height/2-iconSprite.getGlobalBounds().height/2));
-}
-
 void IconButton::update()
 {
     setBackgroundColor(normalColor);
@@ -95,6 +40,12 @@ void IconButton::update()
 
     if(pressed)
         setBackgroundColor(pressColor);
+
+    if(toggled)
+        setBackgroundColor(pressColor);
+
+    iconSprite.setPosition(x+(int)(width/2-iconSprite.getGlobalBounds().width/2),
+                           y+(int)(height/2-iconSprite.getGlobalBounds().height/2));
 }
 
 void IconButton::display(sf::RenderTarget &target)

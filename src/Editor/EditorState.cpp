@@ -8,11 +8,13 @@ EditorState::EditorState() :
     camera(sf::Vector2f(config::windowWidth, config::windowHeight))
 {
 
+    map.fillLayer(0,1);
 }
 
 void EditorState::onSet()
 {
     graphics::window.setTitle("editor");
+    camera.setSpeed(0.05f);
 
 }
 void EditorState::onUpdate()
@@ -21,6 +23,10 @@ void EditorState::onUpdate()
 
     window.clear();
 
+    camera.apply(graphics::window);
+    map.display();
+
+    graphics::window.setView(graphics::window.getDefaultView());
     editorHUD.display();
 }
 

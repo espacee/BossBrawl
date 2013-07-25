@@ -28,7 +28,6 @@ public:
     sf::Color getBackgroundColor() const;
     void setColorScheme(sf::Color newNormalColor, sf::Color newHoverColor, sf::Color newPressColor);
 
-    void remake();
     void processEvents(const sf::Event &event);
     void update();
     void display(sf::RenderTarget& target);
@@ -36,12 +35,22 @@ public:
     bool isHovered() const;
     bool isPressed() const;
     bool isReleased() const;
+    bool isToggled() const;
+    bool isActive() const;
+    void setToggleable(bool yesno);
+    void setActive(bool yesno);
+
+    void setTransitionSpeed(float new_transitionSpeed);
+    void enableTransition(bool yesno);
 
 protected:
     int x,y, width, height;
+    int targetX, targetY, targetWidth, targetHeight;
     sf::Color backgroundColor, normalColor, hoverColor, pressColor;
+    sf::Color targetBackgroundColor;
     sf::RectangleShape background;
-    bool hovered, pressed, released;
+    bool active, toggleable, hovered, pressed, released, toggled, transitionEnabled;
+    float transitionSpeed;
 };
 
 #endif // GUI_WIDGET_HPP

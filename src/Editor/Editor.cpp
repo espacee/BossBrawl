@@ -31,7 +31,6 @@ Editor::Editor()
     tileSetButton.setText("TileSet >>");
     tileSetButton.setGeometry(rightPanel.getX()+2,topPanel.getY()+topPanel.getHeight()+2,rightPanel.getWidth()-4,50);
 
-
 }
 
 void Editor::init()

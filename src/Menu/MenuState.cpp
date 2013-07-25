@@ -26,10 +26,23 @@ void MenuState::onSet()
     quitButton.setPosition(hc - 100, vc + 30);
     quitButton.setColorScheme(sf::Color(240,80,130),sf::Color(250,150,180),sf::Color(200,15,50));
     quitButton.setTextColor(sf::Color(50,0,75));
+
+    playButton.enableTransition(true);
+    editorButton.enableTransition(true);
+    quitButton.enableTransition(true);
+    playButton.setTransitionSpeed(0.3);
+    editorButton.setTransitionSpeed(0.3);
+    quitButton.setTransitionSpeed(0.3);
 }
+
 void MenuState::onUpdate()
 {
     using graphics::window;
+    int hc = config::windowWidth / 2, vc = config::windowHeight / 2;
+
+    if(playButton.isHovered()) playButton.setX(hc-80); else playButton.setX(hc-100);
+    if(editorButton.isHovered()) editorButton.setX(hc-80); else editorButton.setX(hc-100);
+    if(quitButton.isHovered()) quitButton.setX(hc-80); else quitButton.setX(hc-100);
 
     if(playButton.isReleased())
         stateDriver::setState("game");

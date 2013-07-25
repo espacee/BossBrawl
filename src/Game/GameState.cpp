@@ -11,8 +11,6 @@ GameState::GameState() :
     fpsText.setFont(graphics::font);
     map.fillLayer(0,1);
 
-    map.addLayer();
-
     fpsText.setCharacterSize(16);
     fpsText.setPosition(5,graphics::window.getSize().y-20);
 
@@ -42,8 +40,6 @@ void GameState::onUpdate()
 
         map.resizeLayer(1, 100,100);
         map.setTile(1, (sf::Mouse::getPosition().x / GRID_SIZE), (sf::Mouse::getPosition().y / GRID_SIZE), 1);
-
-
 
 
     }

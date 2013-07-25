@@ -22,3 +22,4 @@ private:
 };
 
 #endif // MENU_MENUSTATE_HPP
+
