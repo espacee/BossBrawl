@@ -1,10 +1,10 @@
 #ifndef GAMESTATE_HPP
 #define GAMESTATE_HPP
 
-#include "State.hpp"
+#include "Core/State.hpp"
 
-#include "TileMap.hpp"
-#include "Camera.hpp"
+#include "Map/TileMap.hpp"
+#include "Core/Camera.hpp"
 
 #include <SFML/Graphics.hpp>
 

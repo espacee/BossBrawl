@@ -1,11 +1,11 @@
 #include <SFML/Graphics.hpp>
 
-#include "stateDriver.hpp"
-#include "config.hpp"
-#include "graphics.hpp"
-#include "MenuState.hpp"
-#include "GameState.hpp"
-#include "EditorState.hpp"
+#include "Core/stateDriver.hpp"
+#include "Core/config.hpp"
+#include "Core/graphics.hpp"
+#include "Menu/MenuState.hpp"
+#include "Game/GameState.hpp"
+#include "Editor/EditorState.hpp"
 
 int main()
 {

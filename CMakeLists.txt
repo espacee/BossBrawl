@@ -12,36 +12,37 @@ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake/Modules" ${CMAKE_MODULE_PATH})
 # SFML
 find_package(SFML 2 COMPONENTS graphics window audio system REQUIRED)
 include_directories(${SFML_INCLUDE_DIR})
+include_directories(src)
 
 add_executable(bossbrawl
-src/Camera.cpp
-src/Camera.hpp
-src/Editor.cpp
-src/Editor.hpp
-src/EditorState.cpp
-src/EditorState.hpp
-src/GameState.cpp
-src/GameState.hpp
-src/IconButton.cpp
-src/IconButton.hpp
-src/Layer.cpp
-src/Layer.hpp
-src/MenuState.cpp
-src/MenuState.hpp
-src/State.hpp
-src/TextButton.cpp
-src/TextButton.hpp
-src/TileMap.cpp
-src/TileMap.hpp
-src/Widget.cpp
-src/Widget.hpp
-src/config.cpp
-src/config.hpp
-src/graphics.cpp
-src/graphics.hpp
-src/main.cpp
-src/stateDriver.cpp
-src/stateDriver.hpp
+src/Core/Camera.cpp
+src/Core/Camera.hpp
+src/Core/State.hpp
+src/Core/config.cpp
+src/Core/config.hpp
+src/Core/graphics.cpp
+src/Core/graphics.hpp
+src/Core/main.cpp
+src/Core/stateDriver.cpp
+src/Core/stateDriver.hpp
+src/Editor/Editor.cpp
+src/Editor/Editor.hpp
+src/Editor/EditorState.cpp
+src/Editor/EditorState.hpp
+src/Game/GameState.cpp
+src/Game/GameState.hpp
+src/Gui/IconButton.cpp
+src/Gui/IconButton.hpp
+src/Gui/TextButton.cpp
+src/Gui/TextButton.hpp
+src/Gui/Widget.cpp
+src/Gui/Widget.hpp
+src/Map/Layer.cpp
+src/Map/Layer.hpp
+src/Map/TileMap.cpp
+src/Map/TileMap.hpp
+src/Menu/MenuState.cpp
+src/Menu/MenuState.hpp
 )
 
 target_link_libraries(bossbrawl ${SFML_LIBRARIES})

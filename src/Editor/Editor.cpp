@@ -1,6 +1,6 @@
-#include "Editor.hpp"
+#include "Editor/Editor.hpp"
 
-#include "graphics.hpp"
+#include "Core/graphics.hpp"
 
 Editor::Editor()
 {

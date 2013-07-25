@@ -1,6 +1,6 @@
-#include "TileMap.hpp"
+#include "Map/TileMap.hpp"
 
-#include "graphics.hpp"
+#include "Core/graphics.hpp"
 
 TileMap::TileMap()
 {

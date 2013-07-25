@@ -1,7 +1,7 @@
 #ifndef TEXTBUTTON_HPP
 #define TEXTBUTTON_HPP
 
-#include "Widget.hpp"
+#include "Gui/Widget.hpp"
 
 /**
  * @brief A button that has text

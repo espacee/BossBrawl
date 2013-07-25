@@ -1,6 +1,6 @@
-#include "Widget.hpp"
+#include "Gui/Widget.hpp"
 
-#include "graphics.hpp"
+#include "Core/graphics.hpp"
 
 Widget::Widget()
 {

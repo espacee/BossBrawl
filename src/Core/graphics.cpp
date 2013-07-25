@@ -1,6 +1,6 @@
-#include "graphics.hpp"
+#include "Core/graphics.hpp"
 
-#include "config.hpp"
+#include "Core/config.hpp"
 
 namespace graphics
 {

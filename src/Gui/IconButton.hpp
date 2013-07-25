@@ -1,7 +1,7 @@
 #ifndef ICONBUTTON_HPP
 #define ICONBUTTON_HPP
 
-#include "Widget.hpp"
+#include "Gui/Widget.hpp"
 
 /**
  * @brief A button that has an icon

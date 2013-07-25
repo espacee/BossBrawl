@@ -1,9 +1,9 @@
 #ifndef MENUSTATE_HPP
 #define MENUSTATE_HPP
 
-#include "State.hpp"
-#include "TextButton.hpp"
-#include "IconButton.hpp"
+#include "Core/State.hpp"
+#include "Gui/TextButton.hpp"
+#include "Gui/IconButton.hpp"
 
 /**
  * @brief The Main menu state

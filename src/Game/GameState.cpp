@@ -1,7 +1,7 @@
-#include "GameState.hpp"
+#include "Game/GameState.hpp"
 
-#include "graphics.hpp"
-#include "stateDriver.hpp"
+#include "Core/graphics.hpp"
+#include "Core/stateDriver.hpp"
 
 
 GameState::GameState()

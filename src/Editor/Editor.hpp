@@ -2,11 +2,11 @@
 #define EDITOR_HPP
 
 #include <SFML/Graphics.hpp>
-#include "TileMap.hpp"
+#include "Map/TileMap.hpp"
 
-#include "Widget.hpp"
-#include "TextButton.hpp"
-#include "IconButton.hpp"
+#include "Gui/Widget.hpp"
+#include "Gui/TextButton.hpp"
+#include "Gui/IconButton.hpp"
 
 /**
  * @brief Map editor

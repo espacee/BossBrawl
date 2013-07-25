@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-#include "Layer.hpp"
+#include "Map/Layer.hpp"
 
 /**
  * @brief A tile-based layered map

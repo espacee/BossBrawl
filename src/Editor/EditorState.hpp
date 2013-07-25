@@ -1,11 +1,11 @@
 #ifndef EDITORSTATE_HPP
 #define EDITORSTATE_HPP
 
-#include "State.hpp"
+#include "Core/State.hpp"
 
-#include "TileMap.hpp"
-#include "Camera.hpp"
-#include "Editor.hpp"
+#include "Map/TileMap.hpp"
+#include "Core/Camera.hpp"
+#include "Editor/Editor.hpp"
 
 /**
  * @brief The Editor state

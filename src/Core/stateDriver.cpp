@@ -1,6 +1,6 @@
-#include "stateDriver.hpp"
+#include "Core/stateDriver.hpp"
 
-#include "graphics.hpp"
+#include "Core/graphics.hpp"
 
 #include <map>
 #include <iostream>

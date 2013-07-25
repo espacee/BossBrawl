@@ -1,8 +1,8 @@
-#include "MenuState.hpp"
+#include "Menu/MenuState.hpp"
 
-#include "graphics.hpp"
-#include "stateDriver.hpp"
-#include "config.hpp"
+#include "Core/graphics.hpp"
+#include "Core/stateDriver.hpp"
+#include "Core/config.hpp"
 
 void MenuState::onSet()
 {

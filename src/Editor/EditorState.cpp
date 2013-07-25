@@ -1,7 +1,7 @@
-#include "EditorState.hpp"
+#include "Editor/EditorState.hpp"
 
-#include "graphics.hpp"
-#include "stateDriver.hpp"
+#include "Core/graphics.hpp"
+#include "Core/stateDriver.hpp"
 
 void EditorState::onSet()
 {
