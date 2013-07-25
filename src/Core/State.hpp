@@ -3,6 +3,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "Util/unused.hpp"
+
 /**
  * @brief Base class for states
  */
@@ -23,7 +25,7 @@ public :
      * @brief Called every time an event happens
      */
     virtual void onEvent(const sf::Event& event) {
-        (void)(event);
+        BRAWL_UNUSED(event);
     }
 
     virtual ~State() {}

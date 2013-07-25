@@ -17,6 +17,7 @@ include_directories(src)
 add_executable(bossbrawl
 src/Util/Camera.cpp
 src/Util/Camera.hpp
+src/Util/unused.hpp
 src/Core/State.hpp
 src/Core/config.cpp
 src/Core/config.hpp
