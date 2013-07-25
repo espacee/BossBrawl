@@ -7,6 +7,7 @@
 #include "Gui/Widget.hpp"
 #include "Gui/TextButton.hpp"
 #include "Gui/IconButton.hpp"
+#include "Gui/ScrollBar.hpp"
 
 /**
  * @brief Map editor
@@ -18,8 +19,6 @@ public:
     void init();
     void display();
     void processEvents(const sf::Event &event);
-    int pixToTileCoordX( int x);
-    int pixToTileCoordY( int y);
 
 
 
@@ -33,6 +32,8 @@ private:
     IconButton handButton;
 
     TextButton tileSetButton;
+
+    ScrollBar test;
 
     TileMap map;
 

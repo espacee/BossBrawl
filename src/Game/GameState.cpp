@@ -36,13 +36,6 @@ void GameState::onUpdate()
         testTarget.move(0,10);
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         testTarget.move(-10,0);
-    if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-
-        map.resizeLayer(1, 100,100);
-        map.setTile(1, (sf::Mouse::getPosition().x / GRID_SIZE), (sf::Mouse::getPosition().y / GRID_SIZE), 1);
-
-
-    }
 
     testTarget.rotate(5);
     camera.setTarget(testTarget.getPosition());
