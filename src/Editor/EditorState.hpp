@@ -1,5 +1,5 @@
-#ifndef EDITORSTATE_HPP
-#define EDITORSTATE_HPP
+#ifndef EDITOR_EDITORSTATE_HPP
+#define EDITOR_EDITORSTATE_HPP
 
 #include "Core/State.hpp"
 
@@ -24,4 +24,4 @@ private:
     Editor editorHUD;
 };
 
-#endif // EDITORSTATE_HPP
+#endif // EDITOR_EDITORSTATE_HPP

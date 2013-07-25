@@ -1,5 +1,5 @@
-#ifndef STATE_HPP
-#define STATE_HPP
+#ifndef CORE_STATE_HPP
+#define CORE_STATE_HPP
 
 #include <SFML/Graphics.hpp>
 
@@ -29,4 +29,4 @@ public :
     virtual ~State() {}
 };
 
-#endif // STATE_HPP
+#endif // CORE_STATE_HPP

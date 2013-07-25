@@ -1,5 +1,5 @@
-#ifndef STATEDRIVER_HPP
-#define STATEDRIVER_HPP
+#ifndef CORE_STATEDRIVER_HPP
+#define CORE_STATEDRIVER_HPP
 
 #include "Core/State.hpp"
 
@@ -26,4 +26,4 @@ void deleteStates();
 
 }
 
-#endif // STATEDRIVER_HPP
+#endif // CORE_STATEDRIVER_HPP

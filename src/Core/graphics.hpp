@@ -1,5 +1,5 @@
-#ifndef GRAPHICS_HPP
-#define GRAPHICS_HPP
+#ifndef CORE_GRAPHICS_HPP
+#define CORE_GRAPHICS_HPP
 
 #include <SFML/Graphics.hpp>
 
@@ -16,4 +16,4 @@ void init();
 
 }
 
-#endif // GRAPHICS_HPP
+#endif // CORE_GRAPHICS_HPP

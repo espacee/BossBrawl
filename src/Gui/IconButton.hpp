@@ -1,5 +1,5 @@
-#ifndef ICONBUTTON_HPP
-#define ICONBUTTON_HPP
+#ifndef GUI_ICONBUTTON_HPP
+#define GUI_ICONBUTTON_HPP
 
 #include "Gui/Widget.hpp"
 
@@ -35,4 +35,4 @@ private:
     sf::Sprite iconSprite;
 };
 
-#endif // ICONBUTTON_HPP
+#endif // GUI_ICONBUTTON_HPP

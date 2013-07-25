@@ -1,5 +1,5 @@
-#ifndef CAMERA_HPP
-#define CAMERA_HPP
+#ifndef CORE_CAMERA_HPP
+#define CORE_CAMERA_HPP
 
 #include <SFML/Graphics.hpp>
 
@@ -34,4 +34,4 @@ private:
 
 };
 
-#endif //!CAMERA_HPP
+#endif // CORE_CAMERA_HPP

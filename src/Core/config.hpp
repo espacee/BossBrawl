@@ -1,5 +1,5 @@
-#ifndef CONFIG_HPP
-#define CONFIG_HPP
+#ifndef CORE_CONFIG_HPP
+#define CORE_CONFIG_HPP
 
 /**
  *
@@ -37,4 +37,4 @@ extern int windowHeight;
 
 }
 
-#endif // CONFIG_HPP
+#endif // CORE_CONFIG_HPP

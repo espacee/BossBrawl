@@ -1,5 +1,5 @@
-#ifndef WIDGET_HPP
-#define WIDGET_HPP
+#ifndef GUI_WIDGET_HPP
+#define GUI_WIDGET_HPP
 
 #include <SFML/Graphics.hpp>
 
@@ -44,4 +44,4 @@ protected:
     bool hovered, pressed, released;
 };
 
-#endif // WIDGET_HPP
+#endif // GUI_WIDGET_HPP

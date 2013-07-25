@@ -1,5 +1,5 @@
-#ifndef LAYER_HPP
-#define LAYER_HPP
+#ifndef MAP_LAYER_HPP
+#define MAP_LAYER_HPP
 
 #include <SFML/Graphics.hpp>
 
@@ -46,4 +46,4 @@ private:
     int x_coord, y_coord;
 };
 
-#endif // LAYER_HPP
+#endif // MAP_LAYER_HPP

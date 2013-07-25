@@ -1,5 +1,5 @@
-#ifndef TILEMAP_HPP
-#define TILEMAP_HPP
+#ifndef MAP_TILEMAP_HPP
+#define MAP_TILEMAP_HPP
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -57,4 +57,4 @@ private:
     sf::Texture tileSet;
 };
 
-#endif // TILEMAP_HPP
+#endif // MAP_TILEMAP_HPP

@@ -1,5 +1,5 @@
-#ifndef TEXTBUTTON_HPP
-#define TEXTBUTTON_HPP
+#ifndef GUI_TEXTBUTTON_HPP
+#define GUI_TEXTBUTTON_HPP
 
 #include "Gui/Widget.hpp"
 
@@ -33,4 +33,4 @@ private:
     sf::Text text;
 };
 
-#endif // TEXTBUTTON_HPP
+#endif // GUI_TEXTBUTTON_HPP

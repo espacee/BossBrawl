@@ -1,5 +1,5 @@
-#ifndef EDITOR_HPP
-#define EDITOR_HPP
+#ifndef EDITOR_EDITOR_HPP
+#define EDITOR_EDITOR_HPP
 
 #include <SFML/Graphics.hpp>
 #include "Map/TileMap.hpp"
@@ -31,4 +31,4 @@ private:
     TextButton tileSetButton;
 };
 
-#endif //!EDITOR_HPP
+#endif // EDITOR_EDITOR_HPP

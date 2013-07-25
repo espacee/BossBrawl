@@ -1,5 +1,5 @@
-#ifndef GAMESTATE_HPP
-#define GAMESTATE_HPP
+#ifndef GAME_GAMESTATE_HPP
+#define GAME_GAMESTATE_HPP
 
 #include "Core/State.hpp"
 
@@ -29,4 +29,4 @@ private:
 
 };
 
-#endif // GAMESTATE_HPP
+#endif // GAME_GAMESTATE_HPP

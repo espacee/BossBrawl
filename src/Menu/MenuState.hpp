@@ -1,5 +1,5 @@
-#ifndef MENUSTATE_HPP
-#define MENUSTATE_HPP
+#ifndef MENU_MENUSTATE_HPP
+#define MENU_MENUSTATE_HPP
 
 #include "Core/State.hpp"
 #include "Gui/TextButton.hpp"
@@ -21,4 +21,4 @@ private:
     TextButton quitButton;
 };
 
-#endif // MENUSTATE_HPP
+#endif // MENU_MENUSTATE_HPP
