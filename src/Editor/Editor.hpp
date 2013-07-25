@@ -18,6 +18,10 @@ public:
     void init();
     void display();
     void processEvents(const sf::Event &event);
+    int pixToTileCoordX( int x);
+    int pixToTileCoordY( int y);
+
+
 
 private:
     Widget topPanel;
@@ -29,6 +33,11 @@ private:
     IconButton handButton;
 
     TextButton tileSetButton;
+
+    TileMap map;
+
+
+
 };
 
 #endif // EDITOR_EDITOR_HPP

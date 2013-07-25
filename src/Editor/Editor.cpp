@@ -2,6 +2,10 @@
 
 #include "Core/graphics.hpp"
 
+
+
+
+
 Editor::Editor()
 {
     topPanel.setSize(graphics::window.getSize().x,32);
@@ -27,15 +31,21 @@ Editor::Editor()
     tileSetButton.setText("TileSet >>");
     tileSetButton.setGeometry(rightPanel.getX()+2,topPanel.getY()+topPanel.getHeight()+2,rightPanel.getWidth()-4,50);
 
+
 }
 
 void Editor::init()
 {
 
+
+
 }
 
 void Editor::display()
 {
+
+
+
     rightPanel.display(graphics::window);
     tileSetButton.display(graphics::window);
 
@@ -44,6 +54,8 @@ void Editor::display()
     eraserButton.display(graphics::window);
     fillButton.display(graphics::window);
     handButton.display(graphics::window);
+
+
 }
 void Editor::processEvents(const sf::Event &event)
 {
@@ -54,4 +66,18 @@ void Editor::processEvents(const sf::Event &event)
     fillButton.processEvents(event);
     handButton.processEvents(event);
     tileSetButton.processEvents(event);
+
+
+
+}
+
+int Editor::pixToTileCoordX(int x)
+{
+
+    return  (x / GRID_SIZE);
+}
+int Editor::pixToTileCoordY(int y)
+{
+    return (y / GRID_SIZE);
+
 }
