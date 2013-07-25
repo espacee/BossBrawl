@@ -1,11 +1,10 @@
-#include "Core/Camera.hpp"
+#include "Camera.hpp"
 
-Camera::Camera(sf::Vector2f size)
+Camera::Camera(const sf::Vector2f& size, const sf::Vector2f& targetPoint) :
+    m_targetPoint(targetPoint),
+    m_view(targetPoint, size),
+    m_speed(0.0f)
 {
-    m_view.setSize(size);
-    m_targetPoint = sf::Vector2f(0,0);
-    m_view.setCenter(m_targetPoint);
-    m_speed=2;
 }
 
 void Camera::apply(sf::RenderTarget &renderTarget)
@@ -35,11 +34,21 @@ sf::View Camera::getView() const
 
 void Camera::setSpeed(float speed)
 {
+    if (speed > 1.0f)
+    {
+        speed = 1.0f;
+    }
+
+    if (speed < 0.0f)
+    {
+        speed = 0.0f;
+    }
+
     m_speed = speed;
 }
 
 void Camera::update()
 {
-    m_view.setCenter(m_view.getCenter().x+(m_targetPoint.x-m_view.getCenter().x)/m_speed,
-                   m_view.getCenter().y+(m_targetPoint.y-m_view.getCenter().y)/m_speed);
+    m_view.setCenter(m_view.getCenter().x + (m_targetPoint.x - m_view.getCenter().x) * m_speed,
+                     m_view.getCenter().y + (m_targetPoint.y - m_view.getCenter().y) * m_speed);
 }

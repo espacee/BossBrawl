@@ -13,7 +13,7 @@ public:
      * @brief Construct a camera with given size
      * @param size The view area
      */
-    Camera(sf::Vector2f size);
+    Camera(const sf::Vector2f& size = sf::Vector2f(), const sf::Vector2f& targetPoint = sf::Vector2f());
 
     /**
      * @brief Apply the camera to a render target
@@ -47,7 +47,12 @@ public:
 
     /**
      * @brief Set the speed the camera should follow the target at
-     * @param speed The speed the camera should follow the target at
+     * @param speed The speed the camera should follow the target at.
+     *              It can be in the range [0..1] where
+     *              0 means the camera won't move at all and
+     *              1 means the camera moves to the target position instantly
+     *
+     *              If the speed is not within the valid range, it gets clamped.
      */
     void setSpeed(float speed);
 

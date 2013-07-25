@@ -22,7 +22,7 @@ GameState::GameState() :
 void GameState::onSet()
 {
     graphics::window.setTitle("game");
-    camera.setSpeed(20);
+    camera.setSpeed(0.05f);
 }
 void GameState::onUpdate()
 {
