@@ -5,6 +5,9 @@
 
 constexpr int GRID_SIZE = 40;
 
+/**
+ * @brief A layer of tiles
+ */
 class Layer
 {
 public:

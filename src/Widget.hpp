@@ -3,6 +3,9 @@
 
 #include <SFML/Graphics.hpp>
 
+/**
+ * @brief Base class for GUI widgets
+ */
 class Widget
 {
 public:

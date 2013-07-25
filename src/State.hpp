@@ -3,6 +3,9 @@
 
 #include <SFML/Graphics.hpp>
 
+/**
+ * @brief Base class for states
+ */
 class State
 {
 public :

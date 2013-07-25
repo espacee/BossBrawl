@@ -5,6 +5,9 @@
 #include "TextButton.hpp"
 #include "IconButton.hpp"
 
+/**
+ * @brief The Main menu state
+ */
 class MenuState : public State
 {
 public:

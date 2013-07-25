@@ -7,6 +7,9 @@
 #include "Camera.hpp"
 #include "Editor.hpp"
 
+/**
+ * @brief The Editor state
+ */
 class EditorState : public State
 {
 public:

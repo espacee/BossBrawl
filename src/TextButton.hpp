@@ -3,6 +3,9 @@
 
 #include "Widget.hpp"
 
+/**
+ * @brief A button that has text
+ */
 class TextButton : public Widget
 {
 public:

@@ -5,6 +5,9 @@
 
 #include <string>
 
+/**
+ * @brief The state driver module
+ */
 namespace stateDriver
 {
 

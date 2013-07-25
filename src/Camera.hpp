@@ -3,6 +3,9 @@
 
 #include <SFML/Graphics.hpp>
 
+/**
+ * @brief A camera that can follow a target
+ */
 class Camera
 {
 public:

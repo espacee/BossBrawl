@@ -8,6 +8,9 @@
 #include "TextButton.hpp"
 #include "IconButton.hpp"
 
+/**
+ * @brief Map editor
+ */
 class Editor
 {
 public:

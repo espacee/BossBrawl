@@ -3,6 +3,9 @@
 
 #include "Widget.hpp"
 
+/**
+ * @brief A button that has an icon
+ */
 class IconButton : public Widget
 {
 public:

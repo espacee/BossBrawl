@@ -8,6 +8,9 @@
 
 #include <SFML/Graphics.hpp>
 
+/**
+ * @brief The Game state
+ */
 class GameState : public State
 {
 public:

@@ -3,6 +3,9 @@
 
 #include <SFML/Graphics.hpp>
 
+/**
+ * @brief Graphics module
+ */
 namespace graphics
 {
 
