@@ -12,6 +12,7 @@ public:
     /**
      * @brief Construct a camera with an optional size and target point
      * @param size The view area
+     * @param targetPoint The target point the camera should move towards
      */
     Camera(const sf::Vector2f& size = sf::Vector2f(), const sf::Vector2f& targetPoint = sf::Vector2f());
 

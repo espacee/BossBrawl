@@ -3,7 +3,7 @@
 Camera::Camera(const sf::Vector2f& size, const sf::Vector2f& targetPoint) :
     m_targetPoint(targetPoint),
     m_view(targetPoint, size),
-    m_speed(0.0f)
+    m_speed(1.0f)
 {
 }
 
