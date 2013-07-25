@@ -12,6 +12,11 @@ void Camera::apply(sf::RenderTarget &renderTarget)
     renderTarget.setView(m_view);
 }
 
+void Camera::setSize(const sf::Vector2f &size)
+{
+    m_view.setSize(size);
+}
+
 void Camera::setTarget(const sf::Vector2f& point)
 {
     m_targetPoint = point;

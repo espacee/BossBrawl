@@ -23,6 +23,12 @@ public:
     void apply(sf::RenderTarget& renderTarget);
 
     /**
+     * @brief Set the size (view area) of the camera
+     * @param size The new size
+     */
+    void setSize(const sf::Vector2f& size);
+
+    /**
      * @brief Set the target point the camera should move to
      * @param point The point the camera should move to
      */
