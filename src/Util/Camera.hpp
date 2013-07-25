@@ -1,5 +1,5 @@
-#ifndef CORE_CAMERA_HPP
-#define CORE_CAMERA_HPP
+#ifndef UTIL_CAMERA_HPP
+#define UTIL_CAMERA_HPP
 
 #include <SFML/Graphics.hpp>
 
@@ -76,4 +76,4 @@ private:
     float m_speed;
 };
 
-#endif // CORE_CAMERA_HPP
+#endif // UTIL_CAMERA_HPP
