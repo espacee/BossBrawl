@@ -1,4 +1,4 @@
-#include "Camera.hpp"
+#include "Util/Camera.hpp"
 
 Camera::Camera(const sf::Vector2f& size, const sf::Vector2f& targetPoint) :
     m_targetPoint(targetPoint),
