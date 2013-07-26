@@ -4,28 +4,28 @@
 
 Editor::Editor()
 {
-    topPanel.setSize(graphics::window.getSize().x,32);
-    topPanel.setPosition(0,0);
-    topPanel.setBackgroundColor(sf::Color(40,40,40));
+    topPanel.setSize(graphics::window.getSize().x, 32);
+    topPanel.setPosition(0, 0);
+    topPanel.setBackgroundColor(sf::Color(40, 40, 40));
 
     penButton.setIcon("res/img/GUI/pen.png");
-    penButton.setPosition(5,1);
+    penButton.setPosition(5, 1);
 
     eraserButton.setIcon("res/img/GUI/eraser.png");
-    eraserButton.setPosition(40,1);
+    eraserButton.setPosition(40, 1);
 
     fillButton.setIcon("res/img/GUI/fill.png");
-    fillButton.setPosition(75,1);
+    fillButton.setPosition(75, 1);
 
     handButton.setIcon("res/img/GUI/hand.png");
-    handButton.setPosition(110,1);
+    handButton.setPosition(110, 1);
 
-    rightPanel.setSize(200,graphics::window.getSize().y);
-    rightPanel.setPosition(graphics::window.getSize().x-rightPanel.getWidth(),0);
-    rightPanel.setBackgroundColor(sf::Color(70,70,70));
+    rightPanel.setSize(200, graphics::window.getSize().y);
+    rightPanel.setPosition(graphics::window.getSize().x - rightPanel.getWidth(), 0);
+    rightPanel.setBackgroundColor(sf::Color(70, 70, 70));
 
     tileSetButton.setText("TileSet >>");
-    tileSetButton.setGeometry(rightPanel.getX()+2,topPanel.getY()+topPanel.getHeight()+2,rightPanel.getWidth()-4,50);
+    tileSetButton.setGeometry(rightPanel.getX() + 2, topPanel.getY() + topPanel.getHeight() + 2, rightPanel.getWidth() - 4, 50);
 }
 
 void Editor::init()

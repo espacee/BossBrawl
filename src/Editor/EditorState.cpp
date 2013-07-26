@@ -8,7 +8,7 @@ EditorState::EditorState() :
     camera(sf::Vector2f(config::windowWidth, config::windowHeight))
 {
 
-    map.fillLayer(0,1);
+    map.fillLayer(0, 1);
 }
 
 void EditorState::onSet()
@@ -32,7 +32,7 @@ void EditorState::onUpdate()
 
 void EditorState::onEvent(const sf::Event &event)
 {
-    if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
+    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
         stateDriver::setState("menu");
 
     editorHUD.processEvents(event);

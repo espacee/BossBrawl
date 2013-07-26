@@ -44,7 +44,7 @@ public:
     void enableTransition(bool yesno);
 
 protected:
-    int x,y, width, height;
+    int x, y, width, height;
     int targetX, targetY, targetWidth, targetHeight;
     sf::Color backgroundColor, normalColor, hoverColor, pressColor;
     sf::Color targetBackgroundColor;
