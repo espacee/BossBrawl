@@ -1,4 +1,5 @@
 #include "Util/Camera.hpp"
+#include "Util/math.hpp"
 
 Camera::Camera(const sf::Vector2f& size, const sf::Vector2f& targetPoint) :
     m_targetPoint(targetPoint),
@@ -39,16 +40,7 @@ sf::View Camera::getView() const
 
 void Camera::setSpeed(float speed)
 {
-    if (speed > 1.0f)
-    {
-        speed = 1.0f;
-    }
-
-    if (speed < 0.0f)
-    {
-        speed = 0.0f;
-    }
-
+    math::clamp(speed, 0.0f, 1.0f);
     m_speed = speed;
 }
 
