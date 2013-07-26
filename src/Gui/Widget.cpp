@@ -154,12 +154,12 @@ void Widget::processEvents(const sf::Event &event)
         if (event.type == sf::Event::MouseMoved)
         {
             if
-                    (
-                    event.mouseMove.x > x &&
-                    event.mouseMove.y > y &&
-                    event.mouseMove.x < x + width &&
-                    event.mouseMove.y < y + height
-                    )
+            (
+                event.mouseMove.x > x &&
+                event.mouseMove.y > y &&
+                event.mouseMove.x < x + width &&
+                event.mouseMove.y < y + height
+            )
             {
                 hovered = true;
             }
@@ -205,13 +205,13 @@ void Widget::update()
 {
     released = false;
 
-        x+=(targetX-x)*transitionSpeed;
-        y+=(targetY-y)*transitionSpeed;
-        width+=(targetWidth-width)*transitionSpeed;
-        height+=(targetHeight-height)*transitionSpeed;
-        backgroundColor = sf::Color(backgroundColor.r+(targetBackgroundColor.r-backgroundColor.r)*transitionSpeed,
-                                    backgroundColor.g+(targetBackgroundColor.g-backgroundColor.g)*transitionSpeed,
-                                    backgroundColor.b+(targetBackgroundColor.b-backgroundColor.b)*transitionSpeed);
+    x+=(targetX-x)*transitionSpeed;
+    y+=(targetY-y)*transitionSpeed;
+    width+=(targetWidth-width)*transitionSpeed;
+    height+=(targetHeight-height)*transitionSpeed;
+    backgroundColor = sf::Color(backgroundColor.r+(targetBackgroundColor.r-backgroundColor.r)*transitionSpeed,
+                                backgroundColor.g+(targetBackgroundColor.g-backgroundColor.g)*transitionSpeed,
+                                backgroundColor.b+(targetBackgroundColor.b-backgroundColor.b)*transitionSpeed);
 
     background.setPosition(x,y);
     background.setSize(sf::Vector2f(width, height));
