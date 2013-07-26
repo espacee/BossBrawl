@@ -15,9 +15,6 @@ include_directories(${SFML_INCLUDE_DIR})
 include_directories(src)
 
 add_executable(bossbrawl
-src/Util/Camera.cpp
-src/Util/Camera.hpp
-src/Util/unused.hpp
 src/Core/State.hpp
 src/Core/config.cpp
 src/Core/config.hpp
@@ -34,6 +31,8 @@ src/Game/GameState.cpp
 src/Game/GameState.hpp
 src/Gui/IconButton.cpp
 src/Gui/IconButton.hpp
+src/Gui/ScrollBar.cpp
+src/Gui/ScrollBar.hpp
 src/Gui/TextButton.cpp
 src/Gui/TextButton.hpp
 src/Gui/Widget.cpp
@@ -44,6 +43,9 @@ src/Map/TileMap.cpp
 src/Map/TileMap.hpp
 src/Menu/MenuState.cpp
 src/Menu/MenuState.hpp
+src/Util/Camera.cpp
+src/Util/Camera.hpp
+src/Util/unused.hpp
 )
 
 target_link_libraries(bossbrawl ${SFML_LIBRARIES})
