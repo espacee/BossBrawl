@@ -1,5 +1,30 @@
+The source code is located in the src/ directory.
+
+The documentation can be generated with Doxygen (http://www.stack.nl/~dimitri/doxygen/).
+By default, the documentation is generated into the doc/ subdirectory
+
 Conventions for C++ source code:
+
+File naming:
 - File names are CamelCase if they define classes, lowercase otherwise
 - Header files have the extension .hpp
-- Indentation is 4 spaces
+- Source files have the extension .cpp
+
+Symbol naming:
 - Function names are camelCase()
+- Class names are CamelCase
+- Macro names are UPPER_CASE
+- Compile time constants (e.g. constexpr) are UPPER_CASE
+- Private class and namespace member variables are prefixed with m_
+
+Formatting:
+- Indentation is 4 spaces
+
+- Pad operators with spaces
+  Example: "foo += 4" instead of "foo+=4"
+
+- Insert a space after between if/for/while/etc. and the opening paren
+  Example: "if (condition == true)" instead of "if(condition == true)"
+
+You don't have to worry too much about the formatting, as the source code
+is periodically formatted with Artistic Style (http://astyle.sourceforge.net/).
