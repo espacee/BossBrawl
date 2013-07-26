@@ -9,7 +9,10 @@ GameState::GameState() :
     camera(sf::Vector2f(config::windowWidth, config::windowHeight))
 {
     fpsText.setFont(graphics::font);
+
     map.fillLayer(0, 1);
+
+
 
     fpsText.setCharacterSize(16);
     fpsText.setPosition(5, graphics::window.getSize().y - 20);
@@ -28,6 +31,7 @@ void GameState::onUpdate()
 {
     using graphics::window;
 
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         testTarget.move(0, -10);
 
@@ -39,6 +43,7 @@ void GameState::onUpdate()
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         testTarget.move(-10, 0);
+
 
     testTarget.rotate(5);
     camera.setTarget(testTarget.getPosition());

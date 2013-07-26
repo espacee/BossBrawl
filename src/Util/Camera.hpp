@@ -70,9 +70,10 @@ public:
      */
     void update();
 
+    sf::View m_view;
 private:
     sf::Vector2f m_targetPoint;
-    sf::View m_view;
+
     float m_speed;
 };
 

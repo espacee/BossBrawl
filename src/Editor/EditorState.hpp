@@ -19,10 +19,12 @@ public:
     virtual void onEvent(const sf::Event &event);
 
 private:
-
     Camera camera;
     TileMap map;
     Editor editorHUD;
+
+    sf::Texture testTargetTexture;
+    sf::Sprite testTarget;
 };
 
 #endif // EDITOR_EDITORSTATE_HPP

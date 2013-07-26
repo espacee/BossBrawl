@@ -2,7 +2,9 @@
 
 #include "Core/graphics.hpp"
 
-Editor::Editor()
+Editor::Editor() :
+   camera(sf::Vector2f(config::windowWidth, config::windowHeight))
+
 {
     topPanel.setSize(graphics::window.getSize().x, 32);
     topPanel.setPosition(0, 0);
@@ -25,18 +27,28 @@ Editor::Editor()
     rightPanel.setBackgroundColor(sf::Color(70, 70, 70));
 
     tileSetButton.setText("TileSet >>");
+
     tileSetButton.setGeometry(rightPanel.getX() + 2, topPanel.getY() + topPanel.getHeight() + 2, rightPanel.getWidth() - 4, 50);
+
+    tileSetButton.setGeometry(rightPanel.getX()+2,topPanel.getY()+topPanel.getHeight()+2,rightPanel.getWidth()-4,50);
+
 }
 
 void Editor::init()
 {
 
-
-
 }
-
 void Editor::display()
 {
+    cx = camera.getView().getCenter().x, cy = camera.getView().getCenter().y;
+    tx = (sf::Mouse::getPosition(graphics::window).x + (cx - (config::windowWidth/2))) / GRID_SIZE;
+    ty = (sf::Mouse::getPosition(graphics::window).y + (cy - (config::windowHeight/2))) / GRID_SIZE;
+
+    if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+
+       map.setTile(1, tx, ty, 1);
+
+    }
     rightPanel.display(graphics::window);
     tileSetButton.display(graphics::window);
 

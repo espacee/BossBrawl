@@ -18,15 +18,12 @@ public:
     void onSet();
     void onUpdate();
     void onEvent(const sf::Event &event);
-
-
 private:
     Camera camera;
     TileMap map;
     sf::Text fpsText;
     sf::Texture testTargetTexture;
     sf::Sprite testTarget;
-
 };
 
 #endif // GAME_GAMESTATE_HPP
