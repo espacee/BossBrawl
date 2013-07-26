@@ -38,7 +38,7 @@ void MenuState::onSet()
 void MenuState::onUpdate()
 {
     using graphics::window;
-    int hc = config::windowWidth / 2, vc = config::windowHeight / 2;
+    int hc = config::windowWidth / 2;
 
     if(playButton.isHovered()) playButton.setX(hc-80); else playButton.setX(hc-100);
     if(editorButton.isHovered()) editorButton.setX(hc-80); else editorButton.setX(hc-100);
