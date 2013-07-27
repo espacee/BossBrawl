@@ -4,12 +4,11 @@
 #include "Core/stateDriver.hpp"
 #include "Util/view.hpp"
 
-EditorState::EditorState() :
-    camera(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y))
+EditorState::EditorState()
 {
 
     map.fillLayer(0, 1);
-
+    camera = sf::View(sf::FloatRect(0,0,graphics::window.getSize().x, graphics::window.getSize().y));
     testTargetTexture.loadFromFile("res/img/target.png");
     testTargetTexture.setSmooth(true);
     testTarget.setTexture(testTargetTexture);
@@ -20,6 +19,7 @@ EditorState::EditorState() :
 void EditorState::onSet()
 {
     graphics::window.setTitle("editor");
+    camera = sf::View(sf::FloatRect(0,0,graphics::window.getSize().x, graphics::window.getSize().y));
 
     topPanel.setSize(graphics::window.getSize().x, 32);
     topPanel.setPosition(0, 0);

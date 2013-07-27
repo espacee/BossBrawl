@@ -6,14 +6,13 @@
 #include "Util/view.hpp"
 
 
-GameState::GameState() :
-    camera(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y))
+GameState::GameState()
 {
+    camera = sf::View(sf::FloatRect(0,0,graphics::window.getSize().x, graphics::window.getSize().y));
+
     fpsText.setFont(graphics::font);
 
     map.fillLayer(0, 1);
-
-
 
     fpsText.setCharacterSize(16);
     fpsText.setPosition(5, graphics::window.getSize().y - 20);
@@ -26,6 +25,7 @@ GameState::GameState() :
 void GameState::onSet()
 {
     graphics::window.setTitle("game");
+    camera = sf::View(sf::FloatRect(0,0,graphics::window.getSize().x, graphics::window.getSize().y));
 }
 void GameState::onUpdate()
 {

@@ -7,6 +7,7 @@
 void OptionsState::onSet()
 {
     graphics::window.setTitle("options");
+    graphics::window.setView(sf::View(sf::FloatRect(0,0,graphics::window.getSize().x, graphics::window.getSize().y)));
 
     windowLabel.setFont(graphics::font);
     windowLabel.setCharacterSize(14);
