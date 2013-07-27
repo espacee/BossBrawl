@@ -31,10 +31,10 @@ src/Game/GameState.cpp
 src/Game/GameState.hpp
 src/Gui/IconButton.cpp
 src/Gui/IconButton.hpp
-src/Gui/ScrollBar.cpp
-src/Gui/ScrollBar.hpp
 src/Gui/TextButton.cpp
 src/Gui/TextButton.hpp
+src/Gui/VerticalScrollBar.cpp
+src/Gui/VerticalScrollBar.hpp
 src/Gui/Widget.cpp
 src/Gui/Widget.hpp
 src/Map/Layer.cpp
