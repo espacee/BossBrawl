@@ -9,19 +9,19 @@ Editor::Editor()
     topPanel.setBackgroundColor(sf::Color(40, 40, 40));
 
     penButton.setIcon("res/img/GUI/pen.png");
-    penButton.setPosition(5, 1);
+    penButton.setPosition(1, 1);
     penButton.setToggleable(true);
 
     eraserButton.setIcon("res/img/GUI/eraser.png");
-    eraserButton.setPosition(40, 1);
+    eraserButton.setPosition(36, 1);
     eraserButton.setToggleable(true);
 
     fillButton.setIcon("res/img/GUI/fill.png");
-    fillButton.setPosition(75, 1);
+    fillButton.setPosition(71, 1);
     fillButton.setToggleable(true);
 
     handButton.setIcon("res/img/GUI/hand.png");
-    handButton.setPosition(110, 1);
+    handButton.setPosition(106, 1);
     handButton.setToggleable(true);
 
     rightPanel.setSize(200, graphics::window.getSize().y);

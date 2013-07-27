@@ -29,8 +29,6 @@ void EditorState::onUpdate()
 {
     using graphics::window;
 
-    /** CAMERA **/
-
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         testTarget.move(0, -10);
 
@@ -50,7 +48,7 @@ void EditorState::onUpdate()
 
 
 
-    window.clear();
+    window.clear(sf::Color(200,200,200));
 
     camera.apply(graphics::window);
     map.display();

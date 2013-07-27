@@ -18,7 +18,7 @@ private:
     IconButton topArrowButton;
     IconButton downArrowButton;
     IconButton liftButton;
-    int liftStart, liftEnd, liftPos;
+    int liftStart, liftEnd, liftPos, mouse, offsetY;
     float pos;
 };
 
