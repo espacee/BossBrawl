@@ -178,6 +178,7 @@ void Widget::processEvents(const sf::Event &event)
         if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left)
         {
             pressed = false;
+
             if (hovered)
             {
                 released = true;
@@ -187,6 +188,7 @@ void Widget::processEvents(const sf::Event &event)
                     toggled = !toggled;
                 }
             }
+
             hovered = false;
         }
         else

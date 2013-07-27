@@ -32,9 +32,9 @@ Editor::Editor()
 
     tileSetButton.setGeometry(rightPanel.getX() + 2, topPanel.getY() + topPanel.getHeight() + 2, rightPanel.getWidth() - 4, 50);
 
-    tileSetButton.setGeometry(rightPanel.getX()+2,topPanel.getY()+topPanel.getHeight()+2,rightPanel.getWidth()-4,50);
+    tileSetButton.setGeometry(rightPanel.getX() + 2, topPanel.getY() + topPanel.getHeight() + 2, rightPanel.getWidth() - 4, 50);
 
-    test.setGeometry(rightPanel.getX(),topPanel.getY()+topPanel.getHeight() + 55,20,200);
+    test.setGeometry(rightPanel.getX(), topPanel.getY() + topPanel.getHeight() + 55, 20, 200);
 }
 
 void Editor::display()

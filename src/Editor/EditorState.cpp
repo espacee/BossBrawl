@@ -47,7 +47,7 @@ void EditorState::onUpdate()
 
 
 
-    window.clear(sf::Color(200,200,200));
+    window.clear(sf::Color(200, 200, 200));
 
     graphics::window.setView(camera);
     map.display();
@@ -61,10 +61,12 @@ void EditorState::onEvent(const sf::Event &event)
 {
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
         stateDriver::setState("menu");
-    if(event.type == sf::Event::MouseWheelMoved && event.mouseWheel.delta == 1)
-       camera.zoom(1.20);
-    if(event.type == sf::Event::MouseWheelMoved && event.mouseWheel.delta == -1)
-       camera.zoom(0.80);
+
+    if (event.type == sf::Event::MouseWheelMoved && event.mouseWheel.delta == 1)
+        camera.zoom(1.20);
+
+    if (event.type == sf::Event::MouseWheelMoved && event.mouseWheel.delta == -1)
+        camera.zoom(0.80);
 
     editorHUD.processEvents(event);
 }
