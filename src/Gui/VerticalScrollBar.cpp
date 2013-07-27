@@ -37,6 +37,7 @@ void VerticalScrollBar::update()
     if (liftButton.getY() > liftEnd)
     {
         liftButton.setY(liftEnd);
+        mouse=liftEnd - liftStart;
     }
 
     pos = (float)(liftButton.getY() - liftStart) / (float)(liftEnd - liftStart);
@@ -85,4 +86,9 @@ void VerticalScrollBar::processEvents(const sf::Event &event)
     {
         mouse -= 10 * event.mouseWheel.delta;
     }
+}
+
+float VerticalScrollBar::getPos()
+{
+    return pos;
 }

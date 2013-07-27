@@ -12,6 +12,7 @@ public:
     void update();
     void display(sf::RenderTarget &target);
     void processEvents(const sf::Event &event);
+    float getPos();
 
 private:
     Widget bar;

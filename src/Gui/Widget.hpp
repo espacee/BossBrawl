@@ -38,6 +38,7 @@ public:
     bool isToggled() const;
     bool isActive() const;
     void setToggleable(bool yesno);
+    void untoggle();
     void setActive(bool yesno);
 
     void setTransitionSpeed(float new_transitionSpeed);

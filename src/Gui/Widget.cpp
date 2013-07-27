@@ -151,24 +151,6 @@ void Widget::processEvents(const sf::Event &event)
 {
     if (active)
     {
-        if (event.type == sf::Event::MouseMoved)
-        {
-            if
-            (
-                event.mouseMove.x > x &&
-                event.mouseMove.y > y &&
-                event.mouseMove.x < x + width &&
-                event.mouseMove.y < y + height
-            )
-            {
-                hovered = true;
-            }
-            else
-            {
-                hovered = false;
-            }
-        }
-
         if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
         {
             if (hovered)
@@ -208,6 +190,24 @@ void Widget::processEvents(const sf::Event &event)
 void Widget::update()
 {
     released = false;
+
+    if(active)
+    {
+        if
+        (
+            sf::Mouse::getPosition(graphics::window).x > x &&
+            sf::Mouse::getPosition(graphics::window).y > y &&
+            sf::Mouse::getPosition(graphics::window).x < x + width &&
+            sf::Mouse::getPosition(graphics::window).y < y + height
+        )
+        {
+            hovered = true;
+        }
+        else
+        {
+            hovered = false;
+        }
+    }
 
     x += (targetX - x) * transitionSpeed;
     y += (targetY - y) * transitionSpeed;
@@ -256,6 +256,11 @@ bool Widget::isActive() const
 void Widget::setToggleable(bool yesno)
 {
     toggleable = yesno;
+}
+
+void Widget::untoggle()
+{
+    toggled = false;
 }
 
 void Widget::setActive(bool yesno)
