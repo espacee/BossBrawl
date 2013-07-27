@@ -6,7 +6,7 @@
 #include "Util/view.hpp"
 
 EditorState::EditorState() :
-    camera(sf::FloatRect(0, 0, config::windowWidth, config::windowHeight))
+    camera(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y))
 {
 
     map.fillLayer(0, 1);
@@ -53,7 +53,7 @@ void EditorState::onUpdate()
     map.display();
     window.draw(testTarget);
 
-    graphics::window.setView(graphics::window.getDefaultView());
+    graphics::window.setView(sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y)));
 
     editorHUD.display();
 }
@@ -62,11 +62,11 @@ void EditorState::onEvent(const sf::Event &event)
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
         stateDriver::setState("menu");
 
-    if (event.type == sf::Event::MouseWheelMoved && event.mouseWheel.delta == 1)
+    /*if (event.type == sf::Event::MouseWheelMoved && event.mouseWheel.delta == 1)
         camera.zoom(1.20);
 
     if (event.type == sf::Event::MouseWheelMoved && event.mouseWheel.delta == -1)
-        camera.zoom(0.80);
+        camera.zoom(0.80);*/
 
     editorHUD.processEvents(event);
 }

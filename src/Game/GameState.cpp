@@ -7,7 +7,7 @@
 
 
 GameState::GameState() :
-    camera(sf::FloatRect(0, 0, config::windowWidth, config::windowHeight))
+    camera(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y))
 {
     fpsText.setFont(graphics::font);
 
@@ -54,7 +54,7 @@ void GameState::onUpdate()
     map.display();
     window.draw(testTarget);
 
-    graphics::window.setView(graphics::window.getDefaultView());
+    graphics::window.setView(sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y)));
 
     fpsText.setString("Fps: " + std::to_string(stateDriver::getFps()));
     window.draw(fpsText);

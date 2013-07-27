@@ -18,6 +18,7 @@ public:
 private:
     TextButton playButton;
     TextButton editorButton;
+    TextButton optionButton;
     TextButton quitButton;
 };
 

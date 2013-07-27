@@ -14,8 +14,8 @@ const char* const DEFAULT_CONFIG_FILENAME = "settings.cfg";
 
 void setDefaults()
 {
-    windowWidth = 1280;
-    windowHeight = 720;
+    windowWidth = 1000;
+    windowHeight = 800;
 }
 
 template <typename T>

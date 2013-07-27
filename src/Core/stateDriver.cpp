@@ -25,6 +25,12 @@ int exec()
 
         while (graphics::window.pollEvent(event))
         {
+            if (event.type == sf::Event::Resized)
+            {
+                sf::FloatRect visibleArea(0, 0, event.size.width, event.size.height);
+                graphics::window.setView(sf::View(visibleArea));
+            }
+
             m_currentState->onEvent(event);
 
             if (event.type == sf::Event::Closed)

@@ -6,6 +6,7 @@
 #include "Menu/MenuState.hpp"
 #include "Game/GameState.hpp"
 #include "Editor/EditorState.hpp"
+#include "Options/OptionsState.hpp"
 
 int main()
 {
@@ -15,6 +16,7 @@ int main()
     stateDriver::addState(new MenuState, "menu");
     stateDriver::addState(new GameState, "game");
     stateDriver::addState(new EditorState, "editor");
+    stateDriver::addState(new OptionsState, "options");
     stateDriver::setState("menu");
 
     int ret = stateDriver::exec();
