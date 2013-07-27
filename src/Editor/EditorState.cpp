@@ -58,8 +58,6 @@ void EditorState::onUpdate()
 
     graphics::window.setView(graphics::window.getDefaultView());
 
-    map.display();
-
     editorHUD.display();
 }
 void EditorState::onEvent(const sf::Event &event)

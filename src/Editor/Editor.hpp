@@ -9,7 +9,7 @@
 #include "Gui/Widget.hpp"
 #include "Gui/TextButton.hpp"
 #include "Gui/IconButton.hpp"
-#include "Gui/ScrollBar.hpp"
+#include "Gui/VerticalScrollBar.hpp"
 
 /**
  * @brief Map editor
@@ -18,7 +18,6 @@ class Editor
 {
 public:
     Editor();
-    void init();
     void display();
     void processEvents(const sf::Event &event);
 
@@ -32,10 +31,7 @@ private:
     IconButton handButton;
     TextButton tileSetButton;
 
-    ScrollBar test;
-    TileMap map;
-    Camera camera;
-    int cx, cy, tx, ty;
+    VerticalScrollBar test;
 
 };
 
