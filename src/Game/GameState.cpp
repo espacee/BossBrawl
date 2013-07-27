@@ -3,10 +3,11 @@
 #include "Core/graphics.hpp"
 #include "Core/stateDriver.hpp"
 #include "Core/config.hpp"
+#include "Util/view.hpp"
 
 
 GameState::GameState() :
-    camera(sf::Vector2f(config::windowWidth, config::windowHeight))
+    camera(sf::FloatRect(0, 0, config::windowWidth, config::windowHeight))
 {
     fpsText.setFont(graphics::font);
 
@@ -25,7 +26,6 @@ GameState::GameState() :
 void GameState::onSet()
 {
     graphics::window.setTitle("game");
-    camera.setSpeed(0.05f);
 }
 void GameState::onUpdate()
 {
@@ -46,12 +46,11 @@ void GameState::onUpdate()
 
 
     testTarget.rotate(5);
-    camera.setTarget(testTarget.getPosition());
-    camera.update();
+    moveViewToPoint(camera, testTarget.getPosition().x, testTarget.getPosition().y, 0.05f);
 
     window.clear(sf::Color(0, 0, 0));
 
-    camera.apply(graphics::window);
+    graphics::window.setView(camera);
     map.display();
     window.draw(testTarget);
 

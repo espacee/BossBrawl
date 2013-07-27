@@ -4,7 +4,6 @@
 #include "Core/State.hpp"
 
 #include "Map/TileMap.hpp"
-#include "Util/Camera.hpp"
 
 #include <SFML/Graphics.hpp>
 
@@ -19,7 +18,7 @@ public:
     void onUpdate();
     void onEvent(const sf::Event &event);
 private:
-    Camera camera;
+    sf::View camera;
     TileMap map;
     sf::Text fpsText;
     sf::Texture testTargetTexture;

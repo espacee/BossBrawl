@@ -3,9 +3,10 @@
 #include "Core/graphics.hpp"
 #include "Core/stateDriver.hpp"
 #include "Core/config.hpp"
+#include "Util/view.hpp"
 
 EditorState::EditorState() :
-    camera(sf::Vector2f(config::windowWidth, config::windowHeight))
+    camera(sf::FloatRect(0, 0, config::windowWidth, config::windowHeight))
 {
 
     map.fillLayer(0, 1);
@@ -22,7 +23,6 @@ EditorState::EditorState() :
 void EditorState::onSet()
 {
     graphics::window.setTitle("editor");
-    camera.setSpeed(0.05f);
 
 }
 void EditorState::onUpdate()
@@ -43,14 +43,13 @@ void EditorState::onUpdate()
 
 
     testTarget.rotate(5);
-    camera.setTarget(testTarget.getPosition());
-    camera.update();
+    moveViewToPoint(camera, testTarget.getPosition().x, testTarget.getPosition().y, 0.05f);
 
 
 
     window.clear(sf::Color(200,200,200));
 
-    camera.apply(graphics::window);
+    graphics::window.setView(camera);
     map.display();
     window.draw(testTarget);
 
@@ -63,9 +62,9 @@ void EditorState::onEvent(const sf::Event &event)
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
         stateDriver::setState("menu");
     if(event.type == sf::Event::MouseWheelMoved && event.mouseWheel.delta == 1)
-       camera.m_view.zoom(1.20);
+       camera.zoom(1.20);
     if(event.type == sf::Event::MouseWheelMoved && event.mouseWheel.delta == -1)
-       camera.m_view.zoom(0.80);
+       camera.zoom(0.80);
 
     editorHUD.processEvents(event);
 }

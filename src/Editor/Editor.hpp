@@ -3,7 +3,6 @@
 
 #include <SFML/Graphics.hpp>
 #include "Map/TileMap.hpp"
-#include "Util/Camera.hpp"
 #include "Core/config.hpp"
 
 #include "Gui/Widget.hpp"

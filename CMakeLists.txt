@@ -43,10 +43,10 @@ src/Map/TileMap.cpp
 src/Map/TileMap.hpp
 src/Menu/MenuState.cpp
 src/Menu/MenuState.hpp
-src/Util/Camera.cpp
-src/Util/Camera.hpp
 src/Util/math.hpp
 src/Util/unused.hpp
+src/Util/view.cpp
+src/Util/view.hpp
 )
 
 target_link_libraries(bossbrawl ${SFML_LIBRARIES})
