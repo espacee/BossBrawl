@@ -25,3 +25,6 @@ CMakeLists.txt.user
 
 # User specific game settings file
 settings.cfg
+
+# Generated documentation
+doc/
