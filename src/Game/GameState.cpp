@@ -46,7 +46,7 @@ void GameState::onUpdate()
 
 
     testTarget.rotate(5);
-    moveViewToPoint(camera, testTarget.getPosition().x, testTarget.getPosition().y, 0.05f);
+    moveViewTowardsPoint(camera, testTarget.getPosition().x, testTarget.getPosition().y, 0.05f);
 
     window.clear(sf::Color(0, 0, 0));
 

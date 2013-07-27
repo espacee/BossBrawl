@@ -43,7 +43,7 @@ void EditorState::onUpdate()
 
 
     testTarget.rotate(5);
-    moveViewToPoint(camera, testTarget.getPosition().x, testTarget.getPosition().y, 0.05f);
+    moveViewTowardsPoint(camera, testTarget.getPosition().x, testTarget.getPosition().y, 0.05f);
 
 
 

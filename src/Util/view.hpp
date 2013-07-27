@@ -3,6 +3,6 @@
 
 #include <SFML/Graphics.hpp>
 
-void moveViewToPoint(sf::View& view, float x, float y, float speed);
+void moveViewTowardsPoint(sf::View& view, float x, float y, float speed);
 
 #endif // UTIL_VIEW_HPP
