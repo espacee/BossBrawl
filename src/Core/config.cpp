@@ -7,7 +7,7 @@
 namespace config
 {
 
-int resolutionMode;
+unsigned int resolutionMode;
 
 const char* const DEFAULT_CONFIG_FILENAME = "settings.cfg";
 

@@ -8,6 +8,7 @@
 class OptionsState : public State
 {
 public:
+    OptionsState();
     virtual void onSet();
     virtual void onUpdate();
     virtual void onEvent(const sf::Event &event);

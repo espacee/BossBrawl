@@ -4,6 +4,11 @@
 #include "Core/stateDriver.hpp"
 #include "Core/config.hpp"
 
+OptionsState::OptionsState()
+{
+    addResoButtons();
+}
+
 void OptionsState::onSet()
 {
     graphics::window.setTitle("options");
@@ -18,8 +23,6 @@ void OptionsState::onSet()
     backButton.resetGeometry();
     backButton.setPosition(graphics::window.getSize().x - backButton.getWidth(), 0);
     backButton.setCharacterSize(10);
-
-    addResoButtons();
 }
 
 void OptionsState::onUpdate()
@@ -33,7 +36,18 @@ void OptionsState::onUpdate()
 
     for (decltype(resoButtons)::size_type i = 0; i < resoButtons.size(); ++i)
     {
-        if (resoButtons[i].isReleased())
+        TextButton& b = resoButtons[i];
+
+        if (i == config::resolutionMode)
+        {
+            b.setBackgroundColor(sf::Color::Red);
+        }
+        else
+        {
+            b.setBackgroundColor(sf::Color::Blue);
+        }
+
+        if (b.isReleased())
         {
             config::resolutionMode = i;
             graphics::setResolutionMode(i);

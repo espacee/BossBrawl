@@ -30,7 +30,7 @@ void save();
  *
  * The valid modes are defined in graphics.cpp
  */
-extern int resolutionMode;
+extern unsigned int resolutionMode;
 
 }
 
