@@ -41,8 +41,8 @@ src/Map/TileMap.cpp
 src/Map/TileMap.hpp
 src/Menu/MenuState.cpp
 src/Menu/MenuState.hpp
-src/Options/OptionsState.cpp
-src/Options/OptionsState.hpp
+src/Menu/OptionsMenuState.cpp
+src/Menu/OptionsMenuState.hpp
 src/Util/math.hpp
 src/Util/unused.hpp
 src/Util/view.cpp

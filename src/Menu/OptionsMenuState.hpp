@@ -1,14 +1,14 @@
-#ifndef OPTIONSSTATE_HPP
-#define OPTIONSSTATE_HPP
+#ifndef MENU_OPTIONSMENUSTATE_HPP
+#define MENU_OPTIONSMENUSTATE_HPP
 
 #include "Core/State.hpp"
 #include "Gui/TextButton.hpp"
 #include "Gui/IconButton.hpp"
 
-class OptionsState : public State
+class OptionsMenuState : public State
 {
 public:
-    OptionsState();
+    OptionsMenuState();
     virtual void onSet();
     virtual void onUpdate();
     virtual void onEvent(const sf::Event &event);
@@ -22,4 +22,4 @@ private:
     TextButton backButton;
 };
 
-#endif // OPTIONSSTATE_HPP
+#endif // MENU_OPTIONSMENUSTATE_HPP

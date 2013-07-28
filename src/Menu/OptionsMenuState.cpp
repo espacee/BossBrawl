@@ -1,15 +1,15 @@
-#include "OptionsState.hpp"
+#include "Menu/OptionsMenuState.hpp"
 
 #include "Core/graphics.hpp"
 #include "Core/stateDriver.hpp"
 #include "Core/config.hpp"
 
-OptionsState::OptionsState()
+OptionsMenuState::OptionsMenuState()
 {
     addResoButtons();
 }
 
-void OptionsState::onSet()
+void OptionsMenuState::onSet()
 {
     graphics::window.setTitle("options");
     graphics::window.setView(sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y)));
@@ -25,7 +25,7 @@ void OptionsState::onSet()
     backButton.setCharacterSize(10);
 }
 
-void OptionsState::onUpdate()
+void OptionsMenuState::onUpdate()
 {
     using graphics::window;
 
@@ -68,7 +68,7 @@ void OptionsState::onUpdate()
     }
 }
 
-void OptionsState::onEvent(const sf::Event &event)
+void OptionsMenuState::onEvent(const sf::Event &event)
 {
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
         stateDriver::setState("menu");
@@ -82,7 +82,7 @@ void OptionsState::onEvent(const sf::Event &event)
 
 }
 
-void OptionsState::addResoButtons()
+void OptionsMenuState::addResoButtons()
 {
     auto modes = graphics::getResolutionModes();
     int y = 60;
