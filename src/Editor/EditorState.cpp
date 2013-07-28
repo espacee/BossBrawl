@@ -20,6 +20,7 @@ void EditorState::onSet()
 {
     graphics::window.setTitle("editor");
     camera = sf::View(sf::FloatRect(0,0,graphics::window.getSize().x, graphics::window.getSize().y));
+    currentTool = 1;
 
     topPanel.setSize(graphics::window.getSize().x, 32);
     topPanel.setPosition(0, 0);
@@ -70,6 +71,15 @@ void EditorState::onUpdate()
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         testTarget.move(-10, 0);
 
+    if(penButton.isReleased())
+        currentTool = 1;
+    if(eraserButton.isReleased())
+        currentTool = 2;
+    if(fillButton.isReleased())
+        currentTool = 3;
+    if(handButton.isReleased())
+        currentTool = 4;
+
 
     testTarget.rotate(5);
     moveViewTowardsPoint(camera, testTarget.getPosition().x, testTarget.getPosition().y, 0.05f);
@@ -107,4 +117,10 @@ void EditorState::onEvent(const sf::Event &event)
     tileSetButton.processEvents(event);
 
     test.processEvents(event);
+}
+
+int EditorState::getTool()
+{
+    return currentTool;
+
 }

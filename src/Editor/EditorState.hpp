@@ -24,7 +24,11 @@ public:
     virtual void onUpdate();
     virtual void onEvent(const sf::Event &event);
 
+    int getTool();
+
 private:
+    int currentTool;
+
     sf::View camera;
     TileMap map;
 

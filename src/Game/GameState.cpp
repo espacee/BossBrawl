@@ -5,7 +5,6 @@
 #include "Core/config.hpp"
 #include "Util/view.hpp"
 
-
 GameState::GameState()
 {
     camera = sf::View(sf::FloatRect(0,0,graphics::window.getSize().x, graphics::window.getSize().y));
@@ -43,7 +42,6 @@ void GameState::onUpdate()
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         testTarget.move(-10, 0);
-
 
     testTarget.rotate(5);
     moveViewTowardsPoint(camera, testTarget.getPosition().x, testTarget.getPosition().y, 0.05f);
