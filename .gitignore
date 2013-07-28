@@ -1,6 +1,5 @@
 # Annoying files i want to ignore
 *.exe
-*.md
 *.debug
 *.release
 *.dll
