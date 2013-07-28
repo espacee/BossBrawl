@@ -23,8 +23,6 @@ src/Core/graphics.hpp
 src/Core/main.cpp
 src/Core/stateDriver.cpp
 src/Core/stateDriver.hpp
-src/Editor/Editor.cpp
-src/Editor/Editor.hpp
 src/Editor/EditorState.cpp
 src/Editor/EditorState.hpp
 src/Game/GameState.cpp
@@ -43,6 +41,8 @@ src/Map/TileMap.cpp
 src/Map/TileMap.hpp
 src/Menu/MenuState.cpp
 src/Menu/MenuState.hpp
+src/Options/OptionsState.cpp
+src/Options/OptionsState.hpp
 src/Util/math.hpp
 src/Util/unused.hpp
 src/Util/view.cpp

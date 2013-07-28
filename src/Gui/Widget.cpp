@@ -191,7 +191,7 @@ void Widget::update()
 {
     released = false;
 
-    if(active)
+    if (active)
     {
         if
         (

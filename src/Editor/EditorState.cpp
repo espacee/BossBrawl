@@ -8,7 +8,7 @@ EditorState::EditorState()
 {
 
     map.fillLayer(0, 1);
-    camera = sf::View(sf::FloatRect(0,0,graphics::window.getSize().x, graphics::window.getSize().y));
+    camera = sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y));
     testTargetTexture.loadFromFile("res/img/target.png");
     testTargetTexture.setSmooth(true);
     testTarget.setTexture(testTargetTexture);
@@ -19,7 +19,7 @@ EditorState::EditorState()
 void EditorState::onSet()
 {
     graphics::window.setTitle("editor");
-    camera = sf::View(sf::FloatRect(0,0,graphics::window.getSize().x, graphics::window.getSize().y));
+    camera = sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y));
     currentTool = 1;
 
     topPanel.setSize(graphics::window.getSize().x, 32);
@@ -71,28 +71,31 @@ void EditorState::onUpdate()
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         testTarget.move(-10, 0);
 
-    if(penButton.isReleased()){
+    if (penButton.isReleased()) {
         currentTool = 1;
         std::cout << "current tool is " << getTool() << std::endl;
         eraserButton.untoggle();
         fillButton.untoggle();
         handButton.untoggle();
     }
-    if(eraserButton.isReleased()){
+
+    if (eraserButton.isReleased()) {
         currentTool = 2;
         std::cout << "current tool is " << getTool() << std::endl;
         penButton.untoggle();
         fillButton.untoggle();
         handButton.untoggle();
     }
-    if(fillButton.isReleased()){
+
+    if (fillButton.isReleased()) {
         currentTool = 3;
         std::cout << "current tool is " << getTool() << std::endl;
         penButton.untoggle();
         eraserButton.untoggle();
         handButton.untoggle();
     }
-    if(handButton.isReleased()){
+
+    if (handButton.isReleased()) {
         currentTool = 4;
         std::cout << "current tool is " << getTool() << std::endl;
         penButton.untoggle();

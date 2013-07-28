@@ -37,7 +37,7 @@ void VerticalScrollBar::update()
     if (liftButton.getY() > liftEnd)
     {
         liftButton.setY(liftEnd);
-        mouse=liftEnd - liftStart;
+        mouse = liftEnd - liftStart;
     }
 
     pos = (float)(liftButton.getY() - liftStart) / (float)(liftEnd - liftStart);

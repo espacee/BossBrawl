@@ -7,7 +7,7 @@
 
 GameState::GameState()
 {
-    camera = sf::View(sf::FloatRect(0,0,graphics::window.getSize().x, graphics::window.getSize().y));
+    camera = sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y));
 
     fpsText.setFont(graphics::font);
 
@@ -24,7 +24,7 @@ GameState::GameState()
 void GameState::onSet()
 {
     graphics::window.setTitle("game");
-    camera = sf::View(sf::FloatRect(0,0,graphics::window.getSize().x, graphics::window.getSize().y));
+    camera = sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y));
 }
 void GameState::onUpdate()
 {

@@ -7,9 +7,9 @@
 void MenuState::onSet()
 {
     graphics::window.setTitle("menu");
-    graphics::window.setView(sf::View(sf::FloatRect(0,0,graphics::window.getSize().x, graphics::window.getSize().y)));
+    graphics::window.setView(sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y)));
 
-    int hc = graphics::window.getSize().x/ 2, vc = graphics::window.getSize().y / 2;
+    int hc = graphics::window.getSize().x / 2, vc = graphics::window.getSize().y / 2;
 
     playButton.setText("Play");
     playButton.setColorScheme(sf::Color(220, 100, 130), sf::Color(250, 170, 210), sf::Color(200, 15, 50));
@@ -21,16 +21,16 @@ void MenuState::onSet()
     editorButton.setTextColor(sf::Color(80, 50, 50));
 
     optionButton.setText("Options");
-    optionButton.setSize(200,40);
-    optionButton.setColorScheme(sf::Color(40, 180, 80), sf::Color(180, 230, 30), sf::Color(50,120,100));
+    optionButton.setSize(200, 40);
+    optionButton.setColorScheme(sf::Color(40, 180, 80), sf::Color(180, 230, 30), sf::Color(50, 120, 100));
 
     quitButton.setText("Quit");
     quitButton.setSize(200, 40);
 
-    playButton.setPosition(hc-100,vc-160);
-    editorButton.setPosition(hc-100,playButton.getY()+playButton.getHeight());
-    optionButton.setPosition(hc-100,editorButton.getY()+editorButton.getHeight());
-    quitButton.setPosition(hc-100,optionButton.getY()+optionButton.getHeight());
+    playButton.setPosition(hc - 100, vc - 160);
+    editorButton.setPosition(hc - 100, playButton.getY() + playButton.getHeight());
+    optionButton.setPosition(hc - 100, editorButton.getY() + editorButton.getHeight());
+    quitButton.setPosition(hc - 100, optionButton.getY() + optionButton.getHeight());
 
     playButton.enableTransition(true);
     editorButton.enableTransition(true);
@@ -46,7 +46,7 @@ void MenuState::onUpdate()
 {
     using graphics::window;
 
-    if(playButton.isHovered())
+    if (playButton.isHovered())
     {
         playButton.setHeight(150);
     }
@@ -55,7 +55,7 @@ void MenuState::onUpdate()
         playButton.setHeight(40);
     }
 
-    if(editorButton.isHovered())
+    if (editorButton.isHovered())
     {
         editorButton.setHeight(150);
     }
@@ -64,7 +64,7 @@ void MenuState::onUpdate()
         editorButton.setHeight(40);
     }
 
-    if(optionButton.isHovered())
+    if (optionButton.isHovered())
     {
         optionButton.setHeight(150);
     }
@@ -73,7 +73,7 @@ void MenuState::onUpdate()
         optionButton.setHeight(40);
     }
 
-    if(quitButton.isHovered())
+    if (quitButton.isHovered())
     {
         quitButton.setHeight(150);
     }
@@ -82,9 +82,9 @@ void MenuState::onUpdate()
         quitButton.setHeight(40);
     }
 
-    editorButton.setY(playButton.getY()+playButton.getHeight());
-    optionButton.setY(editorButton.getY()+editorButton.getHeight());
-    quitButton.setY(optionButton.getY()+optionButton.getHeight());
+    editorButton.setY(playButton.getY() + playButton.getHeight());
+    optionButton.setY(editorButton.getY() + editorButton.getHeight());
+    quitButton.setY(optionButton.getY() + optionButton.getHeight());
 
     if (playButton.isReleased())
         stateDriver::setState("game");
@@ -92,7 +92,7 @@ void MenuState::onUpdate()
     if (editorButton.isReleased())
         stateDriver::setState("editor");
 
-    if(optionButton.isReleased())
+    if (optionButton.isReleased())
         stateDriver::setState("options");
 
     if (quitButton.isReleased())
