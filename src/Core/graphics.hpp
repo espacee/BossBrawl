@@ -13,6 +13,7 @@ extern sf::RenderWindow window;
 extern sf::Font font;
 
 void init();
+void setResolution(int width, int height);
 
 }
 

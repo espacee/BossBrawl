@@ -8,12 +8,20 @@ namespace graphics
 sf::RenderWindow window;
 sf::Font font;
 
+std::string m_title;
+
 void init()
 {
-    window.create(sf::VideoMode(config::windowWidth, config::windowHeight, 32), "BossBrawl", sf::Style::Close);
+    m_title = "BossBrawl";
+    setResolution(config::windowWidth, config::windowHeight);
     window.setVerticalSyncEnabled(true);
 
     font.loadFromFile("res/font/arial.ttf");
+}
+
+void setResolution(int width, int height)
+{
+    window.create(sf::VideoMode(width, height), m_title, sf::Style::Close);
 }
 
 }
