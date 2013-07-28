@@ -17,6 +17,7 @@ private:
     sf::Text windowLabel;
     TextButton size1;
     TextButton size2;
+    TextButton size3;
 
     TextButton backButton;
 };
