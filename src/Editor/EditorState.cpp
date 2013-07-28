@@ -71,15 +71,34 @@ void EditorState::onUpdate()
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         testTarget.move(-10, 0);
 
-    if(penButton.isReleased())
+    if(penButton.isReleased()){
         currentTool = 1;
-    if(eraserButton.isReleased())
+        std::cout << "current tool is " << getTool() << std::endl;
+        eraserButton.untoggle();
+        fillButton.untoggle();
+        handButton.untoggle();
+    }
+    if(eraserButton.isReleased()){
         currentTool = 2;
-    if(fillButton.isReleased())
+        std::cout << "current tool is " << getTool() << std::endl;
+        penButton.untoggle();
+        fillButton.untoggle();
+        handButton.untoggle();
+    }
+    if(fillButton.isReleased()){
         currentTool = 3;
-    if(handButton.isReleased())
+        std::cout << "current tool is " << getTool() << std::endl;
+        penButton.untoggle();
+        eraserButton.untoggle();
+        handButton.untoggle();
+    }
+    if(handButton.isReleased()){
         currentTool = 4;
-
+        std::cout << "current tool is " << getTool() << std::endl;
+        penButton.untoggle();
+        eraserButton.untoggle();
+        fillButton.untoggle();
+    }
 
     testTarget.rotate(5);
     moveViewTowardsPoint(camera, testTarget.getPosition().x, testTarget.getPosition().y, 0.05f);
