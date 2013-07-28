@@ -19,17 +19,7 @@ void OptionsState::onSet()
     backButton.setPosition(graphics::window.getSize().x - backButton.getWidth(), 0);
     backButton.setCharacterSize(10);
 
-    size1.setText("800x600");
-    size2.setText("1000x800");
-    size3.setText("1280x720");
-    size1.setSize(300, 35);
-    size2.setSize(300, 35);
-    size3.setSize(300, 35);
-
-    size1.setPosition(15, 60);
-    size2.setPosition(15, 100);
-    size3.setPosition(15, 140);
-
+    addResoButtons();
 }
 
 void OptionsState::onUpdate()
@@ -41,22 +31,14 @@ void OptionsState::onUpdate()
         stateDriver::setState("menu");
     }
 
-    if (size1.isReleased())
+    for (decltype(resoButtons)::size_type i = 0; i < resoButtons.size(); ++i)
     {
-        config::resolutionMode = 0;
-        graphics::setResolutionMode(0);
-    }
-
-    if (size2.isReleased())
-    {
-        config::resolutionMode = 1;
-        graphics::setResolutionMode(1);
-    }
-
-    if (size3.isReleased())
-    {
-        config::resolutionMode = 2;
-        graphics::setResolutionMode(2);
+        if (resoButtons[i].isReleased())
+        {
+            config::resolutionMode = i;
+            graphics::setResolutionMode(i);
+            break;
+        }
     }
 
     backButton.setPosition(graphics::window.getSize().x - backButton.getWidth(), 0);
@@ -66,9 +48,10 @@ void OptionsState::onUpdate()
     window.draw(windowLabel);
     backButton.display(window);
 
-    size1.display(window);
-    size2.display(window);
-    size3.display(window);
+    for (auto & b : resoButtons)
+    {
+        b.display(window);
+    }
 }
 
 void OptionsState::onEvent(const sf::Event &event)
@@ -77,8 +60,26 @@ void OptionsState::onEvent(const sf::Event &event)
         stateDriver::setState("menu");
 
     backButton.processEvents(event);
-    size1.processEvents(event);
-    size2.processEvents(event);
-    size3.processEvents(event);
 
+    for (auto & b : resoButtons)
+    {
+        b.processEvents(event);
+    }
+
+}
+
+void OptionsState::addResoButtons()
+{
+    auto modes = graphics::getResolutionModes();
+    int y = 60;
+
+    for (auto m : modes)
+    {
+        TextButton b;
+        b.setText(std::to_string(m.x) + "x" + std::to_string(m.y));
+        b.setSize(300, 35);
+        b.setPosition(15, y);
+        resoButtons.push_back(b);
+        y += 40;
+    }
 }

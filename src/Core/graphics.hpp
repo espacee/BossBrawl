@@ -13,7 +13,8 @@ extern sf::RenderWindow window;
 extern sf::Font font;
 
 void init();
-void setResolutionMode(int index);
+void setResolutionMode(unsigned int index);
+const std::vector<sf::Vector2i>& getResolutionModes();
 
 }
 
