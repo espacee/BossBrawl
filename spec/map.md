@@ -7,10 +7,6 @@ It has the following format:
 
     begin framecount, ...
 
-Where
-
-- `begin` is an integer specifying the beginning tile
-
-- `framecount` is an integer specifying the number of tiles in the animation.
-
+where begin is an integer specifying the beginning tile
+framecount is an intager specifying the number of tiles in the animation.
 Frames of animated tiles are laid out sequentially.
