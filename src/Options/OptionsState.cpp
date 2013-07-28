@@ -40,11 +40,11 @@ void OptionsState::onUpdate()
 
         if (i == config::resolutionMode)
         {
-            b.setBackgroundColor(sf::Color::Red);
+            b.setColorScheme(sf::Color(150, 50, 50), sf::Color(200, 200, 200), sf::Color(100, 50, 50));
         }
         else
         {
-            b.setBackgroundColor(sf::Color::Blue);
+            b.setColorScheme(sf::Color(100, 100, 100), sf::Color(200, 200, 200), sf::Color(100, 50, 50));
         }
 
         if (b.isReleased())
