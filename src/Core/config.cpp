@@ -7,15 +7,13 @@
 namespace config
 {
 
-int windowWidth;
-int windowHeight;
+int resolutionMode;
 
 const char* const DEFAULT_CONFIG_FILENAME = "settings.cfg";
 
 void setDefaults()
 {
-    windowWidth = 1000;
-    windowHeight = 800;
+    resolutionMode = 0;
 }
 
 template <typename T>
@@ -51,14 +49,9 @@ void load()
             throw;
         }
 
-        if (key == "screenWidth")
+        if (key == "resolutionMode")
         {
-            extract_assert(stream, windowWidth);
-        }
-
-        else if (key == "screenHeight")
-        {
-            extract_assert(stream, windowHeight);
+            extract_assert(stream, resolutionMode);
         }
 
         else
@@ -78,8 +71,8 @@ void save()
         return;
     }
 
-    file << "screenWidth " << windowWidth << '\n'
-         << "screenHeight " << windowHeight << '\n';
-}
+    file << "resolutionMode " << resolutionMode << '\n';
 
 }
+
+} // end namespace config

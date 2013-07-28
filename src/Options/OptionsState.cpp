@@ -43,23 +43,20 @@ void OptionsState::onUpdate()
 
     if (size1.isReleased())
     {
-        config::windowWidth = 800;
-        config::windowHeight = 600;
-        graphics::setResolution(config::windowWidth, config::windowHeight);
+        config::resolutionMode = 0;
+        graphics::setResolutionMode(0);
     }
 
     if (size2.isReleased())
     {
-        config::windowWidth = 1000;
-        config::windowHeight = 800;
-        graphics::setResolution(config::windowWidth, config::windowHeight);
+        config::resolutionMode = 1;
+        graphics::setResolutionMode(1);
     }
 
     if (size3.isReleased())
     {
-        config::windowWidth = 1280;
-        config::windowHeight = 720;
-        graphics::setResolution(config::windowWidth, config::windowHeight);
+        config::resolutionMode = 2;
+        graphics::setResolutionMode(2);
     }
 
     backButton.setPosition(graphics::window.getSize().x - backButton.getWidth(), 0);

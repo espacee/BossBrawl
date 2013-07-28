@@ -26,14 +26,11 @@ void load();
 void save();
 
 /**
- * @brief Width of the game window
+ * @brief Selected resolution mode
+ *
+ * The valid modes are defined in graphics.cpp
  */
-extern int windowWidth;
-
-/**
- * @brief Height of the game window
- */
-extern int windowHeight;
+extern int resolutionMode;
 
 }
 
