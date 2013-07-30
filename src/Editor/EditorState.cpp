@@ -8,6 +8,7 @@ EditorState::EditorState()
 {
 
     map.fillLayer(0, 1);
+
     camera = sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y));
     testTargetTexture.loadFromFile("res/img/target.png");
     testTargetTexture.setSmooth(true);
@@ -53,6 +54,7 @@ void EditorState::onSet()
     tileSetButton.setGeometry(rightPanel.getX() + 2, topPanel.getY() + topPanel.getHeight() + 2, rightPanel.getWidth() - 4, 50);
 
     test.setGeometry(rightPanel.getX(), topPanel.getY() + topPanel.getHeight() + 55, 20, 200);
+
 
 }
 void EditorState::onUpdate()
@@ -129,6 +131,12 @@ void EditorState::onEvent(const sf::Event &event)
 {
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
         stateDriver::setState("menu");
+    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::M){
+        consoleCommands();
+    }
+
+
+
 
     rightPanel.processEvents(event);
     topPanel.processEvents(event);
@@ -144,5 +152,49 @@ void EditorState::onEvent(const sf::Event &event)
 int EditorState::getTool()
 {
     return currentTool;
+
+}
+
+void EditorState::consoleCommands()
+{
+    int option;
+    std::cout << "Choose an Option from the menu.\n1. Add Layer\n2. Delete Layer\n3. Check current Layer" << std::endl;
+    std::cin >> option;
+
+    if(option == 1){
+        map.addLayer();
+        std::cout << "Layer " << (map.getLayerSize() - 1) << " Added." << std::endl;
+    }
+    if(option == 2){
+        std::cout << "Layer " << (map.getLayerSize() - 1) << " Added." << std::endl;
+        map.popLayer();
+    }
+    if(option ==3 ){
+
+        system("CLS");
+        std::cout << "the current Layer is "<< (map.getLayerSize() - 1) << "."<< std::endl;
+        std::cout << "what do you want to do next?\n1. Resize Layer\n2.Fill Layer"<< std::endl;
+        std::cin >> option;
+
+        if(option == 1){
+            int length, width;
+            std::cout << "the next 2 numbers needs to be the Tile Length & Tile width" << std::endl;
+            std::cin >> length;
+            std::cin >> width;
+            map.resizeLayer((map.getLayerSize() - 1), length, width);
+            std::cout<< "Layer resized to " << length << "By " << width << std::endl;
+
+        }
+        else if(option == 2)
+        {
+            int tileid;
+            std::cout << "what tile Id?" << std::endl;
+            std::cin >> tileid;
+            map.fillLayer((map.getLayerSize() - 1), tileid);
+            std::cout << "Layer filled." << std::endl;
+        }
+
+     }
+
 
 }

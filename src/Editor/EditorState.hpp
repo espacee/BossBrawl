@@ -25,6 +25,7 @@ public:
     virtual void onEvent(const sf::Event &event);
 
     int getTool();
+    void consoleCommands();
 
 private:
     int currentTool;
