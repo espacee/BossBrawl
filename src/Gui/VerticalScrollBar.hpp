@@ -14,11 +14,12 @@ public:
     void processEvents(const sf::Event &event);
     float getPos();
 
-private:
+    bool mouseWheelAllowed;
     Widget bar;
     IconButton topArrowButton;
     IconButton downArrowButton;
     IconButton liftButton;
+private:
     int liftStart, liftEnd, liftPos, mouse, offsetY;
     float pos;
 };

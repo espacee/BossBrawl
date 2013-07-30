@@ -46,12 +46,11 @@ void EditorState::onSet()
     rightPanel.setBackgroundColor(sf::Color(70, 70, 70));
 
     tileSetButton.setText("TileSet >>");
-
+    tileSetButton.setGeometry(rightPanel.getX() + 2, topPanel.getY() + topPanel.getHeight() + 2, rightPanel.getWidth() - 4, 50);
     tileSetButton.setGeometry(rightPanel.getX() + 2, topPanel.getY() + topPanel.getHeight() + 2, rightPanel.getWidth() - 4, 50);
 
-    tileSetButton.setGeometry(rightPanel.getX() + 2, topPanel.getY() + topPanel.getHeight() + 2, rightPanel.getWidth() - 4, 50);
-
-    test.setGeometry(rightPanel.getX(), topPanel.getY() + topPanel.getHeight() + 55, 20, 200);
+    layerList.setGeometry(rightPanel.getX(), tileSetButton.getY()+tileSetButton.getHeight()+2, rightPanel.getWidth(), 100);
+    layerList.setHeight(rightPanel.getHeight()-layerList.getY());
 }
 void EditorState::onUpdate()
 {
@@ -119,7 +118,7 @@ void EditorState::onUpdate()
     fillButton.display(graphics::window);
     handButton.display(graphics::window);
 
-    test.display(graphics::window);
+    layerList.display(graphics::window);
 
 }
 void EditorState::onEvent(const sf::Event &event)
@@ -141,7 +140,8 @@ void EditorState::onEvent(const sf::Event &event)
     handButton.processEvents(event);
     tileSetButton.processEvents(event);
 
-    test.processEvents(event);
+    layerList.processEvents(event);
+
 }
 
 int EditorState::getTool()

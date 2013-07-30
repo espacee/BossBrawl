@@ -11,7 +11,7 @@
 #include "Gui/Widget.hpp"
 #include "Gui/TextButton.hpp"
 #include "Gui/IconButton.hpp"
-#include "Gui/VerticalScrollBar.hpp"
+#include "Gui/ScrollArea.hpp"
 
 /**
  * @brief The Editor state
@@ -45,7 +45,7 @@ private:
     IconButton handButton;
     TextButton tileSetButton;
 
-    VerticalScrollBar test;
+    ScrollArea layerList;
 };
 
 #endif // EDITOR_EDITORSTATE_HPP
