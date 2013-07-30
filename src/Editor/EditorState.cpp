@@ -6,7 +6,6 @@
 
 EditorState::EditorState()
 {
-
     map.fillLayer(0, 1);
 
     camera = sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y));
@@ -14,7 +13,6 @@ EditorState::EditorState()
     testTargetTexture.setSmooth(true);
     testTarget.setTexture(testTargetTexture);
     testTarget.setOrigin(15, 15);
-
 }
 
 void EditorState::onSet()
@@ -54,8 +52,6 @@ void EditorState::onSet()
     tileSetButton.setGeometry(rightPanel.getX() + 2, topPanel.getY() + topPanel.getHeight() + 2, rightPanel.getWidth() - 4, 50);
 
     test.setGeometry(rightPanel.getX(), topPanel.getY() + topPanel.getHeight() + 55, 20, 200);
-
-
 }
 void EditorState::onUpdate()
 {
@@ -63,13 +59,10 @@ void EditorState::onUpdate()
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         testTarget.move(0, -10);
-
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         testTarget.move(10, 0);
-
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         testTarget.move(0, 10);
-
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         testTarget.move(-10, 0);
 
@@ -111,6 +104,7 @@ void EditorState::onUpdate()
 //_________________________________________________________________________________________________________________________________
     window.clear(sf::Color(200, 200, 200));
 
+
     graphics::window.setView(camera);
     map.display();
     window.draw(testTarget);
@@ -126,6 +120,7 @@ void EditorState::onUpdate()
     handButton.display(graphics::window);
 
     test.display(graphics::window);
+
 }
 void EditorState::onEvent(const sf::Event &event)
 {
@@ -162,8 +157,15 @@ void EditorState::consoleCommands()
     std::cin >> option;
 
     if(option == 1){
+        int length, width;
+
         map.addLayer();
         std::cout << "Layer " << (map.getLayerSize() - 1) << " Added." << std::endl;
+        std::cout << "To what do you want to resize it?" << std::endl;
+        std::cin >> length;
+        std::cin >> width;
+        map.resizeLayer((map.getLayerSize() - 1), length, width);
+        std::cout<< "Layer resized to " << length << " By " << width << std::endl;
     }
     if(option == 2){
         std::cout << "Layer " << (map.getLayerSize() - 1) << " Added." << std::endl;
@@ -182,7 +184,7 @@ void EditorState::consoleCommands()
             std::cin >> length;
             std::cin >> width;
             map.resizeLayer((map.getLayerSize() - 1), length, width);
-            std::cout<< "Layer resized to " << length << "By " << width << std::endl;
+            std::cout<< "Layer resized to " << length << " By " << width << std::endl;
 
         }
         else if(option == 2)
