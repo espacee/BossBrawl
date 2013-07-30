@@ -86,6 +86,16 @@ int Layer::getY() const
     return y_coord;
 }
 
+sf::Vector2f Layer::getPosition()
+{
+    return sf::Vector2f(x_coord, y_coord);
+}
+
+float Layer::getDepthIndex()
+{
+    return depthIndex;
+}
+
 unsigned int Layer::getHLength() const
 {
     return hLength;

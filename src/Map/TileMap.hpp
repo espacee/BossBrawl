@@ -32,8 +32,9 @@ public:
      */
     void fillLayer(unsigned int layer, unsigned int id);
 
-    void moveLayer(int x_offset, int y_offset, unsigned int layer);
-    void setLayerPosition(int new_x_coord, int new_y_coord, unsigned int layer);
+    void moveLayer(unsigned int layer, int x_offset, int y_offset);
+    void setLayerPosition(unsigned int layer, int new_x_coord, int new_y_coord);
+    void setLayerDepthIndex(unsigned int layer, float new_depthIndex);
 
     void addLayer();
     void popLayer();

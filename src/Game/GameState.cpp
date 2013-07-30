@@ -11,10 +11,14 @@ GameState::GameState()
 
     fpsText.setFont(graphics::font);
 
+    map.resizeLayer(0,3,3);
     map.fillLayer(0, 1);
+    map.addLayer();
+    map.fillLayer(1,20);
+    map.setLayerPosition(1,40,40);
+    map.setLayerDepthIndex(0,0.8);
 
     fpsText.setCharacterSize(16);
-    fpsText.setPosition(5, graphics::window.getSize().y - 20);
 
     testTargetTexture.loadFromFile("res/img/target.png");
     testTargetTexture.setSmooth(true);
@@ -25,6 +29,10 @@ void GameState::onSet()
 {
     graphics::window.setTitle("game");
     camera = sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y));
+    camera.setCenter(0,0);
+    testTarget.setPosition(0,0);
+
+    fpsText.setPosition(5, graphics::window.getSize().y - 20);
 }
 void GameState::onUpdate()
 {
@@ -44,12 +52,15 @@ void GameState::onUpdate()
         testTarget.move(-10, 0);
 
     testTarget.rotate(5);
+
     moveViewTowardsPoint(camera, testTarget.getPosition().x, testTarget.getPosition().y, 0.05f);
 
     window.clear(sf::Color(0, 0, 0));
 
     graphics::window.setView(camera);
+
     map.display();
+
     window.draw(testTarget);
 
     graphics::window.setView(sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y)));

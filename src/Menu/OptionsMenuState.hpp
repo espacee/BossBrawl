@@ -18,6 +18,7 @@ private:
     sf::Text windowLabel;
     std::vector<TextButton> resoButtons;
     void addResoButtons();
+    TextButton screenSizeButton;
 
     TextButton backButton;
 };

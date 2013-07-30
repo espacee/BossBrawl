@@ -54,20 +54,29 @@ void TileMap::fillLayer(unsigned int layer, unsigned int id)
     }
 }
 
-void TileMap::moveLayer(int x_offset, int y_offset, unsigned int layer)
+void TileMap::moveLayer(unsigned int layer, int x_offset, int y_offset)
 {
     if (layerExists(layer))
     {
         layers[layer].move(x_offset, y_offset);
     }
 }
-void TileMap::setLayerPosition(int new_x_coord, int new_y_coord, unsigned int layer)
+void TileMap::setLayerPosition(unsigned int layer, int new_x_coord, int new_y_coord)
 {
     if (layerExists(layer))
     {
         layers[layer].setPosition(new_x_coord, new_y_coord);
     }
 }
+
+void TileMap::setLayerDepthIndex(unsigned int layer, float new_depthIndex)
+{
+    if (layerExists(layer))
+    {
+        layers[layer].setDepthIndex(new_depthIndex);
+    }
+}
+
 void TileMap::addLayer()
 {
     nb_layers++;
@@ -108,8 +117,15 @@ bool TileMap::layerExists(unsigned int layer) const
 }
 void TileMap::display()
 {
+    sf::View saveCamera = graphics::window.getView();
+    sf::View camera = saveCamera;
+
     for (unsigned int k = 0; k < nb_layers; k++)
     {
+        camera.setCenter(saveCamera.getCenter().x*layers[k].getDepthIndex()-layers[k].getPosition().x,
+                         saveCamera.getCenter().y*layers[k].getDepthIndex()-layers[k].getPosition().y);
+        graphics::window.setView(camera);
+
         for (unsigned int i = 0; i < layers[k].getHLength(); i++)
         {
             for (unsigned int j = 0; j < layers[k].getVLength(); j++)
@@ -118,11 +134,13 @@ void TileMap::display()
 
                 if (id)
                 {
-                    sprites[id].setPosition(layers[k].getX() + (int)(i * GRID_SIZE),
-                                            layers[k].getY() + (int)(j * GRID_SIZE));
+                    sprites[id].setPosition((int)(i * GRID_SIZE),
+                                            (int)(j * GRID_SIZE));
                     graphics::window.draw(sprites[id]);
                 }
             }
         }
     }
+
+    graphics::window.setView(saveCamera);
 }

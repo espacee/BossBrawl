@@ -7,12 +7,9 @@
 OptionsMenuState::OptionsMenuState()
 {
     addResoButtons();
-}
-
-void OptionsMenuState::onSet()
-{
-    graphics::window.setTitle("options");
-    graphics::window.setView(sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y)));
+    screenSizeButton.setText("Borderless, screen size");
+    screenSizeButton.setSize(300,35);
+    screenSizeButton.setPosition(15,220);
 
     windowLabel.setFont(graphics::font);
     windowLabel.setCharacterSize(14);
@@ -23,6 +20,14 @@ void OptionsMenuState::onSet()
     backButton.resetGeometry();
     backButton.setPosition(graphics::window.getSize().x - backButton.getWidth(), 0);
     backButton.setCharacterSize(10);
+}
+
+void OptionsMenuState::onSet()
+{
+    graphics::window.setTitle("options");
+    graphics::window.setView(sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y)));
+
+    backButton.setPosition(graphics::window.getSize().x - backButton.getWidth(), 0);
 }
 
 void OptionsMenuState::onUpdate()
@@ -66,6 +71,7 @@ void OptionsMenuState::onUpdate()
     {
         b.display(window);
     }
+    screenSizeButton.display(window);
 }
 
 void OptionsMenuState::onEvent(const sf::Event &event)
@@ -80,6 +86,7 @@ void OptionsMenuState::onEvent(const sf::Event &event)
         b.processEvents(event);
     }
 
+    screenSizeButton.processEvents(event);
 }
 
 void OptionsMenuState::addResoButtons()

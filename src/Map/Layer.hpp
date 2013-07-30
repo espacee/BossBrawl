@@ -32,6 +32,8 @@ public:
     int getX() const;
     int getY() const;
 
+    sf::Vector2f getPosition();
+    float getDepthIndex();
     unsigned int getHLength() const;
     unsigned int getVLength() const;
     unsigned int getWidth() const;
