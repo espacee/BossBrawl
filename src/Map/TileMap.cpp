@@ -6,7 +6,6 @@ TileMap::TileMap()
 {
     loadTiles();
     nb_layers = 0;
-    lastLayerID = 0;
     addLayer();
 }
 
@@ -72,8 +71,7 @@ void TileMap::setLayerPosition(int new_x_coord, int new_y_coord, unsigned int la
 void TileMap::addLayer()
 {
     nb_layers++;
-    lastLayerID++;
-    layers.push_back(Layer(lastLayerID));
+    layers.push_back(Layer());
 }
 
 void TileMap::popLayer()

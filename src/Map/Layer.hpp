@@ -28,6 +28,7 @@ public:
 
     void move(int x_offset, int y_offset);
     void setPosition(int new_x_coord, int new_y_coord);
+    void setDepthIndex(float new_depthIndex);
     int getX() const;
     int getY() const;
 
@@ -44,6 +45,7 @@ private:
     unsigned int layerID;
 
     int x_coord, y_coord;
+    float depthIndex;
 };
 
 #endif // MAP_LAYER_HPP

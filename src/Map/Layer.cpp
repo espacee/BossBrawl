@@ -2,18 +2,10 @@
 
 Layer::Layer()
 {
-    layerID = 9999;
     resize(1, 1);
     fill(0);
     x_coord = y_coord = 0;
-}
-
-Layer::Layer(unsigned int new_layerID)
-{
-    layerID = new_layerID;
-    resize(1, 1);
-    fill(0);
-    x_coord = y_coord = 0;
+    depthIndex = 1.f;
 }
 
 void Layer::resize(unsigned int new_hLength, unsigned int new_vLength)
@@ -77,6 +69,12 @@ void Layer::setPosition(int new_x_coord, int new_y_coord)
     x_coord = new_x_coord;
     y_coord = new_y_coord;
 }
+
+void Layer::setDepthIndex(float new_depthIndex)
+{
+    depthIndex = new_depthIndex;
+}
+
 
 int Layer::getX() const
 {

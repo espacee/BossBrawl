@@ -22,7 +22,6 @@ void init()
 {
     m_title = "BossBrawl";
     setResolutionMode(config::resolutionMode);
-    window.setVerticalSyncEnabled(true);
 
     font.loadFromFile("res/font/arial.ttf");
 }
@@ -37,6 +36,7 @@ void setResolutionMode(unsigned int index)
 
     const sf::Vector2i& res = m_resolutionModes.at(index);
     window.create(sf::VideoMode(res.x, res.y), m_title, sf::Style::Close);
+    window.setVerticalSyncEnabled(true);
 }
 
 const std::vector<sf::Vector2i>& getResolutionModes()

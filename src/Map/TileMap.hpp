@@ -47,7 +47,6 @@ public:
     void display();
 
     unsigned int nb_layers;
-    unsigned int lastLayerID;
 private:
     std::vector< Layer > layers;
 
