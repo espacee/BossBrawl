@@ -43,7 +43,7 @@ unsigned int Layer::getTile(unsigned int x, unsigned int y) const
     }
     else
     {
-        return map[0][0];
+        return 0;
     }
 }
 
