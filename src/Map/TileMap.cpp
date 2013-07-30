@@ -117,18 +117,38 @@ bool TileMap::layerExists(unsigned int layer) const
 }
 void TileMap::display()
 {
+    drawnTiles = 0;
+
     sf::View saveCamera = graphics::window.getView();
     sf::View camera = saveCamera;
+
+    int xmin, xmax, ymin, ymax;
 
     for (unsigned int k = 0; k < nb_layers; k++)
     {
         camera.setCenter(saveCamera.getCenter().x*layers[k].getDepthIndex()-layers[k].getPosition().x,
                          saveCamera.getCenter().y*layers[k].getDepthIndex()-layers[k].getPosition().y);
+
         graphics::window.setView(camera);
 
-        for (unsigned int i = 0; i < layers[k].getHLength(); i++)
+        xmin = (int)(camera.getCenter().x-camera.getSize().x/2)/GRID_SIZE;
+        ymin = (int)(camera.getCenter().y-camera.getSize().y/2)/GRID_SIZE;
+
+        xmax = (int)(camera.getCenter().x + camera.getSize().x/2)/GRID_SIZE+1;
+        ymax = (int)(camera.getCenter().y + camera.getSize().y/2)/GRID_SIZE+1;
+
+        if(xmin<0) xmin=0;
+        if(ymin<0) ymin=0;
+        if(xmax<0) xmax=0;
+        if(ymax<0) ymax=0;
+        if(xmin>layers[k].getHLength()) xmin = layers[k].getHLength();
+        if(ymin>layers[k].getVLength()) ymin = layers[k].getVLength();
+        if(xmax>layers[k].getHLength()) xmax = layers[k].getHLength();
+        if(ymax>layers[k].getVLength()) ymax = layers[k].getVLength();
+
+        for (unsigned int i = xmin; i < xmax; i++)
         {
-            for (unsigned int j = 0; j < layers[k].getVLength(); j++)
+            for (unsigned int j = ymin; j < ymax; j++)
             {
                 unsigned int id = layers[k].getTile(i, j);
 
@@ -137,10 +157,13 @@ void TileMap::display()
                     sprites[id].setPosition((int)(i * GRID_SIZE),
                                             (int)(j * GRID_SIZE));
                     graphics::window.draw(sprites[id]);
+                    drawnTiles++;
                 }
             }
         }
     }
+
+    std::cout << drawnTiles << std::endl << std::endl;
 
     graphics::window.setView(saveCamera);
 }

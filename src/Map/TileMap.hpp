@@ -47,12 +47,9 @@ public:
 
     void display();
 
-    unsigned int nb_layers;
 private:
     std::vector< Layer > layers;
-
-
-
+    unsigned int nb_layers, drawnTiles;
     std::vector< sf::Sprite > sprites;
     sf::Texture tileSet;
 };

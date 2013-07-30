@@ -11,12 +11,21 @@ GameState::GameState()
 
     fpsText.setFont(graphics::font);
 
-    map.resizeLayer(0,3,3);
-    map.fillLayer(0, 1);
+    map.resizeLayer(0,20,20);
+    map.fillLayer(0,1);
+    map.setLayerDepthIndex(0,0.6);
+
     map.addLayer();
-    map.fillLayer(1,20);
+    map.resizeLayer(1,18,18);
+    map.fillLayer(1,2);
+    map.setLayerDepthIndex(1,0.8);
     map.setLayerPosition(1,40,40);
-    map.setLayerDepthIndex(0,0.8);
+
+    map.addLayer();
+    map.resizeLayer(2,16,16);
+    map.fillLayer(2,3);
+    map.setLayerPosition(2,80,80);
+
 
     fpsText.setCharacterSize(16);
 
@@ -37,7 +46,6 @@ void GameState::onSet()
 void GameState::onUpdate()
 {
     using graphics::window;
-
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         testTarget.move(0, -10);
