@@ -145,19 +145,19 @@ void TileMap::display()
 
         if (ymax < 0) ymax = 0;
 
-        if (xmin > layers[k].getHLength()) xmin = layers[k].getHLength();
+        if (xmin > static_cast<int>(layers[k].getHLength())) xmin = layers[k].getHLength();
 
-        if (ymin > layers[k].getVLength()) ymin = layers[k].getVLength();
+        if (ymin > static_cast<int>(layers[k].getVLength())) ymin = layers[k].getVLength();
 
-        if (xmax > layers[k].getHLength()) xmax = layers[k].getHLength();
+        if (xmax > static_cast<int>(layers[k].getHLength())) xmax = layers[k].getHLength();
 
-        if (ymax > layers[k].getVLength()) ymax = layers[k].getVLength();
+        if (ymax > static_cast<int>(layers[k].getVLength())) ymax = layers[k].getVLength();
 
         sf::RectangleShape layerBackground(sf::Vector2f(layers[k].getWidth(), layers[k].getHeight()));
         layerBackground.setFillColor(sf::Color(230, 120, 0, 60));
         graphics::window.draw(layerBackground);
 
-        for (unsigned int i = xmin; i <= xmax; i++)
+        for (int i = xmin; i <= xmax; i++)
         {
             sf::Vertex line[] =
             {
@@ -166,7 +166,7 @@ void TileMap::display()
             };
             graphics::window.draw(line, 2, sf::Lines);
 
-            for (unsigned int j = ymin; j <= ymax; j++)
+            for (int j = ymin; j <= ymax; j++)
             {
                 sf::Vertex line[] =
                 {
