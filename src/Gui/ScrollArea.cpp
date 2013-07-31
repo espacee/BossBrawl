@@ -1,4 +1,5 @@
 #include "ScrollArea.hpp"
+#include "Util/unused.hpp"
 
 ScrollArea::ScrollArea()
 {
@@ -37,6 +38,7 @@ void ScrollArea::processEvents(const sf::Event &event)
 
 void ScrollArea::setChildWidget(Widget* new_childWidget)
 {
+    BRAWL_UNUSED(new_childWidget);
     childSet = true;
 }
 
