@@ -77,6 +77,22 @@ void TileMap::setLayerDepthIndex(unsigned int layer, float new_depthIndex)
     }
 }
 
+void TileMap::setLayerGridColor(unsigned int layer, sf::Color gridColor)
+{
+    if (layerExists(layer))
+    {
+        layers[layer].setGridColor(gridColor);
+    }
+}
+
+void TileMap::setLayerGridEnabled(unsigned int layer, bool yesno)
+{
+    if (layerExists(layer))
+    {
+        layers[layer].setGridEnabled(yesno);
+    }
+}
+
 void TileMap::addLayer()
 {
     nb_layers++;
@@ -151,9 +167,12 @@ void TileMap::display()
 
         if (ymax > static_cast<int>(layers[k].getVLength())) ymax = layers[k].getVLength();
 
-        sf::RectangleShape layerBackground(sf::Vector2f(layers[k].getWidth(), layers[k].getHeight()));
-        layerBackground.setFillColor(sf::Color(230, 120, 0, 60));
-        graphics::window.draw(layerBackground);
+        if(layers[k].gridEnabled())
+        {
+            sf::RectangleShape layerBackground(sf::Vector2f(layers[k].getWidth(), layers[k].getHeight()));
+            layerBackground.setFillColor(layers[k].getGridColor());
+            graphics::window.draw(layerBackground);
+        }
 
         for (int i = xmin; i <= xmax; i++)
         {
@@ -168,19 +187,26 @@ void TileMap::display()
                     drawnTiles++;
                 }
 
-                sf::Vertex line2[] =
+                if(layers[k].gridEnabled())
                 {
-                    sf::Vertex(sf::Vector2f(xmin*GRID_SIZE, j * GRID_SIZE), sf::Color::Red),
-                    sf::Vertex(sf::Vector2f((xmax+1)*GRID_SIZE, j * GRID_SIZE), sf::Color::Green)
-                };
-                graphics::window.draw(line2, 2, sf::Lines);
+                    sf::Vertex hLine[] =
+                    {
+                        sf::Vertex(sf::Vector2f(xmin*GRID_SIZE, j * GRID_SIZE), layers[k].getGridColor()),
+                        sf::Vertex(sf::Vector2f((xmax)*GRID_SIZE, j * GRID_SIZE), layers[k].getGridColor())
+                    };
+                    graphics::window.draw(hLine, 2, sf::Lines);
+                }
             }
-            sf::Vertex line[] =
+
+            if(layers[k].gridEnabled())
             {
-                sf::Vertex(sf::Vector2f(i * GRID_SIZE, ymin*GRID_SIZE), sf::Color::Cyan),
-                sf::Vertex(sf::Vector2f(i * GRID_SIZE, (ymax+1)*GRID_SIZE), sf::Color::Yellow)
-            };
-            graphics::window.draw(line, 2, sf::Lines);
+                sf::Vertex vLine[] =
+                {
+                    sf::Vertex(sf::Vector2f(i * GRID_SIZE, ymin*GRID_SIZE), layers[k].getGridColor()),
+                    sf::Vertex(sf::Vector2f(i * GRID_SIZE, (ymax)*GRID_SIZE), layers[k].getGridColor())
+                };
+                graphics::window.draw(vLine, 2, sf::Lines);
+            }
         }
     }
 

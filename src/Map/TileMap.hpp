@@ -35,6 +35,8 @@ public:
     void moveLayer(unsigned int layer, int x_offset, int y_offset);
     void setLayerPosition(unsigned int layer, int new_x_coord, int new_y_coord);
     void setLayerDepthIndex(unsigned int layer, float new_depthIndex);
+    void setLayerGridColor(unsigned int layer, sf::Color gridColor);
+    void setLayerGridEnabled(unsigned int layer, bool yesno);
 
     void addLayer();
     void popLayer();

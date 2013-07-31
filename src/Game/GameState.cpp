@@ -11,8 +11,8 @@ GameState::GameState()
 
     fpsText.setFont(graphics::font);
 
-        map.resizeLayer(0, 1000, 1000);
-        map.fillLayer(0,1);
+        map.resizeLayer(0, 100,100);
+        map.fillLayer(0,15);
 
     fpsText.setCharacterSize(16);
 
@@ -25,7 +25,7 @@ void GameState::onSet()
 {
     graphics::window.setTitle("game");
     camera = sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y));
-    testTarget.setPosition(400, 400);
+    testTarget.setPosition(0, 0);
     camera.setCenter(testTarget.getPosition());
 
     fpsText.setPosition(5, graphics::window.getSize().y - 20);
@@ -70,4 +70,10 @@ void GameState::onEvent(const sf::Event &event)
 
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
         stateDriver::setState("menu");
+
+    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Numpad8)
+        camera.zoom(0.5);
+    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Numpad5)
+        camera.zoom(2);
+
 }

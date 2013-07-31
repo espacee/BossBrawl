@@ -6,7 +6,11 @@
 
 EditorState::EditorState()
 {
-    map.fillLayer(0, 1);
+    map.resizeLayer(0,10,10);
+    map.setLayerGridColor(0,sf::Color(0,0,0,127));
+    map.setLayerGridEnabled(0,true);
+
+    map.setTile(0,1,1,1); map.setTile(0,2,1,2); map.setTile(0,3,1,3); map.setTile(0,4,1,4); map.setTile(0,5,1,5);
 
     camera = sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y));
     testTargetTexture.loadFromFile("res/img/target.png");

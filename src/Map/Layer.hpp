@@ -39,12 +39,18 @@ public:
     unsigned int getWidth() const;
     unsigned int getHeight() const;
 
+    bool gridEnabled();
+    void setGridEnabled(bool yesno);
+    void setGridColor(sf::Color new_gridColor);
+    sf::Color getGridColor() const;
+
     bool tileExists(unsigned int x, unsigned int y) const;
 
 private:
     std::vector< std::vector<unsigned int> > map;
     unsigned int hLength, vLength, width, height;
-    unsigned int layerID;
+    bool grid;
+    sf::Color gridColor;
 
     int x_coord, y_coord;
     float depthIndex;

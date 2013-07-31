@@ -6,6 +6,9 @@ Layer::Layer()
     fill(0);
     x_coord = y_coord = 0;
     depthIndex = 1.f;
+    grid = false;
+
+    setGridColor(sf::Color(255,127,0));
 }
 
 void Layer::resize(unsigned int new_hLength, unsigned int new_vLength)
@@ -114,6 +117,27 @@ unsigned int Layer::getWidth() const
 unsigned int Layer::getHeight() const
 {
     return height;
+}
+
+bool Layer::gridEnabled()
+{
+    return grid;
+}
+
+void Layer::setGridEnabled(bool yesno)
+{
+    grid = yesno;
+}
+
+
+void Layer::setGridColor(sf::Color new_gridColor)
+{
+    gridColor = sf::Color(new_gridColor.r, new_gridColor.g, new_gridColor.b, new_gridColor.a/2);
+}
+
+sf::Color Layer::getGridColor() const
+{
+    return gridColor;
 }
 
 bool Layer::tileExists(unsigned int x, unsigned int y) const
