@@ -122,8 +122,6 @@ void TileMap::display()
     sf::View saveCamera = graphics::window.getView();
     sf::View camera = saveCamera;
 
-    int xmin, xmax, ymin, ymax;
-
     for (unsigned int k = 0; k < nb_layers; k++)
     {
         camera.setCenter(saveCamera.getCenter().x * layers[k].getDepthIndex() - layers[k].getPosition().x,
@@ -131,11 +129,11 @@ void TileMap::display()
 
         graphics::window.setView(camera);
 
-        xmin = (int)(camera.getCenter().x - camera.getSize().x / 2) / GRID_SIZE;
-        ymin = (int)(camera.getCenter().y - camera.getSize().y / 2) / GRID_SIZE;
+        int xmin = (int)(camera.getCenter().x - camera.getSize().x / 2) / GRID_SIZE;
+        int ymin = (int)(camera.getCenter().y - camera.getSize().y / 2) / GRID_SIZE;
 
-        xmax = (int)(camera.getCenter().x + camera.getSize().x / 2) / GRID_SIZE;
-        ymax = (int)(camera.getCenter().y + camera.getSize().y / 2) / GRID_SIZE;
+        int xmax = (int)(camera.getCenter().x + camera.getSize().x / 2) / GRID_SIZE;
+        int ymax = (int)(camera.getCenter().y + camera.getSize().y / 2) / GRID_SIZE;
 
         if (xmin < 0) xmin = 0;
 
