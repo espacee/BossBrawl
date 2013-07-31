@@ -11,18 +11,18 @@ GameState::GameState()
 
     fpsText.setFont(graphics::font);
 
-    map.resizeLayer(0,10,10);
-    map.setLayerDepthIndex(0,0.5);
+    map.resizeLayer(0, 10, 10);
+    map.setLayerDepthIndex(0, 0.5);
     map.addLayer();
-    map.resizeLayer(1,4,4);
-    map.setTile(0,1,1,1);
-    map.setTile(0,2,1,2);
-    map.setTile(0,2,2,4);
+    map.resizeLayer(1, 4, 4);
+    map.setTile(0, 1, 1, 1);
+    map.setTile(0, 2, 1, 2);
+    map.setTile(0, 2, 2, 4);
 
-    map.setTile(1,0,3,20);
-    map.setTile(1,1,3,20);
-    map.setTile(1,2,3,20);
-    map.setTile(1,3,3,20);
+    map.setTile(1, 0, 3, 20);
+    map.setTile(1, 1, 3, 20);
+    map.setTile(1, 2, 3, 20);
+    map.setTile(1, 3, 3, 20);
 
 
     fpsText.setCharacterSize(16);
@@ -36,7 +36,7 @@ void GameState::onSet()
 {
     graphics::window.setTitle("game");
     camera = sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y));
-    testTarget.setPosition(400,400);
+    testTarget.setPosition(400, 400);
     camera.setCenter(testTarget.getPosition());
 
     fpsText.setPosition(5, graphics::window.getSize().y - 20);

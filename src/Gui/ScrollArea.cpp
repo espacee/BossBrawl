@@ -2,22 +2,22 @@
 
 ScrollArea::ScrollArea()
 {
-    setSize(200,200);
-    setBackgroundColor(sf::Color(40,40,40));
-    vScrollBar.setSize(15,getHeight());
-    vScrollBar.setPosition(getX()+getWidth()-vScrollBar.getWidth()-5,getY());
-    childSet=false;
+    setSize(200, 200);
+    setBackgroundColor(sf::Color(40, 40, 40));
+    vScrollBar.setSize(15, getHeight());
+    vScrollBar.setPosition(getX() + getWidth() - vScrollBar.getWidth() - 5, getY());
+    childSet = false;
 }
 
 void ScrollArea::update()
 {
     vScrollBar.setHeight(getHeight());
-    vScrollBar.setPosition(getX()+getWidth()-vScrollBar.getWidth()-5,getY());
+    vScrollBar.setPosition(getX() + getWidth() - vScrollBar.getWidth() - 5, getY());
 
-    if(isHovered())
-        vScrollBar.mouseWheelAllowed=true;
+    if (isHovered())
+        vScrollBar.mouseWheelAllowed = true;
     else
-        vScrollBar.mouseWheelAllowed=false;
+        vScrollBar.mouseWheelAllowed = false;
 }
 
 void ScrollArea::display(sf::RenderTarget &target)

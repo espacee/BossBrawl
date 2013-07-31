@@ -29,7 +29,7 @@ void VerticalScrollBar::update()
     liftStart = topArrowButton.getY() + topArrowButton.getHeight() + 1;
     liftEnd = downArrowButton.getY() - 1 - liftButton.getHeight();
 
-    liftButton.setPosition(getX()+1, liftStart + mouse);
+    liftButton.setPosition(getX() + 1, liftStart + mouse);
 
     if (liftButton.getY() < liftStart)
     {
@@ -43,19 +43,19 @@ void VerticalScrollBar::update()
         mouse = liftEnd - liftStart;
     }
 
-    if(downArrowButton.isPressed())
+    if (downArrowButton.isPressed())
     {
-        mouse+=5;
+        mouse += 5;
     }
 
-    if(topArrowButton.isPressed())
+    if (topArrowButton.isPressed())
     {
-        mouse-=5;
+        mouse -= 5;
     }
 
     pos = (float)(liftButton.getY() - liftStart) / (float)(liftEnd - liftStart);
 
-    bar.setSize(getWidth()-4, getHeight() - 2);
+    bar.setSize(getWidth() - 4, getHeight() - 2);
     bar.setBackgroundColor(sf::Color(30, 30, 30));
     bar.setPosition(getX() + 2, getY() + 1);
 }
@@ -97,7 +97,7 @@ void VerticalScrollBar::processEvents(const sf::Event &event)
 
     if (event.type == sf::Event::MouseWheelMoved)
     {
-        if(mouseWheelAllowed)
+        if (mouseWheelAllowed)
             mouse -= 10 * event.mouseWheel.delta;
     }
 }

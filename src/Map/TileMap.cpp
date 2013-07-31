@@ -126,44 +126,52 @@ void TileMap::display()
 
     for (unsigned int k = 0; k < nb_layers; k++)
     {
-        camera.setCenter(saveCamera.getCenter().x*layers[k].getDepthIndex()-layers[k].getPosition().x,
-                         saveCamera.getCenter().y*layers[k].getDepthIndex()-layers[k].getPosition().y);
+        camera.setCenter(saveCamera.getCenter().x * layers[k].getDepthIndex() - layers[k].getPosition().x,
+                         saveCamera.getCenter().y * layers[k].getDepthIndex() - layers[k].getPosition().y);
 
         graphics::window.setView(camera);
 
-        xmin = (int)(camera.getCenter().x-camera.getSize().x/2)/GRID_SIZE;
-        ymin = (int)(camera.getCenter().y-camera.getSize().y/2)/GRID_SIZE;
+        xmin = (int)(camera.getCenter().x - camera.getSize().x / 2) / GRID_SIZE;
+        ymin = (int)(camera.getCenter().y - camera.getSize().y / 2) / GRID_SIZE;
 
-        xmax = (int)(camera.getCenter().x + camera.getSize().x/2)/GRID_SIZE;
-        ymax = (int)(camera.getCenter().y + camera.getSize().y/2)/GRID_SIZE;
+        xmax = (int)(camera.getCenter().x + camera.getSize().x / 2) / GRID_SIZE;
+        ymax = (int)(camera.getCenter().y + camera.getSize().y / 2) / GRID_SIZE;
 
-        if(xmin<0) xmin=0;
-        if(ymin<0) ymin=0;
-        if(xmax<0) xmax=0;
-        if(ymax<0) ymax=0;
-        if(xmin>layers[k].getHLength()) xmin = layers[k].getHLength();
-        if(ymin>layers[k].getVLength()) ymin = layers[k].getVLength();
-        if(xmax>layers[k].getHLength()) xmax = layers[k].getHLength();
-        if(ymax>layers[k].getVLength()) ymax = layers[k].getVLength();
+        if (xmin < 0) xmin = 0;
+
+        if (ymin < 0) ymin = 0;
+
+        if (xmax < 0) xmax = 0;
+
+        if (ymax < 0) ymax = 0;
+
+        if (xmin > layers[k].getHLength()) xmin = layers[k].getHLength();
+
+        if (ymin > layers[k].getVLength()) ymin = layers[k].getVLength();
+
+        if (xmax > layers[k].getHLength()) xmax = layers[k].getHLength();
+
+        if (ymax > layers[k].getVLength()) ymax = layers[k].getVLength();
 
         sf::RectangleShape layerBackground(sf::Vector2f(layers[k].getWidth(), layers[k].getHeight()));
-        layerBackground.setFillColor(sf::Color(230,120,0,60));
+        layerBackground.setFillColor(sf::Color(230, 120, 0, 60));
         graphics::window.draw(layerBackground);
 
         for (unsigned int i = xmin; i <= xmax; i++)
         {
             sf::Vertex line[] =
             {
-                sf::Vertex(sf::Vector2f(i*GRID_SIZE, 0),sf::Color::Cyan),
-                sf::Vertex(sf::Vector2f(i*GRID_SIZE, layers[k].getVLength()*GRID_SIZE),sf::Color::Yellow)
+                sf::Vertex(sf::Vector2f(i * GRID_SIZE, 0), sf::Color::Cyan),
+                sf::Vertex(sf::Vector2f(i * GRID_SIZE, layers[k].getVLength()*GRID_SIZE), sf::Color::Yellow)
             };
             graphics::window.draw(line, 2, sf::Lines);
+
             for (unsigned int j = ymin; j <= ymax; j++)
             {
                 sf::Vertex line[] =
                 {
-                    sf::Vertex(sf::Vector2f(0, j*GRID_SIZE),sf::Color::Red),
-                    sf::Vertex(sf::Vector2f(layers[k].getHLength()*GRID_SIZE, j*GRID_SIZE),sf::Color::Green)
+                    sf::Vertex(sf::Vector2f(0, j * GRID_SIZE), sf::Color::Red),
+                    sf::Vertex(sf::Vector2f(layers[k].getHLength()*GRID_SIZE, j * GRID_SIZE), sf::Color::Green)
                 };
                 graphics::window.draw(line, 2, sf::Lines);
 

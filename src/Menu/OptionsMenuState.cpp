@@ -8,8 +8,8 @@ OptionsMenuState::OptionsMenuState()
 {
     addResoButtons();
     screenSizeButton.setText("Borderless, screen size");
-    screenSizeButton.setSize(300,35);
-    screenSizeButton.setPosition(15,220);
+    screenSizeButton.setSize(300, 35);
+    screenSizeButton.setPosition(15, 220);
 
     windowLabel.setFont(graphics::font);
     windowLabel.setCharacterSize(14);
@@ -71,6 +71,7 @@ void OptionsMenuState::onUpdate()
     {
         b.display(window);
     }
+
     screenSizeButton.display(window);
 }
 

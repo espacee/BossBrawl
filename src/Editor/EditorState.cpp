@@ -49,8 +49,8 @@ void EditorState::onSet()
     tileSetButton.setGeometry(rightPanel.getX() + 2, topPanel.getY() + topPanel.getHeight() + 2, rightPanel.getWidth() - 4, 50);
     tileSetButton.setGeometry(rightPanel.getX() + 2, topPanel.getY() + topPanel.getHeight() + 2, rightPanel.getWidth() - 4, 50);
 
-    layerList.setGeometry(rightPanel.getX(), tileSetButton.getY()+tileSetButton.getHeight()+2, rightPanel.getWidth(), 100);
-    layerList.setHeight(rightPanel.getHeight()-layerList.getY());
+    layerList.setGeometry(rightPanel.getX(), tileSetButton.getY() + tileSetButton.getHeight() + 2, rightPanel.getWidth(), 100);
+    layerList.setHeight(rightPanel.getHeight() - layerList.getY());
 }
 void EditorState::onUpdate()
 {
@@ -58,10 +58,13 @@ void EditorState::onUpdate()
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         testTarget.move(0, -10);
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         testTarget.move(10, 0);
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         testTarget.move(0, 10);
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         testTarget.move(-10, 0);
 
@@ -125,7 +128,8 @@ void EditorState::onEvent(const sf::Event &event)
 {
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
         stateDriver::setState("menu");
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::M){
+
+    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::M) {
         consoleCommands();
     }
 
@@ -156,7 +160,7 @@ void EditorState::consoleCommands()
     std::cout << "Choose an Option from the menu.\n1. Add Layer\n2. Delete Layer\n3. Check current Layer" << std::endl;
     std::cin >> option;
 
-    if(option == 1){
+    if (option == 1) {
         int length, width;
 
         map.addLayer();
@@ -165,29 +169,31 @@ void EditorState::consoleCommands()
         std::cin >> length;
         std::cin >> width;
         map.resizeLayer((map.getLayerSize() - 1), length, width);
-        std::cout<< "Layer resized to " << length << " By " << width << std::endl;
+        std::cout << "Layer resized to " << length << " By " << width << std::endl;
     }
-    if(option == 2){
+
+    if (option == 2) {
         std::cout << "Layer " << (map.getLayerSize() - 1) << " Added." << std::endl;
         map.popLayer();
     }
-    if(option ==3 ){
+
+    if (option == 3) {
 
         system("CLS");
-        std::cout << "the current Layer is "<< (map.getLayerSize() - 1) << "."<< std::endl;
-        std::cout << "what do you want to do next?\n1. Resize Layer\n2.Fill Layer"<< std::endl;
+        std::cout << "the current Layer is " << (map.getLayerSize() - 1) << "." << std::endl;
+        std::cout << "what do you want to do next?\n1. Resize Layer\n2.Fill Layer" << std::endl;
         std::cin >> option;
 
-        if(option == 1){
+        if (option == 1) {
             int length, width;
             std::cout << "the next 2 numbers needs to be the Tile Length & Tile width" << std::endl;
             std::cin >> length;
             std::cin >> width;
             map.resizeLayer((map.getLayerSize() - 1), length, width);
-            std::cout<< "Layer resized to " << length << " By " << width << std::endl;
+            std::cout << "Layer resized to " << length << " By " << width << std::endl;
 
         }
-        else if(option == 2)
+        else if (option == 2)
         {
             int tileid;
             std::cout << "what tile Id?" << std::endl;
@@ -196,7 +202,7 @@ void EditorState::consoleCommands()
             std::cout << "Layer filled." << std::endl;
         }
 
-     }
+    }
 
 
 }
