@@ -42,6 +42,6 @@ void ScrollArea::setChildWidget(Widget* new_childWidget)
 
 Widget* ScrollArea::getChildWidget()
 {
-
+    return nullptr;
 }
 
