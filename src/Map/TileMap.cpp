@@ -168,12 +168,12 @@ void TileMap::display()
 
             for (int j = ymin; j <= ymax; j++)
             {
-                sf::Vertex line[] =
+                sf::Vertex line2[] =
                 {
                     sf::Vertex(sf::Vector2f(0, j * GRID_SIZE), sf::Color::Red),
                     sf::Vertex(sf::Vector2f(layers[k].getHLength()*GRID_SIZE, j * GRID_SIZE), sf::Color::Green)
                 };
-                graphics::window.draw(line, 2, sf::Lines);
+                graphics::window.draw(line2, 2, sf::Lines);
 
                 unsigned int id = layers[k].getTile(i, j);
 
