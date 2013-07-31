@@ -157,24 +157,9 @@ void TileMap::display()
 
         for (int i = xmin; i <= xmax; i++)
         {
-            sf::Vertex line[] =
-            {
-                sf::Vertex(sf::Vector2f(i * GRID_SIZE, ymin), sf::Color::Cyan),
-                sf::Vertex(sf::Vector2f(i * GRID_SIZE, (ymax+1)*GRID_SIZE), sf::Color::Yellow)
-            };
-            graphics::window.draw(line, 2, sf::Lines);
-
             for (int j = ymin; j <= ymax; j++)
             {
-                sf::Vertex line2[] =
-                {
-                    sf::Vertex(sf::Vector2f(xmin, j * GRID_SIZE), sf::Color::Red),
-                    sf::Vertex(sf::Vector2f((xmax+1)*GRID_SIZE, j * GRID_SIZE), sf::Color::Green)
-                };
-                graphics::window.draw(line2, 2, sf::Lines);
-
                 unsigned int id = layers[k].getTile(i, j);
-
                 if (id)
                 {
                     sprites[id].setPosition((int)(i * GRID_SIZE),
@@ -182,7 +167,20 @@ void TileMap::display()
                     graphics::window.draw(sprites[id]);
                     drawnTiles++;
                 }
+
+                sf::Vertex line2[] =
+                {
+                    sf::Vertex(sf::Vector2f(xmin*GRID_SIZE, j * GRID_SIZE), sf::Color::Red),
+                    sf::Vertex(sf::Vector2f((xmax+1)*GRID_SIZE, j * GRID_SIZE), sf::Color::Green)
+                };
+                graphics::window.draw(line2, 2, sf::Lines);
             }
+            sf::Vertex line[] =
+            {
+                sf::Vertex(sf::Vector2f(i * GRID_SIZE, ymin*GRID_SIZE), sf::Color::Cyan),
+                sf::Vertex(sf::Vector2f(i * GRID_SIZE, (ymax+1)*GRID_SIZE), sf::Color::Yellow)
+            };
+            graphics::window.draw(line, 2, sf::Lines);
         }
     }
 
