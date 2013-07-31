@@ -36,6 +36,13 @@ void setResolutionMode(unsigned int index)
 
     const sf::Vector2i& res = m_resolutionModes.at(index);
     window.create(sf::VideoMode(res.x, res.y), m_title, sf::Style::Close);
+
+    window.setVerticalSyncEnabled(true);
+}
+
+void setDesktopResolution()
+{
+    window.create(sf::VideoMode::getDesktopMode(), m_title, sf::Style::None);
     window.setVerticalSyncEnabled(true);
 }
 

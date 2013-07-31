@@ -159,8 +159,8 @@ void TileMap::display()
         {
             sf::Vertex line[] =
             {
-                sf::Vertex(sf::Vector2f(i * GRID_SIZE, 0), sf::Color::Cyan),
-                sf::Vertex(sf::Vector2f(i * GRID_SIZE, layers[k].getVLength()*GRID_SIZE), sf::Color::Yellow)
+                sf::Vertex(sf::Vector2f(i * GRID_SIZE, ymin), sf::Color::Cyan),
+                sf::Vertex(sf::Vector2f(i * GRID_SIZE, (ymax+1)*GRID_SIZE), sf::Color::Yellow)
             };
             graphics::window.draw(line, 2, sf::Lines);
 
@@ -168,8 +168,8 @@ void TileMap::display()
             {
                 sf::Vertex line2[] =
                 {
-                    sf::Vertex(sf::Vector2f(0, j * GRID_SIZE), sf::Color::Red),
-                    sf::Vertex(sf::Vector2f(layers[k].getHLength()*GRID_SIZE, j * GRID_SIZE), sf::Color::Green)
+                    sf::Vertex(sf::Vector2f(xmin, j * GRID_SIZE), sf::Color::Red),
+                    sf::Vertex(sf::Vector2f((xmax+1)*GRID_SIZE, j * GRID_SIZE), sf::Color::Green)
                 };
                 graphics::window.draw(line2, 2, sf::Lines);
 

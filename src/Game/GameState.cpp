@@ -11,19 +11,8 @@ GameState::GameState()
 
     fpsText.setFont(graphics::font);
 
-    map.resizeLayer(0, 10, 10);
-    map.setLayerDepthIndex(0, 0.5);
-    map.addLayer();
-    map.resizeLayer(1, 4, 4);
-    map.setTile(0, 1, 1, 1);
-    map.setTile(0, 2, 1, 2);
-    map.setTile(0, 2, 2, 4);
-
-    map.setTile(1, 0, 3, 20);
-    map.setTile(1, 1, 3, 20);
-    map.setTile(1, 2, 3, 20);
-    map.setTile(1, 3, 3, 20);
-
+        map.resizeLayer(0, 1000, 1000);
+        map.fillLayer(0,1);
 
     fpsText.setCharacterSize(16);
 

@@ -60,6 +60,9 @@ void OptionsMenuState::onUpdate()
         }
     }
 
+    if(screenSizeButton.isReleased())
+        graphics::setDesktopResolution();
+
     backButton.setPosition(graphics::window.getSize().x - backButton.getWidth(), 0);
 
     window.clear(sf::Color(65, 60, 60));
