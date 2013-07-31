@@ -29,6 +29,8 @@ src/Game/GameState.cpp
 src/Game/GameState.hpp
 src/Gui/IconButton.cpp
 src/Gui/IconButton.hpp
+src/Gui/ScrollArea.cpp
+src/Gui/ScrollArea.hpp
 src/Gui/TextButton.cpp
 src/Gui/TextButton.hpp
 src/Gui/VerticalScrollBar.cpp
