@@ -44,6 +44,13 @@ private:
     TextButton newButton;
     TextButton openButton;
     TextButton saveButton;
+
+     //_____Tools____________//
+    IconButton penButton;
+    IconButton eraserButton;
+    IconButton fillButton;
+    IconButton handButton;
+
 };
 
 #endif // EDITOR_EDITORSTATE_HPP

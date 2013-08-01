@@ -70,16 +70,25 @@ void EditorState::onSet()
     newButton.setText("New");
     openButton.setText("Open");
     saveButton.setText("Save");
+    penButton.setIcon("res/img/GUI/pen.png");
+    eraserButton.setIcon("res/img/GUI/eraser.png");
+    fillButton.setIcon("res/img/GUI/fill.png");
+    handButton.setIcon("res/img/GUI/hand.png");
+
 
     newButton.setSize(140,30);
     openButton.setSize(newButton.getWidth(), newButton.getHeight());
     saveButton.setSize(newButton.getWidth(), newButton.getHeight());
 
+
     newButton.setPosition(40,5);
     openButton.setPosition(newButton.getX()+newButton.getWidth()+10,newButton.getY());
     saveButton.setPosition(openButton.getX()+openButton.getWidth()+10, openButton.getY());
 
-
+    penButton.setPosition((leftPanel.getPosition().x + 3),(leftPanel.getPosition().y  + 5));
+    eraserButton.setPosition((leftPanel.getPosition().x + 3),(penButton.getY() + eraserButton.getWidth() + 5));
+    fillButton.setPosition((leftPanel.getPosition().x + 3),(eraserButton.getY() + fillButton.getWidth() + 5));
+    handButton.setPosition((leftPanel.getPosition().x + 3),(fillButton.getY() + handButton.getWidth() + 5));
 }
 void EditorState::onUpdate()
 {
@@ -124,14 +133,23 @@ void EditorState::onUpdate()
     newButton.display(window);
     openButton.display(window);
     saveButton.display(window);
+    penButton.display(window);
+    eraserButton.display(window);
+    fillButton.display(window);
+    handButton.display(window);
 }
 void EditorState::onEvent(const sf::Event &event)
 {
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
         stateDriver::setState("menu");
 
+
     backButton.processEvents(event);
     newButton.processEvents(event);
     openButton.processEvents(event);
     saveButton.processEvents(event);
+    penButton.processEvents(event);
+    eraserButton.processEvents(event);
+    fillButton.processEvents(event);
+    handButton.processEvents(event);
 }
