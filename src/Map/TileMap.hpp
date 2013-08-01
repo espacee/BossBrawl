@@ -47,8 +47,6 @@ public:
     bool spriteExists(unsigned int id) const;
     bool layerExists(unsigned int layer) const;
 
-    void tilesdrawn();
-
     void display();
 
 private:
@@ -57,7 +55,6 @@ private:
     std::vector< sf::Sprite > sprites;
     sf::Texture tileSet;
 
-    bool tilesdrawncons;
 };
 
 #endif // MAP_TILEMAP_HPP

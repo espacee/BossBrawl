@@ -187,8 +187,6 @@ void EditorState::onEvent(const sf::Event &event)
 {
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
         stateDriver::setState("menu");
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::T)
-        map.tilesdrawn();
 
 
     backButton.processEvents(event);
