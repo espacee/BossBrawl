@@ -2,11 +2,14 @@
 
 #include "Core/graphics.hpp"
 
+
 TileMap::TileMap()
 {
     loadTiles();
     nb_layers = 0;
     addLayer();
+
+    tilesdrawncons = false;
 }
 
 void TileMap::loadTiles()
@@ -131,6 +134,13 @@ bool TileMap::layerExists(unsigned int layer) const
 {
     return layer < layers.size();
 }
+void TileMap::tilesdrawn()
+{
+    tilesdrawncons = !tilesdrawncons;
+
+    if(tilesdrawncons == false)
+        std::cout << "Tiles Counter Disabled." << std::endl;
+}
 void TileMap::display()
 {
     drawnTiles = 0;
@@ -209,8 +219,8 @@ void TileMap::display()
             }
         }
     }
-
-    std::cout << drawnTiles << std::endl << std::endl;
+    if(tilesdrawncons == true)
+        std::cout << drawnTiles << std::endl << std::endl;
 
     graphics::window.setView(saveCamera);
 }

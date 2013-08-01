@@ -17,10 +17,19 @@ EditorState::EditorState()
     testTargetTexture.setSmooth(true);
     testTarget.setTexture(testTargetTexture);
     testTarget.setOrigin(15, 15);
+
+    penButton.setToggleable(true);
+    eraserButton.setToggleable(true);
+    fillButton.setToggleable(true);
+    handButton.setToggleable(true);
+
+
 }
 
 void EditorState::onSet()
 {
+    std::cout << "Press T if you want to enable the Tiles Counter" << std::endl;
+
     graphics::window.setTitle("editor");
     camera = sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y));
     testTarget.setPosition(200,200);
@@ -106,8 +115,44 @@ void EditorState::onUpdate()
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         testTarget.move(-10, 0);
 
+
     if(backButton.isReleased())
         stateDriver::setState("menu");
+
+    //_______ Tool Selection ___________  //
+    if(penButton.isReleased()){
+        currentTool = 1;
+        penButton.isToggled();
+        eraserButton.untoggle();
+        fillButton.untoggle();
+        handButton.untoggle();
+        std::cout << "Current Tool: " << currentTool << std::endl;
+    }
+    if(eraserButton.isReleased()){
+        currentTool = 2;
+        eraserButton.isToggled();
+        penButton.untoggle();
+        fillButton.untoggle();
+        handButton.untoggle();
+        std::cout << "Current Tool: " << currentTool << std::endl;
+    }
+    if(fillButton.isReleased()){
+        currentTool = 3;
+        fillButton.isToggled();
+        eraserButton.untoggle();
+        penButton.untoggle();
+        handButton.untoggle();
+        std::cout << "Current Tool: " << currentTool << std::endl;
+    }
+    if(handButton.isReleased()){
+        currentTool = 4;
+        handButton.isToggled();
+        eraserButton.untoggle();
+        fillButton.untoggle();
+        penButton.untoggle();
+        std::cout << "Current Tool: " << currentTool << std::endl;
+    }
+    // ______ Tool Selection End __________ //
 
     testTarget.rotate(5);
     moveViewTowardsPoint(camera, testTarget.getPosition().x, testTarget.getPosition().y, 0.05f);
@@ -142,6 +187,8 @@ void EditorState::onEvent(const sf::Event &event)
 {
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
         stateDriver::setState("menu");
+    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::T)
+        map.tilesdrawn();
 
 
     backButton.processEvents(event);

@@ -24,6 +24,8 @@ public:
     virtual void onEvent(const sf::Event &event);
 
 private:
+    int currentTool;
+
     sf::View camera;
     TileMap map;
 
@@ -50,7 +52,6 @@ private:
     IconButton eraserButton;
     IconButton fillButton;
     IconButton handButton;
-
 };
 
 #endif // EDITOR_EDITORSTATE_HPP
