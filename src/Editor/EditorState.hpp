@@ -27,8 +27,14 @@ public:
     int getTool();
     void consoleCommands();
 
+    void penEnabled();
+    void eraserEnabled();
+    void fillEnabled();
+    void handEnabled();
+
 private:
     int currentTool;
+    int cx, cy, tx, ty;
 
     sf::View camera;
     TileMap map;
@@ -46,6 +52,8 @@ private:
     TextButton tileSetButton;
 
     ScrollArea layerList;
+
+
 };
 
 #endif // EDITOR_EDITORSTATE_HPP
