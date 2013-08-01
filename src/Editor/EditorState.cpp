@@ -23,38 +23,63 @@ void EditorState::onSet()
 {
     graphics::window.setTitle("editor");
     camera = sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y));
-    currentTool = 1;
+    testTarget.setPosition(200,200);
 
-    topPanel.setSize(graphics::window.getSize().x, 32);
-    topPanel.setPosition(0, 0);
-    topPanel.setBackgroundColor(sf::Color(40, 40, 40));
+    topPanel.setPosition(4,40);
+    topPanel.setSize(sf::Vector2f(graphics::window.getSize().x-8, 30));
+    topPanel.setFillColor(sf::Color(64,59,59));
 
-    penButton.setIcon("res/img/GUI/pen.png");
-    penButton.setPosition(1, 1);
-    penButton.setToggleable(true);
+    leftPanel.setPosition(4,70);
+    leftPanel.setSize(sf::Vector2f(36,graphics::window.getSize().y-70-4));
+    leftPanel.setFillColor(sf::Color(45,40,40));
 
-    eraserButton.setIcon("res/img/GUI/eraser.png");
-    eraserButton.setPosition(36, 1);
-    eraserButton.setToggleable(true);
+    botBar.setPosition(leftPanel.getPosition().x+leftPanel.getSize().x,
+                       leftPanel.getPosition().y+leftPanel.getSize().y-20);
+    botBar.setSize(sf::Vector2f(graphics::window.getSize().x-botBar.getPosition().x-4,
+                                20));
+    botBar.setFillColor(sf::Color(35,30,30));
 
-    fillButton.setIcon("res/img/GUI/fill.png");
-    fillButton.setPosition(71, 1);
-    fillButton.setToggleable(true);
+    rightPanel.setPosition(graphics::window.getSize().x-200-4,70);
+    rightPanel.setSize(sf::Vector2f(200,graphics::window.getSize().y-rightPanel.getPosition().y-24));
+    rightPanel.setFillColor(sf::Color(45,40,40));
 
-    handButton.setIcon("res/img/GUI/hand.png");
-    handButton.setPosition(106, 1);
-    handButton.setToggleable(true);
+    backgroundTop.setPosition(0,0);
+    backgroundTop.setSize(sf::Vector2f(graphics::window.getSize().x, topPanel.getPosition().y));
+    backgroundTop.setFillColor(sf::Color(85,79,79));
 
-    rightPanel.setSize(200, graphics::window.getSize().y);
-    rightPanel.setPosition(graphics::window.getSize().x - rightPanel.getWidth(), 0);
-    rightPanel.setBackgroundColor(sf::Color(70, 70, 70));
+    backgroundRight.setPosition(topPanel.getPosition().x+topPanel.getSize().x, 0);
+    backgroundRight.setSize(sf::Vector2f(4,graphics::window.getSize().y));
+    backgroundRight.setFillColor(sf::Color(85,79,79));
 
-    tileSetButton.setText("TileSet >>");
-    tileSetButton.setGeometry(rightPanel.getX() + 2, topPanel.getY() + topPanel.getHeight() + 2, rightPanel.getWidth() - 4, 50);
-    tileSetButton.setGeometry(rightPanel.getX() + 2, topPanel.getY() + topPanel.getHeight() + 2, rightPanel.getWidth() - 4, 50);
+    backgroundBot.setPosition(0,graphics::window.getSize().y-4);
+    backgroundBot.setSize(sf::Vector2f(graphics::window.getSize().x,4));
+    backgroundBot.setFillColor(sf::Color(85,79,79));
 
-    layerList.setGeometry(rightPanel.getX(), tileSetButton.getY() + tileSetButton.getHeight() + 2, rightPanel.getWidth(), 100);
-    layerList.setHeight(rightPanel.getHeight() - layerList.getY());
+    backgroundLeft.setPosition(0,0);
+    backgroundLeft.setSize(sf::Vector2f(4,graphics::window.getSize().y));
+    backgroundLeft.setFillColor(sf::Color(85,79,79));
+
+    backButton.setIcon("res/img/GUI/back.png");
+    backButton.resetGeometry();
+    backButton.setPosition(graphics::window.getSize().x-backButton.getWidth()-4,4);
+    backButton.setColorScheme(sf::Color(85,79,79), sf::Color(0, 170, 240), sf::Color(0, 80, 170));
+
+    iconTexture.loadFromFile("res/img/GUI/icon.png");
+    icon.setTexture(iconTexture);
+
+    newButton.setText("New");
+    openButton.setText("Open");
+    saveButton.setText("Save");
+
+    newButton.setSize(140,30);
+    openButton.setSize(newButton.getWidth(), newButton.getHeight());
+    saveButton.setSize(newButton.getWidth(), newButton.getHeight());
+
+    newButton.setPosition(40,5);
+    openButton.setPosition(newButton.getX()+newButton.getWidth()+10,newButton.getY());
+    saveButton.setPosition(openButton.getX()+openButton.getWidth()+10, openButton.getY());
+
+
 }
 void EditorState::onUpdate()
 {
@@ -72,141 +97,41 @@ void EditorState::onUpdate()
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         testTarget.move(-10, 0);
 
-    if (penButton.isReleased()) {
-        currentTool = 1;
-        std::cout << "current tool is " << getTool() << std::endl;
-        eraserButton.untoggle();
-        fillButton.untoggle();
-        handButton.untoggle();
-    }
-
-    if (eraserButton.isReleased()) {
-        currentTool = 2;
-        std::cout << "current tool is " << getTool() << std::endl;
-        penButton.untoggle();
-        fillButton.untoggle();
-        handButton.untoggle();
-    }
-
-    if (fillButton.isReleased()) {
-        currentTool = 3;
-        std::cout << "current tool is " << getTool() << std::endl;
-        penButton.untoggle();
-        eraserButton.untoggle();
-        handButton.untoggle();
-    }
-
-    if (handButton.isReleased()) {
-        currentTool = 4;
-        std::cout << "current tool is " << getTool() << std::endl;
-        penButton.untoggle();
-        eraserButton.untoggle();
-        fillButton.untoggle();
-    }
+    if(backButton.isReleased())
+        stateDriver::setState("menu");
 
     testTarget.rotate(5);
     moveViewTowardsPoint(camera, testTarget.getPosition().x, testTarget.getPosition().y, 0.05f);
 
-//_________________________________________________________________________________________________________________________________
-    window.clear(sf::Color(200, 200, 200));
-
+    window.clear(sf::Color(225, 219, 219));
 
     graphics::window.setView(camera);
     map.display();
     window.draw(testTarget);
 
     graphics::window.setView(sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y)));
-    rightPanel.display(graphics::window);
-    tileSetButton.display(graphics::window);
 
-    topPanel.display(graphics::window);
-    penButton.display(graphics::window);
-    eraserButton.display(graphics::window);
-    fillButton.display(graphics::window);
-    handButton.display(graphics::window);
-
-    layerList.display(graphics::window);
-
+    window.draw(topPanel);
+    window.draw(leftPanel);
+    window.draw(botBar);
+    window.draw(rightPanel);
+    window.draw(backgroundTop);
+    window.draw(backgroundRight);
+    window.draw(backgroundBot);
+    window.draw(backgroundLeft);
+    backButton.display(window);
+    window.draw(icon);
+    newButton.display(window);
+    openButton.display(window);
+    saveButton.display(window);
 }
 void EditorState::onEvent(const sf::Event &event)
 {
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
         stateDriver::setState("menu");
 
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::M) {
-        consoleCommands();
-    }
-
-
-
-
-    rightPanel.processEvents(event);
-    topPanel.processEvents(event);
-    penButton.processEvents(event);
-    eraserButton.processEvents(event);
-    fillButton.processEvents(event);
-    handButton.processEvents(event);
-    tileSetButton.processEvents(event);
-
-    layerList.processEvents(event);
-
-}
-
-int EditorState::getTool()
-{
-    return currentTool;
-
-}
-
-void EditorState::consoleCommands()
-{
-    int option;
-    std::cout << "Choose an Option from the menu.\n1. Add Layer\n2. Delete Layer\n3. Check current Layer" << std::endl;
-    std::cin >> option;
-
-    if (option == 1) {
-        int length, width;
-
-        map.addLayer();
-        std::cout << "Layer " << (map.getLayerSize() - 1) << " Added." << std::endl;
-        std::cout << "To what do you want to resize it?" << std::endl;
-        std::cin >> length;
-        std::cin >> width;
-        map.resizeLayer((map.getLayerSize() - 1), length, width);
-        std::cout << "Layer resized to " << length << " By " << width << std::endl;
-    }
-
-    if (option == 2) {
-        std::cout << "Layer " << (map.getLayerSize() - 1) << " Added." << std::endl;
-        map.popLayer();
-    }
-
-    if (option == 3) {
-
-        system("CLS");
-        std::cout << "the current Layer is " << (map.getLayerSize() - 1) << "." << std::endl;
-        std::cout << "what do you want to do next?\n1. Resize Layer\n2.Fill Layer" << std::endl;
-        std::cin >> option;
-
-        if (option == 1) {
-            int length, width;
-            std::cout << "the next 2 numbers needs to be the Tile Length & Tile width" << std::endl;
-            std::cin >> length;
-            std::cin >> width;
-            map.resizeLayer((map.getLayerSize() - 1), length, width);
-            std::cout << "Layer resized to " << length << " By " << width << std::endl;
-
-        }
-        else if (option == 2)
-        {
-            int tileid;
-            std::cout << "what tile Id?" << std::endl;
-            std::cin >> tileid;
-            map.fillLayer((map.getLayerSize() - 1), tileid);
-            std::cout << "Layer filled." << std::endl;
-        }
-
-    }
-
-
+    backButton.processEvents(event);
+    newButton.processEvents(event);
+    openButton.processEvents(event);
+    saveButton.processEvents(event);
 }

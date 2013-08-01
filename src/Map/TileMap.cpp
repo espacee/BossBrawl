@@ -148,8 +148,8 @@ void TileMap::display()
         int xmin = (int)(camera.getCenter().x - camera.getSize().x / 2) / GRID_SIZE;
         int ymin = (int)(camera.getCenter().y - camera.getSize().y / 2) / GRID_SIZE;
 
-        int xmax = (int)(camera.getCenter().x + camera.getSize().x / 2) / GRID_SIZE;
-        int ymax = (int)(camera.getCenter().y + camera.getSize().y / 2) / GRID_SIZE;
+        int xmax = (int)(camera.getCenter().x + camera.getSize().x / 2) / GRID_SIZE+1;
+        int ymax = (int)(camera.getCenter().y + camera.getSize().y / 2) / GRID_SIZE+1;
 
         if (xmin < 0) xmin = 0;
 

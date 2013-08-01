@@ -11,7 +11,6 @@
 #include "Gui/Widget.hpp"
 #include "Gui/TextButton.hpp"
 #include "Gui/IconButton.hpp"
-#include "Gui/ScrollArea.hpp"
 
 /**
  * @brief The Editor state
@@ -24,28 +23,27 @@ public:
     virtual void onUpdate();
     virtual void onEvent(const sf::Event &event);
 
-    int getTool();
-    void consoleCommands();
-
 private:
-    int currentTool;
-
     sf::View camera;
     TileMap map;
+
+    sf::RectangleShape backgroundTop, backgroundRight, backgroundBot, backgroundLeft;
+    sf::RectangleShape topPanel;
+    sf::RectangleShape leftPanel;
+    sf::RectangleShape botBar;
+    sf::RectangleShape rightPanel;
+
+    IconButton backButton;
 
     sf::Texture testTargetTexture;
     sf::Sprite testTarget;
 
-    Widget topPanel;
-    Widget rightPanel;
+    sf::Texture iconTexture;
+    sf::Sprite icon;
 
-    IconButton penButton;
-    IconButton eraserButton;
-    IconButton fillButton;
-    IconButton handButton;
-    TextButton tileSetButton;
-
-    ScrollArea layerList;
+    TextButton newButton;
+    TextButton openButton;
+    TextButton saveButton;
 };
 
 #endif // EDITOR_EDITORSTATE_HPP

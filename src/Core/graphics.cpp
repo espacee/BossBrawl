@@ -51,6 +51,4 @@ const std::vector<sf::Vector2i>& getResolutionModes()
     return m_resolutionModes;
 }
 
-
-
 }
