@@ -12,13 +12,6 @@ EditorState::EditorState()
 
     map.setTile(0,1,1,1); map.setTile(0,2,1,2); map.setTile(0,3,1,3); map.setTile(0,4,1,4); map.setTile(0,5,1,5);
 
-   /**
-    map.addLayer();
-    map.resizeLayer(1,100,100);
-    map.setLayerGridEnabled(1, true);  **/
-
-
-
     camera = sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y));
     testTargetTexture.loadFromFile("res/img/target.png");
     testTargetTexture.setSmooth(true);
@@ -118,8 +111,6 @@ void EditorState::onUpdate()
     window.clear(sf::Color(200, 200, 200));
 
 
-
-
     graphics::window.setView(camera);
     map.display();
     window.draw(testTarget);
@@ -142,15 +133,11 @@ void EditorState::onEvent(const sf::Event &event)
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
         stateDriver::setState("menu");
 
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::M)
+    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::M) {
         consoleCommands();
-    if(event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left){
-        if(currentTool == 1)
-            penEnabled();
-        else if(currentTool == 2)
-                eraserEnabled();
-
     }
+
+
 
 
     rightPanel.processEvents(event);
@@ -162,12 +149,15 @@ void EditorState::onEvent(const sf::Event &event)
     tileSetButton.processEvents(event);
 
     layerList.processEvents(event);
+
 }
+
 int EditorState::getTool()
 {
     return currentTool;
 
 }
+
 void EditorState::consoleCommands()
 {
     int option;
@@ -195,7 +185,7 @@ void EditorState::consoleCommands()
 
         system("CLS");
         std::cout << "the current Layer is " << (map.getLayerSize() - 1) << "." << std::endl;
-        std::cout << "what do you want to do next?\n1. Resize Layer\n2.Fill Layer\n3.Set LayerGrid Enabled or Disabled." << std::endl;
+        std::cout << "what do you want to do next?\n1. Resize Layer\n2.Fill Layer" << std::endl;
         std::cin >> option;
 
         if (option == 1) {
@@ -215,52 +205,8 @@ void EditorState::consoleCommands()
             map.fillLayer((map.getLayerSize() - 1), tileid);
             std::cout << "Layer filled." << std::endl;
         }
-        else if(option == 3)
-        {
-          int yesno, layer;
 
-          std::cout << "What Layer?" << std::endl;
-          std::cin >> layer;
-          std::cout << "Do you want to enable or disable it?\n1. Yes\n2. No" << std::endl;
-          std::cin >> yesno;
-
-          if(yesno == 1)
-              map.setLayerGridEnabled(layer, true);
-          else if(yesno == 2)
-              map.setLayerGridEnabled(layer, false);
-        }
     }
-}
-void EditorState::penEnabled(){
-
-       cx = camera.getCenter().x;
-       cy = camera.getCenter().y;
-
-       tx = (sf::Mouse::getPosition(graphics::window).x + (cx - ((graphics::window.getSize().x) / 2))) / GRID_SIZE;
-       ty = (sf::Mouse::getPosition(graphics::window).y + (cy - ((graphics::window.getSize().y) /2))) / GRID_SIZE;
-
-           map.setTile(0, tx, ty, 1);
-       }
-void EditorState::eraserEnabled()
-{
-    cx = camera.getCenter().x;
-    cy = camera.getCenter().y;
-
-    tx = (sf::Mouse::getPosition(graphics::window).x + (cx - ((graphics::window.getSize().x) / 2))) / GRID_SIZE;
-    ty = (sf::Mouse::getPosition(graphics::window).y + (cy - ((graphics::window.getSize().y) /2))) / GRID_SIZE;
-
-        map.setTile(0, tx, ty, 0);
-}
-void EditorState::fillEnabled()
-{
 
 
 }
-void EditorState::handEnabled()
-{
-
-
-}
-
-
-
