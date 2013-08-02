@@ -16,8 +16,9 @@ public:
     void display(sf::RenderTarget &target);
     void processEvents(const sf::Event &event);
 
-private:
     sf::RectangleShape rect;
+
+private:
     sf::Text layername;
     IconButton showlayer;
     IconButton showgrid;

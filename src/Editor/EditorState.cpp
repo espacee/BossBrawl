@@ -151,7 +151,7 @@ void EditorState::onUpdate()
         stateDriver::setState("menu");
 
     //_______ Tool Selection ___________  //
-    if(penButton.isReleased()){
+    if(penButton.isReleased() || penButton.isPressed() ){
         currentTool = 1;
         penButton.isToggled();
         eraserButton.untoggle();
@@ -159,7 +159,7 @@ void EditorState::onUpdate()
         handButton.untoggle();
         std::cout << "Current Tool: " << currentTool << std::endl;
     }
-    if(eraserButton.isReleased()){
+    if(eraserButton.isReleased() || eraserButton.isPressed()){
         currentTool = 2;
         eraserButton.isToggled();
         penButton.untoggle();
@@ -167,7 +167,7 @@ void EditorState::onUpdate()
         handButton.untoggle();
         std::cout << "Current Tool: " << currentTool << std::endl;
     }
-    if(fillButton.isReleased()){
+    if(fillButton.isReleased() || fillButton.isPressed()){
         currentTool = 3;
         fillButton.isToggled();
         eraserButton.untoggle();
@@ -175,7 +175,7 @@ void EditorState::onUpdate()
         handButton.untoggle();
         std::cout << "Current Tool: " << currentTool << std::endl;
     }
-    if(handButton.isReleased()){
+    if(handButton.isReleased() || handButton.isPressed()){
         currentTool = 4;
         handButton.isToggled();
         eraserButton.untoggle();
@@ -188,12 +188,12 @@ void EditorState::onUpdate()
 
     //_______ Right Panel _________________//
 
-    if(layersTab.isReleased())
+    if(layersTab.isReleased() || layersTab.isPressed())
     {
         tabs = 1;
         objectsTab.untoggle();
     }
-    if(objectsTab.isReleased())
+    if(objectsTab.isReleased() || objectsTab.isPressed())
     {
         tabs = 2;
         layersTab.untoggle();
