@@ -15,7 +15,7 @@ LayerSettings::LayerSettings()
     more.setText(">>");
     more.setTextColor(sf::Color::White);
     more.setHeight(rect.getSize().y);
-    more.setWidth(30);
+    more.setWidth(25);
     more.setCharacterSize(20);
 
     showlayer.setToggleable(true);
@@ -33,13 +33,12 @@ void LayerSettings::update()
     layername.setPosition(rect.getPosition().x + 40, rect.getPosition().y + 15);
     showlayer.setPosition(rect.getPosition().x + 60, rect.getPosition().y + 50);
     showgrid.setPosition(rect.getPosition().x + 100, rect.getPosition().y + 50);
-    more.setPosition(rect.getPosition().x +(rect.getSize().x / 7)*6, rect.getPosition().y );
+    more.setPosition(rect.getPosition().x +(rect.getSize().x / 7)*6 + 5, rect.getPosition().y );
 
 }
 
 void LayerSettings::display(sf::RenderTarget &target)
 {
-    Widget::display(target);
     update();
 
     target.draw(rect);
@@ -48,7 +47,6 @@ void LayerSettings::display(sf::RenderTarget &target)
     showlayer.display(target);
     showgrid.display(target);
     more.display(target);
-   // text button can't be displayed properly.
 }
 
 void LayerSettings::processEvents(const sf::Event &event)
