@@ -33,6 +33,8 @@ private:
     int currentTool;
     int cx, cy, tx, ty;
 
+    bool buttonPressed;
+
     sf::View camera;
     TileMap map;
 

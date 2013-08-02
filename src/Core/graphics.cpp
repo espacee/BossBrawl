@@ -15,7 +15,8 @@ std::string m_title;
 std::vector<sf::Vector2i> m_resolutionModes = {
     {800, 600},
     {1000, 800},
-    {1280, 720}
+    {1280, 720},
+    {1920, 1080}
 };
 
 void init()

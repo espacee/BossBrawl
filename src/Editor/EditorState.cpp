@@ -190,8 +190,13 @@ void EditorState::onEvent(const sf::Event &event)
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::T)
         map.tilesdrawn();
     if(event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
-        tileSelector();
+        buttonPressed = true;
+    if(event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left)
+        buttonPressed = false;
 
+    if(buttonPressed == true)
+        if(event.type == sf::Event::MouseMoved && event.MouseMoved )
+            tileSelector();
 
     backButton.processEvents(event);
     newButton.processEvents(event);
@@ -215,7 +220,6 @@ void EditorState::tileSelector()
 
     if(currentTool == 4)
         handTool();
-
 }
 void EditorState::penTool()
 {
