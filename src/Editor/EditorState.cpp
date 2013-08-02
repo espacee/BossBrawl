@@ -22,6 +22,8 @@ EditorState::EditorState()
     eraserButton.setToggleable(true);
     fillButton.setToggleable(true);
     handButton.setToggleable(true);
+
+
 }
 
 void EditorState::onSet()
@@ -103,6 +105,8 @@ void EditorState::onSet()
     layersTab.setToggleable(true);
     objectsTab.setToggleable(true);
 
+    layersTab.toggle();
+
     layersTab.setText("Layers");
     objectsTab.setText("Objects");
 
@@ -120,6 +124,9 @@ void EditorState::onSet()
 
     layersTab.setColorScheme(sf::Color(130, 130, 130), sf::Color(0, 170, 240), sf::Color::White);
     objectsTab.setColorScheme(sf::Color(130, 130, 130), sf::Color(0, 170, 240), sf::Color::White);
+
+
+    defaultlayer.rect.setPosition(rightPanel.getPosition().x, (rightPanel.getPosition().y + layersTab.getHeight() + 10));
 
     //_______ Right Panel _________________//
 }
@@ -178,6 +185,7 @@ void EditorState::onUpdate()
     }
     // ______ Tool Selection End __________ //
 
+
     //_______ Right Panel _________________//
 
     if(layersTab.isReleased())
@@ -190,12 +198,6 @@ void EditorState::onUpdate()
         tabs = 2;
         layersTab.untoggle();
     }
-
-
-
-
-
-
     //_______ Right Panel _________________//
 
     testTarget.rotate(5);
@@ -232,11 +234,10 @@ void EditorState::onUpdate()
     layersTab.display(window);
     objectsTab.display(window);
 
-
     //Layers Tab
     if(tabs == 1)
     {
-
+     defaultlayer.display(window);
 
 
 
@@ -249,8 +250,6 @@ void EditorState::onUpdate()
 
 
     }
-
-
     //____Right Panel_____//
 }
 void EditorState::onEvent(const sf::Event &event)
@@ -281,6 +280,7 @@ void EditorState::onEvent(const sf::Event &event)
 
     layersTab.processEvents(event);
     objectsTab.processEvents(event);
+    defaultlayer.processEvents(event);
 
     //____Right Panel_____//
 }

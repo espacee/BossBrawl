@@ -11,6 +11,7 @@
 #include "Gui/Widget.hpp"
 #include "Gui/TextButton.hpp"
 #include "Gui/IconButton.hpp"
+#include "Gui/layerSettings.hpp"
 
 /**
  * @brief The Editor state
@@ -62,11 +63,10 @@ private:
     IconButton handButton;
 
     //_____ Right Panel______//
-
-    TextButton layersTab;
     TextButton objectsTab;
+    TextButton layersTab;
 
+    LayerSettings defaultlayer;
     //______ Right Panel ________//
 };
-
 #endif // EDITOR_EDITORSTATE_HPP

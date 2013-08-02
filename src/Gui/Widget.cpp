@@ -262,6 +262,10 @@ void Widget::untoggle()
 {
     toggled = false;
 }
+void Widget::toggle()
+{
+    toggled = true;
+}
 
 void Widget::setActive(bool yesno)
 {
