@@ -22,8 +22,6 @@ EditorState::EditorState()
     eraserButton.setToggleable(true);
     fillButton.setToggleable(true);
     handButton.setToggleable(true);
-
-
 }
 
 void EditorState::onSet()
@@ -50,7 +48,7 @@ void EditorState::onSet()
 
     rightPanel.setPosition(graphics::window.getSize().x-200-4,70);
     rightPanel.setSize(sf::Vector2f(200,graphics::window.getSize().y-rightPanel.getPosition().y-24));
-    rightPanel.setFillColor(sf::Color(45,40,40));
+    rightPanel.setFillColor(sf::Color::White);
 
     backgroundTop.setPosition(0,0);
     backgroundTop.setSize(sf::Vector2f(graphics::window.getSize().x, topPanel.getPosition().y));
@@ -98,6 +96,32 @@ void EditorState::onSet()
     eraserButton.setPosition((leftPanel.getPosition().x + 3),(penButton.getY() + eraserButton.getWidth() + 5));
     fillButton.setPosition((leftPanel.getPosition().x + 3),(eraserButton.getY() + fillButton.getWidth() + 5));
     handButton.setPosition((leftPanel.getPosition().x + 3),(fillButton.getY() + handButton.getWidth() + 5));
+
+    //_______ Right Panel _________________//
+     tabs = 1;
+
+    layersTab.setToggleable(true);
+    objectsTab.setToggleable(true);
+
+    layersTab.setText("Layers");
+    objectsTab.setText("Objects");
+
+    layersTab.setTextColor(sf::Color(74, 70, 70));
+    objectsTab.setTextColor(sf::Color(74, 70, 70));
+
+    layersTab.setSize((rightPanel.getSize().x /2), 40);
+    objectsTab.setSize((rightPanel.getSize().x /2), 40);
+
+    layersTab.setPosition(rightPanel.getPosition().x, rightPanel.getPosition().y);
+    objectsTab.setPosition((rightPanel.getPosition().x) + layersTab.getWidth(), rightPanel.getPosition().y);
+
+    layersTab.setCharacterSize(25);
+    objectsTab.setCharacterSize(25);
+
+    layersTab.setColorScheme(sf::Color(130, 130, 130), sf::Color(0, 170, 240), sf::Color::White);
+    objectsTab.setColorScheme(sf::Color(130, 130, 130), sf::Color(0, 170, 240), sf::Color::White);
+
+    //_______ Right Panel _________________//
 }
 void EditorState::onUpdate()
 {
@@ -154,6 +178,26 @@ void EditorState::onUpdate()
     }
     // ______ Tool Selection End __________ //
 
+    //_______ Right Panel _________________//
+
+    if(layersTab.isReleased())
+    {
+        tabs = 1;
+        objectsTab.untoggle();
+    }
+    if(objectsTab.isReleased())
+    {
+        tabs = 2;
+        layersTab.untoggle();
+    }
+
+
+
+
+
+
+    //_______ Right Panel _________________//
+
     testTarget.rotate(5);
     moveViewTowardsPoint(camera, testTarget.getPosition().x, testTarget.getPosition().y, 0.05f);
 
@@ -182,6 +226,32 @@ void EditorState::onUpdate()
     eraserButton.display(window);
     fillButton.display(window);
     handButton.display(window);
+
+    //___Right Panel____//
+
+    layersTab.display(window);
+    objectsTab.display(window);
+
+
+    //Layers Tab
+    if(tabs == 1)
+    {
+
+
+
+
+    }
+    //Objects Tab
+    if(tabs == 2)
+    {
+
+
+
+
+    }
+
+
+    //____Right Panel_____//
 }
 void EditorState::onEvent(const sf::Event &event)
 {
@@ -206,6 +276,13 @@ void EditorState::onEvent(const sf::Event &event)
     eraserButton.processEvents(event);
     fillButton.processEvents(event);
     handButton.processEvents(event);
+
+    //___Right Panel____//
+
+    layersTab.processEvents(event);
+    objectsTab.processEvents(event);
+
+    //____Right Panel_____//
 }
 void EditorState::tileSelector()
 {
@@ -241,8 +318,13 @@ void EditorState::eraserTool()
 }
 void EditorState::fillTool()
 {
+    cx = camera.getCenter().x;
+    cy = camera.getCenter().y;
+    tx = (sf::Mouse::getPosition(graphics::window).x + (cx - (graphics::window.getSize().x /2))) / GRID_SIZE;
+    ty = (sf::Mouse::getPosition(graphics::window).y + (cy - (graphics::window.getSize().y /2))) / GRID_SIZE;
 
-    map.fillLayer(0,1);
+    if(map.tileExists(tx, ty, 0))
+         map.fillLayer(0,1);
 }
 void EditorState::handTool()
 {

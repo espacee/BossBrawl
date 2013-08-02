@@ -30,8 +30,7 @@ public:
     void handTool();
 
 private:
-    int currentTool;
-    int cx, cy, tx, ty;
+    int currentTool, cx, cy, tx, ty, tabs;
 
     bool buttonPressed;
 
@@ -61,6 +60,13 @@ private:
     IconButton eraserButton;
     IconButton fillButton;
     IconButton handButton;
+
+    //_____ Right Panel______//
+
+    TextButton layersTab;
+    TextButton objectsTab;
+
+    //______ Right Panel ________//
 };
 
 #endif // EDITOR_EDITORSTATE_HPP
