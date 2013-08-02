@@ -189,6 +189,8 @@ void EditorState::onEvent(const sf::Event &event)
         stateDriver::setState("menu");
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::T)
         map.tilesdrawn();
+    if(event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
+        tileSelector();
 
 
     backButton.processEvents(event);
@@ -199,4 +201,48 @@ void EditorState::onEvent(const sf::Event &event)
     eraserButton.processEvents(event);
     fillButton.processEvents(event);
     handButton.processEvents(event);
+}
+void EditorState::tileSelector()
+{
+    if(currentTool == 1)
+        penTool();
+
+    if(currentTool ==2)
+        eraserTool();
+
+    if(currentTool == 3)
+        fillTool();
+
+    if(currentTool == 4)
+        handTool();
+
+}
+void EditorState::penTool()
+{
+     cx = camera.getCenter().x;
+     cy = camera.getCenter().y;
+     tx = (sf::Mouse::getPosition(graphics::window).x + (cx - (graphics::window.getSize().x /2))) / GRID_SIZE;
+     ty = (sf::Mouse::getPosition(graphics::window).y + (cy - (graphics::window.getSize().y /2))) / GRID_SIZE;
+
+     map.setTile(0, tx, ty, 1);
+}
+void EditorState::eraserTool()
+{
+    cx = camera.getCenter().x;
+    cy = camera.getCenter().y;
+    tx = (sf::Mouse::getPosition(graphics::window).x + (cx - (graphics::window.getSize().x /2))) / GRID_SIZE;
+    ty = (sf::Mouse::getPosition(graphics::window).y + (cy - (graphics::window.getSize().y /2))) / GRID_SIZE;
+
+    map.setTile(0, tx, ty, 0);
+}
+void EditorState::fillTool()
+{
+
+    map.fillLayer(0,1);
+}
+void EditorState::handTool()
+{
+
+
+
 }

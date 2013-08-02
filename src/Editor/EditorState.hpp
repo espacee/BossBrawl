@@ -23,8 +23,15 @@ public:
     virtual void onUpdate();
     virtual void onEvent(const sf::Event &event);
 
+    void tileSelector();
+    void penTool();
+    void eraserTool();
+    void fillTool();
+    void handTool();
+
 private:
     int currentTool;
+    int cx, cy, tx, ty;
 
     sf::View camera;
     TileMap map;
