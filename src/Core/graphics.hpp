@@ -10,7 +10,8 @@ namespace graphics
 {
 
 extern sf::RenderWindow window;
-extern sf::Font font;
+extern sf::Font fontarial;
+extern sf::Font fontbasiclight;
 
 void init();
 void setResolutionMode(unsigned int index);

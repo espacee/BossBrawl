@@ -24,6 +24,11 @@ private:
     TextButton more;
     sf::RectangleShape rectmore;
     sf::RectangleShape rect;
+
+    /** More Layer Options **/
+
+    sf::Text moretitle;
+
     bool moreoptions;
 };
 

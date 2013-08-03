@@ -9,7 +9,8 @@ namespace graphics
 {
 
 sf::RenderWindow window;
-sf::Font font;
+sf::Font fontarial;
+sf::Font fontbasiclight;
 
 std::string m_title;
 std::vector<sf::Vector2i> m_resolutionModes = {
@@ -24,7 +25,8 @@ void init()
     m_title = "BossBrawl";
     setResolutionMode(config::resolutionMode);
 
-    font.loadFromFile("res/font/arial.ttf");
+    fontarial.loadFromFile("res/font/arial.ttf");
+     fontbasiclight.loadFromFile("res/font/basiclight.ttf");
 }
 
 void setResolutionMode(unsigned int index)

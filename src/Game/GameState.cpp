@@ -9,7 +9,7 @@ GameState::GameState()
 {
     camera = sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y));
 
-    fpsText.setFont(graphics::font);
+    fpsText.setFont(graphics::fontbasiclight);
 
     for(int i = 0; i < 200; i++)
     {

@@ -4,7 +4,7 @@
 
 TextButton::TextButton()
 {
-    text.setFont(graphics::font);
+    text.setFont(graphics::fontbasiclight);
     setCharacterSize(16);
     setText(" ");
     horizontalPadding = 40;

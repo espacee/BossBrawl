@@ -11,7 +11,7 @@ OptionsMenuState::OptionsMenuState()
     screenSizeButton.setSize(300, 35);
     screenSizeButton.setPosition(15, 220);
 
-    windowLabel.setFont(graphics::font);
+    windowLabel.setFont(graphics::fontbasiclight);
     windowLabel.setCharacterSize(14);
     windowLabel.setPosition(20, 40);
     windowLabel.setString("Window size");
