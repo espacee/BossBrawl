@@ -153,7 +153,9 @@ void EditorState::onUpdate()
         stateDriver::setState("menu");
 
     //_______ Tool Selection ___________  //
-    if(penButton.isReleased() || penButton.isPressed() ){
+
+    // .isPressed() instead of .isReleased() fixes some selection bugs.
+    if(penButton.isPressed()){
         currentTool = 1;
         penButton.isToggled();
         eraserButton.untoggle();
@@ -161,7 +163,7 @@ void EditorState::onUpdate()
         handButton.untoggle();
         std::cout << "Current Tool: " << currentTool << std::endl;
     }
-    if(eraserButton.isReleased() || eraserButton.isPressed()){
+    if(eraserButton.isPressed()){
         currentTool = 2;
         eraserButton.isToggled();
         penButton.untoggle();
@@ -169,7 +171,7 @@ void EditorState::onUpdate()
         handButton.untoggle();
         std::cout << "Current Tool: " << currentTool << std::endl;
     }
-    if(fillButton.isReleased() || fillButton.isPressed()){
+    if(fillButton.isPressed()){
         currentTool = 3;
         fillButton.isToggled();
         eraserButton.untoggle();
@@ -177,7 +179,7 @@ void EditorState::onUpdate()
         handButton.untoggle();
         std::cout << "Current Tool: " << currentTool << std::endl;
     }
-    if(handButton.isReleased() || handButton.isPressed()){
+    if(handButton.isPressed()){
         currentTool = 4;
         handButton.isToggled();
         eraserButton.untoggle();
