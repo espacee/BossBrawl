@@ -7,25 +7,24 @@
 
 
 
-class LayerSettings : public Widget
+class layerSettings : public Widget
 {
 public:
-    LayerSettings();
+    layerSettings();
 
     void update();
     void display(sf::RenderTarget &target);
     void processEvents(const sf::Event &event);
 
-    sf::RectangleShape rect;
-
+    bool isMoreOptionsActive();
 private:
     sf::Text layername;
     IconButton showlayer;
     IconButton showgrid;
     TextButton more;
-
-private:
-
+    sf::RectangleShape rectmore;
+    sf::RectangleShape rect;
+    bool moreoptions;
 };
 
 #endif // LAYERSETTINGS_HPP

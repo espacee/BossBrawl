@@ -22,8 +22,6 @@ EditorState::EditorState()
     eraserButton.setToggleable(true);
     fillButton.setToggleable(true);
     handButton.setToggleable(true);
-
-
 }
 
 void EditorState::onSet()
@@ -98,9 +96,9 @@ void EditorState::onSet()
     eraserButton.setPosition((leftPanel.getPosition().x + 3),(penButton.getY() + eraserButton.getWidth() + 5));
     fillButton.setPosition((leftPanel.getPosition().x + 3),(eraserButton.getY() + fillButton.getWidth() + 5));
     handButton.setPosition((leftPanel.getPosition().x + 3),(fillButton.getY() + handButton.getWidth() + 5));
-
     //_______ Right Panel _________________//
-     tabs = 1;
+
+    tabs = 1;
 
     layersTab.setToggleable(true);
     objectsTab.setToggleable(true);
@@ -124,10 +122,6 @@ void EditorState::onSet()
 
     layersTab.setColorScheme(sf::Color(130, 130, 130), sf::Color(0, 170, 240), sf::Color::White);
     objectsTab.setColorScheme(sf::Color(130, 130, 130), sf::Color(0, 170, 240), sf::Color::White);
-
-
-    defaultlayer.rect.setPosition(rightPanel.getPosition().x, (rightPanel.getPosition().y + layersTab.getHeight() + 10));
-
     //_______ Right Panel _________________//
 }
 void EditorState::onUpdate()
@@ -145,7 +139,6 @@ void EditorState::onUpdate()
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         testTarget.move(-10, 0);
-
 
     if(backButton.isReleased())
         stateDriver::setState("menu");
@@ -184,7 +177,6 @@ void EditorState::onUpdate()
         std::cout << "Current Tool: " << currentTool << std::endl;
     }
     // ______ Tool Selection End __________ //
-
 
     //_______ Right Panel _________________//
 
@@ -237,9 +229,7 @@ void EditorState::onUpdate()
     //Layers Tab
     if(tabs == 1)
     {
-     defaultlayer.display(window);
-
-
+        layer.display(window);
 
     }
     //Objects Tab
@@ -247,14 +237,12 @@ void EditorState::onUpdate()
     {
 
 
-
-
     }
     //____Right Panel_____//
 }
 void EditorState::onEvent(const sf::Event &event)
 {
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
+    if ((event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) && layer.isMoreOptionsActive() == false)
         stateDriver::setState("menu");
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::T)
         map.tilesdrawn();
@@ -280,8 +268,7 @@ void EditorState::onEvent(const sf::Event &event)
 
     layersTab.processEvents(event);
     objectsTab.processEvents(event);
-    defaultlayer.processEvents(event);
-
+    layer.processEvents(event);
     //____Right Panel_____//
 }
 void EditorState::tileSelector()

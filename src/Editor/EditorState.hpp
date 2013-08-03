@@ -32,6 +32,7 @@ public:
 
 private:
     int currentTool, cx, cy, tx, ty, tabs;
+    int totalLayers, currentLayer;
 
     bool buttonPressed;
 
@@ -66,7 +67,7 @@ private:
     TextButton objectsTab;
     TextButton layersTab;
 
-    LayerSettings defaultlayer;
+    layerSettings layer;
     //______ Right Panel ________//
 };
 #endif // EDITOR_EDITORSTATE_HPP
