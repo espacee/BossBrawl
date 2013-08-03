@@ -16,11 +16,11 @@ layerSettings::layerSettings()
     showlayer.setIcon("res/img/GUI/layer.png");
     showgrid.setIcon("res/img/GUI/grid.png");
 
-    more.setText(">>");
+    more.setText("More");
     more.setTextColor(sf::Color::White);
     more.setHeight(rect.getSize().y);
-    more.setWidth(25);
-    more.setCharacterSize(20);
+    more.setWidth(30);
+    more.setCharacterSize(15);
 
     showlayer.setToggleable(true);
     showgrid.setToggleable(true);
