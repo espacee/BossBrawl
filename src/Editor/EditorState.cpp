@@ -123,6 +123,15 @@ void EditorState::onSet()
     layersTab.setColorScheme(sf::Color(130, 130, 130), sf::Color(0, 170, 240), sf::Color::White);
     objectsTab.setColorScheme(sf::Color(130, 130, 130), sf::Color(0, 170, 240), sf::Color::White);
     //_______ Right Panel _________________//
+
+    //_______ Top Panel ___________________//
+
+    currentTile = 1;
+
+    selecttile.setGeometry((topPanel.getPosition().x + 10),( topPanel.getPosition().y + 5 ), 150, 20);
+
+
+    //_______Top Panel______________________//
 }
 void EditorState::onUpdate()
 {
@@ -192,6 +201,17 @@ void EditorState::onUpdate()
     }
     //_______ Right Panel _________________//
 
+    //_________ Top panel__________________//
+    std::string currenttiletext = "Current Tile ID: ";
+    std::string currenttile = std::to_string(currentTile);
+    selecttile.setText(currenttiletext + currenttile);
+
+    if(selecttile.isReleased()){
+        std::cout << "What Tile ID?" << std::endl;
+        std::cin >> currentTile;
+    }
+    //____________Top Panel________________//
+
     testTarget.rotate(5);
     moveViewTowardsPoint(camera, testTarget.getPosition().x, testTarget.getPosition().y, 0.05f);
 
@@ -239,6 +259,12 @@ void EditorState::onUpdate()
 
     }
     //____Right Panel_____//
+
+    //______Top Panel_______//
+
+    selecttile.display(window);
+
+    //_________ Top Panel _____//
 }
 void EditorState::onEvent(const sf::Event &event)
 {
@@ -251,9 +277,11 @@ void EditorState::onEvent(const sf::Event &event)
     if(event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left)
         buttonPressed = false;
 
-    if(buttonPressed == true)
+    if(buttonPressed == true){
+        tileSelector();
         if(event.type == sf::Event::MouseMoved && event.MouseMoved )
             tileSelector();
+    }
 
     backButton.processEvents(event);
     newButton.processEvents(event);
@@ -270,6 +298,11 @@ void EditorState::onEvent(const sf::Event &event)
     objectsTab.processEvents(event);
     layer.processEvents(event);
     //____Right Panel_____//
+
+    //____Top Panel____//
+
+    selecttile.processEvents(event);
+    //____Top Panel_____//
 }
 void EditorState::tileSelector()
 {
@@ -292,7 +325,7 @@ void EditorState::penTool()
      tx = (sf::Mouse::getPosition(graphics::window).x + (cx - (graphics::window.getSize().x /2))) / GRID_SIZE;
      ty = (sf::Mouse::getPosition(graphics::window).y + (cy - (graphics::window.getSize().y /2))) / GRID_SIZE;
 
-     map.setTile(0, tx, ty, 1);
+     map.setTile(0, tx, ty, currentTile);
 }
 void EditorState::eraserTool()
 {
@@ -311,7 +344,7 @@ void EditorState::fillTool()
     ty = (sf::Mouse::getPosition(graphics::window).y + (cy - (graphics::window.getSize().y /2))) / GRID_SIZE;
 
     if(map.tileExists(tx, ty, 0))
-         map.fillLayer(0,1);
+         map.fillLayer(0, currentTile);
 }
 void EditorState::handTool()
 {

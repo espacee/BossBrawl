@@ -33,6 +33,7 @@ public:
 private:
     int currentTool, cx, cy, tx, ty, tabs;
     int totalLayers, currentLayer;
+    int currentTile;
 
     bool buttonPressed;
 
@@ -69,5 +70,9 @@ private:
 
     layerSettings layer;
     //______ Right Panel ________//
+    //_______ Top Panel _________//
+    TextButton selecttile;
+
+    //_________ Top Panel _________//
 };
 #endif // EDITOR_EDITORSTATE_HPP
