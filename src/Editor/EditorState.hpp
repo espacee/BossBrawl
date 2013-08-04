@@ -68,7 +68,7 @@ private:
     TextButton objectsTab;
     TextButton layersTab;
 
-    layerSettings layer;
+    layerSettings layertest;
     //______ Right Panel ________//
     //_______ Top Panel _________//
     TextButton selecttile;

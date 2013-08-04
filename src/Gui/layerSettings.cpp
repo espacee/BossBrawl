@@ -16,7 +16,7 @@ layerSettings::layerSettings()
     showlayer.setIcon("res/img/GUI/layer.png");
     showgrid.setIcon("res/img/GUI/grid.png");
 
-    more.setText("More");
+    more.setText(">>");
     more.setTextColor(sf::Color::White);
     more.setHeight(rect.getSize().y);
     more.setWidth(30);
@@ -36,18 +36,17 @@ layerSettings::layerSettings()
     moretitle.setString("Layer Options");
     moretitle.setFont(graphics::fontbasiclight);
 
+    rect.setPosition(graphics::window.getSize().x-200-4, 110);
 
     update();
 }
 
 void layerSettings::update()
 {
-    rect.setPosition(graphics::window.getSize().x-200-4, 110);
     layername.setPosition(rect.getPosition().x + 40, rect.getPosition().y + 15);
     showlayer.setPosition(rect.getPosition().x + 60, rect.getPosition().y + 50);
     showgrid.setPosition(rect.getPosition().x + 100, rect.getPosition().y + 50);
     more.setPosition(rect.getPosition().x +(rect.getSize().x / 7)*6 + 5, rect.getPosition().y );
-
 
     /** More Layer Options **/
      rectmore.setPosition((graphics::window.getSize().x /2) - (rectmore.getSize().x /2), (graphics::window.getSize().y / 2) - (rectmore.getSize().y /2));
@@ -90,6 +89,10 @@ void layerSettings::processEvents(const sf::Event &event)
 bool layerSettings::isMoreOptionsActive()
 {
     return moreoptions;
+}
+sf::Vector2f layerSettings::getPositionRect()
+{
+    return sf::Vector2f(rect.getPosition().x, rect.getPosition().y);
 }
 
 

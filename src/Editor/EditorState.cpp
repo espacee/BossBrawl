@@ -97,7 +97,6 @@ void EditorState::onSet()
     fillButton.setPosition((leftPanel.getPosition().x + 3),(eraserButton.getY() + fillButton.getWidth() + 5));
     handButton.setPosition((leftPanel.getPosition().x + 3),(fillButton.getY() + handButton.getWidth() + 5));
     //_______ Right Panel _________________//
-
     tabs = 1;
 
     layersTab.setToggleable(true);
@@ -191,12 +190,12 @@ void EditorState::onUpdate()
 
     //_______ Right Panel _________________//
 
-    if(layersTab.isReleased() || layersTab.isPressed())
+    if(layersTab.isPressed())
     {
         tabs = 1;
         objectsTab.untoggle();
     }
-    if(objectsTab.isReleased() || objectsTab.isPressed())
+    if(objectsTab.isPressed())
     {
         tabs = 2;
         layersTab.untoggle();
@@ -251,8 +250,7 @@ void EditorState::onUpdate()
     //Layers Tab
     if(tabs == 1)
     {
-        layer.display(window);
-
+       layertest.display(window);
     }
     //Objects Tab
     if(tabs == 2)
@@ -270,7 +268,7 @@ void EditorState::onUpdate()
 }
 void EditorState::onEvent(const sf::Event &event)
 {
-    if ((event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) && layer.isMoreOptionsActive() == false)
+    if ((event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) &&  layertest.isMoreOptionsActive() == false)
         stateDriver::setState("menu");
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::T)
         map.tilesdrawn();
@@ -278,6 +276,7 @@ void EditorState::onEvent(const sf::Event &event)
         buttonPressed = true;
     if(event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left)
         buttonPressed = false;
+
 
     if(buttonPressed == true){
         tileSelector();
@@ -298,11 +297,12 @@ void EditorState::onEvent(const sf::Event &event)
 
     layersTab.processEvents(event);
     objectsTab.processEvents(event);
-    layer.processEvents(event);
+
+    layertest.processEvents(event);
+
     //____Right Panel_____//
 
     //____Top Panel____//
-
     selecttile.processEvents(event);
     //____Top Panel_____//
 }

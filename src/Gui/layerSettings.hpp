@@ -5,8 +5,6 @@
 #include "Gui/IconButton.hpp"
 #include "Gui/TextButton.hpp"
 
-
-
 class layerSettings : public Widget
 {
 public:
@@ -17,13 +15,15 @@ public:
     void processEvents(const sf::Event &event);
 
     bool isMoreOptionsActive();
+    sf::Vector2f getPositionRect();
+
+    sf::RectangleShape rect;
 private:
     sf::Text layername;
     IconButton showlayer;
     IconButton showgrid;
     TextButton more;
     sf::RectangleShape rectmore;
-    sf::RectangleShape rect;
 
     /** More Layer Options **/
 
