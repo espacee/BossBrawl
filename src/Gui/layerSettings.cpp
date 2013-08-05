@@ -8,6 +8,7 @@
 layerSettings::layerSettings()
 {
 
+    totallayersettings = 1;
     moreoptions = false;
 
     rect.setSize(sf::Vector2f(200, 90));
@@ -43,6 +44,11 @@ layerSettings::layerSettings()
 
 void layerSettings::update()
 {
+
+   // if(totallayersettings == totallayersettings + 1)
+     //   rect.setPosition(rect.getPosition().x, rect.getPosition().y + rect.getSize().y);
+
+
     layername.setPosition(rect.getPosition().x + 40, rect.getPosition().y + 15);
     showlayer.setPosition(rect.getPosition().x + 60, rect.getPosition().y + 50);
     showgrid.setPosition(rect.getPosition().x + 100, rect.getPosition().y + 50);
@@ -93,6 +99,23 @@ bool layerSettings::isMoreOptionsActive()
 sf::Vector2f layerSettings::getPositionRect()
 {
     return sf::Vector2f(rect.getPosition().x, rect.getPosition().y);
+}
+unsigned int layerSettings::getTotalLayerSettings()
+{
+
+    return totallayersettings;
+
+}
+void layerSettings::addTotalLayerSettings()
+{
+
+    totallayersettings = totallayersettings + 1;
+
+}
+void layerSettings::popTotalLayerSettings()
+{
+    totallayersettings = totallayersettings - 1;
+
 }
 
 

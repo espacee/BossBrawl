@@ -12,6 +12,7 @@ EditorState::EditorState()
 
     map.setTile(0,1,1,1); map.setTile(0,2,1,2); map.setTile(0,3,1,3); map.setTile(0,4,1,4); map.setTile(0,5,1,5);
 
+
     camera = sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y));
     testTargetTexture.loadFromFile("res/img/target.png");
     testTargetTexture.setSmooth(true);
@@ -121,6 +122,9 @@ void EditorState::onSet()
 
     layersTab.setColorScheme(sf::Color(130, 130, 130), sf::Color(0, 170, 240), sf::Color::White);
     objectsTab.setColorScheme(sf::Color(130, 130, 130), sf::Color(0, 170, 240), sf::Color::White);
+
+    layersettings.push_back(layerinfo);
+
     //_______ Right Panel _________________//
 
     //_______ Top Panel ___________________//
@@ -250,11 +254,17 @@ void EditorState::onUpdate()
     //Layers Tab
     if(tabs == 1)
     {
-       layertest.display(window);
+        for(int i = 0; i < map.getLayerSize(); i++)
+        {
+            layersettings[i]->display(window);
+
+        }
+
     }
     //Objects Tab
     if(tabs == 2)
     {
+
 
 
     }
@@ -268,7 +278,7 @@ void EditorState::onUpdate()
 }
 void EditorState::onEvent(const sf::Event &event)
 {
-    if ((event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) &&  layertest.isMoreOptionsActive() == false)
+    if ((event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)/* &&  layertest.isMoreOptionsActive() == false */)
         stateDriver::setState("menu");
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::T)
         map.tilesdrawn();
@@ -276,6 +286,12 @@ void EditorState::onEvent(const sf::Event &event)
         buttonPressed = true;
     if(event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left)
         buttonPressed = false;
+    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::L)
+    {
+       // map.addLayer();
+        //totalLayerSettings.addTotalLayerSettings();
+
+    }
 
 
     if(buttonPressed == true){
@@ -298,7 +314,12 @@ void EditorState::onEvent(const sf::Event &event)
     layersTab.processEvents(event);
     objectsTab.processEvents(event);
 
-    layertest.processEvents(event);
+
+    for(int i = 0; i < map.getLayerSize(); i++)
+    {
+        layersettings[i]->processEvents(event);
+
+    }
 
     //____Right Panel_____//
 

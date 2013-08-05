@@ -2,6 +2,7 @@
 #define EDITOR_EDITORSTATE_HPP
 
 #include <SFML/Graphics.hpp>
+#include <vector>
 
 #include "Core/State.hpp"
 
@@ -68,7 +69,10 @@ private:
     TextButton objectsTab;
     TextButton layersTab;
 
-    layerSettings layertest;
+    layerSettings totalLayerSettings;
+
+    std::vector < layerSettings *> layersettings;
+    layerSettings *layerinfo = new layerSettings[10];
     //______ Right Panel ________//
     //_______ Top Panel _________//
     TextButton selecttile;

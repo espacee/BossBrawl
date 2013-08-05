@@ -5,6 +5,7 @@
 #include "Gui/IconButton.hpp"
 #include "Gui/TextButton.hpp"
 
+#include "Map/TileMap.hpp"
 class layerSettings : public Widget
 {
 public:
@@ -17,8 +18,15 @@ public:
     bool isMoreOptionsActive();
     sf::Vector2f getPositionRect();
 
+    unsigned int getTotalLayerSettings();
+    void addTotalLayerSettings();
+    void popTotalLayerSettings();
+
+
     sf::RectangleShape rect;
 private:
+    int totallayersettings;
+
     sf::Text layername;
     IconButton showlayer;
     IconButton showgrid;
@@ -30,6 +38,9 @@ private:
     sf::Text moretitle;
 
     bool moreoptions;
+
+    TileMap map;
+
 };
 
 #endif // LAYERSETTINGS_HPP
