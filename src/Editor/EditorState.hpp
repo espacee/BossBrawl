@@ -77,6 +77,12 @@ private:
     //_______ Top Panel _________//
     TextButton selecttile;
 
+    sf::RectangleShape tilePanel;
+
+    TextButton tilePanelOk;
+    TextButton tilePanelCancel;
+
+    bool tilePanelActive;
     //_________ Top Panel _________//
 };
 #endif // EDITOR_EDITORSTATE_HPP

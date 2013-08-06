@@ -133,6 +133,21 @@ void EditorState::onSet()
 
     selecttile.setGeometry((topPanel.getPosition().x + 10),( topPanel.getPosition().y + 5 ), 150, 20);
 
+    tilePanel.setSize(sf::Vector2f(250,600));
+    tilePanel.setPosition(topPanel.getPosition().x + leftPanel.getSize().x, topPanel.getPosition().y + topPanel.getSize().y);
+    tilePanel.setFillColor(sf::Color(60,60,60,100));
+
+    tilePanelOk.setText("Ok");
+    tilePanelCancel.setText("Cancel");
+
+    tilePanelOk.setSize(60,25);
+    tilePanelCancel.setSize(70,25);
+
+    tilePanelOk.setPosition(tilePanel.getPosition().x +(tilePanel.getSize().x / 2.5*1), tilePanel.getPosition().y + (tilePanel.getSize().y / 60 * 1));
+    tilePanelCancel.setPosition(tilePanelOk.getX() + tilePanelOk.getWidth() + 10, tilePanelOk.getY());
+
+    tilePanelActive = false;
+
 
     //_______Top Panel______________________//
 }
@@ -214,7 +229,9 @@ void EditorState::onUpdate()
     if(selecttile.isReleased()){
         std::cout << "What Tile ID?" << std::endl;
         std::cin >> currentTile;
+        tilePanelActive = !tilePanelActive;
     }
+
     //____________Top Panel________________//
 
     testTarget.rotate(5);
@@ -274,6 +291,12 @@ void EditorState::onUpdate()
 
     selecttile.display(window);
 
+    if(tilePanelActive == true){
+        window.draw(tilePanel);
+        tilePanelOk.display(window);
+        tilePanelCancel.display(window);
+    }
+
     //_________ Top Panel _____//
 }
 void EditorState::onEvent(const sf::Event &event)
@@ -325,6 +348,14 @@ void EditorState::onEvent(const sf::Event &event)
 
     //____Top Panel____//
     selecttile.processEvents(event);
+
+    if(tilePanelActive == true){
+        tilePanelOk.processEvents(event);
+        tilePanelCancel.processEvents(event);
+    }
+
+    if(tilePanelCancel.isReleased())
+        tilePanelActive = false;
     //____Top Panel_____//
 }
 void EditorState::tileSelector()
