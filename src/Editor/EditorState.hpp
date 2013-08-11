@@ -32,22 +32,15 @@ public:
     void handTool();
 
 private:
-    int currentTool, cx, cy, tx, ty, tabs;
-    int totalLayers, currentLayer;
-    int currentTile;
+    int  cx, cy, tx, ty;
+    int currentTool, currentTile;
+
 
     bool buttonPressed;
 
     sf::View camera;
     TileMap map;
 
-    sf::RectangleShape backgroundTop, backgroundRight, backgroundBot, backgroundLeft;
-    sf::RectangleShape topPanel;
-    sf::RectangleShape leftPanel;
-    sf::RectangleShape botBar;
-    sf::RectangleShape rightPanel;
-
-    IconButton backButton;
 
     sf::Texture testTargetTexture;
     sf::Sprite testTarget;
@@ -55,34 +48,6 @@ private:
     sf::Texture iconTexture;
     sf::Sprite icon;
 
-    TextButton newButton;
-    TextButton openButton;
-    TextButton saveButton;
 
-     //_____Tools____________//
-    IconButton penButton;
-    IconButton eraserButton;
-    IconButton fillButton;
-    IconButton handButton;
-
-    //_____ Right Panel______//
-    TextButton objectsTab;
-    TextButton layersTab;
-
-    layerSettings totalLayerSettings;
-
-    std::vector < layerSettings *> layersettings;
-    layerSettings *layerinfo = new layerSettings[10];
-    //______ Right Panel ________//
-    //_______ Top Panel _________//
-    TextButton selecttile;
-
-    sf::RectangleShape tilePanel;
-
-    TextButton tilePanelOk;
-    TextButton tilePanelCancel;
-
-    bool tilePanelActive;
-    //_________ Top Panel _________//
 };
 #endif // EDITOR_EDITORSTATE_HPP

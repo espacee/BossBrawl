@@ -19,10 +19,6 @@ EditorState::EditorState()
     testTarget.setTexture(testTargetTexture);
     testTarget.setOrigin(15, 15);
 
-    penButton.setToggleable(true);
-    eraserButton.setToggleable(true);
-    fillButton.setToggleable(true);
-    handButton.setToggleable(true);
 }
 
 void EditorState::onSet()
@@ -33,123 +29,11 @@ void EditorState::onSet()
     camera = sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y));
     testTarget.setPosition(200,200);
 
-    topPanel.setPosition(4,40);
-    topPanel.setSize(sf::Vector2f(graphics::window.getSize().x-8, 30));
-    topPanel.setFillColor(sf::Color(64,59,59));
 
-    leftPanel.setPosition(4,70);
-    leftPanel.setSize(sf::Vector2f(36,graphics::window.getSize().y-70-4));
-    leftPanel.setFillColor(sf::Color(45,40,40));
-
-    botBar.setPosition(leftPanel.getPosition().x+leftPanel.getSize().x,
-                       leftPanel.getPosition().y+leftPanel.getSize().y-20);
-    botBar.setSize(sf::Vector2f(graphics::window.getSize().x-botBar.getPosition().x-4,
-                                20));
-    botBar.setFillColor(sf::Color(35,30,30));
-
-    rightPanel.setPosition(graphics::window.getSize().x-200-4,70);
-    rightPanel.setSize(sf::Vector2f(200,graphics::window.getSize().y-rightPanel.getPosition().y-24));
-    rightPanel.setFillColor(sf::Color::White);
-
-    backgroundTop.setPosition(0,0);
-    backgroundTop.setSize(sf::Vector2f(graphics::window.getSize().x, topPanel.getPosition().y));
-    backgroundTop.setFillColor(sf::Color(85,79,79));
-
-    backgroundRight.setPosition(topPanel.getPosition().x+topPanel.getSize().x, 0);
-    backgroundRight.setSize(sf::Vector2f(4,graphics::window.getSize().y));
-    backgroundRight.setFillColor(sf::Color(85,79,79));
-
-    backgroundBot.setPosition(0,graphics::window.getSize().y-4);
-    backgroundBot.setSize(sf::Vector2f(graphics::window.getSize().x,4));
-    backgroundBot.setFillColor(sf::Color(85,79,79));
-
-    backgroundLeft.setPosition(0,0);
-    backgroundLeft.setSize(sf::Vector2f(4,graphics::window.getSize().y));
-    backgroundLeft.setFillColor(sf::Color(85,79,79));
-
-    backButton.setIcon("res/img/GUI/back.png");
-    backButton.resetGeometry();
-    backButton.setPosition(graphics::window.getSize().x-backButton.getWidth()-4,4);
-    backButton.setColorScheme(sf::Color(85,79,79), sf::Color(0, 170, 240), sf::Color(0, 80, 170));
-
-    iconTexture.loadFromFile("res/img/GUI/icon.png");
-    icon.setTexture(iconTexture);
-
-    newButton.setText("New");
-    openButton.setText("Open");
-    saveButton.setText("Save");
-    penButton.setIcon("res/img/GUI/pen.png");
-    eraserButton.setIcon("res/img/GUI/eraser.png");
-    fillButton.setIcon("res/img/GUI/fill.png");
-    handButton.setIcon("res/img/GUI/hand.png");
-
-
-    newButton.setSize(140,30);
-    openButton.setSize(newButton.getWidth(), newButton.getHeight());
-    saveButton.setSize(newButton.getWidth(), newButton.getHeight());
-
-
-    newButton.setPosition(40,5);
-    openButton.setPosition(newButton.getX()+newButton.getWidth()+10,newButton.getY());
-    saveButton.setPosition(openButton.getX()+openButton.getWidth()+10, openButton.getY());
-
-    penButton.setPosition((leftPanel.getPosition().x + 3),(leftPanel.getPosition().y  + 5));
-    eraserButton.setPosition((leftPanel.getPosition().x + 3),(penButton.getY() + eraserButton.getWidth() + 5));
-    fillButton.setPosition((leftPanel.getPosition().x + 3),(eraserButton.getY() + fillButton.getWidth() + 5));
-    handButton.setPosition((leftPanel.getPosition().x + 3),(fillButton.getY() + handButton.getWidth() + 5));
-    //_______ Right Panel _________________//
-    tabs = 1;
-
-    layersTab.setToggleable(true);
-    objectsTab.setToggleable(true);
-
-    layersTab.toggle();
-
-    layersTab.setText("Layers");
-    objectsTab.setText("Objects");
-
-    layersTab.setTextColor(sf::Color(74, 70, 70));
-    objectsTab.setTextColor(sf::Color(74, 70, 70));
-
-    layersTab.setSize((rightPanel.getSize().x /2), 40);
-    objectsTab.setSize((rightPanel.getSize().x /2), 40);
-
-    layersTab.setPosition(rightPanel.getPosition().x, rightPanel.getPosition().y);
-    objectsTab.setPosition((rightPanel.getPosition().x) + layersTab.getWidth(), rightPanel.getPosition().y);
-
-    layersTab.setCharacterSize(25);
-    objectsTab.setCharacterSize(25);
-
-    layersTab.setColorScheme(sf::Color(130, 130, 130), sf::Color(0, 170, 240), sf::Color::White);
-    objectsTab.setColorScheme(sf::Color(130, 130, 130), sf::Color(0, 170, 240), sf::Color::White);
-
-    layersettings.push_back(layerinfo);
-
-    //_______ Right Panel _________________//
-
-    //_______ Top Panel ___________________//
 
     currentTile = 1;
 
-    selecttile.setGeometry((topPanel.getPosition().x + 10),( topPanel.getPosition().y + 5 ), 150, 20);
 
-    tilePanel.setSize(sf::Vector2f(250,600));
-    tilePanel.setPosition(topPanel.getPosition().x + leftPanel.getSize().x, topPanel.getPosition().y + topPanel.getSize().y);
-    tilePanel.setFillColor(sf::Color(60,60,60,100));
-
-    tilePanelOk.setText("Ok");
-    tilePanelCancel.setText("Cancel");
-
-    tilePanelOk.setSize(60,25);
-    tilePanelCancel.setSize(70,25);
-
-    tilePanelOk.setPosition(tilePanel.getPosition().x +(tilePanel.getSize().x / 2.5*1), tilePanel.getPosition().y + (tilePanel.getSize().y / 60 * 1));
-    tilePanelCancel.setPosition(tilePanelOk.getX() + tilePanelOk.getWidth() + 10, tilePanelOk.getY());
-
-    tilePanelActive = false;
-
-
-    //_______Top Panel______________________//
 }
 void EditorState::onUpdate()
 {
@@ -167,72 +51,7 @@ void EditorState::onUpdate()
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         testTarget.move(-10, 0);
 
-    if(backButton.isReleased())
-        stateDriver::setState("menu");
 
-    //_______ Tool Selection ___________  //
-
-    // .isPressed() instead of .isReleased() fixes some selection bugs.
-    if(penButton.isPressed()){
-        currentTool = 1;
-        penButton.isToggled();
-        eraserButton.untoggle();
-        fillButton.untoggle();
-        handButton.untoggle();
-        std::cout << "Current Tool: " << currentTool << std::endl;
-    }
-    if(eraserButton.isPressed()){
-        currentTool = 2;
-        eraserButton.isToggled();
-        penButton.untoggle();
-        fillButton.untoggle();
-        handButton.untoggle();
-        std::cout << "Current Tool: " << currentTool << std::endl;
-    }
-    if(fillButton.isPressed()){
-        currentTool = 3;
-        fillButton.isToggled();
-        eraserButton.untoggle();
-        penButton.untoggle();
-        handButton.untoggle();
-        std::cout << "Current Tool: " << currentTool << std::endl;
-    }
-    if(handButton.isPressed()){
-        currentTool = 4;
-        handButton.isToggled();
-        eraserButton.untoggle();
-        fillButton.untoggle();
-        penButton.untoggle();
-        std::cout << "Current Tool: " << currentTool << std::endl;
-    }
-    // ______ Tool Selection End __________ //
-
-    //_______ Right Panel _________________//
-
-    if(layersTab.isPressed())
-    {
-        tabs = 1;
-        objectsTab.untoggle();
-    }
-    if(objectsTab.isPressed())
-    {
-        tabs = 2;
-        layersTab.untoggle();
-    }
-    //_______ Right Panel _________________//
-
-    //_________ Top panel__________________//
-    std::string currenttiletext = "Current Tile ID: ";
-    std::string currenttile = std::to_string(currentTile);
-    selecttile.setText(currenttiletext + currenttile);
-
-    if(selecttile.isReleased()){
-        std::cout << "What Tile ID?" << std::endl;
-        std::cin >> currentTile;
-        tilePanelActive = !tilePanelActive;
-    }
-
-    //____________Top Panel________________//
 
     testTarget.rotate(5);
     moveViewTowardsPoint(camera, testTarget.getPosition().x, testTarget.getPosition().y, 0.05f);
@@ -245,59 +64,6 @@ void EditorState::onUpdate()
 
     graphics::window.setView(sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y)));
 
-    window.draw(topPanel);
-    window.draw(leftPanel);
-    window.draw(botBar);
-    window.draw(rightPanel);
-    window.draw(backgroundTop);
-    window.draw(backgroundRight);
-    window.draw(backgroundBot);
-    window.draw(backgroundLeft);
-    backButton.display(window);
-    window.draw(icon);
-    newButton.display(window);
-    openButton.display(window);
-    saveButton.display(window);
-    penButton.display(window);
-    eraserButton.display(window);
-    fillButton.display(window);
-    handButton.display(window);
-
-    //___Right Panel____//
-
-    layersTab.display(window);
-    objectsTab.display(window);
-
-    //Layers Tab
-    if(tabs == 1)
-    {
-        for(int i = 0; i < map.getLayerSize(); i++)
-        {
-            layersettings[i]->display(window);
-
-        }
-
-    }
-    //Objects Tab
-    if(tabs == 2)
-    {
-
-
-
-    }
-    //____Right Panel_____//
-
-    //______Top Panel_______//
-
-    selecttile.display(window);
-
-    if(tilePanelActive == true){
-        window.draw(tilePanel);
-        tilePanelOk.display(window);
-        tilePanelCancel.display(window);
-    }
-
-    //_________ Top Panel _____//
 }
 void EditorState::onEvent(const sf::Event &event)
 {
@@ -309,12 +75,6 @@ void EditorState::onEvent(const sf::Event &event)
         buttonPressed = true;
     if(event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left)
         buttonPressed = false;
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::L)
-    {
-       // map.addLayer();
-        //totalLayerSettings.addTotalLayerSettings();
-
-    }
 
 
     if(buttonPressed == true){
@@ -322,41 +82,6 @@ void EditorState::onEvent(const sf::Event &event)
         if(event.type == sf::Event::MouseMoved && event.MouseMoved )
             tileSelector();
     }
-
-    backButton.processEvents(event);
-    newButton.processEvents(event);
-    openButton.processEvents(event);
-    saveButton.processEvents(event);
-    penButton.processEvents(event);
-    eraserButton.processEvents(event);
-    fillButton.processEvents(event);
-    handButton.processEvents(event);
-
-    //___Right Panel____//
-
-    layersTab.processEvents(event);
-    objectsTab.processEvents(event);
-
-
-    for(int i = 0; i < map.getLayerSize(); i++)
-    {
-        layersettings[i]->processEvents(event);
-
-    }
-
-    //____Right Panel_____//
-
-    //____Top Panel____//
-    selecttile.processEvents(event);
-
-    if(tilePanelActive == true){
-        tilePanelOk.processEvents(event);
-        tilePanelCancel.processEvents(event);
-    }
-
-    if(tilePanelCancel.isReleased())
-        tilePanelActive = false;
-    //____Top Panel_____//
 }
 void EditorState::tileSelector()
 {
