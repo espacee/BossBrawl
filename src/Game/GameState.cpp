@@ -65,7 +65,7 @@ void GameState::onUpdate()
 
     graphics::window.setView(camera);
 
-    map.display();
+    map.display(window);
 
     window.draw(testTarget);
 

@@ -141,11 +141,11 @@ void TileMap::tilesdrawn()
     if(tilesdrawncons == false)
         std::cout << "Tiles Counter Disabled." << std::endl;
 }
-void TileMap::display()
+void TileMap::display(sf::RenderWindow &target)
 {
     drawnTiles = 0;
 
-    sf::View saveCamera = graphics::window.getView();
+    sf::View saveCamera = target.getView();
     sf::View camera = saveCamera;
 
     for (unsigned int k = 0; k < nb_layers; k++)
@@ -153,7 +153,7 @@ void TileMap::display()
         camera.setCenter(saveCamera.getCenter().x * layers[k].getDepthIndex() - layers[k].getPosition().x,
                          saveCamera.getCenter().y * layers[k].getDepthIndex() - layers[k].getPosition().y);
 
-        graphics::window.setView(camera);
+        target.setView(camera);
 
         int xmin = (int)(camera.getCenter().x - camera.getSize().x / 2) / GRID_SIZE;
         int ymin = (int)(camera.getCenter().y - camera.getSize().y / 2) / GRID_SIZE;
@@ -181,7 +181,7 @@ void TileMap::display()
         {
             sf::RectangleShape layerBackground(sf::Vector2f(layers[k].getWidth(), layers[k].getHeight()));
             layerBackground.setFillColor(layers[k].getGridColor());
-            graphics::window.draw(layerBackground);
+            target.draw(layerBackground);
         }
 
         for (int i = xmin; i <= xmax; i++)
@@ -193,7 +193,7 @@ void TileMap::display()
                 {
                     sprites[id].setPosition((int)(i * GRID_SIZE),
                                             (int)(j * GRID_SIZE));
-                    graphics::window.draw(sprites[id]);
+                    target.draw(sprites[id]);
                     drawnTiles++;
                 }
 
@@ -204,7 +204,7 @@ void TileMap::display()
                         sf::Vertex(sf::Vector2f(xmin*GRID_SIZE, j * GRID_SIZE), layers[k].getGridColor()),
                         sf::Vertex(sf::Vector2f((xmax)*GRID_SIZE, j * GRID_SIZE), layers[k].getGridColor())
                     };
-                    graphics::window.draw(hLine, 2, sf::Lines);
+                    target.draw(hLine, 2, sf::Lines);
                 }
             }
 
@@ -215,12 +215,12 @@ void TileMap::display()
                     sf::Vertex(sf::Vector2f(i * GRID_SIZE, ymin*GRID_SIZE), layers[k].getGridColor()),
                     sf::Vertex(sf::Vector2f(i * GRID_SIZE, (ymax)*GRID_SIZE), layers[k].getGridColor())
                 };
-                graphics::window.draw(vLine, 2, sf::Lines);
+                target.draw(vLine, 2, sf::Lines);
             }
         }
     }
     if(tilesdrawncons == true)
         std::cout << drawnTiles << std::endl << std::endl;
 
-    graphics::window.setView(saveCamera);
+    target.setView(saveCamera);
 }

@@ -49,7 +49,7 @@ public:
 
     void tilesdrawn();
 
-    void display();
+    void display(sf::RenderWindow& target);
 
 private:
     std::vector< Layer > layers;
