@@ -1,0 +1,29 @@
+#window
+{
+	background:pink;
+}
+
+#toolBar
+{
+	background:blue;
+}
+
+#rightPanel
+{
+	background:red;
+}
+
+#topBar
+{
+	background:yellow;
+}
+
+#botBar
+{
+	background:green;
+}
+
+#centralWidget
+{
+	background:grey;
+}
