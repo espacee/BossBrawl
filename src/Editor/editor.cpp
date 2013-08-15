@@ -1,6 +1,6 @@
-#include "editorWindow.h"
+#include "editor.h"
 
-Window::Window(QWidget *parent) : QWidget(parent)
+Editor::Editor(QWidget *parent) : QWidget(parent)
 {
     setWindowFlags(Qt::FramelessWindowHint | Qt::WindowMinimizeButtonHint);
     setGeometry(QApplication::desktop()->availableGeometry());
@@ -42,12 +42,12 @@ Window::Window(QWidget *parent) : QWidget(parent)
     setStyleSheet(styleSheetString);
 }
 
-Window::~Window()
+Editor::~Editor()
 {
     
 }
 
-void Window::initWindow()
+void Editor::initWindow()
 {
     windowIcon = new QLabel("",this);
     windowIcon->setPixmap(QPixmap("res/img/GUI/windowIcon.png"));
@@ -64,7 +64,7 @@ void Window::initWindow()
     connect(minimizeButton,SIGNAL(clicked()),this,SLOT(minimizeClicked()));
 }
 
-void Window::initToolBar()
+void Editor::initToolBar()
 {
     toolBar = new QWidget(this);
     toolBar->setGeometry(globalPadding,
@@ -185,7 +185,7 @@ void Window::initToolBar()
     zoomToolButton->setObjectName("toolButton");
 }
 
-void Window::initTopBar()
+void Editor::initTopBar()
 {
     topBar = new QWidget(this);
     topBar->setGeometry(globalPadding+toolBarWidth,
@@ -194,7 +194,7 @@ void Window::initTopBar()
                         topBarHeight);
 }
 
-void Window::initRightPanel()
+void Editor::initRightPanel()
 {
     rightPanel = new QWidget(this);
     rightPanel->setGeometry(width()-globalPadding-rightPanelWidth,
@@ -203,7 +203,7 @@ void Window::initRightPanel()
                             height()-menuBarHeight-globalPadding);
 }
 
-void Window::initBotBar()
+void Editor::initBotBar()
 {
     botBar = new QWidget(this);
     botBar->setGeometry(globalPadding+toolBarWidth,
@@ -212,22 +212,24 @@ void Window::initBotBar()
                         botBarHeight);
 }
 
-void Window::initCentralWidget()
+void Editor::initCentralWidget()
 {
     centralWidget = new QWidget(this);
     centralWidget->setGeometry(toolBar->x()+toolBar->width(),
                                topBar->y()+topBar->height(),
                                width()-toolBar->x()-toolBar->width()-rightPanelWidth-globalPadding,
                                height()-menuBarHeight-topBarHeight-globalPadding-botBarHeight);
+
+    sfmlWidget = new SFMLWidget(centralWidget,QPoint(0,0),centralWidget->size(),25);
 }
 
 
-void Window::quitClicked()
+void Editor::quitClicked()
 {
     close();
 }
 
-void Window::minimizeClicked()
+void Editor::minimizeClicked()
 {
     setWindowState(Qt::WindowMinimized);
 }

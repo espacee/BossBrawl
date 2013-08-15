@@ -8,13 +8,15 @@
 #include <QDesktopWidget>
 #include <QFile>
 
-class Window : public QWidget
+#include "sfmlwidget.h"
+
+class Editor : public QWidget
 {
     Q_OBJECT
     
 public:
-    Window(QWidget *parent = 0);
-    ~Window();
+    Editor(QWidget *parent = 0);
+    ~Editor();
 
 public slots:
     void quitClicked();
@@ -57,6 +59,8 @@ private:
     QPushButton* objectToolButton;
     QPushButton* handToolButton;
     QPushButton* zoomToolButton;
+
+    SFMLWidget* sfmlWidget;
 };
 
 #endif // WINDOW_H
