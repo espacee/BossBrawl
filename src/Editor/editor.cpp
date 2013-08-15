@@ -48,11 +48,19 @@ Editor::Editor(QWidget *parent) : QWidget(parent)
 
     i=j=k=0;
     a=b=c=true;
+
+    onInit();
 }
 
 Editor::~Editor()
 {
     
+}
+
+void Editor::onInit()
+{
+    map.resizeLayer(0,10,10);
+    map.fillLayer(0,1);
 }
 
 void Editor::onUpdate()
@@ -67,6 +75,8 @@ void Editor::onUpdate()
     if(k>=255 || k<=0) c=!c;
 
     sfmlWidget->clear(sf::Color(i,j,k));
+
+    map.display(*sfmlWidget);
 
     sfmlWidget->sf::RenderWindow::display();
 }

@@ -1,4 +1,4 @@
-#include "sfmlwidget.h"
+#include "Editor/sfmlwidget.h"
 
 SFMLWidget::SFMLWidget(QWidget* Parent, const QPoint& Position, const QSize& Size)
 {

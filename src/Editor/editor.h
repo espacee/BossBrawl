@@ -9,7 +9,8 @@
 #include <QFile>
 #include <QTimer>
 
-#include "sfmlwidget.h"
+#include "Editor/sfmlwidget.h"
+#include "Map/TileMap.hpp"
 
 class Editor : public QWidget
 {
@@ -20,11 +21,14 @@ public:
     ~Editor();
 
 public slots:
+    void onInit();
     void onUpdate();
     void quitClicked();
     void minimizeClicked();
 
 private:
+
+    TileMap map;
 
     QTimer timer;
     unsigned int frameTime;
