@@ -8,14 +8,10 @@
 class SFMLWidget  : public QWidget, public sf::RenderWindow
 {
 public:
-    SFMLWidget(QWidget* Parent, const QPoint& Position, const QSize& Size, unsigned int FrameTime = 0);
+    SFMLWidget(QWidget* Parent, const QPoint& Position, const QSize& Size);
     ~SFMLWidget();
 
 private:
-
-    void OnInit();
-
-    void OnUpdate();
 
     QPaintEngine* paintEngine() const;
 
@@ -23,9 +19,6 @@ private:
 
     void paintEvent(QPaintEvent*);
 
-   QTimer myTimer;
-   int i,j,k;
-   bool a,b,c;
    bool initialized;
 
 };

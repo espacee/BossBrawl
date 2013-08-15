@@ -40,11 +40,35 @@ Editor::Editor(QWidget *parent) : QWidget(parent)
     styleSheetFile.open(QFile::ReadOnly);
     QString styleSheetString = QLatin1String(styleSheetFile.readAll());
     setStyleSheet(styleSheetString);
+
+    frameTime = 16; // 62.5 ms = 16 fps    40 ms = 25 fps    16.6 ms = 60 fps    12.5 ms = 80 fps
+    timer.setInterval(frameTime);
+    connect(&timer, SIGNAL(timeout()), this, SLOT(onUpdate()));
+    timer.start();
+
+    i=j=k=0;
+    a=b=c=true;
 }
 
 Editor::~Editor()
 {
     
+}
+
+void Editor::onUpdate()
+{
+    if(a) i++; else i--;
+    if(i>=255 || i<=0) a=!a;
+
+    if(b) j+=15; else j-=15;
+    if(j>=255 || j<=0) b=!b;
+
+    if(c) k+=5; else k-=5;
+    if(k>=255 || k<=0) c=!c;
+
+    sfmlWidget->clear(sf::Color(i,j,k));
+
+    sfmlWidget->sf::RenderWindow::display();
 }
 
 void Editor::initWindow()
@@ -220,7 +244,7 @@ void Editor::initCentralWidget()
                                width()-toolBar->x()-toolBar->width()-rightPanelWidth-globalPadding,
                                height()-menuBarHeight-topBarHeight-globalPadding-botBarHeight);
 
-    sfmlWidget = new SFMLWidget(centralWidget,QPoint(0,0),centralWidget->size(),25);
+    sfmlWidget = new SFMLWidget(centralWidget,QPoint(0,0),centralWidget->size());
 }
 
 

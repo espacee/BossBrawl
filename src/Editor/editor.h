@@ -7,6 +7,7 @@
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QFile>
+#include <QTimer>
 
 #include "sfmlwidget.h"
 
@@ -19,10 +20,14 @@ public:
     ~Editor();
 
 public slots:
+    void onUpdate();
     void quitClicked();
     void minimizeClicked();
 
 private:
+
+    QTimer timer;
+    unsigned int frameTime;
 
     void initWindow();
     void initToolBar();
@@ -36,6 +41,9 @@ private:
     int topBarHeight;
     int rightPanelWidth;
     int botBarHeight;
+
+    int i,j,k;
+    bool a,b,c;
 
     QWidget *toolBar;
     QWidget *topBar;
