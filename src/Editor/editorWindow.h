@@ -45,7 +45,6 @@ private:
     QPushButton* minimizeButton;
     QPushButton* closeButton;
 
-    QLabel* toolBarTitle;
     QPushButton* pointerToolButton;
     QPushButton* arrowToolButton;
     QPushButton* penToolButton;

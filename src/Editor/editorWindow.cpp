@@ -4,22 +4,23 @@ Window::Window(QWidget *parent) : QWidget(parent)
 {
     setWindowFlags(Qt::FramelessWindowHint | Qt::WindowMinimizeButtonHint);
     setGeometry(QApplication::desktop()->availableGeometry());
-    setWindowTitle("BossBrawl-Editor");
+    setWindowTitle("Editor");
+    setWindowIcon(QIcon("res/img/GUI/windowIcon.png"));
 
     menuBarHeight=50;
     globalPadding=5;
 
-    toolBarWidth=44;
-    toolButtonSize=40;
+    toolBarWidth=34;
+    toolButtonSize=30;
     toolButtonPadding = 2;
-    toolBarTopOffset = 30;
+    toolBarTopOffset = 2;
     toolSeparatorSize = 10;
 
     topBarHeight=30;
 
     rightPanelWidth=300;
 
-    botBarHeight=20;
+    botBarHeight=30;
 
     initWindow();
     initToolBar();
@@ -48,15 +49,18 @@ Window::~Window()
 
 void Window::initWindow()
 {
-    windowIcon = new QLabel("Icon",this);
+    windowIcon = new QLabel("",this);
+    windowIcon->setPixmap(QPixmap("res/img/GUI/windowIcon.png"));
     windowIcon->setGeometry(0,0,menuBarHeight,menuBarHeight);
 
-    closeButton = new QPushButton("x",this);
-    closeButton->setGeometry(width()-22,2,20,20);
+    closeButton = new QPushButton(QIcon("res/img/GUI/close.png"),"",this);
+    closeButton->setGeometry(width()-32,0,30,20);
+    closeButton->setObjectName("closeButton");
     connect(closeButton,SIGNAL(clicked()),this,SLOT(quitClicked()));
 
-    minimizeButton = new QPushButton("-",this);
-    minimizeButton->setGeometry(closeButton->x()-22,2,20,20);
+    minimizeButton = new QPushButton(QIcon("res/img/GUI/minimize.png"),"",this);
+    minimizeButton->setGeometry(closeButton->x()-31,0,30,20);
+    minimizeButton->setObjectName("minimizeButton");
     connect(minimizeButton,SIGNAL(clicked()),this,SLOT(minimizeClicked()));
 }
 
@@ -68,96 +72,117 @@ void Window::initToolBar()
                          toolBarWidth,
                          height()-menuBarHeight-globalPadding);
 
-    toolBarTitle = new QLabel("Tools", toolBar);
-    toolBarTitle->setGeometry(0,0,toolBarWidth, toolBarTopOffset);
-
-    pointerToolButton = new QPushButton("Pointer", toolBar);
+    pointerToolButton = new QPushButton(QIcon("res/img/GUI/pointer.png"),"", toolBar);
     pointerToolButton->setGeometry(
                 toolButtonPadding,
                 toolButtonPadding+toolBarTopOffset,
                 toolButtonSize,
                 toolButtonSize);
+    pointerToolButton->setIconSize(QSize(toolButtonSize,toolButtonSize));
+    pointerToolButton->setObjectName("toolButton");
 
-    penToolButton = new QPushButton("Pen",toolBar);
+    penToolButton = new QPushButton(QIcon("res/img/GUI/pen.png"),"",toolBar);
     penToolButton->setGeometry(
                 toolButtonPadding,
                 pointerToolButton->y()+pointerToolButton->height()+toolButtonPadding,
                 toolButtonSize,
                 toolButtonSize);
+    penToolButton->setIconSize(QSize(toolButtonSize,toolButtonSize));
+    penToolButton->setObjectName("toolButton");
 
-    randomPenToolButton = new QPushButton("rndPen",toolBar);
+    randomPenToolButton = new QPushButton(QIcon("res/img/GUI/randomPen.png"),"",toolBar);
     randomPenToolButton->setGeometry(
                 toolButtonPadding,
                 penToolButton->y()+penToolButton->height()+toolButtonPadding,
                 toolButtonSize,
                 toolButtonSize);
+    randomPenToolButton->setIconSize(QSize(toolButtonSize,toolButtonSize));
+    randomPenToolButton->setObjectName("toolButton");
 
-    patternBrushToolButton = new QPushButton("Pattern", toolBar);
+    patternBrushToolButton = new QPushButton(QIcon("res/img/GUI/patternBrush.png"),"", toolBar);
     patternBrushToolButton->setGeometry(
                 toolButtonPadding,
                 randomPenToolButton->y()+randomPenToolButton->height()+toolButtonPadding,
                 toolButtonSize,
                 toolButtonSize);
+    patternBrushToolButton->setIconSize(QSize(toolButtonSize,toolButtonSize));
+    patternBrushToolButton->setObjectName("toolButton");
 
-    eraserToolButton = new QPushButton("Eraser", toolBar);
+    eraserToolButton = new QPushButton(QIcon("res/img/GUI/eraser.png"),"", toolBar);
     eraserToolButton->setGeometry(
                 toolButtonPadding,
                 patternBrushToolButton->y()+patternBrushToolButton->height()+toolButtonPadding,
                 toolButtonSize,
                 toolButtonSize);
+    eraserToolButton->setIconSize(QSize(toolButtonSize,toolButtonSize));
+    eraserToolButton->setObjectName("toolButton");
 
-    fillShapeToolButton = new QPushButton("Shape", toolBar);
+    fillShapeToolButton = new QPushButton(QIcon("res/img/GUI/fillShape.png"),"", toolBar);
     fillShapeToolButton->setGeometry(
                 toolButtonPadding,
                 eraserToolButton->y()+eraserToolButton->height()+toolButtonPadding,
                 toolButtonSize,
                 toolButtonSize);
+    fillShapeToolButton->setIconSize(QSize(toolButtonSize,toolButtonSize));
+    fillShapeToolButton->setObjectName("toolButton");
 
-    selectAreaToolButton = new QPushButton("Select",toolBar);
+    selectAreaToolButton = new QPushButton(QIcon("res/img/GUI/selectArea.png"),"",toolBar);
     selectAreaToolButton->setGeometry(
                 toolButtonPadding,
                 fillShapeToolButton->y()+fillShapeToolButton->height()+toolButtonPadding,
                 toolButtonSize,
                 toolButtonSize);
+    selectAreaToolButton->setIconSize(QSize(toolButtonSize,toolButtonSize));
+    selectAreaToolButton->setObjectName("toolButton");
 
     //
 
-    arrowToolButton = new QPushButton("Arrow",toolBar);
+    arrowToolButton = new QPushButton(QIcon("res/img/GUI/arrow.png"),"",toolBar);
     arrowToolButton->setGeometry(
                 toolButtonPadding,
                 toolSeparatorSize + selectAreaToolButton->y()+selectAreaToolButton->height()+toolButtonPadding,
                 toolButtonSize,
                 toolButtonSize);
+    arrowToolButton->setIconSize(QSize(toolButtonSize,toolButtonSize));
+    arrowToolButton->setObjectName("toolButton");
 
-    entityToolButton = new QPushButton("Entity",toolBar);
+    entityToolButton = new QPushButton(QIcon("res/img/GUI/entity.png"),"",toolBar);
     entityToolButton->setGeometry(
                 toolButtonPadding,
                 arrowToolButton->y()+arrowToolButton->height()+toolButtonPadding,
                 toolButtonSize,
                 toolButtonSize);
+    entityToolButton->setIconSize(QSize(toolButtonSize,toolButtonSize));
+    entityToolButton->setObjectName("toolButton");
 
-    objectToolButton = new QPushButton("Object", toolBar);
+    objectToolButton = new QPushButton(QIcon("res/img/GUI/object.png"),"", toolBar);
     objectToolButton->setGeometry(
                 toolButtonPadding,
                 entityToolButton->y()+entityToolButton->height()+toolButtonPadding,
                 toolButtonSize,
                 toolButtonSize);
+    objectToolButton->setIconSize(QSize(toolButtonSize,toolButtonSize));
+    objectToolButton->setObjectName("toolButton");
 
     //
 
-    handToolButton = new QPushButton("Hand", toolBar);
+    handToolButton = new QPushButton(QIcon("res/img/GUI/hand.png"),"", toolBar);
     handToolButton->setGeometry(
                 toolButtonPadding,
                 toolSeparatorSize + objectToolButton->y()+objectToolButton->height()+toolButtonPadding,
                 toolButtonSize,
                 toolButtonSize);
+    handToolButton->setIconSize(QSize(toolButtonSize,toolButtonSize));
+    handToolButton->setObjectName("toolButton");
 
-    zoomToolButton = new QPushButton("Zoom", toolBar);
+    zoomToolButton = new QPushButton(QIcon("res/img/GUI/zoom.png"),"", toolBar);
     zoomToolButton->setGeometry(
                 toolButtonPadding,
                 handToolButton->y()+handToolButton->height()+toolButtonPadding,
                 toolButtonSize,
                 toolButtonSize);
+    zoomToolButton->setIconSize(QSize(toolButtonSize,toolButtonSize));
+    zoomToolButton->setObjectName("toolButton");
 }
 
 void Window::initTopBar()
@@ -175,7 +200,7 @@ void Window::initRightPanel()
     rightPanel->setGeometry(width()-globalPadding-rightPanelWidth,
                             menuBarHeight,
                             rightPanelWidth,
-                            height()-menuBarHeight-botBarHeight-globalPadding);
+                            height()-menuBarHeight-globalPadding);
 }
 
 void Window::initBotBar()
@@ -183,7 +208,7 @@ void Window::initBotBar()
     botBar = new QWidget(this);
     botBar->setGeometry(globalPadding+toolBarWidth,
                         height()-globalPadding-botBarHeight,
-                        width()-toolBarWidth-globalPadding*2,
+                        width()-toolBarWidth-rightPanelWidth-globalPadding*2,
                         botBarHeight);
 }
 

@@ -28,3 +28,57 @@
 {
 	background-color:rgb(225,219,219);
 }
+
+#closeButton
+{
+	background-color:transparent;
+	border-bottom-right-radius:5px;
+}
+
+#closeButton:hover
+{
+	background-color:rgb(185,79,79);
+}
+
+#closeButton:pressed
+{
+	background-color:rgb(90,35,35);
+}
+
+#minimizeButton
+{
+	background-color:transparent;
+	border-bottom-left-radius:5px;
+}
+
+#minimizeButton:hover
+{
+	background-color:rgb(85,79,175);
+}
+
+#minimizeButton:pressed
+{
+	background-color:rgb(42,35,80);
+}
+
+#barTitle
+{
+	background-color:rgba(0,0,0,0.5);
+	color:white;
+}
+
+#toolButton
+{
+	background-color:transparent;
+	border-radius:3px;
+}
+
+#toolButton:hover
+{
+	background-color:rgb(0, 170, 240);
+}
+
+#toolButton:pressed
+{
+	background-color:rgb(0, 80, 170);
+}
