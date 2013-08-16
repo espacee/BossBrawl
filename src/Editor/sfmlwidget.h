@@ -13,13 +13,14 @@ public:
     SFMLWidget(QWidget* Parent, const QPoint& Position, const QSize& Size);
     ~SFMLWidget();
 
-    void keyPressEvent(QKeyEvent *event);
 
     TileMap* map;
     sf::View* view;
 
 
 private:
+
+    void keyPressEvent(QKeyEvent *event);
 
 
     QPaintEngine* paintEngine() const;

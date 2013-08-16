@@ -46,7 +46,7 @@ Editor::Editor(QWidget *parent) : QWidget(parent)
     connect(&timer, SIGNAL(timeout()), this, SLOT(onUpdate()));
     timer.start();
 
-    i=j=k=0;
+    i=j=k=127;
     a=b=c=true;
 
     sfmlWidget->view = &camera;
@@ -66,17 +66,19 @@ void Editor::onInit()
 
     map.resizeLayer(0,1,1);
     map.fillLayer(0,1);
+
+    penToolButtonClicked();
 }
 
 void Editor::onUpdate()
 {
-    if(a) i+=0.1; else i-=0.1;
+    if(a) i+=0.001; else i-=0.001;
     if(i>=255 || i<=0) a=!a;
 
-    if(b) j+=1.5; else j-=1.5;
+    if(b) j+=0.015; else j-=0.015;
     if(j>=255 || j<=0) b=!b;
 
-    if(c) k+=0.5; else k-=0.5;
+    if(c) k+=0.005; else k-=0.005;
     if(k>=255 || k<=0) c=!c;
 
     sfmlWidget->clear(sf::Color(i,j,k));
@@ -120,6 +122,7 @@ void Editor::initToolBar()
                 toolButtonSize);
     pointerToolButton->setIconSize(QSize(toolButtonSize,toolButtonSize));
     pointerToolButton->setObjectName("toolButton");
+    pointerToolButton->setCheckable(true);
 
     penToolButton = new QPushButton(QIcon("res/img/GUI/pen.png"),"",toolBar);
     penToolButton->setGeometry(
@@ -129,6 +132,7 @@ void Editor::initToolBar()
                 toolButtonSize);
     penToolButton->setIconSize(QSize(toolButtonSize,toolButtonSize));
     penToolButton->setObjectName("toolButton");
+    penToolButton->setCheckable(true);
 
     randomPenToolButton = new QPushButton(QIcon("res/img/GUI/randomPen.png"),"",toolBar);
     randomPenToolButton->setGeometry(
@@ -138,6 +142,7 @@ void Editor::initToolBar()
                 toolButtonSize);
     randomPenToolButton->setIconSize(QSize(toolButtonSize,toolButtonSize));
     randomPenToolButton->setObjectName("toolButton");
+    randomPenToolButton->setCheckable(true);
 
     patternBrushToolButton = new QPushButton(QIcon("res/img/GUI/patternBrush.png"),"", toolBar);
     patternBrushToolButton->setGeometry(
@@ -147,6 +152,7 @@ void Editor::initToolBar()
                 toolButtonSize);
     patternBrushToolButton->setIconSize(QSize(toolButtonSize,toolButtonSize));
     patternBrushToolButton->setObjectName("toolButton");
+    patternBrushToolButton->setCheckable(true);
 
     eraserToolButton = new QPushButton(QIcon("res/img/GUI/eraser.png"),"", toolBar);
     eraserToolButton->setGeometry(
@@ -156,6 +162,7 @@ void Editor::initToolBar()
                 toolButtonSize);
     eraserToolButton->setIconSize(QSize(toolButtonSize,toolButtonSize));
     eraserToolButton->setObjectName("toolButton");
+    eraserToolButton->setCheckable(true);
 
     fillShapeToolButton = new QPushButton(QIcon("res/img/GUI/fillShape.png"),"", toolBar);
     fillShapeToolButton->setGeometry(
@@ -165,6 +172,7 @@ void Editor::initToolBar()
                 toolButtonSize);
     fillShapeToolButton->setIconSize(QSize(toolButtonSize,toolButtonSize));
     fillShapeToolButton->setObjectName("toolButton");
+    fillShapeToolButton->setCheckable(true);
 
     selectAreaToolButton = new QPushButton(QIcon("res/img/GUI/selectArea.png"),"",toolBar);
     selectAreaToolButton->setGeometry(
@@ -174,6 +182,7 @@ void Editor::initToolBar()
                 toolButtonSize);
     selectAreaToolButton->setIconSize(QSize(toolButtonSize,toolButtonSize));
     selectAreaToolButton->setObjectName("toolButton");
+    selectAreaToolButton->setCheckable(true);
 
     //
 
@@ -185,6 +194,7 @@ void Editor::initToolBar()
                 toolButtonSize);
     arrowToolButton->setIconSize(QSize(toolButtonSize,toolButtonSize));
     arrowToolButton->setObjectName("toolButton");
+    arrowToolButton->setCheckable(true);
 
     entityToolButton = new QPushButton(QIcon("res/img/GUI/entity.png"),"",toolBar);
     entityToolButton->setGeometry(
@@ -194,6 +204,7 @@ void Editor::initToolBar()
                 toolButtonSize);
     entityToolButton->setIconSize(QSize(toolButtonSize,toolButtonSize));
     entityToolButton->setObjectName("toolButton");
+    entityToolButton->setCheckable(true);
 
     objectToolButton = new QPushButton(QIcon("res/img/GUI/object.png"),"", toolBar);
     objectToolButton->setGeometry(
@@ -203,6 +214,7 @@ void Editor::initToolBar()
                 toolButtonSize);
     objectToolButton->setIconSize(QSize(toolButtonSize,toolButtonSize));
     objectToolButton->setObjectName("toolButton");
+    objectToolButton->setCheckable(true);
 
     //
 
@@ -214,6 +226,7 @@ void Editor::initToolBar()
                 toolButtonSize);
     handToolButton->setIconSize(QSize(toolButtonSize,toolButtonSize));
     handToolButton->setObjectName("toolButton");
+    handToolButton->setCheckable(true);
 
     zoomToolButton = new QPushButton(QIcon("res/img/GUI/zoom.png"),"", toolBar);
     zoomToolButton->setGeometry(
@@ -223,6 +236,21 @@ void Editor::initToolBar()
                 toolButtonSize);
     zoomToolButton->setIconSize(QSize(toolButtonSize,toolButtonSize));
     zoomToolButton->setObjectName("toolButton");
+    zoomToolButton->setCheckable(true);
+
+    connect(pointerToolButton,SIGNAL(clicked()),this,SLOT(pointerToolButtonClicked()));
+    connect(arrowToolButton,SIGNAL(clicked()),this,SLOT(arrowToolButtonClicked()));
+    connect(penToolButton,SIGNAL(clicked()),this,SLOT(penToolButtonClicked()));
+    connect(randomPenToolButton,SIGNAL(clicked()),this,SLOT(randomPenToolButtonClicked()));
+    connect(patternBrushToolButton,SIGNAL(clicked()),this,SLOT(patternBrushToolButtonClicked()));
+    connect(eraserToolButton,SIGNAL(clicked()),this,SLOT(eraserToolButtonClicked()));
+    connect(fillShapeToolButton,SIGNAL(clicked()),this,SLOT(fillShapeToolButtonClicked()));
+    connect(selectAreaToolButton,SIGNAL(clicked()),this,SLOT(selectAreaToolButtonClicked()));
+    connect(entityToolButton,SIGNAL(clicked()),this,SLOT(entityToolButtonClicked()));
+    connect(objectToolButton,SIGNAL(clicked()),this,SLOT(objectToolButtonClicked()));
+    connect(handToolButton,SIGNAL(clicked()),this,SLOT(handToolButtonClicked()));
+    connect(zoomToolButton,SIGNAL(clicked()),this,SLOT(zoomToolButtonClicked()));
+
 }
 
 void Editor::initTopBar()
@@ -272,4 +300,105 @@ void Editor::quitClicked()
 void Editor::minimizeClicked()
 {
     setWindowState(Qt::WindowMinimized);
+}
+
+void Editor::pointerToolButtonClicked()
+{
+    uncheckToolButtons();
+    pointerToolButton->setChecked(true);
+    tool=0;
+}
+
+void Editor::penToolButtonClicked()
+{
+    uncheckToolButtons();
+    penToolButton->setChecked(true);
+    tool=1;
+}
+
+void Editor::randomPenToolButtonClicked()
+{
+    uncheckToolButtons();
+    randomPenToolButton->setChecked(true);
+    tool=2;
+}
+
+void Editor::patternBrushToolButtonClicked()
+{
+    uncheckToolButtons();
+    patternBrushToolButton->setChecked(true);
+    tool=3;
+}
+
+void Editor::eraserToolButtonClicked()
+{
+    uncheckToolButtons();
+    eraserToolButton->setChecked(true);
+    tool=4;
+}
+
+void Editor::fillShapeToolButtonClicked()
+{
+    uncheckToolButtons();
+    fillShapeToolButton->setChecked(true);
+    tool=5;
+}
+
+void Editor::selectAreaToolButtonClicked()
+{
+    uncheckToolButtons();
+    selectAreaToolButton->setChecked(true);
+    tool=6;
+}
+
+void Editor::arrowToolButtonClicked()
+{
+    uncheckToolButtons();
+    arrowToolButton->setChecked(true);
+    tool=7;
+}
+
+void Editor::entityToolButtonClicked()
+{
+    uncheckToolButtons();
+    entityToolButton->setChecked(true);
+    tool=8;
+}
+
+void Editor::objectToolButtonClicked()
+{
+    uncheckToolButtons();
+    objectToolButton->setChecked(true);
+    tool=9;
+}
+
+void Editor::handToolButtonClicked()
+{
+    uncheckToolButtons();
+    handToolButton->setChecked(true);
+    tool=10;
+}
+
+void Editor::zoomToolButtonClicked()
+{
+    uncheckToolButtons();
+    zoomToolButton->setChecked(true);
+    tool=11;
+}
+
+
+void Editor::uncheckToolButtons()
+{
+    pointerToolButton->setChecked(false);
+    arrowToolButton->setChecked(false);
+    penToolButton->setChecked(false);
+    randomPenToolButton->setChecked(false);
+    patternBrushToolButton->setChecked(false);
+    eraserToolButton->setChecked(false);
+    fillShapeToolButton->setChecked(false);
+    selectAreaToolButton->setChecked(false);
+    entityToolButton->setChecked(false);
+    objectToolButton->setChecked(false);
+    handToolButton->setChecked(false);
+    zoomToolButton->setChecked(false);
 }

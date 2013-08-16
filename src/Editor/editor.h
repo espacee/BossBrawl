@@ -26,12 +26,28 @@ public slots:
     void quitClicked();
     void minimizeClicked();
 
+    void pointerToolButtonClicked();
+    void arrowToolButtonClicked();
+    void penToolButtonClicked();
+    void randomPenToolButtonClicked();
+    void patternBrushToolButtonClicked();
+    void eraserToolButtonClicked();
+    void fillShapeToolButtonClicked();
+    void selectAreaToolButtonClicked();
+    void entityToolButtonClicked();
+    void objectToolButtonClicked();
+    void handToolButtonClicked();
+    void zoomToolButtonClicked();
+
+    void uncheckToolButtons();
+
 private:
 
     TileMap map;
 
     QTimer timer;
     unsigned int frameTime;
+    int tool;
 
     void initWindow();
     void initToolBar();
@@ -63,13 +79,13 @@ private:
     QPushButton* closeButton;
 
     QPushButton* pointerToolButton;
-    QPushButton* arrowToolButton;
     QPushButton* penToolButton;
     QPushButton* randomPenToolButton;
     QPushButton* patternBrushToolButton;
     QPushButton* eraserToolButton;
     QPushButton* fillShapeToolButton;
     QPushButton* selectAreaToolButton;
+    QPushButton* arrowToolButton;
     QPushButton* entityToolButton;
     QPushButton* objectToolButton;
     QPushButton* handToolButton;
