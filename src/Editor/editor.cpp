@@ -59,23 +59,27 @@ Editor::~Editor()
 
 void Editor::onInit()
 {
-    map.resizeLayer(0,10,10);
+    camera = sf::View(sf::FloatRect(0, 0, sfmlWidget->width(), sfmlWidget->height()));
+    camera.setCenter(0,0);
+
+    map.resizeLayer(0,1,1);
     map.fillLayer(0,1);
 }
 
 void Editor::onUpdate()
 {
-    if(a) i++; else i--;
+    if(a) i+=0.1; else i-=0.1;
     if(i>=255 || i<=0) a=!a;
 
-    if(b) j+=15; else j-=15;
+    if(b) j+=1.5; else j-=1.5;
     if(j>=255 || j<=0) b=!b;
 
-    if(c) k+=5; else k-=5;
+    if(c) k+=0.5; else k-=0.5;
     if(k>=255 || k<=0) c=!c;
 
     sfmlWidget->clear(sf::Color(i,j,k));
 
+    sfmlWidget->setView(camera);
     map.display(*sfmlWidget);
 
     sfmlWidget->sf::RenderWindow::display();

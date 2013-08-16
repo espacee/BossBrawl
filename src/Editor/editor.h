@@ -46,8 +46,11 @@ private:
     int rightPanelWidth;
     int botBarHeight;
 
-    int i,j,k;
+    float i,j,k;
     bool a,b,c;
+
+    SFMLWidget* sfmlWidget;
+    sf::View camera;
 
     QWidget *toolBar;
     QWidget *topBar;
@@ -72,7 +75,6 @@ private:
     QPushButton* handToolButton;
     QPushButton* zoomToolButton;
 
-    SFMLWidget* sfmlWidget;
 };
 
 #endif // WINDOW_H
