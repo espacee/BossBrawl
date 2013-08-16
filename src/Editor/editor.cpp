@@ -49,6 +49,8 @@ Editor::Editor(QWidget *parent) : QWidget(parent)
     i=j=k=0;
     a=b=c=true;
 
+    sfmlWidget->view = &camera;
+
     onInit();
 }
 

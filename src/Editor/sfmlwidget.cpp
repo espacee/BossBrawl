@@ -43,7 +43,20 @@ void SFMLWidget::paintEvent(QPaintEvent*)
 {
 
 }
+void SFMLWidget::keyPressEvent(QKeyEvent *event)
+{
+    if(event->key() == Qt::Key_Q)
+        view->move(20,0);
+    if(event->key() == Qt::Key_S)
+        view->move(0,-20);
+    if(event->key() == Qt::Key_D)
+        view->move(-20,0);
+    if(event->key() == Qt::Key_Z)
+        view->move(0,20);
 
+
+
+}
 SFMLWidget::~SFMLWidget()
 {
 
