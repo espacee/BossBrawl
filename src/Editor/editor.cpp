@@ -324,6 +324,7 @@ void Editor::pointerToolButtonClicked()
     uncheckToolButtons();
     pointerToolButton->setChecked(true);
     tool=0;
+    sfmlWidget->setTool(tool);
 }
 
 void Editor::penToolButtonClicked()
@@ -331,6 +332,7 @@ void Editor::penToolButtonClicked()
     uncheckToolButtons();
     penToolButton->setChecked(true);
     tool=1;
+    sfmlWidget->setTool(tool);
 }
 
 void Editor::randomPenToolButtonClicked()
@@ -338,6 +340,7 @@ void Editor::randomPenToolButtonClicked()
     uncheckToolButtons();
     randomPenToolButton->setChecked(true);
     tool=2;
+    sfmlWidget->setTool(tool);
 }
 
 void Editor::patternBrushToolButtonClicked()
@@ -345,6 +348,7 @@ void Editor::patternBrushToolButtonClicked()
     uncheckToolButtons();
     patternBrushToolButton->setChecked(true);
     tool=3;
+    sfmlWidget->setTool(tool);
 }
 
 void Editor::eraserToolButtonClicked()
@@ -352,6 +356,7 @@ void Editor::eraserToolButtonClicked()
     uncheckToolButtons();
     eraserToolButton->setChecked(true);
     tool=4;
+    sfmlWidget->setTool(tool);
 }
 
 void Editor::fillShapeToolButtonClicked()
@@ -359,6 +364,7 @@ void Editor::fillShapeToolButtonClicked()
     uncheckToolButtons();
     fillShapeToolButton->setChecked(true);
     tool=5;
+    sfmlWidget->setTool(tool);
 }
 
 void Editor::selectAreaToolButtonClicked()
@@ -366,6 +372,7 @@ void Editor::selectAreaToolButtonClicked()
     uncheckToolButtons();
     selectAreaToolButton->setChecked(true);
     tool=6;
+    sfmlWidget->setTool(tool);
 }
 
 void Editor::arrowToolButtonClicked()
@@ -373,6 +380,7 @@ void Editor::arrowToolButtonClicked()
     uncheckToolButtons();
     arrowToolButton->setChecked(true);
     tool=7;
+    sfmlWidget->setTool(tool);
 }
 
 void Editor::entityToolButtonClicked()
@@ -380,6 +388,7 @@ void Editor::entityToolButtonClicked()
     uncheckToolButtons();
     entityToolButton->setChecked(true);
     tool=8;
+    sfmlWidget->setTool(tool);
 }
 
 void Editor::objectToolButtonClicked()
@@ -387,6 +396,7 @@ void Editor::objectToolButtonClicked()
     uncheckToolButtons();
     objectToolButton->setChecked(true);
     tool=9;
+    sfmlWidget->setTool(tool);
 }
 
 void Editor::handToolButtonClicked()
@@ -394,6 +404,7 @@ void Editor::handToolButtonClicked()
     uncheckToolButtons();
     handToolButton->setChecked(true);
     tool=10;
+    sfmlWidget->setTool(tool);
 }
 
 void Editor::zoomToolButtonClicked()
@@ -401,12 +412,12 @@ void Editor::zoomToolButtonClicked()
     uncheckToolButtons();
     zoomToolButton->setChecked(true);
     tool=11;
+    sfmlWidget->setTool(tool);
 }
 
 
 void Editor::uncheckToolButtons()
 {
-    sfmlWidget->setTool(tool);
     pointerToolButton->setChecked(false);
     arrowToolButton->setChecked(false);
     penToolButton->setChecked(false);
