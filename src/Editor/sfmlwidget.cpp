@@ -4,6 +4,7 @@ SFMLWidget::SFMLWidget(QWidget* Parent, const QPoint& Position, const QSize& Siz
 {
     setParent(Parent);
     initialized = false;
+    leftButtonDown = false;
 
     setAttribute(Qt::WA_PaintOnScreen);
     setAttribute(Qt::WA_OpaquePaintEvent);
@@ -15,11 +16,25 @@ SFMLWidget::SFMLWidget(QWidget* Parent, const QPoint& Position, const QSize& Siz
     resize(Size);
 }
 
+void SFMLWidget::setTool(int newTool)
+{
+    tool = newTool;
+}
+
+void SFMLWidget::setCurrentTile(int new_id)
+{
+    id = new_id;
+}
+
+void SFMLWidget::processEvents()
+{
+
+}
+
 #ifdef Q_WS_X11
     #include <Qt/qx11info_x11.h>
     #include <X11/Xlib.h>
 #endif
-
 
 void SFMLWidget::showEvent(QShowEvent*)
 {
@@ -43,33 +58,45 @@ void SFMLWidget::paintEvent(QPaintEvent*)
 {
 
 }
-void SFMLWidget::keyPressEvent(QKeyEvent *event)
-{
-    if(event->key() == Qt::Key_Q)
-        view->move(20,0);
-    if(event->key() == Qt::Key_S)
-        view->move(0,-20);
-    if(event->key() == Qt::Key_D)
-        view->move(-20,0);
-    if(event->key() == Qt::Key_Z)
-        view->move(0,20);
 
-}
-void SFMLWidget::mousePressEvent(QMouseEvent *event)
+void SFMLWidget::mousePressEvent(QMouseEvent *e)
 {
-    Qt::MouseButtons mouseButtons = event->buttons();
-
-    if( mouseButtons == Qt::LeftButton )
+    if(e->button() == Qt::LeftButton)
     {
-
+        leftButtonDown=true;
+        draw(sf::Vector2i(e->x(),e->y()));
     }
-    else if( mouseButtons == Qt::RightButton)
-    {
+}
 
+void SFMLWidget::mouseMoveEvent(QMouseEvent *e)
+{
+    if(leftButtonDown)
+    {
+        draw(sf::Vector2i(e->x(),e->y()));
+    }
+}
+
+void SFMLWidget::mouseReleaseEvent(QMouseEvent *e)
+{
+    if(e->button() == Qt::LeftButton)
+    {
+        leftButtonDown=false;
     }
 }
 
 SFMLWidget::~SFMLWidget()
 {
 
+}
+
+void SFMLWidget::draw(sf::Vector2i mouseCoord)
+{
+    sf::Vector2i windowRelativeCoord = mouseCoord;
+    sf::Vector2f worldRelativeCoord =  mapPixelToCoords(windowRelativeCoord,*camera);
+    sf::Vector2f layerRelativeCoord = worldRelativeCoord -  map->getLayerPosition(0);
+
+    int x = layerRelativeCoord.x /GRID_SIZE ;
+    int y = layerRelativeCoord.y /GRID_SIZE ;
+
+    map->setTile(0,x,y,id);
 }

@@ -42,6 +42,7 @@ public:
     void popLayer();
 
     int getLayerSize();
+    sf::Vector2f getLayerPosition(unsigned int layer);
 
     bool tileExists(unsigned int x, unsigned int y, unsigned int layer) const;
     bool spriteExists(unsigned int id) const;

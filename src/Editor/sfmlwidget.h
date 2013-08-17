@@ -4,9 +4,12 @@
 #include <SFML/Graphics.hpp>
 #include <QWidget>
 #include <QTimer>
+#include <QLabel>
 #include <QKeyEvent>
 #include <QMouseEvent>
 #include "Map/TileMap.hpp"
+
+#include <QDebug>
 
 class SFMLWidget  : public QWidget, public sf::RenderWindow
 {
@@ -14,25 +17,28 @@ public:
     SFMLWidget(QWidget* Parent, const QPoint& Position, const QSize& Size);
     ~SFMLWidget();
 
+    void setTool(int newTool);
+    void setCurrentTile(int new_id);
+    void processEvents();
+
+    void draw(sf::Vector2i mouseCoord);
 
     TileMap* map;
-    sf::View* view;
-
+    sf::View* camera;
 
 private:
 
-    void keyPressEvent(QKeyEvent *event);
-    void mousePressEvent(QMouseEvent *event);
-
+    void mousePressEvent(QMouseEvent *e);
+    void mouseMoveEvent(QMouseEvent *e);
+    void mouseReleaseEvent(QMouseEvent *e);
 
     QPaintEngine* paintEngine() const;
-
     void showEvent(QShowEvent*);
-
     void paintEvent(QPaintEvent*);
 
-   bool initialized;
-
+    bool initialized, leftButtonDown;
+    int tool;
+    int id;
 };
 
 #endif // SFMLWIDGET_H

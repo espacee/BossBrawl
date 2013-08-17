@@ -47,13 +47,14 @@ Editor::Editor(QWidget *parent) : QWidget(parent)
     connect(&timer, SIGNAL(timeout()), this, SLOT(onUpdate()));
     timer.start();
 
+    onInit();
+
     i=j=k=127;
     a=b=c=true;
-
-    sfmlWidget->view = &camera;
-
-    onInit();
+    sfmlWidget->camera = &camera;
+    sfmlWidget->map = &map;
     tileWidget->select(0,0);
+    penToolButtonClicked();
 }
 
 Editor::~Editor()
@@ -66,11 +67,12 @@ void Editor::onInit()
     camera = sf::View(sf::FloatRect(0, 0, sfmlWidget->width(), sfmlWidget->height()));
     camera.setCenter(0,0);
 
-    map.resizeLayer(0,1,1);
-    map.fillLayer(0,1);
+    map.resizeLayer(0,50,50);
+    map.fillLayer(0,0);
     map.setLayerGridEnabled(0,true);
 
-    penToolButtonClicked();
+    camera.move(1000,1000);
+
 }
 
 void Editor::onUpdate()
@@ -83,6 +85,7 @@ void Editor::onUpdate()
 
     if(c) k+=0.005; else k-=0.005;
     if(k>=255 || k<=0) c=!c;
+
 
     sfmlWidget->clear(sf::Color(i,j,k));
 
@@ -306,7 +309,6 @@ void Editor::initCentralWidget()
     tileWidget->hide();
 }
 
-
 void Editor::quitClicked()
 {
     close();
@@ -404,6 +406,7 @@ void Editor::zoomToolButtonClicked()
 
 void Editor::uncheckToolButtons()
 {
+    sfmlWidget->setTool(tool);
     pointerToolButton->setChecked(false);
     arrowToolButton->setChecked(false);
     penToolButton->setChecked(false);
@@ -430,6 +433,7 @@ void Editor::tileButtonClicked()
 void Editor::tileSelected(int new_id)
 {
     id = new_id;
+    sfmlWidget->setCurrentTile(new_id);
 }
 
 void Editor::tileSelected(QPixmap tile)

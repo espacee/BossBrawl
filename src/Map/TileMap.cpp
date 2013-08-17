@@ -112,12 +112,17 @@ void TileMap::popLayer()
 }
 int TileMap::getLayerSize()
 {
-
     return layers.size();
-
-
-
 }
+
+sf::Vector2f TileMap::getLayerPosition(unsigned int layer)
+{
+    if(layerExists(layer))
+        return layers[layer].getPosition();
+    else
+        return sf::Vector2f(0,0);
+}
+
 bool TileMap::tileExists(unsigned int x, unsigned int y, unsigned int layer) const
 {
     if (layerExists(layer))
