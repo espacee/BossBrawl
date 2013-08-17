@@ -98,5 +98,9 @@ void SFMLWidget::draw(sf::Vector2i mouseCoord)
     int x = layerRelativeCoord.x /GRID_SIZE ;
     int y = layerRelativeCoord.y /GRID_SIZE ;
 
-    map->setTile(0,x,y,id);
+
+    if(tool == 2)
+        map->setTile(0,x,y,id);
+    if(tool == 4)
+        map->setTile(0,x,y,0);
 }
