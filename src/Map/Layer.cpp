@@ -8,7 +8,7 @@ Layer::Layer()
     depthIndex = 1.f;
     grid = false;
 
-    setGridColor(sf::Color(255,127,0));
+    setGridColor(sf::Color(0,0,0));
 }
 
 void Layer::resize(unsigned int new_hLength, unsigned int new_vLength)

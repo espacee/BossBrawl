@@ -87,3 +87,9 @@
 {
 	background-color:rgb(0, 80, 170);
 }
+
+#tileButton
+{
+	background-color:rgb(157,150,150);
+	border:1px solid orange;
+}

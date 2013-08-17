@@ -42,7 +42,9 @@ public slots:
 
     void uncheckToolButtons();
 
-    void toolSelector();
+    void tileButtonClicked();
+    void tileSelected(int new_id);
+    void tileSelected(QPixmap tile);
 
 private:
 
@@ -50,7 +52,6 @@ private:
 
     QTimer timer;
     unsigned int frameTime;
-    int tool;
 
     void initWindow();
     void initToolBar();
@@ -61,7 +62,7 @@ private:
 
     int menuBarHeight, globalPadding;
     int toolBarWidth, toolButtonSize, toolButtonPadding, toolBarTopOffset, toolSeparatorSize;
-    int topBarHeight;
+    int topBarHeight, topButtonSize;
     int rightPanelWidth;
     int botBarHeight;
 
@@ -81,6 +82,7 @@ private:
     QPushButton* minimizeButton;
     QPushButton* closeButton;
 
+    int tool;
     QPushButton* pointerToolButton;
     QPushButton* penToolButton;
     QPushButton* randomPenToolButton;
@@ -95,6 +97,9 @@ private:
     QPushButton* zoomToolButton;
 
     TileWidget* tileWidget;
+    int id;
+
+    QPushButton* tileButton;
 
 };
 

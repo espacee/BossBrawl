@@ -13,10 +13,11 @@ Editor::Editor(QWidget *parent) : QWidget(parent)
     toolBarWidth=34;
     toolButtonSize=30;
     toolButtonPadding = 2;
-    toolBarTopOffset = 2;
+    toolBarTopOffset = 44;
     toolSeparatorSize = 10;
 
-    topBarHeight=30;
+    topBarHeight =44;
+    topButtonSize = 42;
 
     rightPanelWidth=300;
 
@@ -52,6 +53,7 @@ Editor::Editor(QWidget *parent) : QWidget(parent)
     sfmlWidget->view = &camera;
 
     onInit();
+    tileWidget->select(0,0);
 }
 
 Editor::~Editor()
@@ -66,6 +68,7 @@ void Editor::onInit()
 
     map.resizeLayer(0,1,1);
     map.fillLayer(0,1);
+    map.setLayerGridEnabled(0,true);
 
     penToolButtonClicked();
 }
@@ -260,6 +263,12 @@ void Editor::initTopBar()
                         menuBarHeight,
                         width()-toolBarWidth-rightPanelWidth-globalPadding*2,
                         topBarHeight);
+
+    tileButton = new QPushButton(topBar);
+    tileButton->setGeometry(2,1,topButtonSize,topButtonSize);
+    tileButton->setIconSize(QSize(40,40));
+    tileButton->setObjectName("tileButton");
+    connect(tileButton,SIGNAL(clicked()),this,SLOT(tileButtonClicked()));
 }
 
 void Editor::initRightPanel()
@@ -291,7 +300,10 @@ void Editor::initCentralWidget()
     sfmlWidget = new SFMLWidget(centralWidget,QPoint(0,0),centralWidget->size());
 
     tileWidget = new TileWidget(centralWidget);
-    tileWidget->move(100,100); tileWidget->resize(centralWidget->size()-QSize(200,200));
+    tileWidget->move(0,0); tileWidget->resize(centralWidget->size());
+    connect(tileWidget,SIGNAL(selected(int)),this,SLOT(tileSelected(int)));
+    connect(tileWidget,SIGNAL(selected(QPixmap)),this,SLOT(tileSelected(QPixmap)));
+    tileWidget->hide();
 }
 
 
@@ -405,31 +417,22 @@ void Editor::uncheckToolButtons()
     handToolButton->setChecked(false);
     zoomToolButton->setChecked(false);
 }
-void Editor::toolSelector()
-{
-    if(tool == 0)
-        pointerToolButtonClicked();
-    if(tool == 1)
-        penToolButtonClicked();
-    if(tool == 2)
-        randomPenToolButtonClicked();
-    if(tool == 3)
-        patternBrushToolButtonClicked();
-    if(tool == 4)
-        eraserToolButtonClicked();
-    if(tool == 5)
-        fillShapeToolButtonClicked();
-    if(tool == 6)
-        selectAreaToolButtonClicked();
-    if(tool == 7)
-        arrowToolButtonClicked();
-    if(tool == 8)
-        entityToolButtonClicked();
-    if(tool == 9)
-        objectToolButtonClicked();
-    if(tool == 10)
-        handToolButtonClicked();
-    if(tool == 11)
-        zoomToolButtonClicked();
 
+
+void Editor::tileButtonClicked()
+{
+    if(tileWidget->isVisible())
+        tileWidget->hide();
+    else
+        tileWidget->show();
+}
+
+void Editor::tileSelected(int new_id)
+{
+    id = new_id;
+}
+
+void Editor::tileSelected(QPixmap tile)
+{
+    tileButton->setIcon(QIcon(tile));
 }
