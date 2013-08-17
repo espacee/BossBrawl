@@ -272,16 +272,6 @@ void Editor::initTopBar()
     tileButton->setIconSize(QSize(40,40));
     tileButton->setObjectName("tileButton");
     connect(tileButton,SIGNAL(clicked()),this,SLOT(tileButtonClicked()));
-
-    addLayer = new QPushButton("Add Layer",topBar);
-    addLayer->setObjectName("Add Layer");
-    addLayer->setGeometry(topBar->size().width() / 100 *91,topBarHeight/8, 100,topBarHeight /8 *6);
-    connect(addLayer, SIGNAL(clicked()), this, SLOT(addLayerClicked()));
-
-    removeLayer = new QPushButton("Remove Layer",topBar);
-    removeLayer->setObjectName("Remove Layer");
-    removeLayer->setGeometry(addLayer->pos().x() + addLayer->size().width() + 5,topBarHeight/8, 100,topBarHeight /8 *6);
-    connect(removeLayer, SIGNAL(clicked()), this, SLOT(removeLayerClicked()));
 }
 
 void Editor::initRightPanel()
@@ -292,9 +282,25 @@ void Editor::initRightPanel()
                             rightPanelWidth,
                             height()-menuBarHeight-globalPadding);
 
-    layerWidget = new LayerWidget(rightPanel);
-    layerWidget->move(0,0); layerWidget->resize(rightPanel->size());
-    layerWidget->show();
+    layerTab  = new QWidget(rightPanel);
+    layerTab->move(0,0); layerTab->resize(rightPanel->size());
+
+    addLayerButton = new QPushButton("+",layerTab);
+    addLayerButton->setGeometry(rightPanel->width()-80,rightPanel->height()-40, 40,40);
+    connect(addLayerButton, SIGNAL(clicked()), this, SLOT(addLayerButtonClicked()));
+
+    removeLayerButton = new QPushButton("-",layerTab);
+    removeLayerButton->setGeometry(rightPanel->width()-40,rightPanel->height()-40, 40,40);
+    connect(removeLayerButton, SIGNAL(clicked()), this, SLOT(removeLayerButtonClicked()));
+
+    layerScrollArea = new QScrollArea(layerTab);
+    layerScrollArea->move(0,0); layerScrollArea->resize(layerTab->width(), layerTab->height()-40);
+    layerScrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+
+    layerScrollArea->setAutoFillBackground(true);
+    QPalette pal(palette());
+    pal.setColor(QPalette::Background, QColor(157,150,150));
+    layerScrollArea->setPalette(pal);
 
 }
 
@@ -466,12 +472,12 @@ void Editor::tileSelected(QPixmap tile)
 {
     tileButton->setIcon(QIcon(tile));
 }
-void Editor::addLayerClicked()
+void Editor::addLayerButtonClicked()
 {
 
 
 }
-void Editor::removeLayerClicked()
+void Editor::removeLayerButtonClicked()
 {
 
 

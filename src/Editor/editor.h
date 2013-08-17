@@ -47,8 +47,8 @@ public slots:
     void tileSelected(int new_id);
     void tileSelected(QPixmap tile);
 
-    void addLayerClicked();
-    void removeLayerClicked();
+    void addLayerButtonClicked();
+    void removeLayerButtonClicked();
 
 private:
 
@@ -101,13 +101,14 @@ private:
     QPushButton* zoomToolButton;
 
     TileWidget* tileWidget;
-    LayerWidget* layerWidget;
     int id;
 
     QPushButton* tileButton;
 
-    QPushButton* addLayer;
-    QPushButton* removeLayer;
+    QWidget* layerTab;
+    QScrollArea* layerScrollArea;
+    QPushButton* addLayerButton;
+    QPushButton* removeLayerButton;
 
 };
 
