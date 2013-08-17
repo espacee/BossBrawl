@@ -14,7 +14,7 @@
 class SFMLWidget  : public QWidget, public sf::RenderWindow
 {
 public:
-    SFMLWidget(QWidget* Parent, const QPoint& Position, const QSize& Size);
+    SFMLWidget(QWidget* Parent, const QPoint& Position, const QSize& Size, TileMap* mapP, sf::View* cameraP);
     ~SFMLWidget();
 
     void setTool(int newTool);

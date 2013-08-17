@@ -21,7 +21,7 @@ Editor::Editor(QWidget *parent) : QWidget(parent)
 
     rightPanelWidth=300;
 
-    botBarHeight=30;
+    botBarHeight=40;
 
     initWindow();
     initToolBar();
@@ -51,8 +51,6 @@ Editor::Editor(QWidget *parent) : QWidget(parent)
 
     i=j=k=127;
     a=b=c=true;
-    sfmlWidget->camera = &camera;
-    sfmlWidget->map = &map;
     tileWidget->select(0,0);
     penToolButtonClicked();
 }
@@ -282,26 +280,7 @@ void Editor::initRightPanel()
                             rightPanelWidth,
                             height()-menuBarHeight-globalPadding);
 
-    layerTab  = new QWidget(rightPanel);
-    layerTab->move(0,0); layerTab->resize(rightPanel->size());
-
-    addLayerButton = new QPushButton("+",layerTab);
-    addLayerButton->setGeometry(rightPanel->width()-80,rightPanel->height()-40, 40,40);
-    connect(addLayerButton, SIGNAL(clicked()), this, SLOT(addLayerButtonClicked()));
-
-    removeLayerButton = new QPushButton("-",layerTab);
-    removeLayerButton->setGeometry(rightPanel->width()-40,rightPanel->height()-40, 40,40);
-    connect(removeLayerButton, SIGNAL(clicked()), this, SLOT(removeLayerButtonClicked()));
-
-    layerScrollArea = new QScrollArea(layerTab);
-    layerScrollArea->move(0,0); layerScrollArea->resize(layerTab->width(), layerTab->height()-40);
-    layerScrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-
-    layerScrollArea->setAutoFillBackground(true);
-    QPalette pal(palette());
-    pal.setColor(QPalette::Background, QColor(157,150,150));
-    layerScrollArea->setPalette(pal);
-
+    layerTab = new LayerTab(rightPanel, &map);
 }
 
 void Editor::initBotBar()
@@ -321,7 +300,7 @@ void Editor::initCentralWidget()
                                width()-toolBar->x()-toolBar->width()-rightPanelWidth-globalPadding,
                                height()-menuBarHeight-topBarHeight-globalPadding-botBarHeight);
 
-    sfmlWidget = new SFMLWidget(centralWidget,QPoint(0,0),centralWidget->size());
+    sfmlWidget = new SFMLWidget(centralWidget,QPoint(0,0),centralWidget->size(), &map, &camera);
 
     tileWidget = new TileWidget(centralWidget);
     tileWidget->move(0,0); tileWidget->resize(centralWidget->size());
@@ -471,14 +450,4 @@ void Editor::tileSelected(int new_id)
 void Editor::tileSelected(QPixmap tile)
 {
     tileButton->setIcon(QIcon(tile));
-}
-void Editor::addLayerButtonClicked()
-{
-
-
-}
-void Editor::removeLayerButtonClicked()
-{
-
-
 }

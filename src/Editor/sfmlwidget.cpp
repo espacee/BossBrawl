@@ -1,6 +1,6 @@
 #include "Editor/sfmlwidget.h"
 
-SFMLWidget::SFMLWidget(QWidget* Parent, const QPoint& Position, const QSize& Size)
+SFMLWidget::SFMLWidget(QWidget* Parent, const QPoint& Position, const QSize& Size, TileMap* mapP, sf::View* cameraP)
 {
     setParent(Parent);
     initialized = false;
@@ -11,6 +11,9 @@ SFMLWidget::SFMLWidget(QWidget* Parent, const QPoint& Position, const QSize& Siz
     setAttribute(Qt::WA_NoSystemBackground);
 
     setFocusPolicy(Qt::StrongFocus);
+
+    map = mapP;
+    camera = cameraP;
 
     move(Position);
     resize(Size);

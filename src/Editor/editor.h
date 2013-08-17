@@ -11,7 +11,7 @@
 
 #include "Editor/sfmlwidget.h"
 #include "Editor/tilewidget.h"
-#include "Editor/layerwidget.h"
+#include "Editor/layertab.h"
 #include "Map/TileMap.hpp"
 
 class Editor : public QWidget
@@ -46,9 +46,6 @@ public slots:
     void tileButtonClicked();
     void tileSelected(int new_id);
     void tileSelected(QPixmap tile);
-
-    void addLayerButtonClicked();
-    void removeLayerButtonClicked();
 
 private:
 
@@ -105,10 +102,7 @@ private:
 
     QPushButton* tileButton;
 
-    QWidget* layerTab;
-    QScrollArea* layerScrollArea;
-    QPushButton* addLayerButton;
-    QPushButton* removeLayerButton;
+    LayerTab* layerTab;
 
 };
 

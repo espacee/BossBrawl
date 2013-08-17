@@ -1,34 +1,23 @@
 #ifndef LAYERWIDGET_H
 #define LAYERWIDGET_H
 
-#include <QListWidget>
-#include <QScrollBar>
 #include <QWidget>
-#include <QLabel>
-#include <QMouseEvent>
+#include <QPushButton>
+#include <QResizeEvent>
 
-class LayerWidget : public QListWidget
+class LayerWidget : public QWidget
 {
     Q_OBJECT
 public:
-    LayerWidget(QWidget *parent = 0);
-
+    explicit LayerWidget(QWidget *parent = 0);
+    
 signals:
-
-
+    
 public slots:
 
-protected:
-    void mousePressEvent(QMouseEvent);
-    void mouseReleaseEvent(QMouseEvent);
-    void mouseMoveEvent(QMouseEvent);
-    void keyPressEvent(QKeyEvent);
-    void showEvent(QShowEvent);
-
+    
 private:
-
-
-
+    QPushButton* btn;
 };
 
 #endif // LAYERWIDGET_H
