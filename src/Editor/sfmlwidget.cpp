@@ -54,25 +54,21 @@ void SFMLWidget::keyPressEvent(QKeyEvent *event)
     if(event->key() == Qt::Key_Z)
         view->move(0,20);
 
-
-
 }
 void SFMLWidget::mousePressEvent(QMouseEvent *event)
 {
 
 Qt::MouseButtons mouseButtons = event->buttons();
 
- else if( mouseButtons == Qt::LeftButton )
+if( mouseButtons == Qt::LeftButton )
 {
 
 }
 else if( mouseButtons == Qt::RightButton)
 {
-
   //Right Click
 }
     }
-
 
 SFMLWidget::~SFMLWidget()
 {
