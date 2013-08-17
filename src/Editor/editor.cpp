@@ -405,3 +405,31 @@ void Editor::uncheckToolButtons()
     handToolButton->setChecked(false);
     zoomToolButton->setChecked(false);
 }
+void Editor::toolSelector()
+{
+    if(tool == 0)
+        pointerToolButtonClicked();
+    if(tool == 1)
+        penToolButtonClicked();
+    if(tool == 2)
+        randomPenToolButtonClicked();
+    if(tool == 3)
+        patternBrushToolButtonClicked();
+    if(tool == 4)
+        eraserToolButtonClicked();
+    if(tool == 5)
+        fillShapeToolButtonClicked();
+    if(tool == 6)
+        selectAreaToolButtonClicked();
+    if(tool == 7)
+        arrowToolButtonClicked();
+    if(tool == 8)
+        entityToolButtonClicked();
+    if(tool == 9)
+        objectToolButtonClicked();
+    if(tool == 10)
+        handToolButtonClicked();
+    if(tool == 11)
+        zoomToolButtonClicked();
+
+}

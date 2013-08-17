@@ -5,6 +5,7 @@
 #include <QWidget>
 #include <QTimer>
 #include <QKeyEvent>
+#include <QMouseEvent>
 #include "Map/TileMap.hpp"
 
 class SFMLWidget  : public QWidget, public sf::RenderWindow
@@ -21,6 +22,7 @@ public:
 private:
 
     void keyPressEvent(QKeyEvent *event);
+    void mousePressEvent(QMouseEvent *event);
 
 
     QPaintEngine* paintEngine() const;

@@ -42,6 +42,8 @@ public slots:
 
     void uncheckToolButtons();
 
+    void toolSelector();
+
 private:
 
     TileMap map;
