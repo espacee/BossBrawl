@@ -289,6 +289,9 @@ void Editor::initCentralWidget()
                                height()-menuBarHeight-topBarHeight-globalPadding-botBarHeight);
 
     sfmlWidget = new SFMLWidget(centralWidget,QPoint(0,0),centralWidget->size());
+
+    tileWidget = new TileWidget(centralWidget);
+    tileWidget->move(100,100); tileWidget->resize(centralWidget->size()-QSize(200,200));
 }
 
 

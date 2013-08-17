@@ -10,6 +10,7 @@
 #include <QTimer>
 
 #include "Editor/sfmlwidget.h"
+#include "Editor/tilewidget.h"
 #include "Map/TileMap.hpp"
 
 class Editor : public QWidget
@@ -90,6 +91,8 @@ private:
     QPushButton* objectToolButton;
     QPushButton* handToolButton;
     QPushButton* zoomToolButton;
+
+    TileWidget* tileWidget;
 
 };
 
