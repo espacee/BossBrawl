@@ -272,6 +272,16 @@ void Editor::initTopBar()
     tileButton->setIconSize(QSize(40,40));
     tileButton->setObjectName("tileButton");
     connect(tileButton,SIGNAL(clicked()),this,SLOT(tileButtonClicked()));
+
+    addLayer = new QPushButton("Add Layer",topBar);
+    addLayer->setObjectName("Add Layer");
+    addLayer->setGeometry(topBar->size().width() / 100 *91,topBarHeight/8, 100,topBarHeight /8 *6);
+    connect(addLayer, SIGNAL(clicked()), this, SLOT(addLayerClicked()));
+
+    removeLayer = new QPushButton("Remove Layer",topBar);
+    removeLayer->setObjectName("Remove Layer");
+    removeLayer->setGeometry(addLayer->pos().x() + addLayer->size().width() + 5,topBarHeight/8, 100,topBarHeight /8 *6);
+    connect(removeLayer, SIGNAL(clicked()), this, SLOT(removeLayerClicked()));
 }
 
 void Editor::initRightPanel()
@@ -281,6 +291,11 @@ void Editor::initRightPanel()
                             menuBarHeight,
                             rightPanelWidth,
                             height()-menuBarHeight-globalPadding);
+
+    layerWidget = new LayerWidget(rightPanel);
+    layerWidget->move(0,0); layerWidget->resize(rightPanel->size());
+    layerWidget->show();
+
 }
 
 void Editor::initBotBar()
@@ -450,4 +465,14 @@ void Editor::tileSelected(int new_id)
 void Editor::tileSelected(QPixmap tile)
 {
     tileButton->setIcon(QIcon(tile));
+}
+void Editor::addLayerClicked()
+{
+
+
+}
+void Editor::removeLayerClicked()
+{
+
+
 }

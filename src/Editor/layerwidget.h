@@ -1,13 +1,13 @@
 #ifndef LAYERWIDGET_H
 #define LAYERWIDGET_H
 
-#include <QScrollArea>
+#include <QListWidget>
 #include <QScrollBar>
 #include <QWidget>
 #include <QLabel>
 #include <QMouseEvent>
 
-class LayerWidget : public QScrollArea
+class LayerWidget : public QListWidget
 {
     Q_OBJECT
 public:

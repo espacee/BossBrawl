@@ -5,11 +5,12 @@ LayerWidget::LayerWidget(QWidget *parent)
     setParent(parent);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 
+
+
     setAutoFillBackground(true);
     QPalette pal(palette());
     pal.setColor(QPalette::Background, QColor(157,150,150));
     setPalette(pal);
-
 
 
 }
