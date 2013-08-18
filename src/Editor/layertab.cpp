@@ -19,13 +19,38 @@ LayerTab::LayerTab(QWidget *parent, TileMap* mapP)
     pan = new QWidget(this);
     layerScrollArea->setWidget(pan);
     pan->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
-    pan->resize(50,800);
+
+    nbLayers = 0;
+    currentLayer = 0;
+    layerWidgetHeigth = 50;
+    offset = 1;
+    layerID=0;
 }
 
 void LayerTab::addLayer()
 {
+    int newLayer;
 
+    if(nbLayers==0)
+    {
+        nbLayers=1;
+        layers.push_back(new LayerWidget("Layer "+QString::number(layerID),pan));
+        newLayer = 0;
+    }
+    else
+    {
+        nbLayers++;
+        layers.insert(currentLayer+1, new LayerWidget("Layer "+QString::number(layerID),pan));
 
+        newLayer = currentLayer+1;
+    }
+    layerID++;
+
+    selectLayer(newLayer);
+
+    connect(layers[currentLayer],SIGNAL(selected(int)),this,SLOT(selectLayer(int)));
+
+    reorder();
 }
 
 void LayerTab::popLayer()
@@ -33,19 +58,32 @@ void LayerTab::popLayer()
 
 }
 
+void LayerTab::reorder()
+{
+    pan->setFixedHeight(nbLayers*(layerWidgetHeigth+offset));
+
+    for(int i=0;i<nbLayers;i++)
+    {
+        layers[i]->resize(pan->width(),layerWidgetHeigth);
+        layers[i]->move(0, i*(layerWidgetHeigth+offset));
+        layers[i]->show();
+        layers[i]->setIndex(i);
+    }
+}
+
 void LayerTab::resizeEvent(QResizeEvent *e)
 {
     e->ignore();
-    addLayerButton->setGeometry(width()-80,height()-40, 40,40);
-    removeLayerButton->setGeometry(width()-40,height()-40, 40,40);
-    layerScrollArea->move(0,0); layerScrollArea->resize(width(), height()-40);
+    addLayerButton->setGeometry(width()-82,height()-42, 40,40);
+    removeLayerButton->setGeometry(width()-42,height()-42, 40,40);
+    layerScrollArea->move(4,4); layerScrollArea->resize(width()-8, height()-48);
 
-    pan->resize(layerScrollArea->width()-layerScrollArea->verticalScrollBar()->width(),pan->height());
+    pan->setFixedWidth(layerScrollArea->width()-layerScrollArea->verticalScrollBar()->width());
 }
 
 void LayerTab::mousePressEvent(QMouseEvent *e)
 {
-
+    e->ignore();
 }
 
 void LayerTab::addLayerButtonClicked()
@@ -56,4 +94,16 @@ void LayerTab::addLayerButtonClicked()
 void LayerTab::removeLayerButtonClicked()
 {
 
+}
+
+void LayerTab::selectLayer(int layer)
+{
+    if(layer>=0 && layer<nbLayers)
+    {
+        layers[currentLayer]->unsetCurrent();
+
+        currentLayer = layer;
+
+        layers[currentLayer]->setCurrent();
+    }
 }

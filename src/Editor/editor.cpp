@@ -64,13 +64,6 @@ void Editor::onInit()
 {
     camera = sf::View(sf::FloatRect(0, 0, sfmlWidget->width(), sfmlWidget->height()));
     camera.setCenter(0,0);
-
-    map.resizeLayer(0,50,50);
-    map.fillLayer(0,0);
-    map.setLayerGridEnabled(0,true);
-
-    camera.move(1000,1000);
-
 }
 
 void Editor::onUpdate()
@@ -83,7 +76,6 @@ void Editor::onUpdate()
 
     if(c) k+=0.005; else k-=0.005;
     if(k>=255 || k<=0) c=!c;
-
 
     sfmlWidget->clear(sf::Color(i,j,k));
 
@@ -269,6 +261,7 @@ void Editor::initTopBar()
     tileButton->setGeometry(2,1,topButtonSize,topButtonSize);
     tileButton->setIconSize(QSize(40,40));
     tileButton->setObjectName("tileButton");
+    tileButton->setShortcut(QKeySequence("A"));
     connect(tileButton,SIGNAL(clicked()),this,SLOT(tileButtonClicked()));
 }
 
