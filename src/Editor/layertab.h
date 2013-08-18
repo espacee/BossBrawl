@@ -36,6 +36,7 @@ private:
 
     void resizeEvent(QResizeEvent *e);
     void mousePressEvent(QMouseEvent *e);
+    void keyPressEvent(QKeyEvent* e);
 
     QScrollArea* layerScrollArea;
     QPushButton* addLayerButton;

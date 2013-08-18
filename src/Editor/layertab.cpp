@@ -59,14 +59,16 @@ void LayerTab::addLayer()
 
 void LayerTab::popLayer()
 {
-
+    for(int i = 0; i < layers.size(); i ++)
+    {
+        if(layers[i]->isCurrentSet() == true)
+        {
             layers.erase(layers.begin() + currentLayer);
             nbLayers--;
             layerID--;
-
-
-
-    reorder();
+            reorder();
+        }
+    }
 }
 
 void LayerTab::reorder()
@@ -96,15 +98,33 @@ void LayerTab::mousePressEvent(QMouseEvent *e)
 {
     e->ignore();
 }
+void LayerTab::keyPressEvent(QKeyEvent* e)
+{
+    if(e->key() == Qt::Key_Delete)
+    {
+        for(int i = 0; i < layers.size(); i ++)
+        {
+            if(layers[i]->isCurrentSet() == true)
+            {
+                popLayer();
+            }
+        }
+
+    }
+
+
+}
 
 void LayerTab::addLayerButtonClicked()
 {
     addLayer();
+    layerName->clear();
 }
 
 void LayerTab::removeLayerButtonClicked()
 {
 popLayer();
+
 }
 
 void LayerTab::selectLayer(int layer)
