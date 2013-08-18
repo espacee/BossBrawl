@@ -7,6 +7,7 @@ TileMap::TileMap()
 {
     loadTiles();
     nb_layers = 0;
+    addLayer();
 
     tilesdrawncons = false;
 }

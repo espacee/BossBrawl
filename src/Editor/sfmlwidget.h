@@ -22,7 +22,6 @@ public:
     void processEvents();
 
     void draw(sf::Vector2i mouseCoord);
-    void erase(sf::Vector2i mouseCoord);
 
     TileMap* map;
     sf::View* camera;
@@ -37,7 +36,7 @@ private:
     void showEvent(QShowEvent*);
     void paintEvent(QPaintEvent*);
 
-    bool initialized, leftButtonDown, rightButtonDown;
+    bool initialized, leftButtonDown;
     int tool;
     int id;
 };

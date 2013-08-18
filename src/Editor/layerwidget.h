@@ -2,30 +2,22 @@
 #define LAYERWIDGET_H
 
 #include <QWidget>
-#include <QLabel>
+#include <QPushButton>
+#include <QResizeEvent>
 
 class LayerWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit LayerWidget(QString new_name, QWidget *parent);
-    void setIndex(int i);
-    void setCurrent();
-    void unsetCurrent();
-    void rename(QString new_name);
-
+    explicit LayerWidget(QWidget *parent = 0);
+    
 signals:
-    void selected(int);
-
+    
 public slots:
 
-protected:
-    void mousePressEvent(QMouseEvent *);
     
 private:
-    QLabel* title;
-    QString name;
-    int index;
+    QPushButton* btn;
 };
 
 #endif // LAYERWIDGET_H
