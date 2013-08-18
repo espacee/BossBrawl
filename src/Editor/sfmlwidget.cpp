@@ -5,6 +5,7 @@ SFMLWidget::SFMLWidget(QWidget* Parent, const QPoint& Position, const QSize& Siz
     setParent(Parent);
     initialized = false;
     leftButtonDown = false;
+    rightButtonDown = false;
 
     setAttribute(Qt::WA_PaintOnScreen);
     setAttribute(Qt::WA_OpaquePaintEvent);
@@ -67,15 +68,31 @@ void SFMLWidget::mousePressEvent(QMouseEvent *e)
     if(e->button() == Qt::LeftButton)
     {
         leftButtonDown=true;
-        draw(sf::Vector2i(e->x(),e->y()));
     }
+
+    if(e->button() == Qt::RightButton)
+    {
+        rightButtonDown=true;
+    }
+
+    mouseMoveEvent(e);
 }
 
 void SFMLWidget::mouseMoveEvent(QMouseEvent *e)
 {
+    if(rightButtonDown)
+    {
+        if(tool==1)
+            erase(sf::Vector2i(e->x(),e->y()));
+    }
+
     if(leftButtonDown)
     {
-        draw(sf::Vector2i(e->x(),e->y()));
+        if(tool==1)
+            draw(sf::Vector2i(e->x(),e->y()));
+
+        if(tool==4)
+            erase(sf::Vector2i(e->x(),e->y()));
     }
 }
 
@@ -84,6 +101,11 @@ void SFMLWidget::mouseReleaseEvent(QMouseEvent *e)
     if(e->button() == Qt::LeftButton)
     {
         leftButtonDown=false;
+    }
+
+    if(e->button() == Qt::RightButton)
+    {
+        rightButtonDown=false;
     }
 }
 
@@ -98,12 +120,26 @@ void SFMLWidget::draw(sf::Vector2i mouseCoord)
     sf::Vector2f worldRelativeCoord =  mapPixelToCoords(windowRelativeCoord,*camera);
     sf::Vector2f layerRelativeCoord = worldRelativeCoord -  map->getLayerPosition(0);
 
-    int x = layerRelativeCoord.x /GRID_SIZE ;
-    int y = layerRelativeCoord.y /GRID_SIZE ;
+    if(layerRelativeCoord.x>0 && layerRelativeCoord.y>0)
+    {
+        int x = layerRelativeCoord.x /GRID_SIZE ;
+        int y = layerRelativeCoord.y /GRID_SIZE ;
 
-
-    if(tool == 1)
         map->setTile(0,x,y,id);
-    if(tool == 4)
+    }
+}
+
+void SFMLWidget::erase(sf::Vector2i mouseCoord)
+{
+    sf::Vector2i windowRelativeCoord = mouseCoord;
+    sf::Vector2f worldRelativeCoord =  mapPixelToCoords(windowRelativeCoord,*camera);
+    sf::Vector2f layerRelativeCoord = worldRelativeCoord -  map->getLayerPosition(0);
+
+    if(layerRelativeCoord.x>0 && layerRelativeCoord.y>0)
+    {
+        int x = layerRelativeCoord.x /GRID_SIZE ;
+        int y = layerRelativeCoord.y /GRID_SIZE ;
+
         map->setTile(0,x,y,0);
+    }
 }

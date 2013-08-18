@@ -7,6 +7,7 @@
 #include <QScrollBar>
 #include <QResizeEvent>
 #include <QVector>
+#include <QDebug>
 
 #include "Map/TileMap.hpp"
 #include "Editor/layerwidget.h"
@@ -19,6 +20,7 @@ public:
     
     void addLayer();
     void popLayer();
+    void reorder();
 
 signals:
     
@@ -26,6 +28,7 @@ public slots:
 
     void addLayerButtonClicked();
     void removeLayerButtonClicked();
+    void selectLayer(int layer);
 
 private:
     TileMap* map;
@@ -39,7 +42,9 @@ private:
 
     QWidget* pan;
 
-    std::vector<QPushButton*> buttons;
+    QVector<LayerWidget*> layers;
+    int nbLayers, currentLayer, layerID;
+    int layerWidgetHeigth, offset;
 
 };
 
