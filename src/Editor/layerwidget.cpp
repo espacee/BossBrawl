@@ -12,6 +12,7 @@ LayerWidget::LayerWidget(QString new_name, QWidget *parent) : QWidget(parent)
     title = new QLabel("#"+name,this);
     title->move(5,5);
     index=0;
+    currentSet = false;
 }
 
 void LayerWidget::setIndex(int i)
@@ -24,6 +25,7 @@ void LayerWidget::setCurrent()
     QPalette pal(palette());
     pal.setColor(QPalette::Background, QColor(100,150,220));
     setPalette(pal);
+    currentSet = true;
 }
 
 void LayerWidget::unsetCurrent()
@@ -31,6 +33,7 @@ void LayerWidget::unsetCurrent()
     QPalette pal(palette());
     pal.setColor(QPalette::Background, QColor(200,200,200));
     setPalette(pal);
+    currentSet = false;
 }
 
 void LayerWidget::rename(QString new_name)
@@ -42,4 +45,9 @@ void LayerWidget::rename(QString new_name)
 void LayerWidget::mousePressEvent(QMouseEvent *)
 {
     emit selected(index);
+}
+bool LayerWidget::isCurrentSet()
+{
+    return currentSet;
+
 }

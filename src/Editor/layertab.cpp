@@ -60,6 +60,13 @@ void LayerTab::addLayer()
 void LayerTab::popLayer()
 {
 
+            layers.erase(layers.begin() + currentLayer);
+            nbLayers--;
+            layerID--;
+
+
+
+    reorder();
 }
 
 void LayerTab::reorder()
@@ -97,7 +104,7 @@ void LayerTab::addLayerButtonClicked()
 
 void LayerTab::removeLayerButtonClicked()
 {
-
+popLayer();
 }
 
 void LayerTab::selectLayer(int layer)

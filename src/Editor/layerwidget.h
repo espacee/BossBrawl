@@ -14,6 +14,8 @@ public:
     void unsetCurrent();
     void rename(QString new_name);
 
+    bool isCurrentSet();
+
 signals:
     void selected(int);
 
@@ -26,6 +28,7 @@ private:
     QLabel* title;
     QString name;
     int index;
+    bool currentSet;
 };
 
 #endif // LAYERWIDGET_H
