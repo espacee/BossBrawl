@@ -8,6 +8,7 @@
 #include <QResizeEvent>
 #include <QVector>
 #include <QDebug>
+#include <QLineEdit>
 
 #include "Map/TileMap.hpp"
 #include "Editor/layerwidget.h"
@@ -45,6 +46,8 @@ private:
     QVector<LayerWidget*> layers;
     int nbLayers, currentLayer, layerID;
     int layerWidgetHeigth, offset;
+
+    QLineEdit* layerName;
 
 };
 

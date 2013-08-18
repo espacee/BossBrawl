@@ -20,6 +20,9 @@ LayerTab::LayerTab(QWidget *parent, TileMap* mapP)
     layerScrollArea->setWidget(pan);
     pan->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
 
+    layerName = new QLineEdit("Insert Layername Here.",this);
+    layerName->setGeometry(10, height() -42, 200,40);
+
     nbLayers = 0;
     currentLayer = 0;
     layerWidgetHeigth = 50;
@@ -30,17 +33,18 @@ LayerTab::LayerTab(QWidget *parent, TileMap* mapP)
 void LayerTab::addLayer()
 {
     int newLayer;
+    QString layername = layerName->text();
 
     if(nbLayers==0)
     {
         nbLayers=1;
-        layers.push_back(new LayerWidget("Layer "+QString::number(layerID),pan));
+        layers.push_back(new LayerWidget("" +layername,pan));
         newLayer = 0;
     }
     else
     {
         nbLayers++;
-        layers.insert(currentLayer+1, new LayerWidget("Layer "+QString::number(layerID),pan));
+        layers.insert(currentLayer+1, new LayerWidget("" +layername,pan));
 
         newLayer = currentLayer+1;
     }
