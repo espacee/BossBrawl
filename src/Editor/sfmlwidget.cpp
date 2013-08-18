@@ -68,11 +68,23 @@ void SFMLWidget::mousePressEvent(QMouseEvent *e)
     if(e->button() == Qt::LeftButton)
     {
         leftButtonDown=true;
+
+        if(tool == 10)
+        {
+             cx = e->pos().x();
+             cy = e->pos().y();
+
+        }
     }
 
     if(e->button() == Qt::RightButton)
     {
         rightButtonDown=true;
+    }
+    if(e->button() == Qt::MiddleButton){
+        middleButtonDown = true;
+        cx = e->pos().x();
+        cy = e->pos().y();
     }
 
     mouseMoveEvent(e);
@@ -93,6 +105,21 @@ void SFMLWidget::mouseMoveEvent(QMouseEvent *e)
 
         if(tool==4)
             erase(sf::Vector2i(e->x(),e->y()));
+
+        if(tool == 10)
+        {
+            int deltaX =  cx - e->pos().x();
+            int deltaY =   cy - e->pos().y() ;
+            camera->move(sf::Vector2f(deltaX / 100,deltaY / 100));
+        }
+
+    }
+
+    if(middleButtonDown)
+    {
+        int deltaX =  cx - e->pos().x();
+        int deltaY =   cy - e->pos().y() ;
+        camera->move(sf::Vector2f(deltaX / 100,deltaY / 100));
     }
 }
 
@@ -107,6 +134,8 @@ void SFMLWidget::mouseReleaseEvent(QMouseEvent *e)
     {
         rightButtonDown=false;
     }
+    if(e->button() == Qt::MiddleButton)
+        middleButtonDown = false;
 }
 
 SFMLWidget::~SFMLWidget()
@@ -143,3 +172,4 @@ void SFMLWidget::erase(sf::Vector2i mouseCoord)
         map->setTile(0,x,y,0);
     }
 }
+

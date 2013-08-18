@@ -24,6 +24,8 @@ public:
     void draw(sf::Vector2i mouseCoord);
     void erase(sf::Vector2i mouseCoord);
 
+    void cameraMovementWithMouse(QMouseEvent *event);
+
     TileMap* map;
     sf::View* camera;
 
@@ -37,9 +39,10 @@ private:
     void showEvent(QShowEvent*);
     void paintEvent(QPaintEvent*);
 
-    bool initialized, leftButtonDown, rightButtonDown;
+    bool initialized, leftButtonDown, rightButtonDown, middleButtonDown;
     int tool;
     int id;
+    int cx, cy;
 };
 
 #endif // SFMLWIDGET_H
