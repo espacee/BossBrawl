@@ -9,6 +9,8 @@
 #include <QVector>
 #include <QDebug>
 #include <QLineEdit>
+#include <QRadioButton>
+#include <QLabel>
 
 #include "Map/TileMap.hpp"
 #include "Editor/layerwidget.h"
@@ -49,6 +51,12 @@ private:
     int layerWidgetHeigth, offset;
 
     QLineEdit* layerName;
+    QLineEdit* layerHeight;
+    QLabel* layerHeighttext;
+    QLineEdit* layerWidth;
+    QLabel* layerWidthtext;
+    QRadioButton* layerGrid;
+    QLabel* layerGridtext;
 
 };
 
