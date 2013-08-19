@@ -6,6 +6,7 @@
 #include <QPushButton>
 #include <QResizeEvent>
 
+#include "Editor/layersettings.h"
 #include "Map/TileMap.hpp"
 
 class LayerWidget : public QWidget
@@ -16,14 +17,20 @@ public:
     void setIndex(int i);
     void setCurrent();
     void unsetCurrent();
-    void rename(QString new_name);
 
 
 signals:
     void selected(int);
 
 public slots:
-    void propertiesButtonClicked();
+    void rename(QString new_name);
+    void changeWidth(int width);
+    void changeHeigth(int height);
+    void changeX(int x);
+    void changeY(int y);
+    void changeDepthIndex(double depthIndex);
+    void changeGridEnabled(bool enabled);
+    void changeGridColor(QColor color);
 
 protected:
     void mousePressEvent(QMouseEvent *);
@@ -35,6 +42,7 @@ private:
     QLabel* title;
     QString name;
     QPushButton* propertiesButton;
+    LayerSettings* dialog;
 
     int index;
 };

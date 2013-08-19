@@ -46,6 +46,8 @@ public:
     int getNbLayers();
     sf::Vector2f getLayerPosition(unsigned int layer);
 
+    Layer* getLayer(unsigned int layer);
+
     bool tileExists(unsigned int x, unsigned int y, unsigned int layer) const;
     bool spriteExists(unsigned int id) const;
     bool layerExists(unsigned int layer) const;

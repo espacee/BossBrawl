@@ -102,7 +102,6 @@ void TileMap::addLayer(int pos)
     {
         layers.insert(layers.begin()+pos,new Layer());
     }
-    layers[pos]->setGridEnabled(true);
 }
 
 void TileMap::removeLayer(int pos)
@@ -136,6 +135,14 @@ sf::Vector2f TileMap::getLayerPosition(unsigned int layer)
         return layers[layer]->getPosition();
     else
         return sf::Vector2f(0,0);
+}
+
+Layer* TileMap::getLayer(unsigned int layer)
+{
+    if (layerExists(layer))
+        return layers[layer];
+    else
+        return layers[0];
 }
 
 bool TileMap::tileExists(unsigned int x, unsigned int y, unsigned int layer) const
