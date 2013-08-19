@@ -1,4 +1,5 @@
 #include "Editor/layertab.h"
+#include "layersettings.h"
 
 LayerTab::LayerTab(QWidget *parent, TileMap* mapP)
 {

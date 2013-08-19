@@ -17,6 +17,7 @@ public:
     void setCurrent();
     void unsetCurrent();
     void rename(QString new_name);
+    void propertiesButtonClicked();
 
 signals:
     void selected(int);

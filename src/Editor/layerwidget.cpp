@@ -1,4 +1,7 @@
 #include "layerwidget.h"
+#include "layersettings.h"
+
+
 
 LayerWidget::LayerWidget(QString new_name, QWidget *parent, TileMap *mapP) : QWidget(parent)
 {
@@ -18,6 +21,7 @@ LayerWidget::LayerWidget(QString new_name, QWidget *parent, TileMap *mapP) : QWi
     propertiesButton = new QPushButton(">>",this);
     propertiesButton->setGeometry(width()-20,0,20,height());
     propertiesButton->setObjectName("button");
+    connect(propertiesButton, SIGNAL(clicked()), this, SLOT(propertiesButtonClicked()));
 
 }
 
@@ -57,4 +61,9 @@ void LayerWidget::resizeEvent(QResizeEvent *)
 {
 
     propertiesButton->setGeometry(width()-20,0,20,height());
+}
+void LayerWidget::propertiesButtonClicked()
+{
+map->fillLayer(0,19);
+
 }
