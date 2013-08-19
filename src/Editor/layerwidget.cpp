@@ -64,6 +64,9 @@ void LayerWidget::resizeEvent(QResizeEvent *)
 }
 void LayerWidget::propertiesButtonClicked()
 {
-map->fillLayer(0,19);
+    LayerSettings w;
+    w.exec();
+
+
 
 }
