@@ -83,6 +83,11 @@ void SFMLWidget::mousePressEvent(QMouseEvent *e)
     {
         rightButtonDown=true;
     }
+    if(e->button() == Qt::MiddleButton)
+    {
+       middleButtonDown=true;
+    }
+
 
     x1=x2=e->x();
     y1=y2=e->y();
@@ -115,6 +120,11 @@ void SFMLWidget::mouseMoveEvent(QMouseEvent *e)
         if(tool==10)
             camera->move(dx,dy);
     }
+    if(middleButtonDown)
+    {
+        camera->move(dx,dy);
+
+    }
 
 
 }
@@ -130,6 +140,11 @@ void SFMLWidget::mouseReleaseEvent(QMouseEvent *e)
     {
         rightButtonDown=false;
     }
+    if(e->button() == Qt::MiddleButton)
+    {
+        middleButtonDown=false;
+    }
+
 }
 
 SFMLWidget::~SFMLWidget()
