@@ -65,8 +65,10 @@ void LayerWidget::resizeEvent(QResizeEvent *)
 void LayerWidget::propertiesButtonClicked()
 {
     LayerSettings w;
+
+    w.loadLayerSettings(index, name, 10,10,10,10,10, true);
+
+
     w.exec();
-
-
 
 }
