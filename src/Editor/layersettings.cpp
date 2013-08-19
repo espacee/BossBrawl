@@ -26,7 +26,6 @@ posY = setposY;
 depthindex = setdepthindex;
 gridenabled = setgridenabled;
 
-ui->index->setValue(index);
 ui->nameedit->setText(name);
 ui->heightedit->setValue(height);
 ui->widthedit->setValue(width);
