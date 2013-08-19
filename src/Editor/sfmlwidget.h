@@ -7,6 +7,7 @@
 #include <QLabel>
 #include <QKeyEvent>
 #include <QMouseEvent>
+#include <QWheelEvent>
 #include "Map/TileMap.hpp"
 
 #include <QDebug>
@@ -37,6 +38,7 @@ private:
     void mousePressEvent(QMouseEvent *e);
     void mouseMoveEvent(QMouseEvent *e);
     void mouseReleaseEvent(QMouseEvent *e);
+    void wheelEvent(QWheelEvent *e);
 
     QPaintEngine* paintEngine() const;
     void showEvent(QShowEvent*);

@@ -115,3 +115,4 @@ void LayerWidget::changeGridColor(QColor color)
     map->getLayer(index)->setGridColor(sf::Color(color.red(),color.green(),color.blue()));
 }
 
+

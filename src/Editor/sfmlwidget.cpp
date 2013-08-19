@@ -74,14 +74,19 @@ void SFMLWidget::paintEvent(QPaintEvent*)
 
 void SFMLWidget::mousePressEvent(QMouseEvent *e)
 {
+
     if(e->button() == Qt::LeftButton)
     {
         leftButtonDown=true;
+        if(tool == 11)
+             camera->zoom(0.5);
     }
 
     if(e->button() == Qt::RightButton)
     {
-        rightButtonDown=true;
+        rightButtonDown=true; 
+        if(tool == 11)
+            camera->zoom(2);
     }
     if(e->button() == Qt::MiddleButton)
     {
@@ -145,6 +150,13 @@ void SFMLWidget::mouseReleaseEvent(QMouseEvent *e)
         middleButtonDown=false;
     }
 
+}
+void SFMLWidget::wheelEvent(QWheelEvent *e)
+{
+    if(e->angleDelta().y() > 0)
+        camera->zoom(0.5);
+    else if(e->angleDelta().y() < 0)
+        camera->zoom(2);
 }
 
 SFMLWidget::~SFMLWidget()
