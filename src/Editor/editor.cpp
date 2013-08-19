@@ -47,12 +47,15 @@ Editor::Editor(QWidget *parent) : QWidget(parent)
     connect(&timer, SIGNAL(timeout()), this, SLOT(onUpdate()));
     timer.start();
 
-    onInit();
+    connect(layerTab,SIGNAL(layerSelected(int)),sfmlWidget,SLOT(setCurrentLayer(int)));
 
     i=j=k=127;
     a=b=c=true;
+
     tileWidget->select(0,0);
     penToolButtonClicked();
+    onInit();
+
 }
 
 Editor::~Editor()
@@ -64,10 +67,13 @@ void Editor::onInit()
 {
     camera = sf::View(sf::FloatRect(0, 0, sfmlWidget->width(), sfmlWidget->height()));
     camera.setCenter(0,0);
+    layerTab->addLayer();
+
 }
 
 void Editor::onUpdate()
 {
+
     if(a) i+=0.001; else i-=0.001;
     if(i>=255 || i<=0) a=!a;
 
@@ -274,6 +280,7 @@ void Editor::initRightPanel()
                             height()-menuBarHeight-globalPadding);
 
     layerTab = new LayerTab(rightPanel, &map);
+    layerTab->resize(rightPanel->size());
 }
 
 void Editor::initBotBar()

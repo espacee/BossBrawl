@@ -21,16 +21,16 @@ class LayerTab : public QWidget
 public:
     LayerTab(QWidget *parent, TileMap* mapP);
     
-    void addLayer();
-    void popLayer();
     void reorder();
 
 signals:
+    void layerSelected(int);
     
 public slots:
-
-    void addLayerButtonClicked();
-    void removeLayerButtonClicked();
+    void addLayer();
+    void removeLayer();
+    void moveBg();
+    void moveFg();
     void selectLayer(int layer);
 
 private:
@@ -43,20 +43,14 @@ private:
     QScrollArea* layerScrollArea;
     QPushButton* addLayerButton;
     QPushButton* removeLayerButton;
+    QPushButton* moveBgButton;
+    QPushButton* moveFgButton;
 
     QWidget* pan;
 
     QVector<LayerWidget*> layers;
-    int nbLayers, currentLayer, layerID;
+    int currentLayer, layerID;
     int layerWidgetHeigth, offset;
-
-    QLineEdit* layerName;
-    QLineEdit* layerHeight;
-    QLabel* layerHeighttext;
-    QLineEdit* layerWidth;
-    QLabel* layerWidthtext;
-    QRadioButton* layerGrid;
-    QLabel* layerGridtext;
 
 };
 

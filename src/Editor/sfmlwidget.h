@@ -13,12 +13,11 @@
 
 class SFMLWidget  : public QWidget, public sf::RenderWindow
 {
+    Q_OBJECT
 public:
     SFMLWidget(QWidget* Parent, const QPoint& Position, const QSize& Size, TileMap* mapP, sf::View* cameraP);
     ~SFMLWidget();
 
-    void setTool(int newTool);
-    void setCurrentTile(int new_id);
     void processEvents();
 
     void draw(sf::Vector2i mouseCoord);
@@ -26,11 +25,15 @@ public:
 
     void cameraMovementWithMouse(QMouseEvent *event);
 
-    TileMap* map;
-    sf::View* camera;
+public slots:
+    void setTool(int newTool);
+    void setCurrentTile(int new_id);
+    void setCurrentLayer(int newLayer);
 
 private:
 
+    TileMap* map;
+    sf::View* camera;
     void mousePressEvent(QMouseEvent *e);
     void mouseMoveEvent(QMouseEvent *e);
     void mouseReleaseEvent(QMouseEvent *e);
@@ -39,8 +42,9 @@ private:
     void showEvent(QShowEvent*);
     void paintEvent(QPaintEvent*);
 
-    bool initialized, leftButtonDown, rightButtonDown, middleButtonDown;
+    bool initialized, leftButtonDown, rightButtonDown;
     int tool;
+    int layer;
     int id;
     int cx, cy;
 };

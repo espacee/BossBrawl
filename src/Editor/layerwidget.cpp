@@ -1,18 +1,24 @@
 #include "layerwidget.h"
 
-LayerWidget::LayerWidget(QString new_name, QWidget *parent) : QWidget(parent)
+LayerWidget::LayerWidget(QString new_name, QWidget *parent, TileMap *mapP) : QWidget(parent)
 {
+    map = mapP;
+    setObjectName("layer");
 
     setAutoFillBackground(true);
     QPalette pal(palette());
-    pal.setColor(QPalette::Background, QColor(157,150,150));
+    pal.setColor(QPalette::Background, QColor(200,200,200));
     setPalette(pal);
 
     name = new_name;
-    title = new QLabel("#"+name,this);
+    title = new QLabel(name,this);
     title->move(5,5);
     index=0;
-    currentSet = false;
+
+    propertiesButton = new QPushButton(">>",this);
+    propertiesButton->setGeometry(width()-20,0,20,height());
+    propertiesButton->setObjectName("button");
+
 }
 
 void LayerWidget::setIndex(int i)
@@ -22,18 +28,18 @@ void LayerWidget::setIndex(int i)
 
 void LayerWidget::setCurrent()
 {
+    setAutoFillBackground(true);
     QPalette pal(palette());
-    pal.setColor(QPalette::Background, QColor(100,150,220));
+    pal.setColor(QPalette::Background, QColor(150,180,255));
     setPalette(pal);
-    currentSet = true;
 }
 
 void LayerWidget::unsetCurrent()
 {
+    setAutoFillBackground(true);
     QPalette pal(palette());
     pal.setColor(QPalette::Background, QColor(200,200,200));
     setPalette(pal);
-    currentSet = false;
 }
 
 void LayerWidget::rename(QString new_name)
@@ -46,8 +52,9 @@ void LayerWidget::mousePressEvent(QMouseEvent *)
 {
     emit selected(index);
 }
-bool LayerWidget::isCurrentSet()
-{
-    return currentSet;
 
+void LayerWidget::resizeEvent(QResizeEvent *)
+{
+
+    propertiesButton->setGeometry(width()-20,0,20,height());
 }

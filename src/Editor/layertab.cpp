@@ -4,112 +4,135 @@ LayerTab::LayerTab(QWidget *parent, TileMap* mapP)
 {
     map = mapP;
     setParent(parent);
-    resize(parent->size());
+
+    setAutoFillBackground(true);
+    QPalette pal(palette());
+    pal.setColor(QPalette::Background, QColor(45,40,40));
+    setPalette(pal);
 
     addLayerButton = new QPushButton("+",this);
-    connect(addLayerButton, SIGNAL(clicked()), this, SLOT(addLayerButtonClicked()));
+    connect(addLayerButton, SIGNAL(clicked()), this, SLOT(addLayer()));
+    addLayerButton->setObjectName("button");
 
     removeLayerButton = new QPushButton("-",this);
-    connect(removeLayerButton, SIGNAL(clicked()), this, SLOT(removeLayerButtonClicked()));
+    connect(removeLayerButton, SIGNAL(clicked()), this, SLOT(removeLayer()));
+    removeLayerButton->setObjectName("button");
+
+    moveBgButton = new QPushButton("^", this);
+    connect(moveBgButton,SIGNAL(clicked()),this,SLOT(moveBg()));
+    moveBgButton->setObjectName("button");
+
+    moveFgButton = new QPushButton("v", this);
+    connect(moveFgButton,SIGNAL(clicked()),this,SLOT(moveFg()));
+    moveFgButton->setObjectName("button");
 
     layerScrollArea = new QScrollArea(this);
     layerScrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     layerScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    layerScrollArea->setAutoFillBackground(true);
+    pal.setColor(QPalette::Background, QColor(157,150,150));
+    layerScrollArea->setPalette(pal);
 
     pan = new QWidget(this);
     layerScrollArea->setWidget(pan);
     pan->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
+    pan->setAutoFillBackground(true);
+    pal.setColor(QPalette::Background, QColor(157,150,150));
+    pan->setPalette(pal);
 
-    layerName = new QLineEdit("Insert Layername Here.",this);
-    layerName->setGeometry(10, height() -42, 200,40);
-
-    layerHeight = new QLineEdit(this);
-    layerHeight->setGeometry(10, height() - 70,40,25);
-
-    layerWidth = new QLineEdit(this);
-    layerWidth->setGeometry(10 + layerHeight->size().width()+ 15, height() - 70,45,25);
-
-    layerGrid = new QRadioButton(this);
-    layerGrid->setGeometry(layerWidth->pos().x() + layerWidth->size().width() + 15, height() - 70,45,25);
-
-    layerHeighttext = new QLabel("Height:", this);
-    layerWidthtext = new QLabel("Width: ", this);
-    layerGridtext = new QLabel("Grid: ", this);
-
-    layerHeighttext->setGeometry(10, height() - 95,45,30);
-    layerWidthtext->setGeometry(10 + layerHeight->size().width()+ 15, height() - 95,45,30);
-    layerGridtext->setGeometry(layerWidth->pos().x() + layerWidth->size().width() + 15, height() - 95,45,30);
-
-    nbLayers = 0;
     currentLayer = 0;
     layerWidgetHeigth = 50;
     offset = 1;
     layerID=0;
+
+    addLayerButton->resize(40,40);
+    removeLayerButton->resize(addLayerButton->size());
+    moveBgButton->resize(addLayerButton->size());
+    moveFgButton->resize(addLayerButton->size());
+
+    removeLayerButton->move(width()-44, height()-42);
+    addLayerButton->move(removeLayerButton->x()-44,height()-42);
+    moveBgButton->move(addLayerButton->x()-44,height()-42);
+    moveFgButton->move(moveBgButton->x()-44,height()-42);
+
+    layerScrollArea->move(4,4); layerScrollArea->resize(width()-8, height()- 48);
+
+    pan->setFixedWidth(layerScrollArea->width()-layerScrollArea->verticalScrollBar()->width()-2);
 }
 
 void LayerTab::addLayer()
 {
     int newLayer;
-    int layerheight = layerHeight->text().toInt();
-    int layerwidth = layerWidth->text().toInt();
-    bool layergrid;
-
-    if(layerGrid->isChecked())
-        layergrid = true;
-    else
-        layergrid = false;
-
-    QString layername = layerName->text();
-
-    if(nbLayers==0)
+    if(layers.size()==0)
     {
-        nbLayers=1;
-        layers.push_back(new LayerWidget("" +layername,pan));
-        newLayer = 0;
-        map->addLayer();
-        map->resizeLayer(newLayer, layerwidth, layerheight  );
-        map->setLayerGridEnabled(newLayer, layergrid);
+        newLayer=0;
+        layers.push_back(new LayerWidget("Layer "+QString::number(layerID),pan, map));
     }
     else
     {
-        nbLayers++;
-        layers.insert(currentLayer+1, new LayerWidget("" +layername,pan));
-
-        newLayer = currentLayer+1;
-
-        map->addLayer();
-        map->resizeLayer(newLayer, layerwidth, layerheight  );
-        map->setLayerGridEnabled(newLayer, layergrid);
-
+        newLayer=currentLayer+1;
+        layers.insert(layers.begin()+newLayer,new LayerWidget("Layer "+QString::number(layerID),pan, map));
     }
-    layerID++;
+    map->addLayer(newLayer);
+    connect(layers[newLayer],SIGNAL(selected(int)),this,SLOT(selectLayer(int)));
 
     selectLayer(newLayer);
 
-    connect(layers[currentLayer],SIGNAL(selected(int)),this,SLOT(selectLayer(int)));
-
     reorder();
+    layerID++;
 }
 
-void LayerTab::popLayer()
+void LayerTab::removeLayer()
 {
-    for(int i = 0; i < layers.size(); i ++)
+    if(layers.size()>1)
     {
-        if(layers[i]->isCurrentSet() == true)
-        {
-            layers.erase(layers.begin() + currentLayer);
-            nbLayers--;
-            layerID--;
-            reorder();
-        }
+        int deletedLayer = currentLayer;
+
+        selectLayer(deletedLayer==layers.size()?deletedLayer-1:deletedLayer);
+
+        delete layers[deletedLayer];
+        layers.erase(layers.begin()+deletedLayer);
+        map->removeLayer(deletedLayer);
+
+        selectLayer(deletedLayer==layers.size()?deletedLayer-1:deletedLayer);
+
+        reorder();
+    }
+}
+
+void LayerTab::moveBg()
+{
+    if(currentLayer>0)
+    {
+        LayerWidget* temp = layers[currentLayer];
+        layers[currentLayer] = layers[currentLayer-1];
+        layers[currentLayer-1] = temp;
+        map->moveLayerBackground(currentLayer);
+        selectLayer(currentLayer-1);
+
+        reorder();
+    }
+}
+
+void LayerTab::moveFg()
+{
+    if(currentLayer<layers.size()-1)
+    {
+        LayerWidget* temp = layers[currentLayer];
+        layers[currentLayer] = layers[currentLayer+1];
+        layers[currentLayer+1] = temp;
+        map->moveLayerForeground(currentLayer);
+        selectLayer(currentLayer+1);
+
+        reorder();
     }
 }
 
 void LayerTab::reorder()
 {
-    pan->setFixedHeight(nbLayers*(layerWidgetHeigth+offset));
+    pan->setFixedHeight(layers.size()*(layerWidgetHeigth+offset));
 
-    for(int i=0;i<nbLayers;i++)
+    for(int i=0;i<layers.size();i++)
     {
         layers[i]->resize(pan->width(),layerWidgetHeigth);
         layers[i]->move(0, i*(layerWidgetHeigth+offset));
@@ -121,11 +144,20 @@ void LayerTab::reorder()
 void LayerTab::resizeEvent(QResizeEvent *e)
 {
     e->ignore();
-    addLayerButton->setGeometry(width()-82,height()-42, 40,40);
-    removeLayerButton->setGeometry(width()-42,height()-42, 40,40);
-    layerScrollArea->move(4,4); layerScrollArea->resize(width()-8, height()- 100);
+    addLayerButton->resize(40,40);
+    removeLayerButton->resize(addLayerButton->size());
+    moveBgButton->resize(addLayerButton->size());
+    moveFgButton->resize(addLayerButton->size());
 
-    pan->setFixedWidth(layerScrollArea->width()-layerScrollArea->verticalScrollBar()->width());
+    removeLayerButton->move(width()-44, height()-42);
+    addLayerButton->move(removeLayerButton->x()-44,height()-42);
+    moveBgButton->move(addLayerButton->x()-44,height()-42);
+    moveFgButton->move(moveBgButton->x()-44,height()-42);
+
+    layerScrollArea->move(4,4); layerScrollArea->resize(width()-8, height()- 48);
+
+    pan->setFixedWidth(layerScrollArea->width()-layerScrollArea->verticalScrollBar()->width()-2);
+    reorder();
 }
 
 void LayerTab::mousePressEvent(QMouseEvent *e)
@@ -136,39 +168,19 @@ void LayerTab::keyPressEvent(QKeyEvent* e)
 {
     if(e->key() == Qt::Key_Delete)
     {
-        for(int i = 0; i < layers.size(); i ++)
-        {
-            if(layers[i]->isCurrentSet() == true)
-            {
-                popLayer();
-            }
-        }
-
+        removeLayer();
     }
-
-
-}
-
-void LayerTab::addLayerButtonClicked()
-{
-    addLayer();
-    layerName->clear();
-}
-
-void LayerTab::removeLayerButtonClicked()
-{
-popLayer();
-
 }
 
 void LayerTab::selectLayer(int layer)
 {
-    if(layer>=0 && layer<nbLayers)
+    for(int i=0;i<layers.size();i++)
     {
-        layers[currentLayer]->unsetCurrent();
-
-        currentLayer = layer;
-
-        layers[currentLayer]->setCurrent();
+        layers[i]->unsetCurrent();
     }
+
+    layers[layer]->setCurrent();
+    currentLayer=layer;
+
+    emit layerSelected(currentLayer);
 }

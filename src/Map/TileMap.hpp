@@ -38,10 +38,12 @@ public:
     void setLayerGridColor(unsigned int layer, sf::Color gridColor);
     void setLayerGridEnabled(unsigned int layer, bool yesno);
 
-    void addLayer();
-    void popLayer();
+    void addLayer(int pos);
+    void removeLayer(int pos);
+    void moveLayerBackground(int pos);
+    void moveLayerForeground(int pos);
 
-    int getLayerSize();
+    int getNbLayers();
     sf::Vector2f getLayerPosition(unsigned int layer);
 
     bool tileExists(unsigned int x, unsigned int y, unsigned int layer) const;
@@ -53,12 +55,10 @@ public:
     void display(sf::RenderWindow& target);
 
 private:
-    std::vector< Layer > layers;
-    unsigned int nb_layers, drawnTiles;
+    std::vector< Layer* > layers;
     std::vector< sf::Sprite > sprites;
     sf::Texture tileSet;
 
-    bool tilesdrawncons;
 };
 
 #endif // MAP_TILEMAP_HPP

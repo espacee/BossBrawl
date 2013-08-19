@@ -32,7 +32,7 @@
 #closeButton
 {
 	background-color:transparent;
-	border-bottom-right-radius:5px;
+	border-radius:0px;
 }
 
 #closeButton:hover
@@ -92,4 +92,20 @@
 {
 	background-color:rgb(157,150,150);
 	border:1px solid orange;
+}
+
+#button
+{
+	background-color:rgba(255,255,255,0.25);
+	border:none;
+}
+
+#button:hover
+{
+	background-color:rgb(50, 170, 240);
+}
+
+#button:pressed
+{
+	background-color:rgb(50, 80, 170);
 }
