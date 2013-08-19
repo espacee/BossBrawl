@@ -83,6 +83,8 @@ void Editor::onUpdate()
     if(c) k+=0.005; else k-=0.005;
     if(k>=255 || k<=0) c=!c;
 
+    sfmlWidget->processEvents();
+
     sfmlWidget->clear(sf::Color(i,j,k));
 
     sfmlWidget->setView(camera);

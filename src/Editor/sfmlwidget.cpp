@@ -37,7 +37,11 @@ void SFMLWidget::setCurrentTile(int new_id)
 
 void SFMLWidget::processEvents()
 {
-
+    if(tool==10 && !leftButtonDown)
+    {
+        dx*=0.9; dy*=0.9;
+        camera->move(dx,dy);
+    }
 }
 
 #ifdef Q_WS_X11
@@ -80,11 +84,21 @@ void SFMLWidget::mousePressEvent(QMouseEvent *e)
         rightButtonDown=true;
     }
 
+    x1=x2=e->x();
+    y1=y2=e->y();
+    dx=dy=0;
     mouseMoveEvent(e);
 }
 
 void SFMLWidget::mouseMoveEvent(QMouseEvent *e)
 {
+    x2=e->x();
+    y2=e->y();
+    dx = x1-x2;
+    dy = y1-y2;
+    x1=e->x();
+    y1=e->y();
+
     if(rightButtonDown)
     {
         if(tool==1)
@@ -98,8 +112,11 @@ void SFMLWidget::mouseMoveEvent(QMouseEvent *e)
 
         if(tool==4)
             erase(sf::Vector2i(e->x(),e->y()));
-
+        if(tool==10)
+            camera->move(dx,dy);
     }
+
+
 }
 
 void SFMLWidget::mouseReleaseEvent(QMouseEvent *e)

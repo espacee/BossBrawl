@@ -68,7 +68,5 @@ void LayerWidget::propertiesButtonClicked()
 
     w.loadLayerSettings(index, name, 10,10,10,10,10, true);
 
-
     w.exec();
-
 }

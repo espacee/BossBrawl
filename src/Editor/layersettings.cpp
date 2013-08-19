@@ -51,8 +51,6 @@ map->resizeLayer(index, height, width);
 map->setLayerGridEnabled(index, gridenabled);
 map->setLayerDepthIndex(index, depthindex);
 
-
-
 }
 
 void LayerSettings::on_buttonBox_accepted()

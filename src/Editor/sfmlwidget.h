@@ -46,7 +46,7 @@ private:
     int tool;
     int layer;
     int id;
-    int cx, cy;
+    float x1,x2,y1,y2,dx,dy;
 };
 
 #endif // SFMLWIDGET_H
