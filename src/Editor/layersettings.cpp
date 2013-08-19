@@ -19,3 +19,8 @@ LayerSettings::~LayerSettings()
 {
     delete ui;
 }
+
+void LayerSettings::on_OKButton_clicked()
+{
+    accept();
+}

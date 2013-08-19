@@ -20,6 +20,8 @@ public:
 
 private slots:
 
+    void on_OKButton_clicked();
+
 private:
     Ui::LayerSettings *ui;
     TileMap* map;
