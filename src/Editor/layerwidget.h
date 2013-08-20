@@ -31,6 +31,7 @@ public slots:
     void changeDepthIndex(double depthIndex);
     void changeGridEnabled(bool enabled);
     void changeGridColor(QColor color);
+    void clearLayer();
 
 
 protected:

@@ -29,6 +29,7 @@ LayerWidget::LayerWidget(QString new_name, QWidget *parent, TileMap *mapP) : QWi
     connect(dialog->getUi()->ySpinBox,SIGNAL(valueChanged(int)),this,SLOT(changeY(int)));
     connect(dialog->getUi()->depthIndexSpinBox,SIGNAL(valueChanged(double)),this,SLOT(changeDepthIndex(double)));
     connect(dialog->getUi()->gridCheckBox,SIGNAL(toggled(bool)),this,SLOT(changeGridEnabled(bool)));
+    connect(dialog->getUi()->clearlayer, SIGNAL(clicked()), this, SLOT(clearLayer()));
 
     connect(propertiesButton,SIGNAL(clicked()),dialog,SLOT(exec()));
 }
@@ -114,5 +115,8 @@ void LayerWidget::changeGridColor(QColor color)
 {
     map->getLayer(index)->setGridColor(sf::Color(color.red(),color.green(),color.blue()));
 }
-
+void LayerWidget::clearLayer()
+{
+    map->getLayer(index)->fill(0);
+}
 

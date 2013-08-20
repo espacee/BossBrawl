@@ -280,6 +280,19 @@
     <string>OK</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="clearlayer">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>120</y>
+     <width>81</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Clear Layer</string>
+   </property>
+  </widget>
  </widget>
  <tabstops>
   <tabstop>nameEdit</tabstop>

@@ -77,6 +77,8 @@ void SFMLWidget::mousePressEvent(QMouseEvent *e)
         leftButtonDown=true;
         if(tool == 11)
              camera->zoom(0.5);
+        if(tool == 5)
+            map->getLayer(layer)->fill(id);
     }
 
     if(e->button() == Qt::RightButton)
