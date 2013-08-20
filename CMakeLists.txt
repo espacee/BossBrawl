@@ -53,6 +53,11 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 find_package(Qt5Widgets REQUIRED)
+find_package(X11)
+
+if(X11_FOUND)
+    add_definitions(-DBRAWL_X11)
+endif()
 
 qt5_wrap_ui(UIS_HDRS
 src/Editor/layersettings.ui

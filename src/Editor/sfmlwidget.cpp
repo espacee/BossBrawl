@@ -44,20 +44,17 @@ void SFMLWidget::processEvents()
     }
 }
 
-#ifdef Q_WS_X11
-    #include <Qt/qx11info_x11.h>
-    #include <X11/Xlib.h>
-#endif
-
 void SFMLWidget::showEvent(QShowEvent*)
 {
     if (!initialized)
     {
-        #ifdef Q_WS_X11
-            XFlush(QX11Info::display());
+        #ifdef BRAWL_X11
+            sf::Window::create(winId());
+        #else
+            sf::Window::create(reinterpret_cast<sf::WindowHandle>(winId()));
         #endif
 
-        sf::Window::create(reinterpret_cast<sf::WindowHandle>(winId()));
+
         initialized = true;
     }
 }
