@@ -22,7 +22,7 @@ GameState::GameState()
             }
         }
         map.setLayerDepthIndex(i,(float)(i/200.f));
-        map.addLayer();
+        map.addLayer(0);
     }
 
     fpsText.setCharacterSize(16);
