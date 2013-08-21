@@ -1,11 +1,6 @@
 project(BossBrawl)
 cmake_minimum_required(VERSION 2.8.8)
 
-# Add additional flags to gcc and clang
-if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_COMPILER_IS_CLANGXX OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-    add_definitions("-std=c++11 -pedantic -Wall -Wextra -Wshadow")
-endif()
-
 # Find SFML
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake/Modules" ${CMAKE_MODULE_PATH})
 find_package(SFML 2 COMPONENTS graphics window audio system REQUIRED)
@@ -53,11 +48,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 find_package(Qt5Widgets REQUIRED)
-find_package(X11)
 
-if(X11_FOUND)
-    add_definitions(-DBRAWL_X11)
-endif()
 
 qt5_wrap_ui(UIS_HDRS
 src/Editor/layersettings.ui
@@ -76,6 +67,19 @@ src/Map/Layer.cpp
 ${UIS_HDRS}
 )
 
+find_package(X11)
+
+if(X11_FOUND)
+    set_target_properties(brawledit PROPERTIES COMPILE_DEFINITIONS BRAWL_X11)
+endif()
+
 qt5_use_modules(brawledit Widgets)
 
 target_link_libraries(brawledit ${QT_LIBRARIES} ${SFML_LIBRARIES})
+
+# Add additional flags to gcc and clang
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_COMPILER_IS_CLANGXX OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+    set_target_properties(bossbrawl PROPERTIES COMPILE_FLAGS "-std=c++11 -pedantic -Wall -Wextra -Wshadow")
+    # Don't Add -Wshadow to brawledit, as Qt has some nasty hard to avoid shadowing problems
+    set_target_properties(brawledit PROPERTIES COMPILE_FLAGS "-std=c++11 -pedantic -Wall -Wextra")
+endif()
