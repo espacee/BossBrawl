@@ -6,6 +6,7 @@ SFMLWidget::SFMLWidget(QWidget* Parent, const QPoint& Position, const QSize& Siz
     initialized = false;
     leftButtonDown = false;
     rightButtonDown = false;
+    middleButtonDown = false;
 
     setAttribute(Qt::WA_PaintOnScreen);
     setAttribute(Qt::WA_OpaquePaintEvent);
