@@ -16,6 +16,7 @@ class TileMap
 {
 public:
     TileMap();
+    ~TileMap();
 
     void loadTiles();
 

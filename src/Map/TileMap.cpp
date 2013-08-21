@@ -8,6 +8,14 @@ TileMap::TileMap()
     loadTiles();
 }
 
+TileMap::~TileMap()
+{
+    for (auto l : layers)
+    {
+        delete l;
+    }
+}
+
 void TileMap::loadTiles()
 {
     sprites.push_back(sf::Sprite());
