@@ -11,12 +11,18 @@ layersettings.ui
 
 add_executable(brawledit
 editor.cpp
+editor.h
 layersettings.cpp
+layersettings.h
 layertab.cpp
+layertab.h
 layerwidget.cpp
+layerwidget.h
 main.cpp
 sfmlwidget.cpp
+sfmlwidget.h
 tilewidget.cpp
+tilewidget.h
 ../Map/TileMap.cpp
 ../Map/Layer.cpp
 ${UIS_HDRS}
