@@ -11,17 +11,19 @@ GameState::GameState()
 
     fpsText.setFont(graphics::fontbasiclight);
 
-    for(int i = 0; i < 200; i++)
+    for (int i = 0; i < 200; i++)
     {
-        map.resizeLayer(i,5,3);
-        for(int j=0; j<5; j++)
+        map.resizeLayer(i, 5, 3);
+
+        for (int j = 0; j < 5; j++)
         {
-            for(int k=0;k<3;k++)
+            for (int k = 0; k < 3; k++)
             {
-                map.setTile(i,j,k,(j+k*5) %15+1);
+                map.setTile(i, j, k, (j + k * 5) % 15 + 1);
             }
         }
-        map.setLayerDepthIndex(i,(float)(i/200.f));
+
+        map.setLayerDepthIndex(i, (float)(i / 200.f));
         map.addLayer(0);
     }
 
@@ -84,6 +86,7 @@ void GameState::onEvent(const sf::Event &event)
 
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Numpad8)
         camera.zoom(0.5);
+
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Numpad5)
         camera.zoom(2);
 

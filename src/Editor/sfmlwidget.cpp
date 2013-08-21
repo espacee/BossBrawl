@@ -37,10 +37,11 @@ void SFMLWidget::setCurrentTile(int new_id)
 
 void SFMLWidget::processEvents()
 {
-    if(tool==10 && !leftButtonDown)
+    if (tool == 10 && !leftButtonDown)
     {
-        dx*=0.9; dy*=0.9;
-        camera->move(dx,dy);
+        dx *= 0.9;
+        dy *= 0.9;
+        camera->move(dx, dy);
     }
 }
 
@@ -48,11 +49,11 @@ void SFMLWidget::showEvent(QShowEvent*)
 {
     if (!initialized)
     {
-        #ifdef BRAWL_X11
-            sf::Window::create(winId());
-        #else
-            sf::Window::create(reinterpret_cast<sf::WindowHandle>(winId()));
-        #endif
+#ifdef BRAWL_X11
+        sf::Window::create(winId());
+#else
+        sf::Window::create(reinterpret_cast<sf::WindowHandle>(winId()));
+#endif
 
 
         initialized = true;
@@ -72,61 +73,67 @@ void SFMLWidget::paintEvent(QPaintEvent*)
 void SFMLWidget::mousePressEvent(QMouseEvent *e)
 {
 
-    if(e->button() == Qt::LeftButton)
+    if (e->button() == Qt::LeftButton)
     {
-        leftButtonDown=true;
-        if(tool == 11)
-             camera->zoom(0.5);
-        if(tool == 5)
+        leftButtonDown = true;
+
+        if (tool == 11)
+            camera->zoom(0.5);
+
+        if (tool == 5)
             map->getLayer(layer)->fill(id);
     }
 
-    if(e->button() == Qt::RightButton)
+    if (e->button() == Qt::RightButton)
     {
-        rightButtonDown=true; 
-        if(tool == 11)
+        rightButtonDown = true;
+
+        if (tool == 11)
             camera->zoom(2);
     }
-    if(e->button() == Qt::MiddleButton)
+
+    if (e->button() == Qt::MiddleButton)
     {
-       middleButtonDown=true;
+        middleButtonDown = true;
     }
 
 
-    x1=x2=e->x();
-    y1=y2=e->y();
-    dx=dy=0;
+    x1 = x2 = e->x();
+    y1 = y2 = e->y();
+    dx = dy = 0;
     mouseMoveEvent(e);
 }
 
 void SFMLWidget::mouseMoveEvent(QMouseEvent *e)
 {
-    x2=e->x();
-    y2=e->y();
-    dx = x1-x2;
-    dy = y1-y2;
-    x1=e->x();
-    y1=e->y();
+    x2 = e->x();
+    y2 = e->y();
+    dx = x1 - x2;
+    dy = y1 - y2;
+    x1 = e->x();
+    y1 = e->y();
 
-    if(rightButtonDown)
+    if (rightButtonDown)
     {
-        if(tool==1)
-            erase(sf::Vector2i(e->x(),e->y()));
+        if (tool == 1)
+            erase(sf::Vector2i(e->x(), e->y()));
     }
 
-    if(leftButtonDown)
+    if (leftButtonDown)
     {
-        if(tool==1)
-            draw(sf::Vector2i(e->x(),e->y()));
+        if (tool == 1)
+            draw(sf::Vector2i(e->x(), e->y()));
 
-        if(tool==4)
-            erase(sf::Vector2i(e->x(),e->y()));
-        if(tool==10)
-            camera->move(dx,dy);
+        if (tool == 4)
+            erase(sf::Vector2i(e->x(), e->y()));
+
+        if (tool == 10)
+            camera->move(dx, dy);
     }
-    if(middleButtonDown)
+
+    if (middleButtonDown)
     {
-        camera->move(dx,dy);
+        camera->move(dx, dy);
 
     }
 
@@ -135,26 +142,27 @@ void SFMLWidget::mouseMoveEvent(QMouseEvent *e)
 
 void SFMLWidget::mouseReleaseEvent(QMouseEvent *e)
 {
-    if(e->button() == Qt::LeftButton)
+    if (e->button() == Qt::LeftButton)
     {
-        leftButtonDown=false;
+        leftButtonDown = false;
     }
 
-    if(e->button() == Qt::RightButton)
+    if (e->button() == Qt::RightButton)
     {
-        rightButtonDown=false;
+        rightButtonDown = false;
     }
-    if(e->button() == Qt::MiddleButton)
+
+    if (e->button() == Qt::MiddleButton)
     {
-        middleButtonDown=false;
+        middleButtonDown = false;
     }
 
 }
 void SFMLWidget::wheelEvent(QWheelEvent *e)
 {
-    if(e->angleDelta().y() > 0)
+    if (e->angleDelta().y() > 0)
         camera->zoom(0.5);
-    else if(e->angleDelta().y() < 0)
+    else if (e->angleDelta().y() < 0)
         camera->zoom(2);
 }
 
@@ -166,30 +174,30 @@ SFMLWidget::~SFMLWidget()
 void SFMLWidget::draw(sf::Vector2i mouseCoord)
 {
     sf::Vector2i windowRelativeCoord = mouseCoord;
-    sf::Vector2f worldRelativeCoord =  mapPixelToCoords(windowRelativeCoord,*camera);
+    sf::Vector2f worldRelativeCoord =  mapPixelToCoords(windowRelativeCoord, *camera);
     sf::Vector2f layerRelativeCoord = worldRelativeCoord -  map->getLayerPosition(layer);
 
-    if(layerRelativeCoord.x>0 && layerRelativeCoord.y>0)
+    if (layerRelativeCoord.x > 0 && layerRelativeCoord.y > 0)
     {
-        int x = layerRelativeCoord.x /GRID_SIZE ;
-        int y = layerRelativeCoord.y /GRID_SIZE ;
+        int x = layerRelativeCoord.x / GRID_SIZE ;
+        int y = layerRelativeCoord.y / GRID_SIZE ;
 
-        map->setTile(layer,x,y,id);
+        map->setTile(layer, x, y, id);
     }
 }
 
 void SFMLWidget::erase(sf::Vector2i mouseCoord)
 {
     sf::Vector2i windowRelativeCoord = mouseCoord;
-    sf::Vector2f worldRelativeCoord =  mapPixelToCoords(windowRelativeCoord,*camera);
+    sf::Vector2f worldRelativeCoord =  mapPixelToCoords(windowRelativeCoord, *camera);
     sf::Vector2f layerRelativeCoord = worldRelativeCoord -  map->getLayerPosition(layer);
 
-    if(layerRelativeCoord.x>0 && layerRelativeCoord.y>0)
+    if (layerRelativeCoord.x > 0 && layerRelativeCoord.y > 0)
     {
-        int x = layerRelativeCoord.x /GRID_SIZE ;
-        int y = layerRelativeCoord.y /GRID_SIZE ;
+        int x = layerRelativeCoord.x / GRID_SIZE ;
+        int y = layerRelativeCoord.y / GRID_SIZE ;
 
-        map->setTile(layer,x,y,0);
+        map->setTile(layer, x, y, 0);
     }
 }
 

@@ -25,7 +25,7 @@ void init()
     setResolutionMode(config::resolutionMode);
 
     fontarial.loadFromFile("res/font/arial.ttf");
-     fontbasiclight.loadFromFile("res/font/basiclight.ttf");
+    fontbasiclight.loadFromFile("res/font/basiclight.ttf");
 }
 
 void setResolutionMode(unsigned int index)

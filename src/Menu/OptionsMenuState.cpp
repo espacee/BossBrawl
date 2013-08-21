@@ -60,7 +60,7 @@ void OptionsMenuState::onUpdate()
         }
     }
 
-    if(screenSizeButton.isReleased())
+    if (screenSizeButton.isReleased())
         graphics::setDesktopResolution();
 
     backButton.setPosition(graphics::window.getSize().x - backButton.getWidth(), 0);

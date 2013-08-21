@@ -94,34 +94,34 @@ void TileMap::setLayerGridEnabled(unsigned int layer, bool yesno)
 
 void TileMap::addLayer(int pos)
 {
-    if(layers.size()==0)
+    if (layers.size() == 0)
     {
         layers.push_back(new Layer());
     }
     else
     {
-        layers.insert(layers.begin()+pos,new Layer());
+        layers.insert(layers.begin() + pos, new Layer());
     }
 }
 
 void TileMap::removeLayer(int pos)
 {
-    if(layerExists(pos))
-        layers.erase(layers.begin()+pos);
+    if (layerExists(pos))
+        layers.erase(layers.begin() + pos);
 }
 
 void TileMap::moveLayerBackground(int pos)
 {
     Layer* temp = layers[pos];
-    layers[pos] = layers[pos-1];
-    layers[pos-1] = temp;
+    layers[pos] = layers[pos - 1];
+    layers[pos - 1] = temp;
 }
 
 void TileMap::moveLayerForeground(int pos)
 {
     Layer* temp = layers[pos];
-    layers[pos] = layers[pos+1];
-    layers[pos+1] = temp;
+    layers[pos] = layers[pos + 1];
+    layers[pos + 1] = temp;
 }
 
 int TileMap::getNbLayers()
@@ -131,10 +131,10 @@ int TileMap::getNbLayers()
 
 sf::Vector2f TileMap::getLayerPosition(unsigned int layer)
 {
-    if(layerExists(layer))
+    if (layerExists(layer))
         return layers[layer]->getPosition();
     else
-        return sf::Vector2f(0,0);
+        return sf::Vector2f(0, 0);
 }
 
 Layer* TileMap::getLayer(unsigned int layer)
@@ -178,8 +178,8 @@ void TileMap::display(sf::RenderWindow &target)
         int xmin = (int)(camera.getCenter().x - camera.getSize().x / 2) / GRID_SIZE;
         int ymin = (int)(camera.getCenter().y - camera.getSize().y / 2) / GRID_SIZE;
 
-        int xmax = (int)(camera.getCenter().x + camera.getSize().x / 2) / GRID_SIZE+1;
-        int ymax = (int)(camera.getCenter().y + camera.getSize().y / 2) / GRID_SIZE+1;
+        int xmax = (int)(camera.getCenter().x + camera.getSize().x / 2) / GRID_SIZE + 1;
+        int ymax = (int)(camera.getCenter().y + camera.getSize().y / 2) / GRID_SIZE + 1;
 
         if (xmin < 0) xmin = 0;
 
@@ -197,7 +197,7 @@ void TileMap::display(sf::RenderWindow &target)
 
         if (ymax > static_cast<int>(layers[k]->getVLength())) ymax = layers[k]->getVLength();
 
-        if(layers[k]->gridEnabled())
+        if (layers[k]->gridEnabled())
         {
             sf::RectangleShape layerBackground(sf::Vector2f(layers[k]->getWidth(), layers[k]->getHeight()));
             layerBackground.setFillColor(layers[k]->getGridColor());
@@ -209,6 +209,7 @@ void TileMap::display(sf::RenderWindow &target)
             for (int j = ymin; j <= ymax; j++)
             {
                 unsigned int id = layers[k]->getTile(i, j);
+
                 if (id)
                 {
                     sprites[id].setPosition((int)(i * GRID_SIZE),
@@ -216,22 +217,22 @@ void TileMap::display(sf::RenderWindow &target)
                     target.draw(sprites[id]);
                 }
 
-                if(layers[k]->gridEnabled())
+                if (layers[k]->gridEnabled())
                 {
                     sf::Vertex hLine[] =
                     {
-                        sf::Vertex(sf::Vector2f(xmin*GRID_SIZE, j * GRID_SIZE), layers[k]->getGridColor()),
+                        sf::Vertex(sf::Vector2f(xmin * GRID_SIZE, j * GRID_SIZE), layers[k]->getGridColor()),
                         sf::Vertex(sf::Vector2f((xmax)*GRID_SIZE, j * GRID_SIZE), layers[k]->getGridColor())
                     };
                     target.draw(hLine, 2, sf::Lines);
                 }
             }
 
-            if(layers[k]->gridEnabled())
+            if (layers[k]->gridEnabled())
             {
                 sf::Vertex vLine[] =
                 {
-                    sf::Vertex(sf::Vector2f(i * GRID_SIZE, ymin*GRID_SIZE), layers[k]->getGridColor()),
+                    sf::Vertex(sf::Vector2f(i * GRID_SIZE, ymin * GRID_SIZE), layers[k]->getGridColor()),
                     sf::Vertex(sf::Vector2f(i * GRID_SIZE, (ymax)*GRID_SIZE), layers[k]->getGridColor())
                 };
                 target.draw(vLine, 2, sf::Lines);

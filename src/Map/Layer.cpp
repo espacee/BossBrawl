@@ -8,7 +8,7 @@ Layer::Layer()
     depthIndex = 1.f;
     grid = false;
 
-    setGridColor(sf::Color(0,0,0));
+    setGridColor(sf::Color(0, 0, 0));
 }
 
 void Layer::resize(unsigned int new_hLength, unsigned int new_vLength)
@@ -132,7 +132,7 @@ void Layer::setGridEnabled(bool yesno)
 
 void Layer::setGridColor(sf::Color new_gridColor)
 {
-    gridColor = sf::Color(new_gridColor.r, new_gridColor.g, new_gridColor.b, new_gridColor.a/2);
+    gridColor = sf::Color(new_gridColor.r, new_gridColor.g, new_gridColor.b, new_gridColor.a / 2);
 }
 
 sf::Color Layer::getGridColor() const

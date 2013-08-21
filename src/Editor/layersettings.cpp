@@ -6,7 +6,7 @@ LayerSettings::LayerSettings(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::LayerSettings)
 {
-    setWindowFlags(Qt::WindowStaysOnTopHint|Qt::Tool);
+    setWindowFlags(Qt::WindowStaysOnTopHint | Qt::Tool);
     ui->setupUi(this);
 }
 

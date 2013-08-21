@@ -8,7 +8,7 @@ TileWidget::TileWidget(QWidget *parent)
 
     setAutoFillBackground(true);
     QPalette pal(palette());
-    pal.setColor(QPalette::Background, QColor(157,150,150));
+    pal.setColor(QPalette::Background, QColor(157, 150, 150));
     setPalette(pal);
 
     container = new QWidget(this);
@@ -23,67 +23,73 @@ TileWidget::TileWidget(QWidget *parent)
     cursor = new QLabel(container);
     cursor->setPixmap(QPixmap("res/img/GUI/tileSelector.png"));
 
-    container->resize(tileSetLabel->size()+QSize(80,80));
-    tileSetLabel->move(40,40);
-    cursor->move(40,40);
+    container->resize(tileSetLabel->size() + QSize(80, 80));
+    tileSetLabel->move(40, 40);
+    cursor->move(40, 40);
 
     setWidget(container);
 
-    select(0,0);
+    select(0, 0);
     leftButtonDown = false;
 }
 
 void TileWidget::select(int x, int y)
 {
-    x+=horizontalScrollBar()->value();
-    y+=verticalScrollBar()->value();
+    x += horizontalScrollBar()->value();
+    y += verticalScrollBar()->value();
 
-    if(x<40) x=40;  if(x>=40+tileSetLabel->width()) x=tileSetLabel->width();
-    if(y<40) y=40;  if(y>=40+tileSetLabel->height()) y=tileSetLabel->height();
+    if (x < 40) x = 40;
 
-    x=round40(x); y=round40(y);
-    cursor->move(x,y);
+    if (x >= 40 + tileSetLabel->width()) x = tileSetLabel->width();
 
-    id = (y-40)/40 * (tileSetLabel->width()/40) + (x-40)/40 +1;
+    if (y < 40) y = 40;
+
+    if (y >= 40 + tileSetLabel->height()) y = tileSetLabel->height();
+
+    x = round40(x);
+    y = round40(y);
+    cursor->move(x, y);
+
+    id = (y - 40) / 40 * (tileSetLabel->width() / 40) + (x - 40) / 40 + 1;
 
     emit selected(id);
-    emit selected(tileSetPixmap.copy(x-40,y-40,40,40));
+    emit selected(tileSetPixmap.copy(x - 40, y - 40, 40, 40));
 
 }
 
 int TileWidget::round40(int nb)
 {
-    return ((int)nb/40)*40;
+    return ((int)nb / 40) * 40;
 }
 
 void TileWidget::mousePressEvent(QMouseEvent *e)
 {
-    if(e->buttons() == Qt::LeftButton)
+    if (e->buttons() == Qt::LeftButton)
     {
-        leftButtonDown=true;
-        select(e->x(),e->y());
+        leftButtonDown = true;
+        select(e->x(), e->y());
     }
 }
 
 void TileWidget::mouseReleaseEvent(QMouseEvent *e)
 {
-    if(e->buttons() == Qt::LeftButton)
+    if (e->buttons() == Qt::LeftButton)
     {
-        leftButtonDown=false;
+        leftButtonDown = false;
     }
 }
 
 void TileWidget::mouseMoveEvent(QMouseEvent *e)
 {
-    if(leftButtonDown)
+    if (leftButtonDown)
     {
-        select(e->x(),e->y());
+        select(e->x(), e->y());
     }
 }
 
 void TileWidget::keyPressEvent(QKeyEvent* e)
 {
-    if(e->key() == Qt::Key_Escape)
+    if (e->key() == Qt::Key_Escape)
         hide();
 }
 
