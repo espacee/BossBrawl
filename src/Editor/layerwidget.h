@@ -32,6 +32,7 @@ public slots:
     void changeGridEnabled(bool enabled);
     void changeGridColor(QColor color);
     void clearLayer();
+    void activateDialog();
 
 
 protected:
