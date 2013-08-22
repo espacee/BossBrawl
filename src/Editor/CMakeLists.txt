@@ -34,7 +34,7 @@ endif()
 
 qt5_use_modules(brawledit Widgets)
 
-target_link_libraries(brawledit map ${QT_LIBRARIES} ${SFML_LIBRARIES})
+target_link_libraries(brawledit map ${SFML_LIBRARIES})
 
 # Add additional flags to gcc and clang
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_COMPILER_IS_CLANGXX OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
