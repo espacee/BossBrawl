@@ -23,7 +23,7 @@ def updatecmakelists(filename, begin_where, ls_what):
     additional = ''
     
     if begin_where == 'add_executable(brawledit\n':
-        additional = '../Map/TileMap.cpp\n../Map/Layer.cpp\n${UIS_HDRS}\n'
+        additional = '${UIS_HDRS}\n'
 
     newstr = s[:beg] + begin_where + filelist.decode('utf-8') + additional + s[end:]
     

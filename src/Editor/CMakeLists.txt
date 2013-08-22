@@ -23,8 +23,6 @@ sfmlwidget.cpp
 sfmlwidget.h
 tilewidget.cpp
 tilewidget.h
-../Map/TileMap.cpp
-../Map/Layer.cpp
 ${UIS_HDRS}
 )
 
