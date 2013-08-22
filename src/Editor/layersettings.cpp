@@ -6,8 +6,9 @@ LayerSettings::LayerSettings(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::LayerSettings)
 {
-    setWindowFlags(Qt::WindowStaysOnTopHint | Qt::Tool);
     ui->setupUi(this);
+    setWindowFlags(Qt::WindowStaysOnTopHint | Qt::Tool);
+    layout()->setSizeConstraint(QLayout::SetFixedSize);
 }
 
 Ui::LayerSettings *LayerSettings::getUi()

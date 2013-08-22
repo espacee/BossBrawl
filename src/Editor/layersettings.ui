@@ -6,185 +6,138 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>268</width>
-    <height>292</height>
+    <width>293</width>
+    <height>175</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Layer Settings</string>
+   <string>Layer Properties</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="QLabel" name="nameLabel">
-     <property name="text">
-      <string>Name:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="1" colspan="3">
-    <widget class="QLineEdit" name="nameEdit"/>
-   </item>
-   <item row="1" column="0" rowspan="2" colspan="3">
-    <widget class="QCheckBox" name="gridCheckBox">
-     <property name="text">
-      <string>Enable / Disable Grid</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="3">
-    <widget class="QLabel" name="gridColorLabel">
-     <property name="text">
-      <string>Grid Color:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="3">
-    <widget class="QComboBox" name="gridColorComboBox">
-     <property name="currentText">
-      <string>Black</string>
-     </property>
+  <property name="sizeGripEnabled">
+   <bool>false</bool>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <property name="text">
-       <string>Black</string>
-      </property>
+      <widget class="QLabel" name="nameLabel">
+       <property name="text">
+        <string>Name:</string>
+       </property>
+      </widget>
      </item>
      <item>
-      <property name="text">
-       <string>Red</string>
-      </property>
+      <widget class="QLineEdit" name="nameEdit"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="widthLabel">
+       <property name="text">
+        <string>Width:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QSpinBox" name="xSpinBox">
+       <property name="minimum">
+        <number>-999999</number>
+       </property>
+       <property name="maximum">
+        <number>999999</number>
+       </property>
+       <property name="value">
+        <number>0</number>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="3">
+      <widget class="QSpinBox" name="ySpinBox">
+       <property name="minimum">
+        <number>-999999</number>
+       </property>
+       <property name="maximum">
+        <number>999999</number>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QLabel" name="ylabel">
+       <property name="text">
+        <string>Y:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QSpinBox" name="heightSpinBox">
+       <property name="maximum">
+        <number>9999</number>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="xlabel">
+       <property name="text">
+        <string>X:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QLabel" name="heightLabel">
+       <property name="text">
+        <string>Height:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <widget class="QSpinBox" name="widthSpinBox">
+       <property name="maximum">
+        <number>9999</number>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="depthIndexLabel">
+       <property name="text">
+        <string>Depth Index:</string>
+       </property>
+      </widget>
      </item>
      <item>
-      <property name="text">
-       <string>Orange</string>
-      </property>
+      <widget class="QDoubleSpinBox" name="depthIndexSpinBox">
+       <property name="minimum">
+        <double>-50.000000000000000</double>
+       </property>
+       <property name="maximum">
+        <double>50.000000000000000</double>
+       </property>
+       <property name="value">
+        <double>1.000000000000000</double>
+       </property>
+      </widget>
      </item>
      <item>
-      <property name="text">
-       <string>Yellow</string>
-      </property>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
      </item>
-     <item>
-      <property name="text">
-       <string>Green</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Cyan</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Blue</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Purple</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Pink</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>White</string>
-      </property>
-     </item>
-    </widget>
+    </layout>
    </item>
-   <item row="3" column="0">
-    <widget class="QLabel" name="widthLabel">
-     <property name="text">
-      <string>Width:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="2">
-    <widget class="QLabel" name="heightLabel">
-     <property name="text">
-      <string>Height:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="0" colspan="2">
-    <widget class="QSpinBox" name="heightSpinBox">
-     <property name="maximum">
-      <number>999999999</number>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="2">
-    <widget class="QSpinBox" name="widthSpinBox">
-     <property name="maximum">
-      <number>999999999</number>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="3">
-    <widget class="QPushButton" name="clearlayer">
-     <property name="text">
-      <string>Clear Layer</string>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="0">
-    <widget class="QLabel" name="xlabel">
-     <property name="text">
-      <string>X:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="2">
-    <widget class="QLabel" name="ylabel">
-     <property name="text">
-      <string>Y:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="0" colspan="2">
-    <widget class="QSpinBox" name="xSpinBox">
-     <property name="minimum">
-      <number>-999999999</number>
-     </property>
-     <property name="maximum">
-      <number>999999999</number>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="2">
-    <widget class="QSpinBox" name="ySpinBox">
-     <property name="minimum">
-      <number>-999999999</number>
-     </property>
-     <property name="maximum">
-      <number>999999999</number>
-     </property>
-    </widget>
-   </item>
-   <item row="7" column="0" rowspan="2" colspan="3">
-    <widget class="QLabel" name="depthIndexLabel">
-     <property name="text">
-      <string>Depth Index:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="8" column="2">
-    <widget class="QDoubleSpinBox" name="depthIndexSpinBox">
-     <property name="minimum">
-      <double>-50.000000000000000</double>
-     </property>
-     <property name="maximum">
-      <double>50.000000000000000</double>
-     </property>
-     <property name="value">
-      <double>1.000000000000000</double>
-     </property>
-    </widget>
-   </item>
-   <item row="9" column="3">
+   <item>
     <widget class="QPushButton" name="OKButton">
      <property name="text">
       <string>OK</string>

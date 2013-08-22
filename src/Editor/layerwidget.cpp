@@ -28,8 +28,6 @@ LayerWidget::LayerWidget(QString new_name, QWidget *parent, TileMap *mapP) : QWi
     connect(dialog->getUi()->xSpinBox, SIGNAL(valueChanged(int)), this, SLOT(changeX(int)));
     connect(dialog->getUi()->ySpinBox, SIGNAL(valueChanged(int)), this, SLOT(changeY(int)));
     connect(dialog->getUi()->depthIndexSpinBox, SIGNAL(valueChanged(double)), this, SLOT(changeDepthIndex(double)));
-    connect(dialog->getUi()->gridCheckBox, SIGNAL(toggled(bool)), this, SLOT(changeGridEnabled(bool)));
-    connect(dialog->getUi()->clearlayer, SIGNAL(clicked()), this, SLOT(clearLayer()));
 
     connect(propertiesButton, SIGNAL(clicked()), dialog, SLOT(exec()));
 }
@@ -44,7 +42,6 @@ void LayerWidget::setIndex(int i)
     dialog->getUi()->xSpinBox->setValue(map->getLayer(index)->getPosition().x);
     dialog->getUi()->ySpinBox->setValue(map->getLayer(index)->getPosition().y);
     dialog->getUi()->depthIndexSpinBox->setValue(map->getLayer(index)->getDepthIndex());
-    dialog->getUi()->gridCheckBox->setChecked(map->getLayer(index)->gridEnabled());
 }
 
 void LayerWidget::setCurrent()
