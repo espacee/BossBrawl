@@ -1,8 +1,5 @@
 #include "Map/TileMap.hpp"
 
-#include "Core/graphics.hpp"
-
-
 TileMap::TileMap()
 {
     loadTiles();

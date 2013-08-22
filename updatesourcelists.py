@@ -31,8 +31,8 @@ def updatecmakelists(filename, begin_where, ls_what):
     f.write(newstr)
     f.close()
 
-game_modules = ['src/Core', 'src/Game', 'src/Gui', 'src/Map', 'src/Menu', 'src/Util']
-
-updatecmakelists('CMakeLists.txt', 'add_executable(bossbrawl\n', game_modules)
+updatecmakelists('CMakeLists.txt', 'add_library(map\n', ['src/Map'])
+updatecmakelists('CMakeLists.txt', 'add_library(util\n', ['src/Util'])
+updatecmakelists('CMakeLists.txt', 'add_executable(bossbrawl\n', ['src/Game'])
 updatecmakelists('src/Editor/CMakeLists.txt', 'add_executable(brawledit\n', ['*.cpp', '*.h'])
 updatecmakelists('src/Editor/CMakeLists.txt', 'qt5_wrap_ui(UIS_HDRS\n', ['*.ui'])
