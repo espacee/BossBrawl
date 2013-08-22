@@ -14,11 +14,11 @@ public:
     TileWidget(QWidget *parent = 0);
     void select(int x, int y);
     int round40(int nb);
-    
+
 signals:
     void selected(int);
     void selected(QPixmap);
-    
+
 public slots:
 
 protected:

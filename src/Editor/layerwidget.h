@@ -38,7 +38,7 @@ public slots:
 protected:
     void mousePressEvent(QMouseEvent *);
     void resizeEvent(QResizeEvent *);
-    
+
 private:
     TileMap* map;
 

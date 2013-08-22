@@ -20,12 +20,12 @@ class LayerTab : public QWidget
     Q_OBJECT
 public:
     LayerTab(QWidget *parent, TileMap* mapP);
-    
+
     void reorder();
 
 signals:
     void layerSelected(int);
-    
+
 public slots:
     void addLayer();
     void removeLayer();

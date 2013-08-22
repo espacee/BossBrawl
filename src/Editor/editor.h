@@ -17,7 +17,7 @@
 class Editor : public QWidget
 {
     Q_OBJECT
-    
+
 public:
     Editor(QWidget *parent = 0);
     ~Editor();
@@ -67,8 +67,8 @@ private:
     int rightPanelWidth;
     int botBarHeight;
 
-    float i,j,k;
-    bool a,b,c;
+    float i, j, k;
+    bool a, b, c;
 
     SFMLWidget* sfmlWidget;
     sf::View camera;
