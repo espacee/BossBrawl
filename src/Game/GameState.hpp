@@ -4,6 +4,7 @@
 #include "Core/State.hpp"
 
 #include "Map/TileMap.hpp"
+#include "Game/Player.hpp"
 
 #include <SFML/Graphics.hpp>
 
@@ -20,6 +21,7 @@ public:
 private:
     sf::View camera;
     TileMap map;
+    Player player;
     sf::Text fpsText;
     sf::Texture testTargetTexture;
     sf::Sprite testTarget;

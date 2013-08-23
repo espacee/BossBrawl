@@ -48,6 +48,8 @@ src/Game/Menu/MenuState.cpp
 src/Game/Menu/MenuState.hpp
 src/Game/Menu/OptionsMenuState.cpp
 src/Game/Menu/OptionsMenuState.hpp
+src/Game/Player.cpp
+src/Game/Player.hpp
 )
 
 target_link_libraries(bossbrawl map util ${SFML_LIBRARIES})
