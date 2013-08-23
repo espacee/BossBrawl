@@ -1,7 +1,7 @@
 #ifndef CORE_STATEDRIVER_HPP
 #define CORE_STATEDRIVER_HPP
 
-#include "Core/State.hpp"
+#include "Game/Core/State.hpp"
 
 #include <string>
 

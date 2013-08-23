@@ -23,8 +23,6 @@ private:
     TileMap map;
     Player player;
     sf::Text fpsText;
-    sf::Texture testTargetTexture;
-    sf::Sprite testTarget;
 };
 
 #endif // GAME_GAMESTATE_HPP

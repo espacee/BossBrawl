@@ -1,9 +1,9 @@
 #ifndef MENU_OPTIONSMENUSTATE_HPP
 #define MENU_OPTIONSMENUSTATE_HPP
 
-#include "Core/State.hpp"
-#include "Gui/TextButton.hpp"
-#include "Gui/IconButton.hpp"
+#include "Game/Core/State.hpp"
+#include "Game/Gui/TextButton.hpp"
+#include "Game/Gui/IconButton.hpp"
 
 class OptionsMenuState : public State
 {

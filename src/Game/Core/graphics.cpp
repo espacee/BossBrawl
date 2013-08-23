@@ -1,6 +1,6 @@
-#include "Core/graphics.hpp"
+#include "Game/Core/graphics.hpp"
 
-#include "Core/config.hpp"
+#include "Game/Core/config.hpp"
 
 #include <vector>
 #include <iostream>
