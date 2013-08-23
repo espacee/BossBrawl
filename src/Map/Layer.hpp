@@ -44,12 +44,15 @@ public:
     void setGridColor(sf::Color new_gridColor);
     sf::Color getGridColor() const;
 
+    void setVisible(bool yesno);
+    bool isVisible();
+
     bool tileExists(unsigned int x, unsigned int y) const;
 
 private:
     std::vector< std::vector<unsigned int> > map;
     unsigned int hLength, vLength, width, height;
-    bool grid;
+    bool grid, visible;
     sf::Color gridColor;
 
     int x_coord, y_coord;

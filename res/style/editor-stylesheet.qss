@@ -96,16 +96,17 @@
 
 #button
 {
-	background-color:rgba(255,255,255,0.25);
+	background-color:transparent;
+	color:white;
 	border:none;
 }
 
 #button:hover
 {
-	background-color:rgb(50, 170, 240);
+	background-color:rgba(255, 255, 255,0.25);
 }
 
 #button:pressed
 {
-	background-color:rgb(50, 80, 170);
+	background-color:rgba(0, 0, 0,0.25);
 }

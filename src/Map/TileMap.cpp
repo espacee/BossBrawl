@@ -175,72 +175,78 @@ void TileMap::display(sf::RenderWindow &target)
 
     for (unsigned int k = 0; k < layers.size(); k++)
     {
-        camera.setCenter(saveCamera.getCenter().x * layers[k]->getDepthIndex() - layers[k]->getPosition().x,
-                         saveCamera.getCenter().y * layers[k]->getDepthIndex() - layers[k]->getPosition().y);
 
-        target.setView(camera);
-
-        int xmin = (int)(camera.getCenter().x - camera.getSize().x / 2) / GRID_SIZE;
-        int ymin = (int)(camera.getCenter().y - camera.getSize().y / 2) / GRID_SIZE;
-
-        int xmax = (int)(camera.getCenter().x + camera.getSize().x / 2) / GRID_SIZE + 1;
-        int ymax = (int)(camera.getCenter().y + camera.getSize().y / 2) / GRID_SIZE + 1;
-
-        if (xmin < 0) xmin = 0;
-
-        if (ymin < 0) ymin = 0;
-
-        if (xmax < 0) xmax = 0;
-
-        if (ymax < 0) ymax = 0;
-
-        if (xmin > static_cast<int>(layers[k]->getHLength())) xmin = layers[k]->getHLength();
-
-        if (ymin > static_cast<int>(layers[k]->getVLength())) ymin = layers[k]->getVLength();
-
-        if (xmax > static_cast<int>(layers[k]->getHLength())) xmax = layers[k]->getHLength();
-
-        if (ymax > static_cast<int>(layers[k]->getVLength())) ymax = layers[k]->getVLength();
-
-        if (layers[k]->gridEnabled())
+        if(layers[k]->isVisible())
         {
-            sf::RectangleShape layerBackground(sf::Vector2f(layers[k]->getWidth(), layers[k]->getHeight()));
-            layerBackground.setFillColor(layers[k]->getGridColor());
-            target.draw(layerBackground);
-        }
+            camera.setCenter(saveCamera.getCenter().x * layers[k]->getDepthIndex() - layers[k]->getPosition().x,
+                             saveCamera.getCenter().y * layers[k]->getDepthIndex() - layers[k]->getPosition().y);
 
-        for (int i = xmin; i <= xmax; i++)
-        {
-            for (int j = ymin; j <= ymax; j++)
+            target.setView(camera);
+
+            int xmin = (int)(camera.getCenter().x - camera.getSize().x / 2) / GRID_SIZE;
+            int ymin = (int)(camera.getCenter().y - camera.getSize().y / 2) / GRID_SIZE;
+
+            int xmax = (int)(camera.getCenter().x + camera.getSize().x / 2) / GRID_SIZE + 1;
+            int ymax = (int)(camera.getCenter().y + camera.getSize().y / 2) / GRID_SIZE + 1;
+
+            if (xmin < 0) xmin = 0;
+
+            if (ymin < 0) ymin = 0;
+
+            if (xmax < 0) xmax = 0;
+
+            if (ymax < 0) ymax = 0;
+
+            if (xmin > static_cast<int>(layers[k]->getHLength())) xmin = layers[k]->getHLength();
+
+            if (ymin > static_cast<int>(layers[k]->getVLength())) ymin = layers[k]->getVLength();
+
+            if (xmax > static_cast<int>(layers[k]->getHLength())) xmax = layers[k]->getHLength();
+
+            if (ymax > static_cast<int>(layers[k]->getVLength())) ymax = layers[k]->getVLength();
+
+            if (layers[k]->gridEnabled())
             {
-                unsigned int id = layers[k]->getTile(i, j);
+                sf::RectangleShape layerBackground(sf::Vector2f(layers[k]->getWidth(), layers[k]->getHeight()));
+                sf::Color temp= layers[k]->getGridColor();
+                temp.a /= 2;
+                layerBackground.setFillColor(temp);
+                target.draw(layerBackground);
+            }
 
-                if (id)
+            for (int i = xmin; i <= xmax; i++)
+            {
+                for (int j = ymin; j <= ymax; j++)
                 {
-                    sprites[id].setPosition((int)(i * GRID_SIZE),
-                                            (int)(j * GRID_SIZE));
-                    target.draw(sprites[id]);
+                    unsigned int id = layers[k]->getTile(i, j);
+
+                    if (id)
+                    {
+                        sprites[id].setPosition((int)(i * GRID_SIZE),
+                                                (int)(j * GRID_SIZE));
+                        target.draw(sprites[id]);
+                    }
+
+                    if (layers[k]->gridEnabled())
+                    {
+                        sf::Vertex hLine[] =
+                        {
+                            sf::Vertex(sf::Vector2f(xmin * GRID_SIZE, j * GRID_SIZE), layers[k]->getGridColor()),
+                            sf::Vertex(sf::Vector2f((xmax)*GRID_SIZE, j * GRID_SIZE), layers[k]->getGridColor())
+                        };
+                        target.draw(hLine, 2, sf::Lines);
+                    }
                 }
 
                 if (layers[k]->gridEnabled())
                 {
-                    sf::Vertex hLine[] =
+                    sf::Vertex vLine[] =
                     {
-                        sf::Vertex(sf::Vector2f(xmin * GRID_SIZE, j * GRID_SIZE), layers[k]->getGridColor()),
-                        sf::Vertex(sf::Vector2f((xmax)*GRID_SIZE, j * GRID_SIZE), layers[k]->getGridColor())
+                        sf::Vertex(sf::Vector2f(i * GRID_SIZE, ymin * GRID_SIZE), layers[k]->getGridColor()),
+                        sf::Vertex(sf::Vector2f(i * GRID_SIZE, (ymax)*GRID_SIZE), layers[k]->getGridColor())
                     };
-                    target.draw(hLine, 2, sf::Lines);
+                    target.draw(vLine, 2, sf::Lines);
                 }
-            }
-
-            if (layers[k]->gridEnabled())
-            {
-                sf::Vertex vLine[] =
-                {
-                    sf::Vertex(sf::Vector2f(i * GRID_SIZE, ymin * GRID_SIZE), layers[k]->getGridColor()),
-                    sf::Vertex(sf::Vector2f(i * GRID_SIZE, (ymax)*GRID_SIZE), layers[k]->getGridColor())
-                };
-                target.draw(vLine, 2, sf::Lines);
             }
         }
     }

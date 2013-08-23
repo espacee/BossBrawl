@@ -7,6 +7,7 @@ Layer::Layer()
     x_coord = y_coord = 0;
     depthIndex = 1.f;
     grid = false;
+    visible = true;
 
     setGridColor(sf::Color(0, 0, 0));
 }
@@ -132,12 +133,22 @@ void Layer::setGridEnabled(bool yesno)
 
 void Layer::setGridColor(sf::Color new_gridColor)
 {
-    gridColor = sf::Color(new_gridColor.r, new_gridColor.g, new_gridColor.b, new_gridColor.a / 2);
+    gridColor = sf::Color(new_gridColor.r, new_gridColor.g, new_gridColor.b);
 }
 
 sf::Color Layer::getGridColor() const
 {
     return gridColor;
+}
+
+void Layer::setVisible(bool yesno)
+{
+    visible = yesno;
+}
+
+bool Layer::isVisible()
+{
+    return visible;
 }
 
 bool Layer::tileExists(unsigned int x, unsigned int y) const

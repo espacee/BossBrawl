@@ -41,6 +41,10 @@ public slots:
     void handToolButtonClicked();
     void zoomToolButtonClicked();
 
+    void resetCameraButtonClicked();
+    void toggleGridButtonClicked();
+    void toggleVisibleButtonClicked();
+
     void uncheckToolButtons();
 
     void tileButtonClicked();
@@ -96,6 +100,10 @@ private:
     QPushButton* objectToolButton;
     QPushButton* handToolButton;
     QPushButton* zoomToolButton;
+
+    QPushButton* resetCameraButton;
+    QPushButton* toggleGridButton;
+    QPushButton* toggleVisibleButton;
 
     TileWidget* tileWidget;
     int id;

@@ -53,13 +53,16 @@ LayerTab::LayerTab(QWidget *parent, TileMap* mapP)
 
     removeLayerButton->move(width() - 44, height() - 42);
     addLayerButton->move(removeLayerButton->x() - 44, height() - 42);
-    moveBgButton->move(addLayerButton->x() - 44, height() - 42);
-    moveFgButton->move(moveBgButton->x() - 44, height() - 42);
+    moveFgButton->move(addLayerButton->x() - 44, height() - 42);
+    moveBgButton->move(moveFgButton->x() - 44, height() - 42);
 
     layerScrollArea->move(4, 4);
     layerScrollArea->resize(width() - 8, height() - 48);
 
     pan->setFixedWidth(layerScrollArea->width() - layerScrollArea->verticalScrollBar()->width() - 2);
+
+    currentGridOnly=false;
+    currentVisibleOnly=false;
 }
 
 void LayerTab::addLayer()
@@ -143,6 +146,9 @@ void LayerTab::reorder()
         layers[i]->show();
         layers[i]->setIndex(i);
     }
+
+    updateGrid();
+    updateVisible();
 }
 
 void LayerTab::resizeEvent(QResizeEvent *e)
@@ -155,8 +161,8 @@ void LayerTab::resizeEvent(QResizeEvent *e)
 
     removeLayerButton->move(width() - 44, height() - 42);
     addLayerButton->move(removeLayerButton->x() - 44, height() - 42);
-    moveBgButton->move(addLayerButton->x() - 44, height() - 42);
-    moveFgButton->move(moveBgButton->x() - 44, height() - 42);
+    moveFgButton->move(addLayerButton->x() - 44, height() - 42);
+    moveBgButton->move(moveFgButton->x() - 44, height() - 42);
 
     layerScrollArea->move(4, 4);
     layerScrollArea->resize(width() - 8, height() - 48);
@@ -188,4 +194,54 @@ void LayerTab::selectLayer(int layer)
     currentLayer = layer;
 
     emit layerSelected(currentLayer);
+
+    updateGrid();
+    updateVisible();
+}
+
+void LayerTab::toggleGrid()
+{
+    currentGridOnly=!currentGridOnly;
+    updateGrid();
+}
+
+void LayerTab::toggleVisible()
+{
+    currentVisibleOnly=!currentVisibleOnly;
+    updateVisible();
+}
+
+void LayerTab::updateGrid()
+{
+    for (int i = 0; i < layers.size(); i++)
+    {
+        map->getLayer(i)->setGridEnabled(false);
+    }
+
+    if(currentGridOnly)
+    {
+        map->getLayer(currentLayer)->setGridEnabled(true);
+    }
+}
+
+void LayerTab::updateVisible()
+{
+
+
+    if(currentVisibleOnly)
+    {
+        for (int i = 0; i < layers.size(); i++)
+        {
+            map->getLayer(i)->setVisible(false);
+        }
+
+        map->getLayer(currentLayer)->setVisible(true);
+    }
+    else
+    {
+        for (int i = 0; i < layers.size(); i++)
+        {
+            map->getLayer(i)->setVisible(true);
+        }
+    }
 }

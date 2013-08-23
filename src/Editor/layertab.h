@@ -22,6 +22,10 @@ public:
     LayerTab(QWidget *parent, TileMap* mapP);
 
     void reorder();
+    void toggleGrid();
+    void toggleVisible();
+    void updateGrid();
+    void updateVisible();
 
 signals:
     void layerSelected(int);
@@ -51,6 +55,7 @@ private:
     QVector<LayerWidget*> layers;
     int currentLayer, layerID;
     int layerWidgetHeigth, offset;
+    bool currentGridOnly, currentVisibleOnly;
 
 };
 

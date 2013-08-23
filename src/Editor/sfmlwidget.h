@@ -38,13 +38,15 @@ private:
     void mousePressEvent(QMouseEvent *e);
     void mouseMoveEvent(QMouseEvent *e);
     void mouseReleaseEvent(QMouseEvent *e);
+    void keyPressEvent(QKeyEvent *e);
+    void keyReleaseEvent(QKeyEvent *e);
     void wheelEvent(QWheelEvent *e);
 
     QPaintEngine* paintEngine() const;
     void showEvent(QShowEvent*);
     void paintEvent(QPaintEvent*);
 
-    bool initialized, leftButtonDown, rightButtonDown, middleButtonDown;
+    bool initialized, leftButtonDown, rightButtonDown, middleButtonDown,ctrlKeyDown, spaceKeyDown;
     int tool;
     int layer;
     int id;

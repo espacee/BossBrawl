@@ -7,6 +7,8 @@ SFMLWidget::SFMLWidget(QWidget* Parent, const QPoint& Position, const QSize& Siz
     leftButtonDown = false;
     rightButtonDown = false;
     middleButtonDown = false;
+    ctrlKeyDown = false;
+    spaceKeyDown = false;
 
     setAttribute(Qt::WA_PaintOnScreen);
     setAttribute(Qt::WA_OpaquePaintEvent);
@@ -38,12 +40,7 @@ void SFMLWidget::setCurrentTile(int new_id)
 
 void SFMLWidget::processEvents()
 {
-    if (tool == 10 && !leftButtonDown)
-    {
-        dx *= 0.9;
-        dy *= 0.9;
-        camera->move(dx, dy);
-    }
+
 }
 
 void SFMLWidget::showEvent(QShowEvent*)
@@ -55,8 +52,6 @@ void SFMLWidget::showEvent(QShowEvent*)
 #else
         sf::Window::create(reinterpret_cast<sf::WindowHandle>(winId()));
 #endif
-
-
         initialized = true;
     }
 }
@@ -107,13 +102,6 @@ void SFMLWidget::mousePressEvent(QMouseEvent *e)
 
 void SFMLWidget::mouseMoveEvent(QMouseEvent *e)
 {
-    x2 = e->x();
-    y2 = e->y();
-    dx = x1 - x2;
-    dy = y1 - y2;
-    x1 = e->x();
-    y1 = e->y();
-
     if (rightButtonDown)
     {
         if (tool == 1)
@@ -129,13 +117,26 @@ void SFMLWidget::mouseMoveEvent(QMouseEvent *e)
             erase(sf::Vector2i(e->x(), e->y()));
 
         if (tool == 10)
+        {
+            x2 = e->x();
+            y2 = e->y();
+            dx = x1 - x2;
+            dy = y1 - y2;
+            x1 = e->x();
+            y1 = e->y();
             camera->move(dx, dy);
+        }
     }
 
-    if (middleButtonDown)
+    if ((middleButtonDown && !leftButtonDown) || (spaceKeyDown && leftButtonDown))
     {
+        x2 = e->x();
+        y2 = e->y();
+        dx = x1 - x2;
+        dy = y1 - y2;
+        x1 = e->x();
+        y1 = e->y();
         camera->move(dx, dy);
-
     }
 
 
@@ -157,14 +158,34 @@ void SFMLWidget::mouseReleaseEvent(QMouseEvent *e)
     {
         middleButtonDown = false;
     }
-
 }
+void SFMLWidget::keyPressEvent(QKeyEvent *e)
+{
+    if(e->key() == Qt::Key_Control)
+        ctrlKeyDown = true;
+
+    if(e->key()== Qt::Key_Space)
+        spaceKeyDown = true;
+}
+
+void SFMLWidget::keyReleaseEvent(QKeyEvent *e)
+{
+    if(e->key() == Qt::Key_Control)
+        ctrlKeyDown = false;
+
+    if(e->key()== Qt::Key_Space)
+        spaceKeyDown = false;
+}
+
 void SFMLWidget::wheelEvent(QWheelEvent *e)
 {
-    if (e->angleDelta().y() > 0)
-        camera->zoom(0.5);
-    else if (e->angleDelta().y() < 0)
-        camera->zoom(2);
+    if(ctrlKeyDown)
+    {
+        if (e->angleDelta().y() > 0)
+            camera->zoom(0.5);
+        else if (e->angleDelta().y() < 0)
+            camera->zoom(2);
+    }
 }
 
 SFMLWidget::~SFMLWidget()

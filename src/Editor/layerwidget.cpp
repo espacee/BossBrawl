@@ -8,16 +8,16 @@ LayerWidget::LayerWidget(QString new_name, QWidget *parent, TileMap *mapP) : QWi
 
     setAutoFillBackground(true);
     QPalette pal(palette());
-    pal.setColor(QPalette::Background, QColor(200, 200, 200));
+    pal.setColor(QPalette::Background, QColor(133, 70, 56));
     setPalette(pal);
 
     name = new_name;
     title = new QLabel(name, this);
-    title->move(5, 5);
+    title->move(10, 0);
+    title->setStyleSheet("color:white;");
     index = 0;
 
     propertiesButton = new QPushButton(">>", this);
-    propertiesButton->setGeometry(width() - 20, 0, 20, height());
     propertiesButton->setObjectName("button");
 
     dialog = new LayerSettings();
@@ -48,7 +48,7 @@ void LayerWidget::setCurrent()
 {
     setAutoFillBackground(true);
     QPalette pal(palette());
-    pal.setColor(QPalette::Background, QColor(150, 180, 255));
+    pal.setColor(QPalette::Background, QColor(211, 83, 55));
     setPalette(pal);
 }
 
@@ -56,7 +56,7 @@ void LayerWidget::unsetCurrent()
 {
     setAutoFillBackground(true);
     QPalette pal(palette());
-    pal.setColor(QPalette::Background, QColor(200, 200, 200));
+    pal.setColor(QPalette::Background, QColor(133, 70, 56));
     setPalette(pal);
 }
 
@@ -67,15 +67,14 @@ void LayerWidget::mousePressEvent(QMouseEvent *)
 
 void LayerWidget::resizeEvent(QResizeEvent *)
 {
-
-    propertiesButton->setGeometry(width() - 20, 0, 20, height());
+    title->setFixedSize(width() - 30, height());
+    propertiesButton->setGeometry(width() - 30, 0, 30, height());
 }
 
 void LayerWidget::rename(QString new_name)
 {
     name = new_name;
     title->setText(name);
-    title->setFixedWidth(width() - 20);
 }
 
 void LayerWidget::changeWidth(int width)
