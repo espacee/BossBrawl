@@ -108,7 +108,7 @@ void SFMLWidget::mouseMoveEvent(QMouseEvent *e)
             erase(sf::Vector2i(e->x(), e->y()));
     }
 
-    if (leftButtonDown)
+    if (leftButtonDown && !spaceKeyDown)
     {
         if (tool == 1)
             draw(sf::Vector2i(e->x(), e->y()));
