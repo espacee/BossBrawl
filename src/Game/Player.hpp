@@ -14,10 +14,15 @@ public:
     void display(sf::RenderWindow &target);
     void playerControls();
 
+
  sf::Sprite playerSprite;
 
 private:
     int health;
+    const float gravity = 1;
+    float moveSpeed,jumpSpeed;
+    int groundHeight;
+    sf::Vector2f velocity;
 
 
     sf::Texture playerTexture;
