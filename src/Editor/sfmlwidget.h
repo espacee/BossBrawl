@@ -24,8 +24,6 @@ public:
     void draw(sf::Vector2i mouseCoord);
     void erase(sf::Vector2i mouseCoord);
 
-    void cameraMovementWithMouse(QMouseEvent *event);
-
 public slots:
     void setTool(int newTool);
     void setCurrentTile(int new_id);
@@ -47,7 +45,7 @@ private:
     void paintEvent(QPaintEvent*);
 
     bool initialized, leftButtonDown, rightButtonDown, middleButtonDown,ctrlKeyDown, spaceKeyDown;
-    int tool;
+    int tool, saveTool;
     int layer;
     int id;
     float x1, x2, y1, y2, dx, dy;

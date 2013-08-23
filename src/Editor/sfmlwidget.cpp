@@ -196,8 +196,13 @@ SFMLWidget::~SFMLWidget()
 void SFMLWidget::draw(sf::Vector2i mouseCoord)
 {
     sf::Vector2i windowRelativeCoord = mouseCoord;
-    sf::Vector2f worldRelativeCoord =  mapPixelToCoords(windowRelativeCoord, *camera);
-    sf::Vector2f layerRelativeCoord = worldRelativeCoord -  map->getLayerPosition(layer);
+
+    sf::View temp = *camera;
+    temp.setCenter(temp.getCenter().x * map->getLayer(layer)->getDepthIndex() - map->getLayer(layer)->getPosition().x,
+                     temp.getCenter().y * map->getLayer(layer)->getDepthIndex() - map->getLayer(layer)->getPosition().y);
+
+    sf::Vector2f worldRelativeCoord =  mapPixelToCoords(windowRelativeCoord, temp);
+    sf::Vector2f layerRelativeCoord = worldRelativeCoord;
 
     if (layerRelativeCoord.x > 0 && layerRelativeCoord.y > 0)
     {
@@ -211,8 +216,13 @@ void SFMLWidget::draw(sf::Vector2i mouseCoord)
 void SFMLWidget::erase(sf::Vector2i mouseCoord)
 {
     sf::Vector2i windowRelativeCoord = mouseCoord;
-    sf::Vector2f worldRelativeCoord =  mapPixelToCoords(windowRelativeCoord, *camera);
-    sf::Vector2f layerRelativeCoord = worldRelativeCoord -  map->getLayerPosition(layer);
+
+    sf::View temp = *camera;
+    temp.setCenter(temp.getCenter().x * map->getLayer(layer)->getDepthIndex() - map->getLayer(layer)->getPosition().x,
+                     temp.getCenter().y * map->getLayer(layer)->getDepthIndex() - map->getLayer(layer)->getPosition().y);
+
+    sf::Vector2f worldRelativeCoord =  mapPixelToCoords(windowRelativeCoord, temp);
+    sf::Vector2f layerRelativeCoord = worldRelativeCoord;
 
     if (layerRelativeCoord.x > 0 && layerRelativeCoord.y > 0)
     {

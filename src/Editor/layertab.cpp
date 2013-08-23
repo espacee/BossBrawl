@@ -42,7 +42,7 @@ LayerTab::LayerTab(QWidget *parent, TileMap* mapP)
     pan->setPalette(pal);
 
     currentLayer = 0;
-    layerWidgetHeigth = 50;
+    layerWidgetHeigth = 30;
     offset = 1;
     layerID = 0;
 
