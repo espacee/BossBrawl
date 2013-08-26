@@ -35,7 +35,7 @@ void GameState::onUpdate()
 {
     using graphics::window;
 
-    player.playerControls();
+    player.update(map);
 
     moveViewTowardsPoint(camera, player.playerSprite.getPosition().x, player.playerSprite.getPosition().y, 0.05);
 
