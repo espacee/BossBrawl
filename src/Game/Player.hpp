@@ -31,6 +31,9 @@ private:
     sf::Texture playerTexture;
     sf::RectangleShape tilerect;
 
+    int posX,posY, pSizeX, pSizeY, tileX, tileY;
+
+
 
 };
 
