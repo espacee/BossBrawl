@@ -9,12 +9,15 @@
 GameState::GameState()
 {
     map.addLayer(0);
-    map.resizeLayer(0,200,200);
+    map.resizeLayer(0,20,20);
     map.setLayerGridEnabled(0, true);
 
-    for(int i=0;i<200;i++)
+    for(int i=0;i<20;i++)
     {
-        map.setTile(0,i,199,2);
+        for(int j=0;j<15;j++)
+        {
+            map.setTile(0,i,20-j,2);
+        }
     }
 
     camera = sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y));

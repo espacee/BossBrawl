@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Map/TileMap.hpp"
-#include <iostream>
+#include "Util/collision.h"
 
 /**
  * @brief The Player Class
@@ -17,8 +17,8 @@ public:
     sf::Vector2f getCenter();
 
 private:
-
     sf::Vector2f center;
+    sf::Vector2f velocity;
 
     sf::Texture playerTexture;
     sf::Sprite playerSprite;

@@ -7,7 +7,7 @@ bool hitTest(sf::Vector2f point, sf::FloatRect AABB)
 
 bool hitTest(sf::FloatRect A, sf::FloatRect B)
 {
-    return (B.left >= A.left + A.width || B.left + B.width < A.left || B.top >= A.top + A.height || B.top + B.height < A.top);
+    return !(B.left >= A.left + A.width || B.left + B.width < A.left || B.top >= A.top + A.height || B.top + B.height < A.top);
 }
 
 bool hitTest(sf::Vector2f point, sf::Vector2f circleCenter, int circleRadius)

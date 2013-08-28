@@ -18,13 +18,11 @@ void Player::update(Layer *mainLayer)
     playerXmax = playerX + playerWidth;
     playerYmax = playerY + playerHeight;
 
-    int layerX, layerY, layerWidth, layerHeight, layerXmax, layerYmax;
+    int layerX, layerY, layerWidth, layerHeight;
     layerX = mainLayer->getPosition().x;
     layerY = mainLayer->getPosition().y;
     layerWidth = mainLayer->getWidth();
     layerHeight = mainLayer->getHeight();
-    layerXmax = layerX + layerWidth;
-    layerYmax = layerY + layerHeight;
 
     int relX, relY, relXmax, relYmax;
     relX = playerX - layerX;
@@ -61,7 +59,16 @@ void Player::update(Layer *mainLayer)
     {
         for(int j=ymin;j<ymax;j++)
         {
-            mainLayer->setTile(i,j,5);
+            if(mainLayer->getTile(i,j))
+            {
+                //sf::FloatRect A(playerSprite.getPosition().x, getCenter().y,playerTexture.getSize().x, playerTexture.getSize().y/2);
+                //::FloatRect B(i*GRID_SIZE,j*GRID_SIZE,GRID_SIZE,GRID_SIZE);
+                if(hitTest(sf::FloatRect(playerSprite.getPosition().x, getCenter().y,playerTexture.getSize().x, playerTexture.getSize().y/2),
+                           sf::FloatRect(i*GRID_SIZE,j*GRID_SIZE,GRID_SIZE,GRID_SIZE)))
+                {
+                    playerSprite.move(0,(j*GRID_SIZE)-(getCenter().y+playerTexture.getSize().y/2));
+                }
+            }
         }
     }
 }
@@ -69,6 +76,11 @@ void Player::update(Layer *mainLayer)
 void Player::display(sf::RenderWindow &target)
 {
     target.draw(playerSprite);
+
+    sf::RectangleShape bg(sf::Vector2f(playerTexture.getSize().x, playerTexture.getSize().y/2));
+            bg.setFillColor(sf::Color(255,0,0,100));
+    bg.move(playerSprite.getPosition().x, getCenter().y);
+    target.draw(bg);
 }
 
 sf::Vector2f Player::getCenter()
