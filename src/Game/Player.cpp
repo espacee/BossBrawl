@@ -2,109 +2,76 @@
 
 Player::Player()
 {
-    onSet();
-
-}
-void Player::onSet()
-{
-    health = 100;
-    moveSpeed = 10.0f;
-    jumpSpeed = 10.0f;
-    groundHeight = 160;
-    velocity = sf::Vector2f(0,0);
-
-    tilerect.setSize(sf::Vector2f(40,40));
-
 
     playerTexture.loadFromFile("res/img/GAME/Player.png");
     playerSprite.setTexture(playerTexture);
-
-
+    center = sf::Vector2f(playerTexture.getSize().x/2,playerTexture.getSize().y/2);
 }
-void Player::update(TileMap &map)
+
+void Player::update(Layer *mainLayer)
 {
+    int playerX, playerY, playerWidth, playerHeight, playerXmax, playerYmax;
+    playerX = playerSprite.getPosition().x;
+    playerY = playerSprite.getPosition().y;
+    playerWidth = playerTexture.getSize().x;
+    playerHeight = playerTexture.getSize().y;
+    playerXmax = playerX + playerWidth;
+    playerYmax = playerY + playerHeight;
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
-        velocity.x = -moveSpeed;
-    }
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
-        velocity.x = moveSpeed;
-    }
-    else
-        velocity.x = 0;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
-       velocity.y = -jumpSpeed;
-    }
+    int layerX, layerY, layerWidth, layerHeight, layerXmax, layerYmax;
+    layerX = mainLayer->getPosition().x;
+    layerY = mainLayer->getPosition().y;
+    layerWidth = mainLayer->getWidth();
+    layerHeight = mainLayer->getHeight();
+    layerXmax = layerX + layerWidth;
+    layerYmax = layerY + layerHeight;
 
-    posX = playerSprite.getPosition().x;
-    posY = playerSprite.getPosition().y;
+    int relX, relY, relXmax, relYmax;
+    relX = playerX - layerX;
+    relY = playerY - layerY;
+    relXmax = playerXmax - layerX;
+    relYmax = playerYmax - layerY;
 
-    pSizeX = playerSprite.getGlobalBounds().width;
-    pSizeY = playerSprite.getGlobalBounds().height;
+    if(relX<0) relX=0;
+    if(relY<0) relY=0;
+    if(relXmax<0) relXmax=0;
+    if(relYmax<0) relYmax=0;
 
-    tileX = tilerect.getPosition().x;
-    tileY = tilerect.getPosition().y;
+    if(relX>layerWidth) relX=layerWidth;
+    if(relY>layerHeight) relY=layerHeight;
+    if(relXmax>layerWidth) relXmax=layerWidth;
+    if(relYmax>layerHeight) relYmax=layerHeight;
 
+    int xmin,ymin,xmax,ymax;
+    xmin = relX/GRID_SIZE;
+    ymin = relY/GRID_SIZE;
+    xmax = relXmax/GRID_SIZE;
+    ymax = relYmax/GRID_SIZE;
 
-    if(posY < tileY || velocity.y < 0 )
-        velocity.y += gravity;
-    else if(playerSprite.getGlobalBounds().intersects(tilerect.getGlobalBounds()))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+        playerSprite.move(-10,0);
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+        playerSprite.move(10,0);
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+        playerSprite.move(0,-10);
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        playerSprite.move(0,10);
+
+    for(int i=xmin; i<=xmax;i++)
     {
-        velocity.y = 0;
-    }
-
-
-    playerSprite.move(velocity.x, velocity.y);
-
-
-    for(unsigned int  x = 0; x < map.getLayer(0)->getHLength(); x++)
-    {
-        for (unsigned int y = 0; y < map.getLayer(0)->getVLength(); y++)
-
+        for(int j=ymin;j<=ymax;j++)
         {
-
-
-            if(map.getLayer(0)->getTile(x,y) != 0)
-            {
-
-                    tilerect.setPosition(x*40, y*40);
-
-
-
-
-
-
-            }
-          }
-       }
-
-
-
-
-/*
-    if(playerSprite.getPosition().y + playerTexture.getSize().y < groundHeight || velocity.y < 0  )
-    {
-    velocity.y += gravity;
+            mainLayer->setTile(i,j,5);
+        }
     }
-
-    else
-    {
-    playerSprite.setPosition(playerSprite.getPosition().x, groundHeight -playerTexture.getSize().y );
-    velocity.y = 0;
-    }
-    */
-
-
-
 }
+
 void Player::display(sf::RenderWindow &target)
 {
     target.draw(playerSprite);
-    target.draw(tilerect);
-
-
 }
-int Player::round40(int nb)
+
+sf::Vector2f Player::getCenter()
 {
-    return ((int)nb / 40) * 40;
+    return playerSprite.getPosition()+center;
 }

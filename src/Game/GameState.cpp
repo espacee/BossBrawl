@@ -9,11 +9,12 @@
 GameState::GameState()
 {
     map.addLayer(0);
-    map.resizeLayer(0,200,5);
+    map.resizeLayer(0,200,200);
     map.setLayerGridEnabled(0, true);
+
     for(int i=0;i<200;i++)
     {
-        map.setTile(0,i,4,2);
+        map.setTile(0,i,199,2);
     }
 
     camera = sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y));
@@ -21,8 +22,8 @@ GameState::GameState()
     fpsText.setFont(graphics::fontbasiclight);
 
     fpsText.setCharacterSize(16);
-
 }
+
 void GameState::onSet()
 {
     graphics::window.setTitle("game");
@@ -31,23 +32,20 @@ void GameState::onSet()
 
     fpsText.setPosition(5, graphics::window.getSize().y - 20);
 }
+
 void GameState::onUpdate()
 {
     using graphics::window;
 
-    player.update(map);
+    player.update(map.getLayer(0));
+    moveViewTowardsPoint(camera, player.getCenter(), 0.05);
 
-    moveViewTowardsPoint(camera, player.playerSprite.getPosition().x, player.playerSprite.getPosition().y, 0.05);
-
-    window.clear(sf::Color(120, 0, 0));
-
+    window.clear(sf::Color(200, 240, 150));
     graphics::window.setView(camera);
-
     map.display(window);
     player.display(window);
 
     graphics::window.setView(sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y)));
-
     fpsText.setString("Fps: " + std::to_string(stateDriver::getFps()));
     window.draw(fpsText);
 }

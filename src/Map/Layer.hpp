@@ -34,10 +34,10 @@ public:
 
     sf::Vector2f getPosition();
     float getDepthIndex();
-    unsigned int getHLength() const;
-    unsigned int getVLength() const;
-    unsigned int getWidth() const;
-    unsigned int getHeight() const;
+    int getHLength() const;
+    int getVLength() const;
+    int getWidth() const;
+    int getHeight() const;
 
     bool gridEnabled();
     void setGridEnabled(bool yesno);
@@ -47,11 +47,11 @@ public:
     void setVisible(bool yesno);
     bool isVisible();
 
-    bool tileExists(unsigned int x, unsigned int y) const;
+    bool tileExists( int x,  int y) const;
 
 private:
     std::vector< std::vector<unsigned int> > map;
-    unsigned int hLength, vLength, width, height;
+    int hLength, vLength, width, height;
     bool grid, visible;
     sf::Color gridColor;
 

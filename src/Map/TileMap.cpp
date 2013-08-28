@@ -178,8 +178,8 @@ void TileMap::display(sf::RenderWindow &target)
 
         if(layers[k]->isVisible())
         {
-            camera.setCenter(saveCamera.getCenter().x * layers[k]->getDepthIndex() - layers[k]->getPosition().x,
-                             saveCamera.getCenter().y * layers[k]->getDepthIndex() - layers[k]->getPosition().y);
+            camera.setCenter((int)(saveCamera.getCenter().x * layers[k]->getDepthIndex() - layers[k]->getPosition().x),
+                             (int)(saveCamera.getCenter().y * layers[k]->getDepthIndex() - layers[k]->getPosition().y));
 
             target.setView(camera);
 

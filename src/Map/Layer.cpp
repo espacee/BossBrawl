@@ -53,9 +53,9 @@ unsigned int Layer::getTile(unsigned int x, unsigned int y) const
 
 void Layer::fill(unsigned int id)
 {
-    for (unsigned int i = 0; i < hLength; i++)
+    for ( int i = 0; i < hLength; i++)
     {
-        for (unsigned int j = 0; j < vLength; j++)
+        for ( int j = 0; j < vLength; j++)
         {
             map[i][j] = id;
         }
@@ -100,22 +100,22 @@ float Layer::getDepthIndex()
     return depthIndex;
 }
 
-unsigned int Layer::getHLength() const
+int Layer::getHLength() const
 {
     return hLength;
 }
 
-unsigned int Layer::getVLength() const
+int Layer::getVLength() const
 {
     return vLength;
 }
 
-unsigned int Layer::getWidth() const
+int Layer::getWidth() const
 {
     return width;
 }
 
-unsigned int Layer::getHeight() const
+int Layer::getHeight() const
 {
     return height;
 }
@@ -151,7 +151,7 @@ bool Layer::isVisible()
     return visible;
 }
 
-bool Layer::tileExists(unsigned int x, unsigned int y) const
+bool Layer::tileExists( int x,  int y) const
 {
-    return x < hLength && y < vLength;
+    return x>=0 && x < hLength && y>=0 && y < vLength;
 }

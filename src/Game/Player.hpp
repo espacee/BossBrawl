@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Map/TileMap.hpp"
+#include <iostream>
 
 /**
  * @brief The Player Class
@@ -11,30 +12,16 @@ class Player
 {
 public:
     Player();
-    void onSet();
-    void update(TileMap &map);
+    void update(Layer *mainLayer);
     void display(sf::RenderWindow &target);
-    int round40(int nb);
-
-
- sf::Sprite playerSprite;
+    sf::Vector2f getCenter();
 
 private:
 
-
-    int health;
-    const float gravity = 1;
-    float moveSpeed,jumpSpeed;
-    int groundHeight;
-    sf::Vector2f velocity;
+    sf::Vector2f center;
 
     sf::Texture playerTexture;
-    sf::RectangleShape tilerect;
-
-    int posX,posY, pSizeX, pSizeY, tileX, tileY;
-
-
-
+    sf::Sprite playerSprite;
 };
 
 #endif // GAME_PLAYER_HPP
