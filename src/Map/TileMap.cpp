@@ -178,8 +178,8 @@ void TileMap::display(sf::RenderWindow &target)
 
         if(layers[k]->isVisible())
         {
-            camera.setCenter((int)(saveCamera.getCenter().x * layers[k]->getDepthIndex() - layers[k]->getPosition().x),
-                             (int)(saveCamera.getCenter().y * layers[k]->getDepthIndex() - layers[k]->getPosition().y));
+            camera.setCenter((saveCamera.getCenter().x * layers[k]->getDepthIndex() - layers[k]->getPosition().x),
+                             (saveCamera.getCenter().y * layers[k]->getDepthIndex() - layers[k]->getPosition().y));
 
             target.setView(camera);
 
@@ -197,13 +197,13 @@ void TileMap::display(sf::RenderWindow &target)
 
             if (ymax < 0) ymax = 0;
 
-            if (xmin > static_cast<int>(layers[k]->getHLength())) xmin = layers[k]->getHLength();
+            if (xmin > (layers[k]->getHLength())) xmin = layers[k]->getHLength();
 
-            if (ymin > static_cast<int>(layers[k]->getVLength())) ymin = layers[k]->getVLength();
+            if (ymin > (layers[k]->getVLength())) ymin = layers[k]->getVLength();
 
-            if (xmax > static_cast<int>(layers[k]->getHLength())) xmax = layers[k]->getHLength();
+            if (xmax > (layers[k]->getHLength())) xmax = layers[k]->getHLength();
 
-            if (ymax > static_cast<int>(layers[k]->getVLength())) ymax = layers[k]->getVLength();
+            if (ymax > (layers[k]->getVLength())) ymax = layers[k]->getVLength();
 
             if (layers[k]->gridEnabled())
             {
@@ -222,8 +222,8 @@ void TileMap::display(sf::RenderWindow &target)
 
                     if (id)
                     {
-                        sprites[id].setPosition((int)(i * GRID_SIZE),
-                                                (int)(j * GRID_SIZE));
+                        sprites[id].setPosition((i * GRID_SIZE),
+                                                (j * GRID_SIZE));
                         target.draw(sprites[id]);
                     }
 

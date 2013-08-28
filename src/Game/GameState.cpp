@@ -43,7 +43,7 @@ void GameState::onUpdate()
     player.update(map.getLayer(0));
     moveViewTowardsPoint(camera, player.getCenter(), 0.05);
 
-    window.clear(sf::Color(200, 240, 150));
+    window.clear(sf::Color(80, 80, 80));
     graphics::window.setView(camera);
     map.display(window);
     player.display(window);

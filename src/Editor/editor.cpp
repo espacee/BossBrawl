@@ -66,7 +66,8 @@ void Editor::onInit()
     tileWidget->select(0, 0);
     penToolButton->click();
     toggleGridButton->click();
-    camera = sf::View(sf::FloatRect(0, 0, sfmlWidget->width(), sfmlWidget->height()));
+
+    camera = sf::View(sf::FloatRect(0, 0, sfmlWidget->width()-1, sfmlWidget->height()-1));
     camera.setCenter(0, 0);
 }
 
@@ -486,7 +487,7 @@ void Editor::tileSelected(QPixmap tile)
 
 void Editor::resetCameraButtonClicked()
 {
-    camera = sf::View(sf::FloatRect(0, 0, sfmlWidget->width(), sfmlWidget->height()));
+    camera = sf::View(sf::FloatRect(0, 0, sfmlWidget->width()-1, sfmlWidget->height()-1));
     camera.setCenter(0, 0);
 }
 
