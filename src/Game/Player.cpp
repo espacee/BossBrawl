@@ -29,8 +29,8 @@ void Player::update(Layer *mainLayer)
     int relX, relY, relXmax, relYmax;
     relX = playerX - layerX;
     relY = playerY - layerY;
-    relXmax = playerXmax - layerX;
-    relYmax = playerYmax - layerY;
+    relXmax = playerXmax - layerX + GRID_SIZE;
+    relYmax = playerYmax - layerY + GRID_SIZE;
 
     if(relX<0) relX=0;
     if(relY<0) relY=0;
@@ -57,9 +57,9 @@ void Player::update(Layer *mainLayer)
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         playerSprite.move(0,10);
 
-    for(int i=xmin; i<=xmax;i++)
+    for(int i=xmin; i<xmax;i++)
     {
-        for(int j=ymin;j<=ymax;j++)
+        for(int j=ymin;j<ymax;j++)
         {
             mainLayer->setTile(i,j,5);
         }
