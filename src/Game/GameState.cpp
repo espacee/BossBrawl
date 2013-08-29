@@ -6,11 +6,11 @@
 #include "Core/config.hpp"
 #include "Util/view.hpp"
 
-GameState::GameState()
+GameState::GameState() :
+    gridEnabled(false)
 {
     map.addLayer(0);
     map.resizeLayer(0, 20, 20);
-    map.setLayerGridEnabled(0, true);
 
     for (int i = 0; i < 20; i++)
     {
@@ -21,9 +21,7 @@ GameState::GameState()
     }
 
     camera = sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y));
-
     fpsText.setFont(graphics::fontbasiclight);
-
     fpsText.setCharacterSize(16);
 }
 
@@ -55,15 +53,23 @@ void GameState::onUpdate()
 
 void GameState::onEvent(const sf::Event &event)
 {
-    using graphics::window;
-
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
-        stateDriver::setState("menu");
-
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Numpad8)
-        camera.zoom(0.5);
-
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Numpad5)
-        camera.zoom(2);
-
+    if (event.type == sf::Event::KeyPressed)
+    {
+        switch (event.key.code)
+        {
+        case sf::Keyboard::Escape:
+            stateDriver::setState("menu");
+            break;
+        case sf::Keyboard::Numpad8:
+            camera.zoom(0.5);
+            break;
+        case sf::Keyboard::Numpad5:
+            camera.zoom(2);
+            break;
+        case sf::Keyboard::G:
+            map.setLayerGridEnabled(0, !gridEnabled);
+            gridEnabled = !gridEnabled;
+        default: ;
+        }
+    }
 }

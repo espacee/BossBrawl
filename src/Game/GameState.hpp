@@ -23,6 +23,7 @@ private:
     TileMap map;
     Player player;
     sf::Text fpsText;
+    bool gridEnabled;
 };
 
 #endif // GAME_GAMESTATE_HPP
