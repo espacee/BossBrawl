@@ -176,7 +176,7 @@ void TileMap::display(sf::RenderWindow &target)
     for (unsigned int k = 0; k < layers.size(); k++)
     {
 
-        if(layers[k]->isVisible())
+        if (layers[k]->isVisible())
         {
             camera.setCenter((saveCamera.getCenter().x * layers[k]->getDepthIndex() - layers[k]->getPosition().x),
                              (saveCamera.getCenter().y * layers[k]->getDepthIndex() - layers[k]->getPosition().y));
@@ -208,7 +208,7 @@ void TileMap::display(sf::RenderWindow &target)
             if (layers[k]->gridEnabled())
             {
                 sf::RectangleShape layerBackground(sf::Vector2f(layers[k]->getWidth(), layers[k]->getHeight()));
-                sf::Color temp= layers[k]->getGridColor();
+                sf::Color temp = layers[k]->getGridColor();
                 temp.a /= 2;
                 layerBackground.setFillColor(temp);
                 target.draw(layerBackground);

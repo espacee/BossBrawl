@@ -61,8 +61,8 @@ LayerTab::LayerTab(QWidget *parent, TileMap* mapP)
 
     pan->setFixedWidth(layerScrollArea->width() - layerScrollArea->verticalScrollBar()->width() - 2);
 
-    currentGridOnly=false;
-    currentVisibleOnly=false;
+    currentGridOnly = false;
+    currentVisibleOnly = false;
 }
 
 void LayerTab::addLayer()
@@ -201,13 +201,13 @@ void LayerTab::selectLayer(int layer)
 
 void LayerTab::toggleGrid()
 {
-    currentGridOnly=!currentGridOnly;
+    currentGridOnly = !currentGridOnly;
     updateGrid();
 }
 
 void LayerTab::toggleVisible()
 {
-    currentVisibleOnly=!currentVisibleOnly;
+    currentVisibleOnly = !currentVisibleOnly;
     updateVisible();
 }
 
@@ -218,7 +218,7 @@ void LayerTab::updateGrid()
         map->getLayer(i)->setGridEnabled(false);
     }
 
-    if(currentGridOnly)
+    if (currentGridOnly)
     {
         map->getLayer(currentLayer)->setGridEnabled(true);
     }
@@ -228,7 +228,7 @@ void LayerTab::updateVisible()
 {
 
 
-    if(currentVisibleOnly)
+    if (currentVisibleOnly)
     {
         for (int i = 0; i < layers.size(); i++)
         {

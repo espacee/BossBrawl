@@ -161,25 +161,25 @@ void SFMLWidget::mouseReleaseEvent(QMouseEvent *e)
 }
 void SFMLWidget::keyPressEvent(QKeyEvent *e)
 {
-    if(e->key() == Qt::Key_Control)
+    if (e->key() == Qt::Key_Control)
         ctrlKeyDown = true;
 
-    if(e->key()== Qt::Key_Space)
+    if (e->key() == Qt::Key_Space)
         spaceKeyDown = true;
 }
 
 void SFMLWidget::keyReleaseEvent(QKeyEvent *e)
 {
-    if(e->key() == Qt::Key_Control)
+    if (e->key() == Qt::Key_Control)
         ctrlKeyDown = false;
 
-    if(e->key()== Qt::Key_Space)
+    if (e->key() == Qt::Key_Space)
         spaceKeyDown = false;
 }
 
 void SFMLWidget::wheelEvent(QWheelEvent *e)
 {
-    if(ctrlKeyDown)
+    if (ctrlKeyDown)
     {
         if (e->angleDelta().y() > 0)
             camera->zoom(0.5);
@@ -199,7 +199,7 @@ void SFMLWidget::draw(sf::Vector2i mouseCoord)
 
     sf::View temp = *camera;
     temp.setCenter(temp.getCenter().x * map->getLayer(layer)->getDepthIndex() - map->getLayer(layer)->getPosition().x,
-                     temp.getCenter().y * map->getLayer(layer)->getDepthIndex() - map->getLayer(layer)->getPosition().y);
+                   temp.getCenter().y * map->getLayer(layer)->getDepthIndex() - map->getLayer(layer)->getPosition().y);
 
     sf::Vector2f worldRelativeCoord =  mapPixelToCoords(windowRelativeCoord, temp);
     sf::Vector2f layerRelativeCoord = worldRelativeCoord;
@@ -219,7 +219,7 @@ void SFMLWidget::erase(sf::Vector2i mouseCoord)
 
     sf::View temp = *camera;
     temp.setCenter(temp.getCenter().x * map->getLayer(layer)->getDepthIndex() - map->getLayer(layer)->getPosition().x,
-                     temp.getCenter().y * map->getLayer(layer)->getDepthIndex() - map->getLayer(layer)->getPosition().y);
+                   temp.getCenter().y * map->getLayer(layer)->getDepthIndex() - map->getLayer(layer)->getPosition().y);
 
     sf::Vector2f worldRelativeCoord =  mapPixelToCoords(windowRelativeCoord, temp);
     sf::Vector2f layerRelativeCoord = worldRelativeCoord;

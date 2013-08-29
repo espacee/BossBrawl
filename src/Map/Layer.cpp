@@ -53,9 +53,9 @@ unsigned int Layer::getTile(unsigned int x, unsigned int y) const
 
 void Layer::fill(unsigned int id)
 {
-    for ( int i = 0; i < hLength; i++)
+    for (int i = 0; i < hLength; i++)
     {
-        for ( int j = 0; j < vLength; j++)
+        for (int j = 0; j < vLength; j++)
         {
             map[i][j] = id;
         }
@@ -151,7 +151,7 @@ bool Layer::isVisible()
     return visible;
 }
 
-bool Layer::tileExists( int x,  int y) const
+bool Layer::tileExists(int x,  int y) const
 {
-    return x>=0 && x < hLength && y>=0 && y < vLength;
+    return x >= 0 && x < hLength && y >= 0 && y < vLength;
 }

@@ -47,7 +47,7 @@ public:
     void setVisible(bool yesno);
     bool isVisible();
 
-    bool tileExists( int x,  int y) const;
+    bool tileExists(int x,  int y) const;
 
 private:
     std::vector< std::vector<unsigned int> > map;

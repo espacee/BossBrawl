@@ -44,7 +44,7 @@ private:
     void showEvent(QShowEvent*);
     void paintEvent(QPaintEvent*);
 
-    bool initialized, leftButtonDown, rightButtonDown, middleButtonDown,ctrlKeyDown, spaceKeyDown;
+    bool initialized, leftButtonDown, rightButtonDown, middleButtonDown, ctrlKeyDown, spaceKeyDown;
     int tool, saveTool;
     int layer;
     int id;

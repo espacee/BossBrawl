@@ -9,14 +9,14 @@
 GameState::GameState()
 {
     map.addLayer(0);
-    map.resizeLayer(0,20,20);
+    map.resizeLayer(0, 20, 20);
     map.setLayerGridEnabled(0, true);
 
-    for(int i=0;i<20;i++)
+    for (int i = 0; i < 20; i++)
     {
-        for(int j=0;j<15;j++)
+        for (int j = 0; j < 15; j++)
         {
-            map.setTile(0,i,20-j,2);
+            map.setTile(0, i, 20 - j, 2);
         }
     }
 
@@ -31,7 +31,7 @@ void GameState::onSet()
 {
     graphics::window.setTitle("game");
     camera = sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y));
-    camera.setCenter(0,0);
+    camera.setCenter(0, 0);
 
     fpsText.setPosition(5, graphics::window.getSize().y - 20);
 }

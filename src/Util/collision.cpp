@@ -12,12 +12,12 @@ bool hitTest(sf::FloatRect A, sf::FloatRect B)
 
 bool hitTest(sf::Vector2f point, sf::Vector2f circleCenter, int circleRadius)
 {
-    int d = (point.x-circleCenter.x)*(point.x-circleCenter.x) + (point.y-circleCenter.y)*(point.y-circleCenter.y);
-    return (d>circleRadius*circleRadius);
+    int d = (point.x - circleCenter.x) * (point.x - circleCenter.x) + (point.y - circleCenter.y) * (point.y - circleCenter.y);
+    return (d > circleRadius * circleRadius);
 }
 
 bool hitTest(sf::Vector2f Acenter, int Aradius, sf::Vector2f Bcenter, int Bradius)
 {
-    int d = (Acenter.x-Bcenter.x)*(Acenter.x-Bcenter.x) + (Acenter.y-Bcenter.y)*(Acenter.y-Bcenter.y);
-    return (d > (Aradius + Bradius)*(Aradius + Bradius));
+    int d = (Acenter.x - Bcenter.x) * (Acenter.x - Bcenter.x) + (Acenter.y - Bcenter.y) * (Acenter.y - Bcenter.y);
+    return (d > (Aradius + Bradius) * (Aradius + Bradius));
 }

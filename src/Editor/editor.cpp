@@ -67,7 +67,7 @@ void Editor::onInit()
     penToolButton->click();
     toggleGridButton->click();
 
-    camera = sf::View(sf::FloatRect(0, 0, sfmlWidget->width()-1, sfmlWidget->height()-1));
+    camera = sf::View(sf::FloatRect(0, 0, sfmlWidget->width() - 1, sfmlWidget->height() - 1));
     camera.setCenter(0, 0);
 }
 
@@ -299,28 +299,28 @@ void Editor::initBotBar()
                         width() - toolBarWidth - rightPanelWidth - globalPadding * 2,
                         botBarHeight);
 
-    resetCameraButton = new QPushButton(QIcon("res/img/GUI/camera.png"),"",botBar);
-    resetCameraButton->setGeometry(1,2,botBarHeight-2,botBarHeight-2);
+    resetCameraButton = new QPushButton(QIcon("res/img/GUI/camera.png"), "", botBar);
+    resetCameraButton->setGeometry(1, 2, botBarHeight - 2, botBarHeight - 2);
     resetCameraButton->setIconSize(resetCameraButton->size());
     resetCameraButton->setObjectName("toolButton");
 
-    toggleGridButton = new QPushButton(QIcon("res/img/GUI/grid.png"),"",botBar);
-    toggleGridButton->setGeometry(resetCameraButton->x()+resetCameraButton->width()+2,1,botBarHeight-2,botBarHeight-2);
+    toggleGridButton = new QPushButton(QIcon("res/img/GUI/grid.png"), "", botBar);
+    toggleGridButton->setGeometry(resetCameraButton->x() + resetCameraButton->width() + 2, 1, botBarHeight - 2, botBarHeight - 2);
     toggleGridButton->setIconSize(toggleGridButton->size());
     toggleGridButton->setObjectName("toolButton");
     toggleGridButton->setCheckable(true);
     toggleGridButton->setShortcut(QKeySequence("Ctrl+G"));
 
-    toggleVisibleButton = new QPushButton(QIcon("res/img/GUI/eye.png"),"",botBar);
-    toggleVisibleButton->setGeometry(toggleGridButton->x()+toggleGridButton->width()+2,1,botBarHeight-2,botBarHeight-2);
+    toggleVisibleButton = new QPushButton(QIcon("res/img/GUI/eye.png"), "", botBar);
+    toggleVisibleButton->setGeometry(toggleGridButton->x() + toggleGridButton->width() + 2, 1, botBarHeight - 2, botBarHeight - 2);
     toggleVisibleButton->setIconSize(toggleVisibleButton->size());
     toggleVisibleButton->setObjectName("toolButton");
     toggleVisibleButton->setCheckable(true);
     toggleVisibleButton->setShortcut(QKeySequence("Ctrl+V"));
 
-    connect(resetCameraButton,SIGNAL(clicked()),this,SLOT(resetCameraButtonClicked()));
-    connect(toggleGridButton,SIGNAL(clicked()),this,SLOT(toggleGridButtonClicked()));
-    connect(toggleVisibleButton,SIGNAL(clicked()),this,SLOT(toggleVisibleButtonClicked()));
+    connect(resetCameraButton, SIGNAL(clicked()), this, SLOT(resetCameraButtonClicked()));
+    connect(toggleGridButton, SIGNAL(clicked()), this, SLOT(toggleGridButtonClicked()));
+    connect(toggleVisibleButton, SIGNAL(clicked()), this, SLOT(toggleVisibleButtonClicked()));
 
 }
 
@@ -487,7 +487,7 @@ void Editor::tileSelected(QPixmap tile)
 
 void Editor::resetCameraButtonClicked()
 {
-    camera = sf::View(sf::FloatRect(0, 0, sfmlWidget->width()-1, sfmlWidget->height()-1));
+    camera = sf::View(sf::FloatRect(0, 0, sfmlWidget->width() - 1, sfmlWidget->height() - 1));
     camera.setCenter(0, 0);
 }
 
