@@ -65,6 +65,7 @@ Editor::~Editor()
 
 void Editor::onInit()
 {
+    map.loadFromFile("res/maps/test.map");
     layerTab->addLayer();
     tileWidget->select(0, 0);
     penToolButton->click();

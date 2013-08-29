@@ -32,6 +32,14 @@ void TileMap::loadTiles()
     }
 }
 
+void TileMap::loadFromFile(const std::string &filename)
+{
+}
+
+void TileMap::saveToFile(const std::string &filename)
+{
+}
+
 void TileMap::resizeLayer(unsigned int layer, unsigned int new_hLength, unsigned int new_vLength)
 {
     if (layerExists(layer))
