@@ -37,7 +37,6 @@ public:
     void setLayerPosition(unsigned int layer, int new_x_coord, int new_y_coord);
     void setLayerDepthIndex(unsigned int layer, float new_depthIndex);
     void setLayerGridColor(unsigned int layer, sf::Color gridColor);
-    void setLayerGridEnabled(unsigned int layer, bool yesno);
 
     void addLayer(int pos);
     void removeLayer(int pos);
@@ -55,13 +54,12 @@ public:
 
     void tilesdrawn();
 
-    void display(sf::RenderWindow& target);
+    void display(sf::RenderWindow& target, int drawGridForLayer = -1);
 
 private:
     std::vector< Layer* > layers;
     std::vector< sf::Sprite > sprites;
     sf::Texture tileSet;
-
 };
 
 #endif // MAP_TILEMAP_HPP

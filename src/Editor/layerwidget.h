@@ -29,7 +29,6 @@ public slots:
     void changeX(int x);
     void changeY(int y);
     void changeDepthIndex(double depthIndex);
-    void changeGridEnabled(bool enabled);
     void changeGridColor(QColor color);
     void clearLayer();
     void activateDialog();

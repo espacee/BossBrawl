@@ -6,7 +6,6 @@ Layer::Layer()
     fill(0);
     x_coord = y_coord = 0;
     depthIndex = 1.f;
-    grid = false;
     visible = true;
 
     setGridColor(sf::Color(0, 0, 0));
@@ -119,17 +118,6 @@ int Layer::getHeight() const
 {
     return height;
 }
-
-bool Layer::gridEnabled()
-{
-    return grid;
-}
-
-void Layer::setGridEnabled(bool yesno)
-{
-    grid = yesno;
-}
-
 
 void Layer::setGridColor(sf::Color new_gridColor)
 {

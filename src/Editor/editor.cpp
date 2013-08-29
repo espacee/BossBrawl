@@ -1,6 +1,8 @@
 #include "editor.h"
 
-Editor::Editor(QWidget *parent) : QWidget(parent)
+Editor::Editor(QWidget *parent) : QWidget(parent),
+    gridEnabled(false),
+    currentLayer(0)
 {
     setWindowFlags(Qt::FramelessWindowHint | Qt::WindowMinimizeButtonHint);
     setGeometry(QApplication::desktop()->availableGeometry());
@@ -48,6 +50,7 @@ Editor::Editor(QWidget *parent) : QWidget(parent)
     timer.start();
 
     connect(layerTab, SIGNAL(layerSelected(int)), sfmlWidget, SLOT(setCurrentLayer(int)));
+    connect(layerTab, SIGNAL(layerSelected(int)), this, SLOT(setCurrentLayer(int)));
 
     i = j = k = 127;
     a = b = c = true;
@@ -94,7 +97,7 @@ void Editor::onUpdate()
     sfmlWidget->clear(sf::Color(i, j, k));
 
     sfmlWidget->setView(camera);
-    map.display(*sfmlWidget);
+    map.display(*sfmlWidget, (gridEnabled ? currentLayer : - 1));
 
     sfmlWidget->sf::RenderWindow::display();
 }
@@ -485,6 +488,11 @@ void Editor::tileSelected(QPixmap tile)
     tileButton->setIcon(QIcon(tile));
 }
 
+void Editor::setCurrentLayer(int layer)
+{
+    currentLayer = layer;
+}
+
 void Editor::resetCameraButtonClicked()
 {
     camera = sf::View(sf::FloatRect(0, 0, sfmlWidget->width() - 1, sfmlWidget->height() - 1));
@@ -493,7 +501,7 @@ void Editor::resetCameraButtonClicked()
 
 void Editor::toggleGridButtonClicked()
 {
-    layerTab->toggleGrid();
+    gridEnabled = !gridEnabled;
 }
 
 void Editor::toggleVisibleButtonClicked()
