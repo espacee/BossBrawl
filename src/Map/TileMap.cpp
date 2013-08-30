@@ -1,7 +1,6 @@
 #include "Map/TileMap.hpp"
 
 #include <fstream>
-#include <cassert>
 
 TileMap::TileMap()
 {
