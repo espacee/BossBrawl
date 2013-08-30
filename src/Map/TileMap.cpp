@@ -89,14 +89,6 @@ void TileMap::setLayerGridColor(unsigned int layer, sf::Color gridColor)
     }
 }
 
-void TileMap::setLayerGridEnabled(unsigned int layer, bool yesno)
-{
-    if (layerExists(layer))
-    {
-        layers[layer]->setGridEnabled(yesno);
-    }
-}
-
 void TileMap::addLayer(int pos)
 {
     if (layers.size() == 0)
@@ -167,7 +159,7 @@ bool TileMap::layerExists(unsigned int layer) const
     return layer < layers.size();
 }
 
-void TileMap::display(sf::RenderWindow &target)
+void TileMap::display(sf::RenderWindow &target, int drawGridForLayer)
 {
 
     sf::View saveCamera = target.getView();
@@ -205,7 +197,7 @@ void TileMap::display(sf::RenderWindow &target)
 
             if (ymax > (layers[k]->getVLength())) ymax = layers[k]->getVLength();
 
-            if (layers[k]->gridEnabled())
+            if (drawGridForLayer == k)
             {
                 sf::RectangleShape layerBackground(sf::Vector2f(layers[k]->getWidth(), layers[k]->getHeight()));
                 sf::Color temp = layers[k]->getGridColor();
@@ -227,7 +219,7 @@ void TileMap::display(sf::RenderWindow &target)
                         target.draw(sprites[id]);
                     }
 
-                    if (layers[k]->gridEnabled())
+                    if (drawGridForLayer == k)
                     {
                         sf::Vertex hLine[] =
                         {
@@ -238,7 +230,7 @@ void TileMap::display(sf::RenderWindow &target)
                     }
                 }
 
-                if (layers[k]->gridEnabled())
+                if (drawGridForLayer == k)
                 {
                     sf::Vertex vLine[] =
                     {

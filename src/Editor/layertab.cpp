@@ -147,7 +147,6 @@ void LayerTab::reorder()
         layers[i]->setIndex(i);
     }
 
-    updateGrid();
     updateVisible();
 }
 
@@ -195,33 +194,13 @@ void LayerTab::selectLayer(int layer)
 
     emit layerSelected(currentLayer);
 
-    updateGrid();
     updateVisible();
-}
-
-void LayerTab::toggleGrid()
-{
-    currentGridOnly = !currentGridOnly;
-    updateGrid();
 }
 
 void LayerTab::toggleVisible()
 {
     currentVisibleOnly = !currentVisibleOnly;
     updateVisible();
-}
-
-void LayerTab::updateGrid()
-{
-    for (int i = 0; i < layers.size(); i++)
-    {
-        map->getLayer(i)->setGridEnabled(false);
-    }
-
-    if (currentGridOnly)
-    {
-        map->getLayer(currentLayer)->setGridEnabled(true);
-    }
 }
 
 void LayerTab::updateVisible()

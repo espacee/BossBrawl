@@ -39,8 +39,6 @@ public:
     int getWidth() const;
     int getHeight() const;
 
-    bool gridEnabled();
-    void setGridEnabled(bool yesno);
     void setGridColor(sf::Color new_gridColor);
     sf::Color getGridColor() const;
 
@@ -52,7 +50,7 @@ public:
 private:
     std::vector< std::vector<unsigned int> > map;
     int hLength, vLength, width, height;
-    bool grid, visible;
+    bool visible;
     sf::Color gridColor;
 
     int x_coord, y_coord;
