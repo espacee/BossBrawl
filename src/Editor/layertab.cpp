@@ -153,7 +153,7 @@ void LayerTab::reorder()
 {
     pan->setFixedHeight(layers.size() * (layerWidgetHeigth + offset));
 
-    for (int i = 0; i < layers.size(); i++)
+    for (int i = 0; i < map->getNbLayers(); i++)
     {
         layers[i]->resize(pan->width(), layerWidgetHeigth);
         layers[i]->move(0, i * (layerWidgetHeigth + offset));
@@ -223,7 +223,7 @@ void LayerTab::updateVisible()
 
     if (currentVisibleOnly)
     {
-        for (int i = 0; i < layers.size(); i++)
+        for (int i = 0; i < map->getNbLayers(); i++)
         {
             map->getLayer(i)->setVisible(false);
         }
@@ -232,7 +232,7 @@ void LayerTab::updateVisible()
     }
     else
     {
-        for (int i = 0; i < layers.size(); i++)
+        for (int i = 0; i < map->getNbLayers(); i++)
         {
             map->getLayer(i)->setVisible(true);
         }
