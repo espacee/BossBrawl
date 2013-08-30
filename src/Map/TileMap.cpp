@@ -59,25 +59,23 @@ bool TileMap::loadFromFile(const std::string &filename)
         l->gridColor = sf::Color(r, g, b, a);
         // x/y offsets
         file >> l->x_coord >> l->y_coord;
-        std::cerr << "x, y: " << l->x_coord << ", " << l->y_coord << std::endl;
         // Depth index
         file >> l->depthIndex;
-        std::cerr << "di: " << l->depthIndex << std::endl;
-        // Number of rows, columns
-        int rows, columns;
-        file >> rows >> columns;
-        std::cerr << rows << ", " << columns << std::endl;
+        // Number of columns, rows
+        int columns, rows;
+        file >> columns >> rows;
+
         auto& map = l->map;
-        map.resize(rows);
+        map.resize(columns);
 
         // Fetch the tile data
-        for (int i = 0; i < rows; ++i)
+        for (int x = 0; x < columns; ++x)
         {
-            map[i].resize(columns);
+            map[x].resize(rows);
 
-            for (int j = 0; j < columns; ++j)
+            for (int y = 0; y < rows; ++y)
             {
-                file >> map[i][j];
+                file >> map[x][y];
             }
         }
 
@@ -109,14 +107,14 @@ bool TileMap::saveToFile(const std::string &filename)
         file << l.x_coord << ' ' << l.y_coord << '\n';
         // Depth index
         file << l.depthIndex << '\n';
-        // Number of rows, columns
+        // Number of columns, rows
         file << l.getHLength() << ' ' << l.getVLength() << '\n';
         // Dump the tile data
-        for (int i = 0; i < l.getHLength(); ++i)
+        for (int x = 0; x < l.getHLength(); ++x)
         {
-            for (int j = 0; j < l.getVLength(); ++j)
+            for (int y = 0; y < l.getVLength(); ++y)
             {
-                file << l.map[i][j] << ' ';
+                file << l.map[x][y] << ' ';
             }
         }
     }
