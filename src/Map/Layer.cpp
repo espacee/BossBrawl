@@ -15,20 +15,12 @@ void Layer::resize(unsigned int new_hLength, unsigned int new_vLength)
 {
     if (new_hLength >= 1 && new_vLength >= 1)
     {
-
-        hLength = new_hLength;
-        vLength = new_vLength;
-
         map.resize(new_hLength);
 
         for (unsigned int i = 0; i < new_hLength; i++)
         {
             map[i].resize(new_vLength, 0);
         }
-
-        width = hLength * GRID_SIZE;
-        height = vLength * GRID_SIZE;
-
     }
 }
 
@@ -52,9 +44,9 @@ unsigned int Layer::getTile(unsigned int x, unsigned int y) const
 
 void Layer::fill(unsigned int id)
 {
-    for (int i = 0; i < hLength; i++)
+    for (int i = 0; i < getHLength(); i++)
     {
-        for (int j = 0; j < vLength; j++)
+        for (int j = 0; j < getVLength(); j++)
         {
             map[i][j] = id;
         }
@@ -101,22 +93,22 @@ float Layer::getDepthIndex()
 
 int Layer::getHLength() const
 {
-    return hLength;
+    return map.size();
 }
 
 int Layer::getVLength() const
 {
-    return vLength;
+    return (map.size() ? map[0].size() : 0);
 }
 
 int Layer::getWidth() const
 {
-    return width;
+    return getHLength() * GRID_SIZE;
 }
 
 int Layer::getHeight() const
 {
-    return height;
+    return getVLength() * GRID_SIZE;
 }
 
 void Layer::setGridColor(sf::Color new_gridColor)
@@ -141,5 +133,5 @@ bool Layer::isVisible()
 
 bool Layer::tileExists(int x,  int y) const
 {
-    return x >= 0 && x < hLength && y >= 0 && y < vLength;
+    return x >= 0 && x < getHLength() && y >= 0 && y < getVLength();
 }

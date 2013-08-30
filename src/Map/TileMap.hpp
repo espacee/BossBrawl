@@ -19,8 +19,8 @@ public:
     ~TileMap();
 
     void loadTiles();
-    void loadFromFile(const std::string& filename);
-    void saveToFile(const std::string& filename);
+    bool loadFromFile(const std::string& filename);
+    bool saveToFile(const std::string& filename);
 
     void resizeLayer(unsigned int layer, unsigned int new_hLength, unsigned int new_vLength);
     void setTile(unsigned int layer, unsigned int x, unsigned int y, unsigned int id);

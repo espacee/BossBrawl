@@ -1,5 +1,8 @@
 #include "Map/TileMap.hpp"
 
+#include <fstream>
+#include <cassert>
+
 TileMap::TileMap()
 {
     loadTiles();
@@ -32,12 +35,99 @@ void TileMap::loadTiles()
     }
 }
 
-void TileMap::loadFromFile(const std::string &filename)
+bool TileMap::loadFromFile(const std::string &filename)
 {
+    std::ifstream file(filename);
+
+    if (!file)
+        return false;
+
+    // How many layers
+    int size;
+    file >> size;
+
+    layers.resize(size);
+
+    for (int i = 0; i < size; ++i)
+    {
+        Layer* l = new Layer;
+
+        // Visibility
+        file >> l->visible;
+        // Grid color
+        int r, g, b, a;
+        file >> r >> g >> b >> a;
+        l->gridColor = sf::Color(r, g, b, a);
+        // x/y offsets
+        file >> l->x_coord >> l->y_coord;
+        std::cerr << "x, y: " << l->x_coord << ", " << l->y_coord << std::endl;
+        // Depth index
+        file >> l->depthIndex;
+        std::cerr << "di: " << l->depthIndex << std::endl;
+        // Number of rows, columns
+        int rows, columns;
+        file >> rows >> columns;
+        std::cerr << rows << ", " << columns << std::endl;
+        auto& map = l->map;
+        map.resize(rows);
+        assert(rows == 10 && columns == 10);
+        // Fetch the tile data
+        for (int i = 0; i < rows; ++i)
+        {
+            map[i].resize(columns);
+
+            for (int j = 0; j < columns; ++j)
+            {
+                file >> map[i][j];
+                if (!(map[i][j] == 1 || map[i][j] == 0))
+                {
+                    std::cerr << "Got: " << map[i][j] << std::endl;
+                    throw;
+                }
+            }
+        }
+
+        layers[i] = l;
+    }
+
+    return true;
 }
 
-void TileMap::saveToFile(const std::string &filename)
+bool TileMap::saveToFile(const std::string &filename)
 {
+    std::ofstream file(filename);
+
+    if (!file)
+        return false;
+
+    // How many layers
+    file << layers.size() << '\n';
+
+    for (const Layer* layer : layers)
+    {
+        const Layer& l = *layer;
+        // Visibility
+        file << l.visible << '\n';
+        // Grid color
+        const sf::Color& gc = l.gridColor;
+        file << (int) gc.r << ' ' << (int) gc.g << ' ' << (int) gc.b << ' ' << (int) gc.a << '\n';
+        // x/y offsets
+        file << l.x_coord << ' ' << l.y_coord << '\n';
+        // Depth index
+        file << l.depthIndex << '\n';
+        // Number of rows, columns
+        file << l.getHLength() << ' ' << l.getVLength() << '\n';
+        // Dump the tile data
+        for (int i = 0; i < l.getHLength(); ++i)
+        {
+            for (int j = 0; j < l.getVLength(); ++j)
+            {
+                file << l.map[i][j] << ' ';
+            }
+        }
+    }
+
+    return true;
 }
 
 void TileMap::resizeLayer(unsigned int layer, unsigned int new_hLength, unsigned int new_vLength)

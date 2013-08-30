@@ -12,8 +12,6 @@ class Layer
 {
 public:
     Layer();
-    Layer(unsigned int new_layerID);
-
 
     void resize(unsigned int new_hLength, unsigned int new_vLength);
     void setTile(unsigned int x, unsigned int y, unsigned int id);
@@ -49,12 +47,13 @@ public:
 
 private:
     std::vector< std::vector<unsigned int> > map;
-    int hLength, vLength, width, height;
     bool visible;
     sf::Color gridColor;
 
     int x_coord, y_coord;
     float depthIndex;
+
+    friend class TileMap;
 };
 
 #endif // MAP_LAYER_HPP

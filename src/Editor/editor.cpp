@@ -60,13 +60,14 @@ Editor::Editor(QWidget *parent) : QWidget(parent),
 
 Editor::~Editor()
 {
-
+    map.saveToFile("res/maps/test.map");
 }
 
 void Editor::onInit()
 {
-    map.loadFromFile("res/maps/test.map");
-    layerTab->addLayer();
+    if (!map.loadFromFile("res/maps/test.map"))
+        layerTab->addLayer();
+
     tileWidget->select(0, 0);
     penToolButton->click();
     toggleGridButton->click();
