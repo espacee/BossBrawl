@@ -138,8 +138,8 @@ Layer* TileMap::getLayer(unsigned int layer)
 {
     if (layerExists(layer))
         return layers[layer];
-    else
-        return layers[0];
+
+    return nullptr;
 }
 
 bool TileMap::tileExists(unsigned int x, unsigned int y, unsigned int layer) const
