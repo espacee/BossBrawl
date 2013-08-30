@@ -22,7 +22,6 @@ public:
     LayerTab(QWidget *parent, TileMap* mapP);
 
     void reorder();
-    void toggleGrid();
     void toggleVisible();
     void updateGrid();
     void updateVisible();

@@ -102,11 +102,6 @@ void LayerWidget::changeDepthIndex(double depthIndex)
     map->getLayer(index)->setDepthIndex(depthIndex);
 }
 
-void LayerWidget::changeGridEnabled(bool enabled)
-{
-    map->getLayer(index)->setGridEnabled(enabled);
-}
-
 void LayerWidget::changeGridColor(QColor color)
 {
     map->getLayer(index)->setGridColor(sf::Color(color.red(), color.green(), color.blue()));

@@ -51,6 +51,8 @@ public slots:
     void tileSelected(int new_id);
     void tileSelected(QPixmap tile);
 
+    void setCurrentLayer(int layer);
+
 private:
 
     TileMap map;
@@ -111,6 +113,8 @@ private:
     QPushButton* tileButton;
 
     LayerTab* layerTab;
+    bool gridEnabled;
+    int currentLayer;
 
 };
 

@@ -43,7 +43,7 @@ void GameState::onUpdate()
 
     window.clear(sf::Color(80, 80, 80));
     graphics::window.setView(camera);
-    map.display(window);
+    map.display(window, (gridEnabled ? 0 : -1));
     player.display(window);
 
     graphics::window.setView(sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y)));
@@ -67,7 +67,6 @@ void GameState::onEvent(const sf::Event &event)
             camera.zoom(2);
             break;
         case sf::Keyboard::G:
-            map.setLayerGridEnabled(0, !gridEnabled);
             gridEnabled = !gridEnabled;
         default: ;
         }
