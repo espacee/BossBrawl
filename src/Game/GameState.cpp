@@ -60,15 +60,20 @@ void GameState::onEvent(const sf::Event &event)
         case sf::Keyboard::Escape:
             stateDriver::setState("menu");
             break;
+
         case sf::Keyboard::Numpad8:
             camera.zoom(0.5);
             break;
+
         case sf::Keyboard::Numpad5:
             camera.zoom(2);
             break;
+
         case sf::Keyboard::G:
             gridEnabled = !gridEnabled;
-        default: ;
+
+        default:
+            ;
         }
     }
 }

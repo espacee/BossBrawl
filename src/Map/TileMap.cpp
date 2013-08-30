@@ -95,7 +95,7 @@ bool TileMap::saveToFile(const std::string &filename)
     // How many layers
     file << layers.size() << '\n';
 
-    for (const Layer* layer : layers)
+    for (const Layer * layer : layers)
     {
         const Layer& l = *layer;
         // Visibility
@@ -109,6 +109,7 @@ bool TileMap::saveToFile(const std::string &filename)
         file << l.depthIndex << '\n';
         // Number of columns, rows
         file << l.getHLength() << ' ' << l.getVLength() << '\n';
+
         // Dump the tile data
         for (int x = 0; x < l.getHLength(); ++x)
         {
