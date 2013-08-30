@@ -70,7 +70,7 @@ bool TileMap::loadFromFile(const std::string &filename)
         std::cerr << rows << ", " << columns << std::endl;
         auto& map = l->map;
         map.resize(rows);
-        assert(rows == 10 && columns == 10);
+
         // Fetch the tile data
         for (int i = 0; i < rows; ++i)
         {
@@ -79,11 +79,6 @@ bool TileMap::loadFromFile(const std::string &filename)
             for (int j = 0; j < columns; ++j)
             {
                 file >> map[i][j];
-                if (!(map[i][j] == 1 || map[i][j] == 0))
-                {
-                    std::cerr << "Got: " << map[i][j] << std::endl;
-                    throw;
-                }
             }
         }
 

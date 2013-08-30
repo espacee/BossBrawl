@@ -67,6 +67,11 @@ LayerTab::LayerTab(QWidget *parent, TileMap* mapP)
 
 void LayerTab::addLayer()
 {
+    map->addLayer(addLayerWidget());
+}
+
+int LayerTab::addLayerWidget()
+{
     int newLayer;
 
     if (layers.size() == 0)
@@ -80,13 +85,22 @@ void LayerTab::addLayer()
         layers.insert(layers.begin() + newLayer, new LayerWidget("Layer " + QString::number(layerID), pan, map));
     }
 
-    map->addLayer(newLayer);
     connect(layers[newLayer], SIGNAL(selected(int)), this, SLOT(selectLayer(int)));
 
     selectLayer(newLayer);
 
     reorder();
     layerID++;
+
+    return newLayer;
+}
+
+void LayerTab::loadLayersFromMap()
+{
+    for (int i = 0; i < map->getNbLayers(); ++i)
+    {
+        addLayerWidget();
+    }
 }
 
 void LayerTab::removeLayer()

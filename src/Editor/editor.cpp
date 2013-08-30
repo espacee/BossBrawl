@@ -65,8 +65,14 @@ Editor::~Editor()
 
 void Editor::onInit()
 {
-    if (!map.loadFromFile("res/maps/test.map"))
+    if (map.loadFromFile("res/maps/test.map"))
+    {
+        layerTab->loadLayersFromMap();
+    }
+    else
+    {
         layerTab->addLayer();
+    }
 
     tileWidget->select(0, 0);
     penToolButton->click();
