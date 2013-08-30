@@ -56,7 +56,7 @@ public:
 
     void tilesdrawn();
 
-    void display(sf::RenderWindow& target, int drawGridForLayer = -1);
+    void display(sf::RenderWindow& target, unsigned int drawGridForLayer = -1);
 
 private:
     std::vector< Layer* > layers;
