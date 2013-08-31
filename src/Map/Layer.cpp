@@ -1,6 +1,7 @@
 #include "Map/Layer.hpp"
 
-Layer::Layer()
+Layer::Layer(const std::string &name) :
+    m_name(name)
 {
     resize(1, 1);
     fill(0);

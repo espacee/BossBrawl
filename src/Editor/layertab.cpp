@@ -78,12 +78,12 @@ void LayerTab::addLayerWidget()
     if (layerWidgets.size() == 0)
     {
         newLayer = 0;
-        layerWidgets.push_back(new LayerWidget("Layer " + QString::number(layerID), pan, map));
+        layerWidgets.push_back(new LayerWidget(pan, map));
     }
     else
     {
         newLayer = currentLayer + 1;
-        layerWidgets.insert(layerWidgets.begin() + newLayer, new LayerWidget("Layer " + QString::number(layerID), pan, map));
+        layerWidgets.insert(layerWidgets.begin() + newLayer, new LayerWidget(pan, map));
     }
 
     connect(layerWidgets[newLayer], SIGNAL(selected(int)), this, SLOT(selectLayer(int)));

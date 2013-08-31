@@ -11,7 +11,7 @@ constexpr int GRID_SIZE = 40;
 class Layer
 {
 public:
-    Layer();
+    Layer(const std::string& name);
 
     void resize(unsigned int new_hLength, unsigned int new_vLength);
     void setTile(unsigned int x, unsigned int y, unsigned int id);
@@ -37,6 +37,16 @@ public:
     int getWidth() const;
     int getHeight() const;
 
+    inline void setName(const std::string& name)
+    {
+        m_name = name;
+    }
+
+    inline const std::string& getName() const
+    {
+        return m_name;
+    }
+
     void setGridColor(sf::Color new_gridColor);
     sf::Color getGridColor() const;
 
@@ -49,6 +59,7 @@ private:
     std::vector< std::vector<unsigned int> > map;
     bool visible;
     sf::Color gridColor;
+    std::string m_name;
 
     int x_coord, y_coord;
     float depthIndex;

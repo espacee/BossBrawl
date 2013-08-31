@@ -1,7 +1,7 @@
 #include "Editor/layerwidget.h"
 #include "ui_layersettings.h"
 
-LayerWidget::LayerWidget(QString new_name, QWidget *parent, TileMap *mapP) : QWidget(parent)
+LayerWidget::LayerWidget(QWidget *parent, TileMap *mapP) : QWidget(parent)
 {
     map = mapP;
     setObjectName("layer");
@@ -11,8 +11,7 @@ LayerWidget::LayerWidget(QString new_name, QWidget *parent, TileMap *mapP) : QWi
     pal.setColor(QPalette::Background, QColor(133, 70, 56));
     setPalette(pal);
 
-    name = new_name;
-    title = new QLabel(name, this);
+    title = new QLabel(this);
     title->move(10, 0);
     title->setStyleSheet("color:white;");
     index = 0;
@@ -36,7 +35,7 @@ void LayerWidget::setIndex(int i)
 {
     index = i;
 
-    dialog->getUi()->nameEdit->setText(name);
+    dialog->getUi()->nameEdit->setText(QString::fromStdString(map->getLayer(index)->getName()));
     dialog->getUi()->widthSpinBox->setValue(map->getLayer(index)->getHLength());
     dialog->getUi()->heightSpinBox->setValue(map->getLayer(index)->getVLength());
     dialog->getUi()->xSpinBox->setValue(map->getLayer(index)->getPosition().x);
@@ -73,8 +72,8 @@ void LayerWidget::resizeEvent(QResizeEvent *)
 
 void LayerWidget::rename(QString new_name)
 {
-    name = new_name;
-    title->setText(name);
+    map->getLayer(index)->setName(new_name.toStdString());
+    title->setText(new_name);
 }
 
 void LayerWidget::changeWidth(int width)

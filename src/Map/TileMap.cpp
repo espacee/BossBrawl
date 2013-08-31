@@ -49,7 +49,11 @@ bool TileMap::loadFromFile(const std::string &filename)
 
     for (int i = 0; i < size; ++i)
     {
-        Layer* l = new Layer;
+        // Name
+        std::string name;
+        std::getline(file, name);
+
+        Layer* l = new Layer(name);
 
         // Visibility
         file >> l->visible;
@@ -98,6 +102,8 @@ bool TileMap::saveToFile(const std::string &filename)
     for (const Layer * layer : layers)
     {
         const Layer& l = *layer;
+        // Name
+        file << l.m_name << '\n';
         // Visibility
         file << l.visible << '\n';
         // Grid color
@@ -118,6 +124,8 @@ bool TileMap::saveToFile(const std::string &filename)
                 file << l.map[x][y] << ' ';
             }
         }
+
+        file << '\n';
     }
 
     return true;
@@ -184,11 +192,11 @@ void TileMap::addLayer(int pos)
 {
     if (layers.size() == 0)
     {
-        layers.push_back(new Layer());
+        layers.push_back(new Layer("Layer 0"));
     }
     else
     {
-        layers.insert(layers.begin() + pos, new Layer());
+        layers.insert(layers.begin() + pos, new Layer("Layer " + std::to_string(pos)));
     }
 }
 
