@@ -187,6 +187,7 @@ void LayerTab::mousePressEvent(QMouseEvent *e)
 {
     e->ignore();
 }
+
 void LayerTab::keyPressEvent(QKeyEvent* e)
 {
     if (e->key() == Qt::Key_Delete)
