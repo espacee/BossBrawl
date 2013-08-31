@@ -30,7 +30,6 @@ public:
     void moveLayerForeground(int pos);
 
     int getNbLayers();
-    sf::Vector2f getLayerPosition(unsigned int layer);
 
     Layer* getLayer(unsigned int layer);
 

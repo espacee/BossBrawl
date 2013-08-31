@@ -186,14 +186,6 @@ int TileMap::getNbLayers()
     return layers.size();
 }
 
-sf::Vector2f TileMap::getLayerPosition(unsigned int layer)
-{
-    if (layerExists(layer))
-        return layers[layer]->getPosition();
-    else
-        return sf::Vector2f(0, 0);
-}
-
 Layer* TileMap::getLayer(unsigned int layer)
 {
     if (layerExists(layer))
