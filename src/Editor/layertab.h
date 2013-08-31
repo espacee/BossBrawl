@@ -20,10 +20,7 @@ class LayerTab : public QWidget
     Q_OBJECT
 public:
     LayerTab(QWidget *parent, TileMap* mapP);
-
-    void reorder();
     void toggleVisible();
-    void updateVisible();
 
 signals:
     void layerSelected(int);
@@ -38,25 +35,26 @@ public slots:
     void selectLayer(int layer);
 
 private:
-    TileMap* map;
+    void reorder();
+    void updateVisible();
 
     void resizeEvent(QResizeEvent *e);
     void mousePressEvent(QMouseEvent *e);
     void keyPressEvent(QKeyEvent* e);
+
+    TileMap* map;
+    int currentLayer, layerID;
+    int layerWidgetHeigth, offset;
+    bool currentGridOnly, currentVisibleOnly;
+
+    QVector<LayerWidget*> layerWidgets;
 
     QScrollArea* layerScrollArea;
     QPushButton* addLayerButton;
     QPushButton* removeLayerButton;
     QPushButton* moveBgButton;
     QPushButton* moveFgButton;
-
     QWidget* pan;
-
-    QVector<LayerWidget*> layerWidgets;
-    int currentLayer, layerID;
-    int layerWidgetHeigth, offset;
-    bool currentGridOnly, currentVisibleOnly;
-
 };
 
 #endif // LAYERTAB_H
