@@ -44,8 +44,6 @@ public:
     bool spriteExists(unsigned int id) const;
     bool layerExists(unsigned int layer) const;
 
-    void tilesdrawn();
-
     void display(sf::RenderWindow& target, unsigned int drawGridForLayer = -1);
 
 private:
