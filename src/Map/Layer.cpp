@@ -12,15 +12,15 @@ Layer::Layer(const std::string &name) :
     setGridColor(sf::Color(0, 0, 0));
 }
 
-void Layer::resize(unsigned int new_hLength, unsigned int new_vLength)
+void Layer::resize(unsigned int w, unsigned int h)
 {
-    if (new_hLength >= 1 && new_vLength >= 1)
+    if (w >= 1 && h >= 1)
     {
-        m_tiles.resize(new_hLength);
+        m_tiles.resize(w);
 
-        for (unsigned int i = 0; i < new_hLength; i++)
+        for (unsigned int i = 0; i < w; i++)
         {
-            m_tiles[i].resize(new_vLength, 0);
+            m_tiles[i].resize(h, 0);
         }
     }
 }

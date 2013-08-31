@@ -13,7 +13,7 @@ class Layer
 public:
     Layer(const std::string& name);
 
-    void resize(unsigned int new_hLength, unsigned int new_vLength);
+    void resize(unsigned int w, unsigned int h);
     void setTile(unsigned int x, unsigned int y, unsigned int id);
     unsigned int getTile(unsigned int x, unsigned int y) const;
 
@@ -24,21 +24,21 @@ public:
      */
     void fill(unsigned int id);
 
-    inline void move(int x_offset, int y_offset)
+    inline void move(int xoff, int yoff)
     {
-        m_x += x_offset;
-        m_y += y_offset;
+        m_x += xoff;
+        m_y += yoff;
     }
 
-    inline void setPosition(int new_x_coord, int new_y_coord)
+    inline void setPosition(int x, int y)
     {
-        m_x = new_x_coord;
-        m_y = new_y_coord;
+        m_x = x;
+        m_y = y;
     }
 
-    inline void setDepthIndex(float new_depthIndex)
+    inline void setDepthIndex(float index)
     {
-        m_depthIndex = new_depthIndex;
+        m_depthIndex = index;
     }
 
     inline int getX() const
@@ -91,9 +91,9 @@ public:
         return m_name;
     }
 
-    inline void setGridColor(sf::Color new_gridColor)
+    inline void setGridColor(sf::Color color)
     {
-        m_gridColor = new_gridColor;
+        m_gridColor = color;
     }
 
     inline sf::Color getGridColor() const
@@ -101,9 +101,9 @@ public:
         return m_gridColor;
     }
 
-    inline void setVisible(bool yesno)
+    inline void setVisible(bool visible)
     {
-        m_visible = yesno;
+        m_visible = visible;
     }
 
     inline bool isVisible() const
