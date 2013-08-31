@@ -152,7 +152,7 @@ void LayerTab::reorder()
 {
     pan->setFixedHeight(layerWidgets.size() * (layerWidgetHeigth + offset));
 
-    for (int i = 0; i < map->getNbLayers(); i++)
+    for (int i = 0; i < layerWidgets.size(); i++)
     {
         layerWidgets[i]->resize(pan->width(), layerWidgetHeigth);
         layerWidgets[i]->move(0, i * (layerWidgetHeigth + offset));
