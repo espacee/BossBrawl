@@ -18,7 +18,6 @@ public:
     TileMap();
     ~TileMap();
 
-    void loadTiles();
     bool loadFromFile(const std::string& filename);
     bool saveToFile(const std::string& filename);
 
@@ -47,6 +46,8 @@ public:
     void display(sf::RenderWindow& target, unsigned int drawGridForLayer = -1);
 
 private:
+    void loadTileset();
+
     std::vector< Layer* > layers;
     std::vector< sf::Sprite > sprites;
     sf::Texture tileSet;

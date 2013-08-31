@@ -4,7 +4,7 @@
 
 TileMap::TileMap()
 {
-    loadTiles();
+    loadTileset();
 }
 
 TileMap::~TileMap()
@@ -15,7 +15,7 @@ TileMap::~TileMap()
     }
 }
 
-void TileMap::loadTiles()
+void TileMap::loadTileset()
 {
     sprites.push_back(sf::Sprite());
 
