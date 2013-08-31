@@ -29,7 +29,7 @@ public:
     void moveLayerBackground(int pos);
     void moveLayerForeground(int pos);
 
-    int getNbLayers();
+    int size();
 
     Layer* getLayer(unsigned int layer);
 

@@ -42,12 +42,12 @@ bool TileMap::loadFromFile(const std::string &filename)
         return false;
 
     // How many layers
-    int size;
-    file >> size;
+    int nLayers;
+    file >> nLayers;
 
-    layers.resize(size);
+    layers.resize(nLayers);
 
-    for (int i = 0; i < size; ++i)
+    for (int i = 0; i < nLayers; ++i)
     {
         // Name
         std::string name;
@@ -181,7 +181,7 @@ void TileMap::moveLayerForeground(int pos)
     layers[pos + 1] = temp;
 }
 
-int TileMap::getNbLayers()
+int TileMap::size()
 {
     return layers.size();
 }

@@ -101,7 +101,7 @@ void LayerTab::loadLayersFromMap()
 
     layerWidgets.clear();
 
-    for (int i = 0; i < map->getNbLayers(); ++i)
+    for (int i = 0; i < map->size(); ++i)
     {
         addLayerWidget();
     }
@@ -226,7 +226,7 @@ void LayerTab::updateVisible()
 {
     if (currentVisibleOnly)
     {
-        for (int i = 0; i < map->getNbLayers(); i++)
+        for (int i = 0; i < map->size(); i++)
         {
             map->getLayer(i)->setVisible(false);
         }
@@ -235,7 +235,7 @@ void LayerTab::updateVisible()
     }
     else
     {
-        for (int i = 0; i < map->getNbLayers(); i++)
+        for (int i = 0; i < map->size(); i++)
         {
             map->getLayer(i)->setVisible(true);
         }
