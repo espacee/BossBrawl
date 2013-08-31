@@ -22,18 +22,8 @@ public:
     bool loadFromFile(const std::string& filename);
     bool saveToFile(const std::string& filename);
 
-    void resizeLayer(unsigned int layer, unsigned int new_hLength, unsigned int new_vLength);
     void setTile(unsigned int layer, unsigned int x, unsigned int y, unsigned int id);
     unsigned int getTile(unsigned int layer, unsigned int x, unsigned int y) const;
-
-    /**
-     * @brief Fill a layer with a specific tile
-     *
-     * @param layer The layer to fill
-     * @param id The tile to fill the layer with. If it is 0, the function will
-     *           fill the layer with empty tiles, i.e. clear the layer.
-     */
-    void fillLayer(unsigned int layer, unsigned int id);
 
     void moveLayer(unsigned int layer, int x_offset, int y_offset);
     void setLayerPosition(unsigned int layer, int new_x_coord, int new_y_coord);

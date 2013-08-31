@@ -136,11 +136,6 @@ bool TileMap::saveToFile(const std::string &filename)
     return true;
 }
 
-void TileMap::resizeLayer(unsigned int layer, unsigned int new_hLength, unsigned int new_vLength)
-{
-    if (layerExists(layer))
-        layers[layer]->resize(new_hLength, new_vLength);
-}
 void TileMap::setTile(unsigned int layer, unsigned int x, unsigned int y, unsigned int id)
 {
     if (layerExists(layer)  && spriteExists(id))
@@ -152,14 +147,6 @@ unsigned int TileMap::getTile(unsigned int layer, unsigned int x, unsigned int y
         return layers[layer]->getTile(x, y);
     else
         return 0;
-}
-
-void TileMap::fillLayer(unsigned int layer, unsigned int id)
-{
-    if (layerExists(layer) && spriteExists(id))
-    {
-        layers[layer]->fill(id);
-    }
 }
 
 void TileMap::moveLayer(unsigned int layer, int x_offset, int y_offset)
