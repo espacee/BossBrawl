@@ -57,20 +57,20 @@ bool TileMap::loadFromFile(const std::string &filename)
         Layer* l = new Layer(name);
 
         // Visibility
-        file >> l->visible;
+        file >> l->m_visible;
         // Grid color
         int r, g, b, a;
         file >> r >> g >> b >> a;
-        l->gridColor = sf::Color(r, g, b, a);
+        l->m_gridColor = sf::Color(r, g, b, a);
         // x/y offsets
-        file >> l->x_coord >> l->y_coord;
+        file >> l->m_x >> l->m_y;
         // Depth index
-        file >> l->depthIndex;
+        file >> l->m_depthIndex;
         // Number of columns, rows
         int columns, rows;
         file >> columns >> rows;
 
-        auto& map = l->map;
+        auto& map = l->m_tiles;
         map.resize(columns);
 
         // Fetch the tile data
@@ -110,14 +110,14 @@ bool TileMap::saveToFile(const std::string &filename)
         // Name
         file << l.m_name << '\n';
         // Visibility
-        file << l.visible << '\n';
+        file << l.m_visible << '\n';
         // Grid color
-        const sf::Color& gc = l.gridColor;
+        const sf::Color& gc = l.m_gridColor;
         file << (int) gc.r << ' ' << (int) gc.g << ' ' << (int) gc.b << ' ' << (int) gc.a << '\n';
         // x/y offsets
-        file << l.x_coord << ' ' << l.y_coord << '\n';
+        file << l.m_x << ' ' << l.m_y << '\n';
         // Depth index
-        file << l.depthIndex << '\n';
+        file << l.m_depthIndex << '\n';
         // Number of columns, rows
         file << l.getHLength() << ' ' << l.getVLength() << '\n';
 
@@ -126,7 +126,7 @@ bool TileMap::saveToFile(const std::string &filename)
         {
             for (int y = 0; y < l.getVLength(); ++y)
             {
-                file << ' ' << l.map[x][y];
+                file << ' ' << l.m_tiles[x][y];
             }
         }
 
