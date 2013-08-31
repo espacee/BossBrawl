@@ -24,18 +24,62 @@ public:
      */
     void fill(unsigned int id);
 
-    void move(int x_offset, int y_offset);
-    void setPosition(int new_x_coord, int new_y_coord);
-    void setDepthIndex(float new_depthIndex);
-    int getX() const;
-    int getY() const;
+    inline void move(int x_offset, int y_offset)
+    {
+        x_coord += x_offset;
+        y_coord += y_offset;
+    }
 
-    sf::Vector2f getPosition();
-    float getDepthIndex();
-    int getHLength() const;
-    int getVLength() const;
-    int getWidth() const;
-    int getHeight() const;
+    inline void setPosition(int new_x_coord, int new_y_coord)
+    {
+        x_coord = new_x_coord;
+        y_coord = new_y_coord;
+    }
+
+    inline void setDepthIndex(float new_depthIndex)
+    {
+        depthIndex = new_depthIndex;
+    }
+
+    inline int getX() const
+    {
+        return x_coord;
+    }
+
+    inline int getY() const
+    {
+        return y_coord;
+    }
+
+    inline sf::Vector2f getPosition() const
+    {
+        return sf::Vector2f(x_coord, y_coord);
+    }
+
+    inline float getDepthIndex() const
+    {
+        return depthIndex;
+    }
+
+    inline int getHLength() const
+    {
+        return map.size();
+    }
+
+    inline int getVLength() const
+    {
+        return (map.size() ? map[0].size() : 0);
+    }
+
+    inline int getWidth() const
+    {
+        return getHLength() * GRID_SIZE;
+    }
+
+    inline int getHeight() const
+    {
+        return getVLength() * GRID_SIZE;
+    }
 
     inline void setName(const std::string& name)
     {
@@ -47,13 +91,30 @@ public:
         return m_name;
     }
 
-    void setGridColor(sf::Color new_gridColor);
-    sf::Color getGridColor() const;
+    inline void setGridColor(sf::Color new_gridColor)
+    {
+        gridColor = new_gridColor;
+    }
 
-    void setVisible(bool yesno);
-    bool isVisible();
+    inline sf::Color getGridColor() const
+    {
+        return gridColor;
+    }
 
-    bool tileExists(int x,  int y) const;
+    inline void setVisible(bool yesno)
+    {
+        visible = yesno;
+    }
+
+    inline bool isVisible() const
+    {
+        return visible;
+    }
+
+    inline bool tileExists(int x,  int y) const
+    {
+        return x >= 0 && x < getHLength() && y >= 0 && y < getVLength();
+    }
 
 private:
     std::vector< std::vector<unsigned int> > map;
