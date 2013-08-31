@@ -96,6 +96,11 @@ void LayerTab::addLayerWidget()
 
 void LayerTab::loadLayersFromMap()
 {
+    for (auto w : layerWidgets)
+        delete w;
+
+    layerWidgets.clear();
+
     for (int i = 0; i < map->getNbLayers(); ++i)
     {
         addLayerWidget();
