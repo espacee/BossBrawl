@@ -31,7 +31,7 @@ signals:
 
 public slots:
     void addLayer();
-    int addLayerWidget();
+    void addLayerWidget();
     void loadLayersFromMap();
     void removeLayer();
     void moveBg();

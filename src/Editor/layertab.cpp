@@ -67,10 +67,11 @@ LayerTab::LayerTab(QWidget *parent, TileMap* mapP)
 
 void LayerTab::addLayer()
 {
-    map->addLayer(addLayerWidget());
+    map->addLayer(currentLayer + 1);
+    loadLayersFromMap();
 }
 
-int LayerTab::addLayerWidget()
+void LayerTab::addLayerWidget()
 {
     int newLayer;
 
@@ -91,8 +92,6 @@ int LayerTab::addLayerWidget()
 
     reorder();
     layerID++;
-
-    return newLayer;
 }
 
 void LayerTab::loadLayersFromMap()
