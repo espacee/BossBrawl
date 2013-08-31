@@ -149,37 +149,6 @@ unsigned int TileMap::getTile(unsigned int layer, unsigned int x, unsigned int y
         return 0;
 }
 
-void TileMap::moveLayer(unsigned int layer, int x_offset, int y_offset)
-{
-    if (layerExists(layer))
-    {
-        layers[layer]->move(x_offset, y_offset);
-    }
-}
-void TileMap::setLayerPosition(unsigned int layer, int new_x_coord, int new_y_coord)
-{
-    if (layerExists(layer))
-    {
-        layers[layer]->setPosition(new_x_coord, new_y_coord);
-    }
-}
-
-void TileMap::setLayerDepthIndex(unsigned int layer, float new_depthIndex)
-{
-    if (layerExists(layer))
-    {
-        layers[layer]->setDepthIndex(new_depthIndex);
-    }
-}
-
-void TileMap::setLayerGridColor(unsigned int layer, sf::Color gridColor)
-{
-    if (layerExists(layer))
-    {
-        layers[layer]->setGridColor(gridColor);
-    }
-}
-
 void TileMap::addLayer(int pos)
 {
     if (layers.size() == 0)
