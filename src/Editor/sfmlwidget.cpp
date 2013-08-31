@@ -77,7 +77,7 @@ void SFMLWidget::mousePressEvent(QMouseEvent *e)
             camera->zoom(0.5);
 
         if (tool == 5)
-            map->getLayer(layer)->fill(id);
+            (*map)[layer]->fill(id);
     }
 
     if (e->button() == Qt::RightButton)
@@ -198,8 +198,8 @@ void SFMLWidget::draw(sf::Vector2i mouseCoord)
     sf::Vector2i windowRelativeCoord = mouseCoord;
 
     sf::View temp = *camera;
-    temp.setCenter(temp.getCenter().x * map->getLayer(layer)->getDepthIndex() - map->getLayer(layer)->getPosition().x,
-                   temp.getCenter().y * map->getLayer(layer)->getDepthIndex() - map->getLayer(layer)->getPosition().y);
+    temp.setCenter(temp.getCenter().x * (*map)[layer]->getDepthIndex() - (*map)[layer]->getPosition().x,
+                   temp.getCenter().y * (*map)[layer]->getDepthIndex() - (*map)[layer]->getPosition().y);
 
     sf::Vector2f worldRelativeCoord =  mapPixelToCoords(windowRelativeCoord, temp);
     sf::Vector2f layerRelativeCoord = worldRelativeCoord;
@@ -218,8 +218,8 @@ void SFMLWidget::erase(sf::Vector2i mouseCoord)
     sf::Vector2i windowRelativeCoord = mouseCoord;
 
     sf::View temp = *camera;
-    temp.setCenter(temp.getCenter().x * map->getLayer(layer)->getDepthIndex() - map->getLayer(layer)->getPosition().x,
-                   temp.getCenter().y * map->getLayer(layer)->getDepthIndex() - map->getLayer(layer)->getPosition().y);
+    temp.setCenter(temp.getCenter().x * (*map)[layer]->getDepthIndex() - (*map)[layer]->getPosition().x,
+                   temp.getCenter().y * (*map)[layer]->getDepthIndex() - (*map)[layer]->getPosition().y);
 
     sf::Vector2f worldRelativeCoord =  mapPixelToCoords(windowRelativeCoord, temp);
     sf::Vector2f layerRelativeCoord = worldRelativeCoord;

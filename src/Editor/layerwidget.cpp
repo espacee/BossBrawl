@@ -35,12 +35,12 @@ void LayerWidget::setIndex(int i)
 {
     index = i;
 
-    dialog->getUi()->nameEdit->setText(QString::fromStdString(map->getLayer(index)->getName()));
-    dialog->getUi()->widthSpinBox->setValue(map->getLayer(index)->getHLength());
-    dialog->getUi()->heightSpinBox->setValue(map->getLayer(index)->getVLength());
-    dialog->getUi()->xSpinBox->setValue(map->getLayer(index)->getPosition().x);
-    dialog->getUi()->ySpinBox->setValue(map->getLayer(index)->getPosition().y);
-    dialog->getUi()->depthIndexSpinBox->setValue(map->getLayer(index)->getDepthIndex());
+    dialog->getUi()->nameEdit->setText(QString::fromStdString((*map)[index]->getName()));
+    dialog->getUi()->widthSpinBox->setValue((*map)[index]->getHLength());
+    dialog->getUi()->heightSpinBox->setValue((*map)[index]->getVLength());
+    dialog->getUi()->xSpinBox->setValue((*map)[index]->getPosition().x);
+    dialog->getUi()->ySpinBox->setValue((*map)[index]->getPosition().y);
+    dialog->getUi()->depthIndexSpinBox->setValue((*map)[index]->getDepthIndex());
 }
 
 void LayerWidget::setCurrent()
@@ -72,42 +72,42 @@ void LayerWidget::resizeEvent(QResizeEvent *)
 
 void LayerWidget::rename(QString new_name)
 {
-    map->getLayer(index)->setName(new_name.toStdString());
+    (*map)[index]->setName(new_name.toStdString());
     title->setText(new_name);
 }
 
 void LayerWidget::changeWidth(int width)
 {
-    map->getLayer(index)->resize(width, map->getLayer(index)->getVLength());
+    (*map)[index]->resize(width, (*map)[index]->getVLength());
 }
 
 void LayerWidget::changeHeigth(int height)
 {
-    map->getLayer(index)->resize(map->getLayer(index)->getHLength(), height);
+    (*map)[index]->resize((*map)[index]->getHLength(), height);
 }
 
 void LayerWidget::changeX(int x)
 {
-    map->getLayer(index)->setPosition(x, map->getLayer(index)->getPosition().y);
+    (*map)[index]->setPosition(x, (*map)[index]->getPosition().y);
 }
 
 void LayerWidget::changeY(int y)
 {
-    map->getLayer(index)->setPosition(map->getLayer(index)->getPosition().x, y);
+    (*map)[index]->setPosition((*map)[index]->getPosition().x, y);
 }
 
 void LayerWidget::changeDepthIndex(double depthIndex)
 {
-    map->getLayer(index)->setDepthIndex(depthIndex);
+    (*map)[index]->setDepthIndex(depthIndex);
 }
 
 void LayerWidget::changeGridColor(QColor color)
 {
-    map->getLayer(index)->setGridColor(sf::Color(color.red(), color.green(), color.blue()));
+    (*map)[index]->setGridColor(sf::Color(color.red(), color.green(), color.blue()));
 }
 void LayerWidget::clearLayer()
 {
-    map->getLayer(index)->fill(0);
+    (*map)[index]->fill(0);
 }
 
 void LayerWidget::activateDialog()

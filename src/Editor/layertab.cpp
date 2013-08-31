@@ -228,16 +228,16 @@ void LayerTab::updateVisible()
     {
         for (int i = 0; i < map->size(); i++)
         {
-            map->getLayer(i)->setVisible(false);
+            (*map)[i]->setVisible(false);
         }
 
-        map->getLayer(currentLayer)->setVisible(true);
+        (*map)[currentLayer]->setVisible(true);
     }
     else
     {
         for (int i = 0; i < map->size(); i++)
         {
-            map->getLayer(i)->setVisible(true);
+            (*map)[i]->setVisible(true);
         }
     }
 }

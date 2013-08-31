@@ -186,14 +186,6 @@ int TileMap::size()
     return layers.size();
 }
 
-Layer* TileMap::getLayer(unsigned int layer)
-{
-    if (layerExists(layer))
-        return layers[layer];
-
-    return nullptr;
-}
-
 bool TileMap::tileExists(unsigned int x, unsigned int y, unsigned int layer) const
 {
     if (layerExists(layer))

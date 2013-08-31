@@ -10,7 +10,7 @@ GameState::GameState() :
     gridEnabled(false)
 {
     map.addLayer(0);
-    map.getLayer(0)->resize(20, 20);
+    map[0]->resize(20, 20);
 
     for (int i = 0; i < 20; i++)
     {
@@ -38,7 +38,7 @@ void GameState::onUpdate()
 {
     using graphics::window;
 
-    player.update(map.getLayer(0));
+    player.update(map[0]);
     moveViewTowardsPoint(camera, player.getCenter(), 0.05);
 
     window.clear(sf::Color(80, 80, 80));
