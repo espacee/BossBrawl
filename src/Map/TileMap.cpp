@@ -51,6 +51,7 @@ bool TileMap::loadFromFile(const std::string &filename)
     {
         // Name
         std::string name;
+        file.get(); // Discard newline character
         std::getline(file, name);
 
         Layer* l = new Layer(name);
@@ -84,6 +85,10 @@ bool TileMap::loadFromFile(const std::string &filename)
         }
 
         layers[i] = l;
+
+        if (!file) {
+            return false;
+        }
     }
 
     return true;
@@ -121,7 +126,7 @@ bool TileMap::saveToFile(const std::string &filename)
         {
             for (int y = 0; y < l.getVLength(); ++y)
             {
-                file << l.map[x][y] << ' ';
+                file << ' ' << l.map[x][y];
             }
         }
 
