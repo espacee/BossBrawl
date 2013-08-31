@@ -218,8 +218,6 @@ void LayerTab::toggleVisible()
 
 void LayerTab::updateVisible()
 {
-
-
     if (currentVisibleOnly)
     {
         for (int i = 0; i < map->getNbLayers(); i++)
