@@ -53,7 +53,7 @@ private:
 
     QWidget* pan;
 
-    QVector<LayerWidget*> layers;
+    QVector<LayerWidget*> layerWidgets;
     int currentLayer, layerID;
     int layerWidgetHeigth, offset;
     bool currentGridOnly, currentVisibleOnly;

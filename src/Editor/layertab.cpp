@@ -74,18 +74,18 @@ int LayerTab::addLayerWidget()
 {
     int newLayer;
 
-    if (layers.size() == 0)
+    if (layerWidgets.size() == 0)
     {
         newLayer = 0;
-        layers.push_back(new LayerWidget("Layer " + QString::number(layerID), pan, map));
+        layerWidgets.push_back(new LayerWidget("Layer " + QString::number(layerID), pan, map));
     }
     else
     {
         newLayer = currentLayer + 1;
-        layers.insert(layers.begin() + newLayer, new LayerWidget("Layer " + QString::number(layerID), pan, map));
+        layerWidgets.insert(layerWidgets.begin() + newLayer, new LayerWidget("Layer " + QString::number(layerID), pan, map));
     }
 
-    connect(layers[newLayer], SIGNAL(selected(int)), this, SLOT(selectLayer(int)));
+    connect(layerWidgets[newLayer], SIGNAL(selected(int)), this, SLOT(selectLayer(int)));
 
     selectLayer(newLayer);
 
@@ -105,17 +105,17 @@ void LayerTab::loadLayersFromMap()
 
 void LayerTab::removeLayer()
 {
-    if (layers.size() > 1)
+    if (layerWidgets.size() > 1)
     {
         int deletedLayer = currentLayer;
 
-        selectLayer(deletedLayer == layers.size() ? deletedLayer - 1 : deletedLayer);
+        selectLayer(deletedLayer == layerWidgets.size() ? deletedLayer - 1 : deletedLayer);
 
-        delete layers[deletedLayer];
-        layers.erase(layers.begin() + deletedLayer);
+        delete layerWidgets[deletedLayer];
+        layerWidgets.erase(layerWidgets.begin() + deletedLayer);
         map->removeLayer(deletedLayer);
 
-        selectLayer(deletedLayer == layers.size() ? deletedLayer - 1 : deletedLayer);
+        selectLayer(deletedLayer == layerWidgets.size() ? deletedLayer - 1 : deletedLayer);
 
         reorder();
     }
@@ -125,9 +125,9 @@ void LayerTab::moveBg()
 {
     if (currentLayer > 0)
     {
-        LayerWidget* temp = layers[currentLayer];
-        layers[currentLayer] = layers[currentLayer - 1];
-        layers[currentLayer - 1] = temp;
+        LayerWidget* temp = layerWidgets[currentLayer];
+        layerWidgets[currentLayer] = layerWidgets[currentLayer - 1];
+        layerWidgets[currentLayer - 1] = temp;
         map->moveLayerBackground(currentLayer);
         selectLayer(currentLayer - 1);
 
@@ -137,11 +137,11 @@ void LayerTab::moveBg()
 
 void LayerTab::moveFg()
 {
-    if (currentLayer < layers.size() - 1)
+    if (currentLayer < layerWidgets.size() - 1)
     {
-        LayerWidget* temp = layers[currentLayer];
-        layers[currentLayer] = layers[currentLayer + 1];
-        layers[currentLayer + 1] = temp;
+        LayerWidget* temp = layerWidgets[currentLayer];
+        layerWidgets[currentLayer] = layerWidgets[currentLayer + 1];
+        layerWidgets[currentLayer + 1] = temp;
         map->moveLayerForeground(currentLayer);
         selectLayer(currentLayer + 1);
 
@@ -151,14 +151,14 @@ void LayerTab::moveFg()
 
 void LayerTab::reorder()
 {
-    pan->setFixedHeight(layers.size() * (layerWidgetHeigth + offset));
+    pan->setFixedHeight(layerWidgets.size() * (layerWidgetHeigth + offset));
 
     for (int i = 0; i < map->getNbLayers(); i++)
     {
-        layers[i]->resize(pan->width(), layerWidgetHeigth);
-        layers[i]->move(0, i * (layerWidgetHeigth + offset));
-        layers[i]->show();
-        layers[i]->setIndex(i);
+        layerWidgets[i]->resize(pan->width(), layerWidgetHeigth);
+        layerWidgets[i]->move(0, i * (layerWidgetHeigth + offset));
+        layerWidgets[i]->show();
+        layerWidgets[i]->setIndex(i);
     }
 
     updateVisible();
@@ -198,12 +198,12 @@ void LayerTab::keyPressEvent(QKeyEvent* e)
 
 void LayerTab::selectLayer(int layer)
 {
-    for (int i = 0; i < layers.size(); i++)
+    for (int i = 0; i < layerWidgets.size(); i++)
     {
-        layers[i]->unsetCurrent();
+        layerWidgets[i]->unsetCurrent();
     }
 
-    layers[layer]->setCurrent();
+    layerWidgets[layer]->setCurrent();
     currentLayer = layer;
 
     emit layerSelected(currentLayer);
