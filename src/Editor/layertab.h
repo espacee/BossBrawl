@@ -23,7 +23,6 @@ public:
 
     void reorder();
     void toggleVisible();
-    void updateGrid();
     void updateVisible();
 
 signals:
