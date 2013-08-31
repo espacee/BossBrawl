@@ -1,15 +1,14 @@
 #include "Map/Layer.hpp"
 
 Layer::Layer(const std::string &name) :
-    m_name(name)
+    m_name(name),
+    m_visible(true),
+    m_gridColor(sf::Color(0, 0, 0)),
+    m_x(0), m_y(0),
+    m_depthIndex(1.0f)
 {
     resize(1, 1);
     fill(0);
-    m_x = m_y = 0;
-    m_depthIndex = 1.f;
-    m_visible = true;
-
-    setGridColor(sf::Color(0, 0, 0));
 }
 
 void Layer::resize(unsigned int w, unsigned int h)

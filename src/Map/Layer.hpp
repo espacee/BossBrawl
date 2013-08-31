@@ -117,13 +117,13 @@ public:
     }
 
 private:
-    std::vector< std::vector<unsigned int> > m_tiles;
+    std::string m_name;
     bool m_visible;
     sf::Color m_gridColor;
-    std::string m_name;
-
     int m_x, m_y;
     float m_depthIndex;
+
+    std::vector< std::vector<unsigned int> > m_tiles;
 
     friend class TileMap;
 };
