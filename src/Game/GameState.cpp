@@ -10,7 +10,7 @@ GameState::GameState() :
     gridEnabled(false)
 {
     map.addLayer(0);
-    map[0]->resize(20, 20);
+    map[0].resize(20, 20);
 
     for (int i = 0; i < 20; i++)
     {

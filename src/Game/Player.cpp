@@ -8,7 +8,7 @@ Player::Player()
     center = sf::Vector2f(playerTexture.getSize().x / 2, playerTexture.getSize().y / 2);
 }
 
-void Player::update(Layer *mainLayer)
+void Player::update(Layer &mainLayer)
 {
     int playerX, playerY, playerWidth, playerHeight, playerXmax, playerYmax;
     playerX = playerSprite.getPosition().x;
@@ -19,10 +19,10 @@ void Player::update(Layer *mainLayer)
     playerYmax = playerY + playerHeight;
 
     int layerX, layerY, layerWidth, layerHeight;
-    layerX = mainLayer->getPosition().x;
-    layerY = mainLayer->getPosition().y;
-    layerWidth = mainLayer->getWidth();
-    layerHeight = mainLayer->getHeight();
+    layerX = mainLayer.getPosition().x;
+    layerY = mainLayer.getPosition().y;
+    layerWidth = mainLayer.getWidth();
+    layerHeight = mainLayer.getHeight();
 
     int relX, relY, relXmax, relYmax;
     relX = playerX - layerX;
@@ -68,7 +68,7 @@ void Player::update(Layer *mainLayer)
     {
         for (int j = ymin; j < ymax; j++)
         {
-            if (mainLayer->getTile(i, j))
+            if (mainLayer.getTile(i, j))
             {
                 //sf::FloatRect A(playerSprite.getPosition().x, getCenter().y,playerTexture.getSize().x, playerTexture.getSize().y/2);
                 //::FloatRect B(i*GRID_SIZE,j*GRID_SIZE,GRID_SIZE,GRID_SIZE);

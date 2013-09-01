@@ -12,7 +12,7 @@ class Player
 {
 public:
     Player();
-    void update(Layer *mainLayer);
+    void update(Layer &mainLayer);
     void display(sf::RenderWindow &target);
     sf::Vector2f getCenter();
 

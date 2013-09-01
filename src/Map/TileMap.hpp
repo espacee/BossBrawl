@@ -31,9 +31,9 @@ public:
 
     int size();
 
-    inline Layer* operator[](unsigned int index)
+    inline Layer& operator[](unsigned int index)
     {
-        return layers[index];
+        return *(layers[index]);
     }
 
     bool tileExists(unsigned int x, unsigned int y, unsigned int layer) const;
