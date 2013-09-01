@@ -14,8 +14,6 @@ public:
     Layer(const std::string& name);
 
     void resize(unsigned int w, unsigned int h);
-    void setTile(unsigned int x, unsigned int y, unsigned int id);
-    unsigned int getTile(unsigned int x, unsigned int y) const;
 
     /**
      * @brief Fill the layer with a specific tile
@@ -114,6 +112,11 @@ public:
     inline bool tileExists(int x,  int y) const
     {
         return x >= 0 && x < getHLength() && y >= 0 && y < getVLength();
+    }
+
+    inline unsigned int& operator()(int x, int y)
+    {
+        return m_tiles[x][y];
     }
 
 private:

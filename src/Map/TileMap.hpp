@@ -21,9 +21,6 @@ public:
     bool loadFromFile(const std::string& filename);
     bool saveToFile(const std::string& filename);
 
-    void setTile(unsigned int layer, unsigned int x, unsigned int y, unsigned int id);
-    unsigned int getTile(unsigned int layer, unsigned int x, unsigned int y) const;
-
     void addLayer(int pos);
     void removeLayer(int pos);
     void moveLayerBackground(int pos);

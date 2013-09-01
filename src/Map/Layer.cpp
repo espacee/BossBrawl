@@ -24,24 +24,6 @@ void Layer::resize(unsigned int w, unsigned int h)
     }
 }
 
-void Layer::setTile(unsigned int x, unsigned int y, unsigned int id)
-{
-    if (tileExists(x, y))
-        m_tiles[x][y] = id;
-}
-
-unsigned int Layer::getTile(unsigned int x, unsigned int y) const
-{
-    if (tileExists(x, y))
-    {
-        return m_tiles[x][y];
-    }
-    else
-    {
-        return 0;
-    }
-}
-
 void Layer::fill(unsigned int id)
 {
     for (int i = 0; i < getHLength(); i++)

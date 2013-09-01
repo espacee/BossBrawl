@@ -136,19 +136,6 @@ bool TileMap::saveToFile(const std::string &filename)
     return true;
 }
 
-void TileMap::setTile(unsigned int layer, unsigned int x, unsigned int y, unsigned int id)
-{
-    if (layerExists(layer)  && spriteExists(id))
-        layers[layer]->setTile(x, y, id);
-}
-unsigned int TileMap::getTile(unsigned int layer, unsigned int x, unsigned int y) const
-{
-    if (layerExists(layer))
-        return layers[layer]->getTile(x, y);
-    else
-        return 0;
-}
-
 void TileMap::addLayer(int pos)
 {
     if (layers.size() == 0)
@@ -254,7 +241,10 @@ void TileMap::draw(sf::RenderWindow &target, unsigned int drawGridForLayer)
             {
                 for (int j = ymin; j <= ymax; j++)
                 {
-                    unsigned int id = layers[k]->getTile(i, j);
+                    if (!tileExists(i, j, k))
+                        continue;
+
+                    unsigned int id = (*layers[k])(i, j);
 
                     if (id)
                     {
