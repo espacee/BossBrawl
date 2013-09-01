@@ -173,13 +173,6 @@ int TileMap::size()
     return layers.size();
 }
 
-bool TileMap::tileExists(unsigned int x, unsigned int y, unsigned int layer) const
-{
-    if (layerExists(layer))
-        return layers[layer]->tileExists(x, y);
-    else
-        return false;
-}
 bool TileMap::spriteExists(unsigned int id) const
 {
     return id < sprites.size();
@@ -241,7 +234,7 @@ void TileMap::draw(sf::RenderWindow &target, unsigned int drawGridForLayer)
             {
                 for (int j = ymin; j <= ymax; j++)
                 {
-                    if (!tileExists(i, j, k))
+                    if (!(layers[k]->tileExists(i, j)))
                         continue;
 
                     unsigned int id = (*layers[k])(i, j);
