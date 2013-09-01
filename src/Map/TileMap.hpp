@@ -31,7 +31,7 @@ public:
 
     int size();
 
-    Layer* operator[](unsigned int index)
+    inline Layer* operator[](unsigned int index)
     {
         return layers[index];
     }
