@@ -1,9 +1,9 @@
 #include "Editor/layertab.h"
 #include "layersettings.h"
 
-LayerTab::LayerTab(QWidget *parent, TileMap* mapP)
+LayerTab::LayerTab(QWidget *parent, TileMap &map) :
+    m_map(map)
 {
-    map = mapP;
     setParent(parent);
 
     setAutoFillBackground(true);
@@ -67,7 +67,7 @@ LayerTab::LayerTab(QWidget *parent, TileMap* mapP)
 
 void LayerTab::addLayer()
 {
-    map->addLayer(currentLayer + 1);
+    m_map.addLayer(currentLayer + 1);
     loadLayersFromMap();
 }
 
@@ -78,12 +78,12 @@ void LayerTab::addLayerWidget()
     if (layerWidgets.size() == 0)
     {
         newLayer = 0;
-        layerWidgets.push_back(new LayerWidget(pan, map));
+        layerWidgets.push_back(new LayerWidget(pan, m_map));
     }
     else
     {
         newLayer = currentLayer + 1;
-        layerWidgets.insert(layerWidgets.begin() + newLayer, new LayerWidget(pan, map));
+        layerWidgets.insert(layerWidgets.begin() + newLayer, new LayerWidget(pan, m_map));
     }
 
     connect(layerWidgets[newLayer], SIGNAL(selected(int)), this, SLOT(selectLayer(int)));
@@ -101,7 +101,7 @@ void LayerTab::loadLayersFromMap()
 
     layerWidgets.clear();
 
-    for (int i = 0; i < map->size(); ++i)
+    for (int i = 0; i < m_map.size(); ++i)
     {
         addLayerWidget();
     }
@@ -117,7 +117,7 @@ void LayerTab::removeLayer()
 
         delete layerWidgets[deletedLayer];
         layerWidgets.erase(layerWidgets.begin() + deletedLayer);
-        map->removeLayer(deletedLayer);
+        m_map.removeLayer(deletedLayer);
 
         selectLayer(deletedLayer == layerWidgets.size() ? deletedLayer - 1 : deletedLayer);
 
@@ -132,7 +132,7 @@ void LayerTab::moveBg()
         LayerWidget* temp = layerWidgets[currentLayer];
         layerWidgets[currentLayer] = layerWidgets[currentLayer - 1];
         layerWidgets[currentLayer - 1] = temp;
-        map->moveLayerBackground(currentLayer);
+        m_map.moveLayerBackground(currentLayer);
         selectLayer(currentLayer - 1);
 
         reorder();
@@ -146,7 +146,7 @@ void LayerTab::moveFg()
         LayerWidget* temp = layerWidgets[currentLayer];
         layerWidgets[currentLayer] = layerWidgets[currentLayer + 1];
         layerWidgets[currentLayer + 1] = temp;
-        map->moveLayerForeground(currentLayer);
+        m_map.moveLayerForeground(currentLayer);
         selectLayer(currentLayer + 1);
 
         reorder();
@@ -226,18 +226,18 @@ void LayerTab::updateVisible()
 {
     if (currentVisibleOnly)
     {
-        for (int i = 0; i < map->size(); i++)
+        for (int i = 0; i < m_map.size(); i++)
         {
-            (*map)[i]->setVisible(false);
+            m_map[i]->setVisible(false);
         }
 
-        (*map)[currentLayer]->setVisible(true);
+        m_map[currentLayer]->setVisible(true);
     }
     else
     {
-        for (int i = 0; i < map->size(); i++)
+        for (int i = 0; i < m_map.size(); i++)
         {
-            (*map)[i]->setVisible(true);
+            m_map[i]->setVisible(true);
         }
     }
 }

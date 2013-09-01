@@ -298,7 +298,7 @@ void Editor::initRightPanel()
                             rightPanelWidth,
                             height() - menuBarHeight - globalPadding);
 
-    layerTab = new LayerTab(rightPanel, &map);
+    layerTab = new LayerTab(rightPanel, map);
     layerTab->resize(rightPanel->size());
 }
 
@@ -343,7 +343,7 @@ void Editor::initCentralWidget()
                                width() - toolBar->x() - toolBar->width() - rightPanelWidth - globalPadding,
                                height() - menuBarHeight - topBarHeight - globalPadding - botBarHeight);
 
-    sfmlWidget = new SFMLWidget(centralWidget, QPoint(0, 0), centralWidget->size(), &map, &camera);
+    sfmlWidget = new SFMLWidget(centralWidget, QPoint(0, 0), centralWidget->size(), map, &camera);
 
     tileWidget = new TileWidget(centralWidget);
     tileWidget->move(0, 0);

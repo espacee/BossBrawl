@@ -13,7 +13,7 @@ class LayerWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit LayerWidget(QWidget *parent, TileMap* mapP);
+    explicit LayerWidget(QWidget *parent, TileMap& m_map);
     void setIndex(int i);
     void setCurrent();
     void unsetCurrent();
@@ -39,7 +39,7 @@ protected:
     void resizeEvent(QResizeEvent *);
 
 private:
-    TileMap* map;
+    TileMap& m_map;
 
     QLabel* title;
     QPushButton* propertiesButton;

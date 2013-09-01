@@ -19,7 +19,7 @@ class LayerTab : public QWidget
 {
     Q_OBJECT
 public:
-    LayerTab(QWidget *parent, TileMap* mapP);
+    LayerTab(QWidget *parent, TileMap& m_map);
     void toggleVisible();
 
 signals:
@@ -42,7 +42,7 @@ private:
     void mousePressEvent(QMouseEvent *e);
     void keyPressEvent(QKeyEvent* e);
 
-    TileMap* map;
+    TileMap& m_map;
     int currentLayer, layerID;
     int layerWidgetHeigth, offset;
     bool currentGridOnly, currentVisibleOnly;

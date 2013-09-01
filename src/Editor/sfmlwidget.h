@@ -16,7 +16,7 @@ class SFMLWidget  : public QWidget, public sf::RenderWindow
 {
     Q_OBJECT
 public:
-    SFMLWidget(QWidget* Parent, const QPoint& Position, const QSize& Size, TileMap* mapP, sf::View* cameraP);
+    SFMLWidget(QWidget* Parent, const QPoint& Position, const QSize& Size, TileMap& map, sf::View* cameraP);
     ~SFMLWidget();
 
     void processEvents();
@@ -31,7 +31,7 @@ public slots:
 
 private:
 
-    TileMap* map;
+    TileMap& m_map;
     sf::View* camera;
     void mousePressEvent(QMouseEvent *e);
     void mouseMoveEvent(QMouseEvent *e);
