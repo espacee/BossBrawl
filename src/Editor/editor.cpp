@@ -105,7 +105,7 @@ void Editor::onUpdate()
     sfmlWidget->clear(sf::Color(i, j, k));
 
     sfmlWidget->setView(camera);
-    map.display(*sfmlWidget, (gridEnabled ? currentLayer : - 1));
+    map.draw(*sfmlWidget, (gridEnabled ? currentLayer : - 1));
 
     sfmlWidget->sf::RenderWindow::display();
 }

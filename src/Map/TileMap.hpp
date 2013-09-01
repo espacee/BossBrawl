@@ -40,7 +40,7 @@ public:
     bool spriteExists(unsigned int id) const;
     bool layerExists(unsigned int layer) const;
 
-    void display(sf::RenderWindow& target, unsigned int drawGridForLayer = -1);
+    void draw(sf::RenderWindow& target, unsigned int drawGridForLayer = -1);
 
 private:
     void loadTileset();

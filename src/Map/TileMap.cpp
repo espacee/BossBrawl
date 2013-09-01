@@ -203,7 +203,7 @@ bool TileMap::layerExists(unsigned int layer) const
     return layer < layers.size();
 }
 
-void TileMap::display(sf::RenderWindow &target, unsigned int drawGridForLayer)
+void TileMap::draw(sf::RenderWindow &target, unsigned int drawGridForLayer)
 {
 
     sf::View saveCamera = target.getView();
