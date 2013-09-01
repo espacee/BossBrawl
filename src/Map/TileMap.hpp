@@ -45,8 +45,8 @@ public:
 private:
     void loadTileset();
 
-    std::vector< Layer* > layers;
-    std::vector< sf::Sprite > sprites;
+    std::vector<Layer*> layers;
+    std::vector<sf::Sprite> sprites;
     sf::Texture tileSet;
 };
 
