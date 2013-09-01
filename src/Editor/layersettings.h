@@ -24,7 +24,6 @@ private slots:
 
 private:
     Ui::LayerSettings *ui;
-    TileMap* map;
 };
 
 #endif // LAYERSETTINGS_H
