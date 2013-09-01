@@ -26,7 +26,10 @@ public:
     void moveLayerBackground(int pos);
     void moveLayerForeground(int pos);
 
-    int size();
+    inline int size()
+    {
+        return layers.size();
+    }
 
     inline Layer& operator[](unsigned int index)
     {

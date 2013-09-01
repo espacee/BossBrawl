@@ -168,11 +168,6 @@ void TileMap::moveLayerForeground(int pos)
     layers[pos + 1] = temp;
 }
 
-int TileMap::size()
-{
-    return layers.size();
-}
-
 bool TileMap::spriteExists(unsigned int id) const
 {
     return id < sprites.size();
