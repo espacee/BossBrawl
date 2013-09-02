@@ -88,6 +88,9 @@ private:
     QLabel* windowIcon;
     QPushButton* minimizeButton;
     QPushButton* closeButton;
+    QPushButton* newButton;
+    QPushButton* openButton;
+    QPushButton* saveButton;
 
     int tool;
     QPushButton* pointerToolButton;

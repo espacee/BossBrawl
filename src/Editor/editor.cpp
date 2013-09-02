@@ -125,6 +125,18 @@ void Editor::initWindow()
     minimizeButton->setGeometry(closeButton->x() - 31, 0, 30, 20);
     minimizeButton->setObjectName("minimizeButton");
     connect(minimizeButton, SIGNAL(clicked()), this, SLOT(minimizeClicked()));
+
+    newButton = new QPushButton("New",this);
+    newButton->setGeometry(windowIcon->x()+windowIcon->width()+10, 13,120,25);
+    newButton->setObjectName("menuButton");
+
+    openButton = new QPushButton("Open", this);
+    openButton->setGeometry(newButton->x()+newButton->width()+5, newButton->y(), newButton->width(),newButton->height());
+    openButton->setObjectName("menuButton");
+
+    saveButton = new QPushButton("Save", this);
+    saveButton->setGeometry(openButton->x()+openButton->width()+5, openButton->y(), openButton->width(),openButton->height());
+    saveButton->setObjectName("menuButton");
 }
 
 void Editor::initToolBar()
