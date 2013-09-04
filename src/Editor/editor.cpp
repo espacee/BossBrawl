@@ -516,7 +516,7 @@ void Editor::saveButtonClicked()
     if(filePath.empty() == true)
     {
      filePath = QFileDialog::getSaveFileName(this).toStdString();
-     map.saveToFile(filePath);
+     map.saveToFile(filePath +".map");
     }
     else
     {
