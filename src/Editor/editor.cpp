@@ -497,8 +497,7 @@ void Editor::tileButtonClicked()
 }
 void Editor::newButtonClicked()
 {
-
-
+layerTab->clearLayers();
 }
 void Editor::openButtonClicked()
 {
