@@ -12,7 +12,6 @@ Widget::Widget()
     hoverColor = sf::Color(100, 100, 100);
     pressColor = sf::Color(100, 100, 100);
     backgroundColor = targetBackgroundColor = normalColor;
-    setBackgroundColor(normalColor);
     active = true;
     toggleable = false;
     hovered = false;
@@ -21,6 +20,7 @@ Widget::Widget()
     toggled = false;
     transitionEnabled = false;
     transitionSpeed = 1;
+    setBackgroundColor(normalColor);
 }
 
 void Widget::setGeometry(int new_x, int new_y, int new_width, int new_height)
