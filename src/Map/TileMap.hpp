@@ -6,6 +6,8 @@
 
 #include "Map/Layer.hpp"
 
+#include <cassert>
+
 /**
  * @brief A tile-based layered map
  *
@@ -33,6 +35,9 @@ public:
 
     inline Layer& operator[](unsigned int index)
     {
+#ifdef BRAWL_DEBUG
+        assert(index < layers.size());
+#endif
         return *(layers[index]);
     }
 

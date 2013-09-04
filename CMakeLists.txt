@@ -9,6 +9,10 @@ find_package(SFML 2 COMPONENTS graphics window audio system REQUIRED)
 include_directories(${SFML_INCLUDE_DIR})
 include_directories(src)
 
+if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
+    add_definitions(-DBRAWL_DEBUG)
+endif()
+
 add_library(map
 src/Map/Layer.cpp
 src/Map/Layer.hpp

@@ -3,6 +3,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#include <cassert>
+
 constexpr int GRID_SIZE = 40;
 
 /**
@@ -114,8 +116,12 @@ public:
         return x >= 0 && x < getHLength() && y >= 0 && y < getVLength();
     }
 
-    inline unsigned int& operator()(int x, int y)
+    inline unsigned int& operator()(unsigned x, unsigned y)
     {
+#ifdef BRAWL_DEBUG
+        assert(x < m_tiles.size());
+        assert(y < m_tiles[x].size());
+#endif
         return m_tiles[x][y];
     }
 
