@@ -55,24 +55,19 @@ Editor::Editor(QWidget *parent) : QWidget(parent),
     i = j = k = 127;
     a = b = c = true;
 
+    fileDialog->setAcceptMode(QFileDialog::AcceptSave);
+
     onInit();
 }
 
 Editor::~Editor()
 {
-    map.saveToFile("res/maps/test.map");
+
 }
 
 void Editor::onInit()
 {
-    if (map.loadFromFile("res/maps/test.map"))
-    {
-        layerTab->loadLayersFromMap();
-    }
-    else
-    {
-        layerTab->addLayer();
-    }
+
 
     tileWidget->select(0, 0);
     penToolButton->click();
@@ -137,6 +132,10 @@ void Editor::initWindow()
     saveButton = new QPushButton("Save", this);
     saveButton->setGeometry(openButton->x()+openButton->width()+5, openButton->y(), openButton->width(),openButton->height());
     saveButton->setObjectName("menuButton");
+
+    connect(newButton, SIGNAL(clicked()), this, SLOT(newButtonClicked()));
+    connect(openButton, SIGNAL(clicked()), this, SLOT(openButtonClicked()));
+    connect(saveButton, SIGNAL(clicked()), this, SLOT(saveButtonClicked()));
 }
 
 void Editor::initToolBar()
@@ -496,7 +495,34 @@ void Editor::tileButtonClicked()
     else
         tileWidget->show();
 }
+void Editor::newButtonClicked()
+{
 
+
+}
+void Editor::openButtonClicked()
+{
+     std::string filename = QFileDialog::getOpenFileName(this).toStdString();//getting the file name
+
+    if (map.loadFromFile(filename))
+    {
+        layerTab->loadLayersFromMap();
+    }
+
+    filePath = filename;
+}
+void Editor::saveButtonClicked()
+{
+    if(filePath.empty() == true)
+    {
+     filePath = QFileDialog::getSaveFileName(this).toStdString();
+     map.saveToFile(filePath);
+    }
+    else
+    {
+        map.saveToFile(filePath);
+    }
+}
 void Editor::tileSelected(int new_id)
 {
     id = new_id;
@@ -528,3 +554,4 @@ void Editor::toggleVisibleButtonClicked()
 {
     layerTab->toggleVisible();
 }
+

@@ -8,6 +8,7 @@
 #include <QDesktopWidget>
 #include <QFile>
 #include <QTimer>
+#include <QFileDialog>
 
 #include "Editor/sfmlwidget.h"
 #include "Editor/tilewidget.h"
@@ -40,6 +41,9 @@ public slots:
     void objectToolButtonClicked();
     void handToolButtonClicked();
     void zoomToolButtonClicked();
+    void newButtonClicked();
+    void openButtonClicked();
+    void saveButtonClicked();
 
     void resetCameraButtonClicked();
     void toggleGridButtonClicked();
@@ -118,6 +122,9 @@ private:
     LayerTab* layerTab;
     bool gridEnabled;
     int currentLayer;
+
+    QFileDialog* fileDialog = new QFileDialog;
+    std::string filePath;
 
 };
 
