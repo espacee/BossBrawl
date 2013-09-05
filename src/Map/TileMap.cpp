@@ -136,6 +136,17 @@ bool TileMap::saveToFile(const std::string &filename)
     return true;
 }
 
+void TileMap::reset()
+{
+    for (auto l : layers)
+    {
+        delete l;
+    }
+    layers.clear();
+
+    addLayer(0);
+}
+
 void TileMap::addLayer(int pos)
 {
     if (layers.size() == 0)

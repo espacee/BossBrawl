@@ -22,6 +22,7 @@ public:
 
     bool loadFromFile(const std::string& filename);
     bool saveToFile(const std::string& filename);
+    void reset();
 
     void addLayer(int pos);
     void removeLayer(int pos);

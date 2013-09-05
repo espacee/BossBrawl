@@ -26,6 +26,7 @@ signals:
     void layerSelected(int);
 
 public slots:
+    void reset();
     void addLayer();
     void addLayerWidget();
     void loadLayersFromMap();

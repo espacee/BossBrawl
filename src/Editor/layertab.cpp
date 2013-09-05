@@ -65,6 +65,11 @@ LayerTab::LayerTab(QWidget *parent, TileMap &map) :
     currentVisibleOnly = false;
 }
 
+void LayerTab::reset()
+{
+
+}
+
 void LayerTab::addLayer()
 {
     m_map.addLayer(currentLayer + 1);

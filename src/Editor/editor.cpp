@@ -72,6 +72,7 @@ void Editor::onInit()
     tileWidget->select(0, 0);
     penToolButton->click();
     toggleGridButton->click();
+    newButton->click();
 
     camera = sf::View(sf::FloatRect(0, 0, sfmlWidget->width() - 1, sfmlWidget->height() - 1));
     camera.setCenter(0, 0);
@@ -497,8 +498,8 @@ void Editor::tileButtonClicked()
 }
 void Editor::newButtonClicked()
 {
-
-
+    map.reset();
+    layerTab->loadLayersFromMap();
 }
 void Editor::openButtonClicked()
 {
