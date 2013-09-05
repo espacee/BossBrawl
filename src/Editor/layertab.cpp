@@ -129,14 +129,6 @@ void LayerTab::removeLayer()
         reorder();
     }
 }
-void LayerTab::clearLayers()
-{
-    for(int i = 0; i < layerWidgets.size(); i++){
-        removeLayer();
-}
-
-}
-
 void LayerTab::moveBg()
 {
     if (currentLayer > 0)
