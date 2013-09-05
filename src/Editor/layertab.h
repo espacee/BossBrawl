@@ -34,6 +34,7 @@ public slots:
     void moveBg();
     void moveFg();
     void selectLayer(int layer);
+    void clearLayers();
 
 private:
     void reorder();

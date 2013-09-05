@@ -501,6 +501,7 @@ void Editor::newButtonClicked()
     map.reset();
     layerTab->loadLayersFromMap();
 }
+
 void Editor::openButtonClicked()
 {
      std::string filename = QFileDialog::getOpenFileName(this).toStdString();//getting the file name
