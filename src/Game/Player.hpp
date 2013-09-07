@@ -17,6 +17,8 @@ public:
     sf::Vector2f getCenter();
 
 private:
+    int moveSpeed;
+
     sf::Vector2f center;
     sf::Vector2f velocity;
 

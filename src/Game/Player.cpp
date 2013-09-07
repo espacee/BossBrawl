@@ -6,21 +6,22 @@ Player::Player()
     playerTexture.loadFromFile("res/img/GAME/Player.png");
     playerSprite.setTexture(playerTexture);
     center = sf::Vector2f(playerTexture.getSize().x / 2, playerTexture.getSize().y / 2);
+    moveSpeed = 10;
 }
 
 void Player::update(Layer &mainLayer)
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-        playerSprite.move(-1, 0);
+        playerSprite.move(-moveSpeed, 0);
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-        playerSprite.move(1, 0);
+        playerSprite.move(moveSpeed, 0);
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-        playerSprite.move(0, -1);
+        playerSprite.move(0, -moveSpeed);
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-        playerSprite.move(0, 1);
+        playerSprite.move(0, moveSpeed);
 
     int playerX, playerY, playerWidth, playerHeight, playerXmax, playerYmax;
     playerX = playerSprite.getPosition().x;
@@ -72,19 +73,24 @@ void Player::update(Layer &mainLayer)
                 if(hitTest(botArea,
                             sf::FloatRect(i * GRID_SIZE, j * GRID_SIZE, GRID_SIZE, GRID_SIZE)))
                 {
-                    playerSprite.move(0,-1);
+                    playerSprite.move(0,-moveSpeed);
                 }
 
                 if(hitTest(leftArea,
                            sf::FloatRect(i * GRID_SIZE, j * GRID_SIZE, GRID_SIZE, GRID_SIZE)))
                 {
-                    playerSprite.move(1,0);
+                    playerSprite.move(moveSpeed,0);
                 }
 
                 if(hitTest(rightArea,
                            sf::FloatRect(i * GRID_SIZE, j * GRID_SIZE, GRID_SIZE, GRID_SIZE)))
                 {
-                    playerSprite.move(-1,0);
+                    playerSprite.move(-moveSpeed,0);
+                }
+                if(hitTest(topArea,
+                           sf::FloatRect(i * GRID_SIZE, j * GRID_SIZE, GRID_SIZE, GRID_SIZE)))
+                {
+                    playerSprite.move(0,moveSpeed);
                 }
             }
         }
