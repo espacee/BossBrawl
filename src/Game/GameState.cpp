@@ -9,16 +9,7 @@
 GameState::GameState() :
     gridEnabled(false)
 {
-    map.addLayer(0);
-    map[0].resize(20, 20);
-
-    for (int i = 0; i < 20; i++)
-    {
-        for (int j = 0; j < 15; j++)
-        {
-            map[0](i, 19 - j) = 2;
-        }
-    }
+    map.loadFromFile("res/maps/test.map");
 
     camera = sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y));
     fpsText.setFont(graphics::fontbasiclight);

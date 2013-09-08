@@ -23,74 +23,59 @@ void Player::update(Layer &mainLayer)
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         playerSprite.move(0, moveSpeed);
 
-    int playerX, playerY, playerWidth, playerHeight, playerXmax, playerYmax;
-    playerX = playerSprite.getPosition().x;
-    playerY = playerSprite.getPosition().y;
-    playerWidth = playerTexture.getSize().x;
-    playerHeight = playerTexture.getSize().y;
-    playerXmax = playerX + playerWidth;
-    playerYmax = playerY + playerHeight;
 
-    int layerX, layerY, layerWidth, layerHeight;
-    layerX = mainLayer.getPosition().x;
-    layerY = mainLayer.getPosition().y;
-    layerWidth = mainLayer.getWidth();
-    layerHeight = mainLayer.getHeight();
+    boundingBox = playerSprite.getGlobalBounds();
+    boundingBox.left-=mainLayer.getX();
+    boundingBox.top-=mainLayer.getY();
 
-    int relX, relY, relXmax, relYmax;
-    relX = playerX - layerX;
-    relY = playerY - layerY;
-    relXmax = playerXmax - layerX + GRID_SIZE;
-    relYmax = playerYmax - layerY + GRID_SIZE;
+    botArea = boundingBox;
+    botArea.height/=2;
+    botArea.top+=botArea.height;
 
-    if (relX < 0) relX = 0;
-    if (relY < 0) relY = 0;
-    if (relXmax < 0) relXmax = 0;
-    if (relYmax < 0) relYmax = 0;
+    rightArea = boundingBox;
+    rightArea.width/=2;
+    rightArea.left+=rightArea.width;
 
-    if (relX > layerWidth) relX = layerWidth;
-    if (relY > layerHeight) relY = layerHeight;
-    if (relXmax > layerWidth) relXmax = layerWidth;
-    if (relYmax > layerHeight) relYmax = layerHeight;
+    leftArea = boundingBox;
+    leftArea.width/=2;
 
-    int xmin, ymin, xmax, ymax;
-    xmin = relX / GRID_SIZE;
-    ymin = relY / GRID_SIZE;
-    xmax = relXmax / GRID_SIZE;
-    ymax = relYmax / GRID_SIZE;
+    topArea = boundingBox;
+    topArea.height/=2;
 
-    botArea = sf::FloatRect(relX, relY+playerHeight/2, playerWidth, playerHeight / 2);
-    leftArea = sf::FloatRect(relX, relY, playerWidth/2,playerHeight);
-    rightArea = sf::FloatRect(relX+playerWidth/2, relY, playerWidth/2, playerHeight);
-    topArea = sf::FloatRect(relX, relY, playerWidth, playerHeight/2);
+    int xmin = boundingBox.left/GRID_SIZE;
+    int ymin = boundingBox.top/GRID_SIZE;
+    int xmax = (boundingBox.left+boundingBox.width)/GRID_SIZE;
+    int ymax = (boundingBox.top+boundingBox.height)/GRID_SIZE;
 
-    for (int i = xmin; i < xmax; i++)
+    for(int i=0;i<mainLayer.getHLength();i++)
     {
-        for (int j = ymin; j < ymax; j++)
+        for(int j=0;j<mainLayer.getVLength();j++)
         {
-            if (mainLayer(i, j))
+            sf::FloatRect currentTile(i*GRID_SIZE,j*GRID_SIZE,GRID_SIZE,GRID_SIZE);
+
+            if(mainLayer.tileExists(i,j))
             {
-                if(hitTest(botArea,
-                            sf::FloatRect(i * GRID_SIZE, j * GRID_SIZE, GRID_SIZE, GRID_SIZE)))
+                if(mainLayer(i,j))
                 {
-                    playerSprite.move(0,-moveSpeed);
-                }
+                    if(hitTest(botArea,currentTile))
+                    {
+                        playerSprite.move(0,-1);
+                    }
 
-                if(hitTest(leftArea,
-                           sf::FloatRect(i * GRID_SIZE, j * GRID_SIZE, GRID_SIZE, GRID_SIZE)))
-                {
-                    playerSprite.move(moveSpeed,0);
-                }
+                    if(hitTest(rightArea,currentTile))
+                    {
+                        playerSprite.move(-1,0);
+                    }
 
-                if(hitTest(rightArea,
-                           sf::FloatRect(i * GRID_SIZE, j * GRID_SIZE, GRID_SIZE, GRID_SIZE)))
-                {
-                    playerSprite.move(-moveSpeed,0);
-                }
-                if(hitTest(topArea,
-                           sf::FloatRect(i * GRID_SIZE, j * GRID_SIZE, GRID_SIZE, GRID_SIZE)))
-                {
-                    playerSprite.move(0,moveSpeed);
+                    if(hitTest(leftArea,currentTile))
+                    {
+                        playerSprite.move(1,0);
+                    }
+
+                    if(hitTest(topArea,currentTile))
+                    {
+                        playerSprite.move(0,1);
+                    }
                 }
             }
         }
@@ -100,21 +85,6 @@ void Player::update(Layer &mainLayer)
 void Player::display(sf::RenderWindow &target)
 {
     target.draw(playerSprite);
-
-    sf::RectangleShape bg(sf::Vector2f(playerTexture.getSize().x, playerTexture.getSize().y / 2));
-    bg.setFillColor(sf::Color(255, 0, 0, 75));
-    bg.move(playerSprite.getPosition().x, getCenter().y);
-    target.draw(bg);
-
-    sf::RectangleShape lg(sf::Vector2f(playerTexture.getSize().x/2, playerTexture.getSize().y));
-    lg.setFillColor(sf::Color(255, 0, 255, 50));
-    lg.move(playerSprite.getPosition().x, playerSprite.getPosition().y);
-    target.draw(lg);
-
-    sf::RectangleShape rg(sf::Vector2f(playerTexture.getSize().x/2, playerTexture.getSize().y));
-    rg.setFillColor(sf::Color(0, 255, 255, 50));
-    rg.move(playerSprite.getPosition().x+playerTexture.getSize().x/2, playerSprite.getPosition().y);
-    target.draw(rg);
 }
 
 sf::Vector2f Player::getCenter()
