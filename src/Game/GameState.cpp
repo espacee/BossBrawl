@@ -29,7 +29,7 @@ void GameState::onUpdate()
 {
     using graphics::window;
 
-    player.update(map[0]);
+    player.update(map[1]);
     moveViewTowardsPoint(camera, player.getCenter(), 0.05);
 
     window.clear(sf::Color(80, 80, 80));
@@ -62,6 +62,11 @@ void GameState::onEvent(const sf::Event &event)
 
         case sf::Keyboard::G:
             gridEnabled = !gridEnabled;
+        case sf::Keyboard::R:
+        {
+            map.reset();
+            map.loadFromFile("res/maps/test.map");
+        }
 
         default:
             ;

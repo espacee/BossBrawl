@@ -2,11 +2,11 @@
 
 Player::Player()
 {
+    moveSpeed = 10;
 
     playerTexture.loadFromFile("res/img/GAME/Player.png");
     playerSprite.setTexture(playerTexture);
     center = sf::Vector2f(playerTexture.getSize().x / 2, playerTexture.getSize().y / 2);
-    moveSpeed = 10;
 }
 
 void Player::update(Layer &mainLayer)
@@ -22,7 +22,6 @@ void Player::update(Layer &mainLayer)
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         playerSprite.move(0, moveSpeed);
-
 
     boundingBox = playerSprite.getGlobalBounds();
     boundingBox.left-=mainLayer.getX();

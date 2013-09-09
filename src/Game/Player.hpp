@@ -17,10 +17,9 @@ public:
     sf::Vector2f getCenter();
 
 private:
-    int moveSpeed;
 
+    float moveSpeed;
     sf::Vector2f center;
-    sf::Vector2f velocity;
 
     sf::Texture playerTexture;
     sf::Sprite playerSprite;
