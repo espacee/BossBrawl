@@ -59,22 +59,22 @@ void Player::update(Layer &mainLayer)
                 {
                     if(hitTest(botArea,currentTile))
                     {
-                        playerSprite.move(0,-1);
+                        playerSprite.move(0,-moveSpeed);
                     }
 
                     if(hitTest(rightArea,currentTile))
                     {
-                        playerSprite.move(-1,0);
+                        playerSprite.move(-moveSpeed,0);
                     }
 
                     if(hitTest(leftArea,currentTile))
                     {
-                        playerSprite.move(1,0);
+                        playerSprite.move(moveSpeed,0);
                     }
 
                     if(hitTest(topArea,currentTile))
                     {
-                        playerSprite.move(0,1);
+                        playerSprite.move(0,moveSpeed);
                     }
                 }
             }
