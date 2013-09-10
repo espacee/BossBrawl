@@ -122,16 +122,16 @@ void Editor::initWindow()
     minimizeButton->setObjectName("minimizeButton");
     connect(minimizeButton, SIGNAL(clicked()), this, SLOT(minimizeClicked()));
 
-    newButton = new QPushButton("New",this);
-    newButton->setGeometry(windowIcon->x()+windowIcon->width()+10, 13,120,25);
+    newButton = new QPushButton("New", this);
+    newButton->setGeometry(windowIcon->x() + windowIcon->width() + 10, 13, 120, 25);
     newButton->setObjectName("menuButton");
 
     openButton = new QPushButton("Open", this);
-    openButton->setGeometry(newButton->x()+newButton->width()+5, newButton->y(), newButton->width(),newButton->height());
+    openButton->setGeometry(newButton->x() + newButton->width() + 5, newButton->y(), newButton->width(), newButton->height());
     openButton->setObjectName("menuButton");
 
     saveButton = new QPushButton("Save", this);
-    saveButton->setGeometry(openButton->x()+openButton->width()+5, openButton->y(), openButton->width(),openButton->height());
+    saveButton->setGeometry(openButton->x() + openButton->width() + 5, openButton->y(), openButton->width(), openButton->height());
     saveButton->setObjectName("menuButton");
 
     connect(newButton, SIGNAL(clicked()), this, SLOT(newButtonClicked()));
@@ -504,7 +504,7 @@ void Editor::newButtonClicked()
 
 void Editor::openButtonClicked()
 {
-     std::string filename = QFileDialog::getOpenFileName(this).toStdString();//getting the file name
+    std::string filename = QFileDialog::getOpenFileName(this).toStdString();//getting the file name
 
     if (map.loadFromFile(filename))
     {
@@ -515,10 +515,10 @@ void Editor::openButtonClicked()
 }
 void Editor::saveButtonClicked()
 {
-    if(filePath.empty() == true)
+    if (filePath.empty() == true)
     {
-     filePath = QFileDialog::getSaveFileName(this).toStdString();
-     map.saveToFile(filePath +".map");
+        filePath = QFileDialog::getSaveFileName(this).toStdString();
+        map.saveToFile(filePath + ".map");
     }
     else
     {

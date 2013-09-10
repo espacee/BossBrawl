@@ -62,6 +62,7 @@ void GameState::onEvent(const sf::Event &event)
 
         case sf::Keyboard::G:
             gridEnabled = !gridEnabled;
+
         case sf::Keyboard::R:
         {
             map.reset();

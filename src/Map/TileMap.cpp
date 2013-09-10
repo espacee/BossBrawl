@@ -142,6 +142,7 @@ void TileMap::reset()
     {
         delete l;
     }
+
     layers.clear();
 
     addLayer(0);

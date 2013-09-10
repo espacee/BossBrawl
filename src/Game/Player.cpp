@@ -24,56 +24,56 @@ void Player::update(Layer &mainLayer)
         playerSprite.move(0, moveSpeed);
 
     boundingBox = playerSprite.getGlobalBounds();
-    boundingBox.left-=mainLayer.getX();
-    boundingBox.top-=mainLayer.getY();
+    boundingBox.left -= mainLayer.getX();
+    boundingBox.top -= mainLayer.getY();
 
     botArea = boundingBox;
-    botArea.height/=2;
-    botArea.top+=botArea.height;
+    botArea.height /= 2;
+    botArea.top += botArea.height;
 
     rightArea = boundingBox;
-    rightArea.width/=2;
-    rightArea.left+=rightArea.width;
+    rightArea.width /= 2;
+    rightArea.left += rightArea.width;
 
     leftArea = boundingBox;
-    leftArea.width/=2;
+    leftArea.width /= 2;
 
     topArea = boundingBox;
-    topArea.height/=2;
+    topArea.height /= 2;
 
-    int xmin = boundingBox.left/GRID_SIZE;
-    int ymin = boundingBox.top/GRID_SIZE;
-    int xmax = (boundingBox.left+boundingBox.width)/GRID_SIZE;
-    int ymax = (boundingBox.top+boundingBox.height)/GRID_SIZE;
+    int xmin = boundingBox.left / GRID_SIZE;
+    int ymin = boundingBox.top / GRID_SIZE;
+    int xmax = (boundingBox.left + boundingBox.width) / GRID_SIZE;
+    int ymax = (boundingBox.top + boundingBox.height) / GRID_SIZE;
 
-    for(int i=0;i<mainLayer.getHLength();i++)
+    for (int i = 0; i < mainLayer.getHLength(); i++)
     {
-        for(int j=0;j<mainLayer.getVLength();j++)
+        for (int j = 0; j < mainLayer.getVLength(); j++)
         {
-            sf::FloatRect currentTile(i*GRID_SIZE,j*GRID_SIZE,GRID_SIZE,GRID_SIZE);
+            sf::FloatRect currentTile(i * GRID_SIZE, j * GRID_SIZE, GRID_SIZE, GRID_SIZE);
 
-            if(mainLayer.tileExists(i,j))
+            if (mainLayer.tileExists(i, j))
             {
-                if(mainLayer(i,j))
+                if (mainLayer(i, j))
                 {
-                    if(hitTest(botArea,currentTile))
+                    if (hitTest(botArea, currentTile))
                     {
-                        playerSprite.move(0,-moveSpeed);
+                        playerSprite.move(0, -moveSpeed);
                     }
 
-                    if(hitTest(rightArea,currentTile))
+                    if (hitTest(rightArea, currentTile))
                     {
-                        playerSprite.move(-moveSpeed,0);
+                        playerSprite.move(-moveSpeed, 0);
                     }
 
-                    if(hitTest(leftArea,currentTile))
+                    if (hitTest(leftArea, currentTile))
                     {
-                        playerSprite.move(moveSpeed,0);
+                        playerSprite.move(moveSpeed, 0);
                     }
 
-                    if(hitTest(topArea,currentTile))
+                    if (hitTest(topArea, currentTile))
                     {
-                        playerSprite.move(0,moveSpeed);
+                        playerSprite.move(0, moveSpeed);
                     }
                 }
             }

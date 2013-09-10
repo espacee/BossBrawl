@@ -210,8 +210,8 @@ void SFMLWidget::draw(sf::Vector2i mouseCoord)
         int y = layerRelativeCoord.y / GRID_SIZE ;
 
 
-        if(m_map[layer].tileExists(x,y))
-                m_map[layer](x, y) = id;
+        if (m_map[layer].tileExists(x, y))
+            m_map[layer](x, y) = id;
     }
 }
 
@@ -231,7 +231,7 @@ void SFMLWidget::erase(sf::Vector2i mouseCoord)
         int x = layerRelativeCoord.x / GRID_SIZE ;
         int y = layerRelativeCoord.y / GRID_SIZE ;
 
-        if(m_map[layer].tileExists(x,y))
+        if (m_map[layer].tileExists(x, y))
             m_map[layer](x, y) = 0;
     }
 }
