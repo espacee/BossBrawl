@@ -18,12 +18,18 @@ public:
 
 private:
 
-    float moveSpeed;
+    bool inAir;
+    sf::Vector2f velocity;
+    const float gravity = 1;
+    float moveSpeed, jumpSpeed;
+
+
     sf::Vector2f center;
 
     sf::Texture playerTexture;
     sf::Sprite playerSprite;
     sf::FloatRect topArea, rightArea, botArea, leftArea, boundingBox;
+
 };
 
 #endif // GAME_PLAYER_HPP

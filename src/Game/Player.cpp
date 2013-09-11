@@ -3,14 +3,19 @@
 Player::Player()
 {
     moveSpeed = 10;
+    jumpSpeed = 10;
+
 
     playerTexture.loadFromFile("res/img/GAME/Player.png");
     playerSprite.setTexture(playerTexture);
     center = sf::Vector2f(playerTexture.getSize().x / 2, playerTexture.getSize().y / 2);
+    velocity = sf::Vector2f(0,0);
+
 }
 
 void Player::update(Layer &mainLayer)
 {
+/*
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         playerSprite.move(-moveSpeed, 0);
 
@@ -22,6 +27,25 @@ void Player::update(Layer &mainLayer)
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         playerSprite.move(0, moveSpeed);
+        */
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+        velocity.x = -moveSpeed;
+
+
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+                velocity.x = moveSpeed;
+    else
+        velocity.x = 0;
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+         velocity.y = -jumpSpeed;
+
+    if(inAir == true)
+        velocity.y+=gravity;
+
+    playerSprite.move(velocity.x, velocity.y);
+
 
     boundingBox = playerSprite.getGlobalBounds();
     boundingBox.left -= mainLayer.getX();
@@ -56,24 +80,28 @@ void Player::update(Layer &mainLayer)
             {
                 if (mainLayer(i, j))
                 {
-                    if (hitTest(botArea, currentTile))
+
+                   if (hitTest(botArea, currentTile))
                     {
-                        playerSprite.move(0, -moveSpeed);
+                     inAir = false;
+                     velocity.y = 0;
                     }
+                   else
+                       inAir = true;
 
                     if (hitTest(rightArea, currentTile))
                     {
-                        playerSprite.move(-moveSpeed, 0);
-                    }
+                      //  playerSprite.move(-moveSpeed, 0);
 
+                    }
                     if (hitTest(leftArea, currentTile))
                     {
-                        playerSprite.move(moveSpeed, 0);
-                    }
+                     //   playerSprite.move(moveSpeed, 0);
 
+                    }
                     if (hitTest(topArea, currentTile))
                     {
-                        playerSprite.move(0, moveSpeed);
+                       // playerSprite.move(0, moveSpeed);
                     }
                 }
             }
