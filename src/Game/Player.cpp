@@ -28,7 +28,6 @@ void Player::update(Layer &mainLayer)
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         playerSprite.move(0, moveSpeed);
         */
-
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         velocity.x = -moveSpeed;
 
@@ -41,10 +40,15 @@ void Player::update(Layer &mainLayer)
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
          velocity.y = -jumpSpeed;
 
+
+
+
     if(inAir == true)
         velocity.y+=gravity;
 
-    playerSprite.move(velocity.x, velocity.y);
+
+
+
 
 
     boundingBox = playerSprite.getGlobalBounds();
@@ -83,30 +87,40 @@ void Player::update(Layer &mainLayer)
 
                    if (hitTest(botArea, currentTile))
                     {
+
                      inAir = false;
                      velocity.y = 0;
+
+                     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+                          velocity.y = -jumpSpeed;
+
                     }
                    else
                        inAir = true;
 
                     if (hitTest(rightArea, currentTile))
                     {
-                      //  playerSprite.move(-moveSpeed, 0);
+
+                        velocity.x = 0;
 
                     }
                     if (hitTest(leftArea, currentTile))
                     {
-                     //   playerSprite.move(moveSpeed, 0);
+
+                        velocity.x = 0;
+
 
                     }
                     if (hitTest(topArea, currentTile))
                     {
-                       // playerSprite.move(0, moveSpeed);
+
                     }
                 }
             }
         }
     }
+
+    playerSprite.move(velocity.x, velocity.y);
 }
 
 void Player::display(sf::RenderWindow &target)
