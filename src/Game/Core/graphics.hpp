@@ -2,7 +2,6 @@
 #define CORE_GRAPHICS_HPP
 
 #include <SFML/Graphics.hpp>
-
 /**
  * @brief Graphics module
  */

@@ -30,6 +30,7 @@ void GameState::onUpdate()
     using graphics::window;
 
     player.update(map[1]);
+
     moveViewTowardsPoint(camera, player.getCenter(), 0.05);
 
     window.clear(sf::Color(80, 80, 80));

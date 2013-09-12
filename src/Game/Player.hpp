@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "Map/TileMap.hpp"
 #include "Util/collision.h"
+#include <iostream>
 
 /**
  * @brief The Player Class
@@ -18,10 +19,8 @@ public:
 
 private:
 
-    bool inAir;
-    sf::Vector2f velocity;
-    const float gravity = 1;
-    float moveSpeed, jumpSpeed;
+    sf::Vector2f movement;
+    float moveSpeed;
 
 
     sf::Vector2f center;

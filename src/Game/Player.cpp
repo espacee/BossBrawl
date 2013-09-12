@@ -3,76 +3,44 @@
 Player::Player()
 {
     moveSpeed = 10;
-    jumpSpeed = 10;
-
 
     playerTexture.loadFromFile("res/img/GAME/Player.png");
     playerSprite.setTexture(playerTexture);
     center = sf::Vector2f(playerTexture.getSize().x / 2, playerTexture.getSize().y / 2);
-    velocity = sf::Vector2f(0,0);
+    movement = sf::Vector2f(0,0);
 
 }
 
 void Player::update(Layer &mainLayer)
 {
-/*
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-        playerSprite.move(-moveSpeed, 0);
+        movement.x-=moveSpeed;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-        playerSprite.move(moveSpeed, 0);
+        movement.x+=moveSpeed;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-        playerSprite.move(0, -moveSpeed);
+        movement.y-=moveSpeed;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-        playerSprite.move(0, moveSpeed);
-        */
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-        velocity.x = -moveSpeed;
-
-
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-                velocity.x = moveSpeed;
-    else
-        velocity.x = 0;
-
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-         velocity.y = -jumpSpeed;
-
-
-
-
-    if(inAir == true)
-        velocity.y+=gravity;
-
-
-
-
-
+        movement.y+=moveSpeed;
 
     boundingBox = playerSprite.getGlobalBounds();
-    boundingBox.left -= mainLayer.getX();
-    boundingBox.top -= mainLayer.getY();
+    boundingBox.left += -mainLayer.getX();
+    boundingBox.top += -mainLayer.getY();
 
-    botArea = boundingBox;
-    botArea.height /= 2;
-    botArea.top += botArea.height;
+    sf::FloatRect futureBoundingBox;
 
-    rightArea = boundingBox;
-    rightArea.width /= 2;
-    rightArea.left += rightArea.width;
-
-    leftArea = boundingBox;
-    leftArea.width /= 2;
-
-    topArea = boundingBox;
-    topArea.height /= 2;
+    futureBoundingBox = boundingBox;
+    futureBoundingBox.left += movement.x;
+    futureBoundingBox.top += movement.y;
+    botArea = futureBoundingBox; botArea.height/=2; botArea.top+=botArea.height;
+    leftArea = futureBoundingBox; leftArea.width/=2; leftArea.top+=2; leftArea.height-=4;
 
     int xmin = boundingBox.left / GRID_SIZE;
     int ymin = boundingBox.top / GRID_SIZE;
-    int xmax = (boundingBox.left + boundingBox.width) / GRID_SIZE;
-    int ymax = (boundingBox.top + boundingBox.height) / GRID_SIZE;
+    int xmax = (boundingBox.left + boundingBox.width) / GRID_SIZE+1;
+    int ymax = (boundingBox.top + boundingBox.height) / GRID_SIZE+1;
 
     for (int i = 0; i < mainLayer.getHLength(); i++)
     {
@@ -85,42 +53,27 @@ void Player::update(Layer &mainLayer)
                 if (mainLayer(i, j))
                 {
 
-                   if (hitTest(botArea, currentTile))
+                    futureBoundingBox = boundingBox;
+                    futureBoundingBox.left += movement.x;
+                    futureBoundingBox.top += movement.y;
+                    botArea = futureBoundingBox; botArea.height/=2; botArea.top+=botArea.height; botArea.left+=1; botArea.width-=2;
+                    leftArea = futureBoundingBox; leftArea.width/=2; leftArea.top+=1; leftArea.height-=2;
+                    if (hitTest(botArea, currentTile))
                     {
-
-                     inAir = false;
-                     velocity.y = 0;
-
-                     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-                          velocity.y = -jumpSpeed;
-
-                    }
-                   else
-                       inAir = true;
-
-                    if (hitTest(rightArea, currentTile))
-                    {
-
-                        velocity.x = 0;
-
-                    }
-                    if (hitTest(leftArea, currentTile))
-                    {
-
-                        velocity.x = 0;
+                        movement.y = currentTile.top - (boundingBox.top + boundingBox.height);
 
 
-                    }
-                    if (hitTest(topArea, currentTile))
-                    {
-
+                        if (mainLayer.tileExists(i, j-1))
+                            if (mainLayer(i, j-1))
+                                movement.y-=40;
                     }
                 }
             }
         }
     }
 
-    playerSprite.move(velocity.x, velocity.y);
+    playerSprite.move(movement);
+    movement = sf::Vector2f(0,0);
 }
 
 void Player::display(sf::RenderWindow &target)
