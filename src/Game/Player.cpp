@@ -2,7 +2,7 @@
 
 Player::Player()
 {
-    moveSpeed = 10;
+    moveSpeed =10;
 
     playerTexture.loadFromFile("res/img/GAME/Player.png");
     playerSprite.setTexture(playerTexture);
@@ -29,13 +29,10 @@ void Player::update(Layer &mainLayer)
     boundingBox.left += -mainLayer.getX();
     boundingBox.top += -mainLayer.getY();
 
-    sf::FloatRect futureBoundingBox;
-
-    futureBoundingBox = boundingBox;
-    futureBoundingBox.left += movement.x;
-    futureBoundingBox.top += movement.y;
-    botArea = futureBoundingBox; botArea.height/=2; botArea.top+=botArea.height;
-    leftArea = futureBoundingBox; leftArea.width/=2; leftArea.top+=2; leftArea.height-=4;
+    botArea = boundingBox; botArea.height/=2; botArea.top+=botArea.height; botArea.top+= movement.y;
+    topArea = boundingBox; topArea.height/=2; topArea.top+=movement.y;
+    leftArea = boundingBox; leftArea.width/=2; leftArea.left += movement.x;
+    rightArea = boundingBox; rightArea.width/=2; rightArea.left+=rightArea.width; rightArea.left+= movement.x;
 
     int xmin = boundingBox.left / GRID_SIZE;
     int ymin = boundingBox.top / GRID_SIZE;
@@ -53,19 +50,24 @@ void Player::update(Layer &mainLayer)
                 if (mainLayer(i, j))
                 {
 
-                    futureBoundingBox = boundingBox;
-                    futureBoundingBox.left += movement.x;
-                    futureBoundingBox.top += movement.y;
-                    botArea = futureBoundingBox; botArea.height/=2; botArea.top+=botArea.height; botArea.left+=1; botArea.width-=2;
-                    leftArea = futureBoundingBox; leftArea.width/=2; leftArea.top+=1; leftArea.height-=2;
                     if (hitTest(botArea, currentTile))
                     {
                         movement.y = currentTile.top - (boundingBox.top + boundingBox.height);
+                    }
 
+                    if (hitTest(rightArea, currentTile))
+                    {
+                        movement.x = currentTile.left - (boundingBox.left + boundingBox.width);
+                    }
 
-                        if (mainLayer.tileExists(i, j-1))
-                            if (mainLayer(i, j-1))
-                                movement.y-=40;
+                    if (hitTest(leftArea, currentTile))
+                    {
+                        movement.x = (currentTile.left+currentTile.width) - boundingBox.left + 1;
+                    }
+
+                    if (hitTest(topArea, currentTile))
+                    {
+                        movement.y = (currentTile.top+currentTile.height) - boundingBox.top + 1;
                     }
                 }
             }
