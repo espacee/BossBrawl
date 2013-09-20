@@ -29,7 +29,7 @@ void GameState::onUpdate()
 {
     using graphics::window;
 
-    player.update(map[1]);
+    player.update(map[0]);
 
     moveViewTowardsPoint(camera, player.getCenter(), 0.05);
 

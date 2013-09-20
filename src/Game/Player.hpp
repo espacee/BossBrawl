@@ -27,7 +27,6 @@ private:
 
     sf::Texture playerTexture;
     sf::Sprite playerSprite;
-    sf::FloatRect topArea, rightArea, botArea, leftArea, boundingBox;
 
 };
 
