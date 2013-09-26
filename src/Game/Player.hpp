@@ -20,13 +20,16 @@ public:
 private:
 
     sf::Vector2f movement;
-    float moveSpeed;
+    float moveSpeed, jumpSpeed, flySpeed;
 
+    float gravity = 20;
 
     sf::Vector2f center;
 
     sf::Texture playerTexture;
     sf::Sprite playerSprite;
+
+    bool flyMode;
 
 };
 

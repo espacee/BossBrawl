@@ -2,30 +2,46 @@
 
 Player::Player()
 {
-    moveSpeed =50;
+    moveSpeed =10;
+    jumpSpeed = 50;
+    flySpeed = 40;
+
+    flyMode = true;
 
     playerTexture.loadFromFile("res/img/GAME/Player.png");
     playerSprite.setTexture(playerTexture);
     center = sf::Vector2f(playerTexture.getSize().x / 2, playerTexture.getSize().y / 2);
     movement = sf::Vector2f(0,0);
 
-    playerSprite.move(-40,-80);
+    playerSprite.move(100,200);
 
 }
 
 void Player::update(Layer &mainLayer)
 {
+    if(flyMode == true){
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-        movement.x-=moveSpeed;
-
+        movement.x -=flySpeed;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-        movement.x+=moveSpeed;
-
+        movement.x += flySpeed;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-        movement.y-=moveSpeed;
-
+        movement.y -= flySpeed;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-        movement.y+=moveSpeed;
+        movement.y += flySpeed;
+    }
+
+    if(flyMode == false){
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+        movement.x = -moveSpeed;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+        movement.x = moveSpeed;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+        movement.y = -jumpSpeed;
+
+     movement.y+=gravity;
+    }
+
+
 
     int maxStepLength = sqrt(movement.x*movement.x+movement.y*movement.y);
     if(maxStepLength>20) maxStepLength = 20;
@@ -159,6 +175,9 @@ void Player::update(Layer &mainLayer)
     }
     playerSprite.move(movement);
     movement = sf::Vector2f(0,0);
+
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::F))
+        flyMode = !flyMode;
 }
 
 void Player::display(sf::RenderWindow &target)
