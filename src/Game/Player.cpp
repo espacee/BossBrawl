@@ -6,7 +6,7 @@ Player::Player()
     jumpSpeed = 50;
     flySpeed = 40;
 
-    flyMode = true;
+    flyMode = false;
 
     playerTexture.loadFromFile("res/img/GAME/Player.png");
     playerSprite.setTexture(playerTexture);
