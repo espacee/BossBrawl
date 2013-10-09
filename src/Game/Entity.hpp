@@ -18,6 +18,7 @@ public:
     sf::Vector2f getCenter();
 
     void setPosition(int x, int y);
+    sf::Vector2f getPosition();
 
 protected:
 

@@ -1,7 +1,10 @@
 #include "Game/Enemy.hpp"
 
-Enemy::Enemy()
+
+
+Enemy::Enemy(int posX, int posY)
 {
+
 
 
 }

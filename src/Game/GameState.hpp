@@ -5,6 +5,7 @@
 
 #include "Map/TileMap.hpp"
 #include "Game/Player.hpp"
+#include "Game/Enemy.hpp"
 
 #include <SFML/Graphics.hpp>
 
@@ -18,12 +19,14 @@ public:
     void onSet();
     void onUpdate();
     void onEvent(const sf::Event &event);
+
+    Player player;
 private:
     sf::View camera;
     TileMap map;
-    Player player;
     sf::Text fpsText;
     bool gridEnabled;
+
 };
 
 #endif // GAME_GAMESTATE_HPP

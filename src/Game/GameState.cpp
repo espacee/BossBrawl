@@ -69,6 +69,12 @@ void GameState::onEvent(const sf::Event &event)
             map.reset();
             map.loadFromFile("res/maps/test.map");
         }
+        case sf::Keyboard::P:
+        {
+
+
+
+        }
 
         default:
             ;

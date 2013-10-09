@@ -173,3 +173,7 @@ void Entity::setPosition(int x, int y)
 {
  entitySprite.setPosition(x,y);
 }
+sf::Vector2f Entity::getPosition()
+{
+    return entitySprite.getPosition();
+}
