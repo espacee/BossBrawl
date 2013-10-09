@@ -1,27 +1,28 @@
-#ifndef GAME_PLAYER_HPP
-#define GAME_PLAYER_HPP
+#ifndef GAME_ENEMY_HPP
+#define GAME_ENEMY_HPP
 
 #include <SFML/Graphics.hpp>
 #include "Map/TileMap.hpp"
-#include "Game/Entity.hpp"
 #include "Util/collision.h"
 #include <iostream>
 
+#include "Game/Entity.hpp"
+
 /**
- * @brief The Player Class
+ * @brief The Enemy Class
  */
-class Player: public Entity
+class Enemy: public Entity
 {
 public:
-    Player();
+    Enemy();
     void update(Layer &mainLayer);
-
 
 
 private:
 
 
 
+
 };
 
-#endif // GAME_PLAYER_HPP
+#endif // GAME_ENEMY_HPP
