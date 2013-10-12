@@ -14,6 +14,7 @@ class Player: public Entity
 {
 public:
     Player();
+    void onSet();
     void update(Layer &mainLayer);
 
 

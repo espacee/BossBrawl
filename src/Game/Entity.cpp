@@ -5,8 +5,7 @@ Entity::Entity()
     moveSpeed =10;
     jumpSpeed = 30;
 
-
-    entityTexture.loadFromFile("res/img/GAME/Player.png");
+    entityTexture.loadFromFile("res/img/GAME/Default.png");
     entitySprite.setTexture(entityTexture);
     center = sf::Vector2f(entityTexture.getSize().x / 2, entityTexture.getSize().y / 2);
     movement = sf::Vector2f(0,0);

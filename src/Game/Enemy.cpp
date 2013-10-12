@@ -2,13 +2,17 @@
 
 
 
-Enemy::Enemy(int posX, int posY)
+Enemy::Enemy()
+{
+    onSet();
+}
+void Enemy::onSet()
 {
 
+entityTexture.loadFromFile("res/img/GAME/Enemy.png");
 
 
 }
-
 void Enemy::update(Layer &mainLayer)
 {
     updateEntity(mainLayer);

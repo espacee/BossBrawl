@@ -5,7 +5,6 @@
 #include "Map/TileMap.hpp"
 #include "Util/collision.h"
 #include <iostream>
-#include "GameState.hpp"
 
 #include "Game/Entity.hpp"
 
@@ -15,7 +14,8 @@
 class Enemy: public Entity
 {
 public:
-    Enemy(int posX, int posY);
+    Enemy();
+    void onSet();
     void update(Layer &mainLayer);
 
 

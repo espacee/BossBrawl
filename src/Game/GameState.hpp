@@ -21,6 +21,7 @@ public:
     void onEvent(const sf::Event &event);
 
     Player player;
+    Enemy enemy;
 private:
     sf::View camera;
     TileMap map;

@@ -20,6 +20,7 @@ public:
     void setPosition(int x, int y);
     sf::Vector2f getPosition();
 
+
 protected:
 
     sf::Vector2f movement;

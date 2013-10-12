@@ -1,6 +1,5 @@
 
 #include "Game/GameState.hpp"
-
 #include "Core/graphics.hpp"
 #include "Core/stateDriver.hpp"
 #include "Core/config.hpp"
@@ -30,6 +29,7 @@ void GameState::onUpdate()
     using graphics::window;
 
     player.update(map[0]);
+    enemy.update(map[0]);
 
     moveViewTowardsPoint(camera, player.getCenter(), 0.05);
 
@@ -37,6 +37,7 @@ void GameState::onUpdate()
     graphics::window.setView(camera);
     map.draw(window, (gridEnabled ? 0 : -1));
     player.display(window);
+     enemy.display(window);
 
     graphics::window.setView(sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y)));
     fpsText.setString("Fps: " + std::to_string(stateDriver::getFps()));

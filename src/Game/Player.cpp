@@ -2,10 +2,14 @@
 
 Player::Player()
 {
+    onSet();
+}
+void Player::onSet()
+{
+
 
 
 }
-
 void Player::update(Layer &mainLayer)
 {
     updateEntity(mainLayer);
