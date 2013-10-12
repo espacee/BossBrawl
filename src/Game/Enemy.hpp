@@ -5,6 +5,7 @@
 #include "Map/TileMap.hpp"
 #include "Util/collision.h"
 #include <iostream>
+#include "Util/math.hpp"
 
 #include "Game/Entity.hpp"
 
@@ -17,10 +18,14 @@ public:
     Enemy();
     void onSet();
     void update(Layer &mainLayer);
+    void Seek();
+    void Follow();
+    void Attack();
 
 
 private:
 
+    std::string enemyState;
 
 
 
