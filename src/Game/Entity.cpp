@@ -133,17 +133,14 @@ void Entity::updateEntity(Layer &mainLayer)
                         {
                             movement.y = currentTile.top - (boundingBox.top + boundingBox.height);
                         }
-
                         if (hitTest(rightArea, currentTile))
                         {
                             movement.x = currentTile.left - (boundingBox.left + boundingBox.width);
                         }
-
                         if (hitTest(leftArea, currentTile))
                         {
                             movement.x = (currentTile.left+currentTile.width) - boundingBox.left;
                         }
-
                         if (hitTest(topArea, currentTile))
                         {
                             movement.y = (currentTile.top+currentTile.height) - boundingBox.top;
@@ -176,3 +173,4 @@ sf::Vector2f Entity::getPosition()
 {
     return entitySprite.getPosition();
 }
+

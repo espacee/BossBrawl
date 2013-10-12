@@ -33,7 +33,6 @@ protected:
     sf::Texture entityTexture;
     sf::Sprite entitySprite;
 
-
 };
 
 #endif // GAME_ENTITY_HPP

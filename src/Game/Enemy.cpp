@@ -9,7 +9,13 @@ void Enemy::onSet()
 {
 
 entityTexture.loadFromFile("res/img/GAME/Enemy.png");
-enemyState = "Seek";
+
+int Seek = math::getRandomValue(1,2);
+
+if(Seek == 1)
+    entityState = "SeekLeft";
+else
+    entityState = "SeekRight";
 
 
 }
@@ -19,15 +25,19 @@ void Enemy::update(Layer &mainLayer)
 
     //AI
 
-    if(enemyState == "Seek"){
-        std::cout <<"Seed mode"<<std::endl;
-        Seek();
+    if(entityState == "SeekLeft"){
+        std::cout <<"Seek Left mode"<<std::endl;
+        SeekLeft();
     }
-    else if(enemyState == "Follow"){
+    else if(entityState == "SeekRight"){
+        std::cout <<"Seek Right mode"<<std::endl;
+        SeekRight();
+    }
+    else if(entityState == "Follow"){
         std::cout << "Follow mode"<<std::endl;
         Follow();
     }
-    else if(enemyState == "Attack"){
+    else if(entityState == "Attack"){
         std::cout << "Attack mode"<<std::endl;
         Attack();
     }
@@ -44,9 +54,22 @@ void Enemy::update(Layer &mainLayer)
 //CONTROLS
 }
 
-void Enemy::Seek()
+void Enemy::SeekLeft()
 {
-math::getRandomValue(10,10);
+
+        movement.x-=10;
+
+        if(entityLeft == true)
+            entityState = "SeekRight";
+
+
+}
+void Enemy::SeekRight()
+{
+        movement.x+=10;
+
+        if(entityRight == true)
+            entityState = "SeekLeft";
 }
 void Enemy::Follow()
 {
