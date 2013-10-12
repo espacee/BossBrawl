@@ -56,20 +56,11 @@ void Enemy::update(Layer &mainLayer)
 
 void Enemy::SeekLeft()
 {
-
         movement.x-=10;
-
-        if(entityLeft == true)
-            entityState = "SeekRight";
-
-
 }
 void Enemy::SeekRight()
 {
         movement.x+=10;
-
-        if(entityRight == true)
-            entityState = "SeekLeft";
 }
 void Enemy::Follow()
 {
