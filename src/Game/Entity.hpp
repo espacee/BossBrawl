@@ -21,6 +21,7 @@ public:
     sf::Vector2f getPosition();
 
 
+
 protected:
 
     sf::Vector2f movement;

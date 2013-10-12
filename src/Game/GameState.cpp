@@ -1,9 +1,9 @@
-
 #include "Game/GameState.hpp"
 #include "Core/graphics.hpp"
 #include "Core/stateDriver.hpp"
 #include "Core/config.hpp"
 #include "Util/view.hpp"
+
 
 GameState::GameState() :
     gridEnabled(false)
@@ -13,6 +13,8 @@ GameState::GameState() :
     camera = sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y));
     fpsText.setFont(graphics::fontbasiclight);
     fpsText.setCharacterSize(16);
+
+
 }
 
 void GameState::onSet()
@@ -22,14 +24,17 @@ void GameState::onSet()
     camera.setCenter(0, 0);
 
     fpsText.setPosition(5, graphics::window.getSize().y - 20);
+
+
 }
 
 void GameState::onUpdate()
 {
     using graphics::window;
 
-    player.update(map[0]);
-    enemy.update(map[0]);
+    player.update(map[1]);
+    e1.update(map[1]);
+
 
     moveViewTowardsPoint(camera, player.getCenter(), 0.05);
 
@@ -37,7 +42,9 @@ void GameState::onUpdate()
     graphics::window.setView(camera);
     map.draw(window, (gridEnabled ? 0 : -1));
     player.display(window);
-     enemy.display(window);
+
+     e1.display(window);
+
 
     graphics::window.setView(sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y)));
     fpsText.setString("Fps: " + std::to_string(stateDriver::getFps()));
@@ -64,18 +71,13 @@ void GameState::onEvent(const sf::Event &event)
 
         case sf::Keyboard::G:
             gridEnabled = !gridEnabled;
+            break;
 
-        case sf::Keyboard::R:
-        {
-            map.reset();
-            map.loadFromFile("res/maps/test.map");
-        }
         case sf::Keyboard::P:
-        {
 
-
-
-        }
+            break;
+        case sf::Keyboard::O:
+            break;
 
         default:
             ;
