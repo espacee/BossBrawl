@@ -40,6 +40,10 @@ src/Game/Core/graphics.hpp
 src/Game/Core/main.cpp
 src/Game/Core/stateDriver.cpp
 src/Game/Core/stateDriver.hpp
+src/Game/Enemy.cpp
+src/Game/Enemy.hpp
+src/Game/Entity.cpp
+src/Game/Entity.hpp
 src/Game/GameState.cpp
 src/Game/GameState.hpp
 src/Game/Gui/IconButton.cpp
@@ -54,15 +58,8 @@ src/Game/Menu/MenuState.cpp
 src/Game/Menu/MenuState.hpp
 src/Game/Menu/OptionsMenuState.cpp
 src/Game/Menu/OptionsMenuState.hpp
-
-
-src/Game/Entity.cpp
-src/Game/Entity.hpp
-
 src/Game/Player.cpp
 src/Game/Player.hpp
-src/Game/Enemy.cpp
-src/Game/Enemy.hpp
 )
 
 target_link_libraries(bossbrawl map util ${SFML_LIBRARIES})
