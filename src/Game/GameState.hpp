@@ -5,6 +5,7 @@
 #include "Map/TileMap.hpp"
 #include "Game/Player.hpp"
 #include "Game/Enemy.hpp"
+#include "Game/Entity.hpp"
 
 #include <SFML/Graphics.hpp>
 
@@ -29,7 +30,9 @@ private:
     bool gridEnabled;
 
     Player player;
-    Enemy e1;
+
+    std::vector<Enemy*> enemies;
+    Enemy enemy;
 
 
 };

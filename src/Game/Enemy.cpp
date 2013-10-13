@@ -8,7 +8,7 @@ Enemy::Enemy()
 void Enemy::onSet()
 {
 
-entityTexture.loadFromFile("res/img/GAME/Monster.png");
+texture.loadFromFile("res/img/GAME/Monster.png");
 
 int Seek = math::getRandomValue(1,2);
 

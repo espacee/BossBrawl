@@ -5,12 +5,12 @@ Entity::Entity()
     moveSpeed =10;
     jumpSpeed = 30;
 
-    entityTexture.loadFromFile("res/img/GAME/Default.png");
-    entitySprite.setTexture(entityTexture);
-    center = sf::Vector2f(entityTexture.getSize().x / 2, entityTexture.getSize().y / 2);
+    texture.loadFromFile("res/img/GAME/Default.png");
+    sprite.setTexture(texture);
+    center = sf::Vector2f(texture.getSize().x / 2, texture.getSize().y / 2);
     movement = sf::Vector2f(0,0);
 
-    entitySprite.move(100,200);
+    sprite.move(100,200);
 
 }
 
@@ -43,10 +43,10 @@ void Entity::updateEntity(Layer &mainLayer)
     {
         virtualMovement = sf::Vector2f(k*hStepsLength, k*vStepsLength);
 
-        sf::FloatRect futureBoundingBox = sf::FloatRect(entitySprite.getPosition().x+virtualMovement.x,
-                                                        entitySprite.getPosition().y+virtualMovement.y,
-                                                        entityTexture.getSize().x,
-                                                        entityTexture.getSize().y);
+        sf::FloatRect futureBoundingBox = sf::FloatRect(sprite.getPosition().x+virtualMovement.x,
+                                                        sprite.getPosition().y+virtualMovement.y,
+                                                        texture.getSize().x,
+                                                        texture.getSize().y);
 
         int xmin = futureBoundingBox.left / GRID_SIZE;
         int ymin = futureBoundingBox.top / GRID_SIZE;
@@ -83,35 +83,35 @@ void Entity::updateEntity(Layer &mainLayer)
     {
         movement = sf::Vector2f(firstHitStep*hStepsLength, firstHitStep*vStepsLength);
 
-        sf::FloatRect boundingBox = sf::FloatRect(entitySprite.getPosition().x,
-                                                  entitySprite.getPosition().y,
-                                                  entityTexture.getSize().x,
-                                                  entityTexture.getSize().y);
+        sf::FloatRect boundingBox = sf::FloatRect(sprite.getPosition().x,
+                                                  sprite.getPosition().y,
+                                                  texture.getSize().x,
+                                                  texture.getSize().y);
 
-        sf::FloatRect futureBoundingBox = sf::FloatRect(entitySprite.getPosition().x+movement.x,
-                                                        entitySprite.getPosition().y+movement.y,
-                                                        entityTexture.getSize().x,
-                                                        entityTexture.getSize().y);
+        sf::FloatRect futureBoundingBox = sf::FloatRect(sprite.getPosition().x+movement.x,
+                                                        sprite.getPosition().y+movement.y,
+                                                        texture.getSize().x,
+                                                        texture.getSize().y);
 
-        sf::FloatRect botArea = sf::FloatRect(entitySprite.getPosition().x+1,
-                                              entitySprite.getPosition().y+entityTexture.getSize().y/2+movement.y,
-                                              entityTexture.getSize().x-2,
-                                              entityTexture.getSize().y/2);
+        sf::FloatRect botArea = sf::FloatRect(sprite.getPosition().x+1,
+                                              sprite.getPosition().y+texture.getSize().y/2+movement.y,
+                                              texture.getSize().x-2,
+                                              texture.getSize().y/2);
 
-        sf::FloatRect topArea = sf::FloatRect(entitySprite.getPosition().x+1,
-                                             entitySprite.getPosition().y+movement.y,
-                                             entityTexture.getSize().x-2,
-                                             entityTexture.getSize().y/2);
+        sf::FloatRect topArea = sf::FloatRect(sprite.getPosition().x+1,
+                                             sprite.getPosition().y+movement.y,
+                                             texture.getSize().x-2,
+                                             texture.getSize().y/2);
 
-        sf::FloatRect leftArea = sf::FloatRect(entitySprite.getPosition().x+movement.x,
-                                               entitySprite.getPosition().y+1,
-                                               entityTexture.getSize().x/2,
-                                               entityTexture.getSize().y-2);
+        sf::FloatRect leftArea = sf::FloatRect(sprite.getPosition().x+movement.x,
+                                               sprite.getPosition().y+1,
+                                               texture.getSize().x/2,
+                                               texture.getSize().y-2);
 
-        sf::FloatRect rightArea = sf::FloatRect(entitySprite.getPosition().x+entityTexture.getSize().x/2+movement.x,
-                                                entitySprite.getPosition().y+1,
-                                                entityTexture.getSize().x/2+1,
-                                                entityTexture.getSize().y-2);
+        sf::FloatRect rightArea = sf::FloatRect(sprite.getPosition().x+texture.getSize().x/2+movement.x,
+                                                sprite.getPosition().y+1,
+                                                texture.getSize().x/2+1,
+                                                texture.getSize().y-2);
 
         int xmin = futureBoundingBox.left / GRID_SIZE;
         int ymin = futureBoundingBox.top / GRID_SIZE;
@@ -150,7 +150,7 @@ void Entity::updateEntity(Layer &mainLayer)
             }
         }
     }
-    entitySprite.move(movement);
+    sprite.move(movement);
     movement = sf::Vector2f(0,0);
 
 
@@ -158,19 +158,19 @@ void Entity::updateEntity(Layer &mainLayer)
 
 void Entity::display(sf::RenderWindow &target)
 {
-    target.draw(entitySprite);
+    target.draw(sprite);
 }
 
 sf::Vector2f Entity::getCenter()
 {
-    return entitySprite.getPosition() + center;
+    return sprite.getPosition() + center;
 }
 void Entity::setPosition(int x, int y)
 {
- entitySprite.setPosition(x,y);
+ sprite.setPosition(x,y);
 }
 sf::Vector2f Entity::getPosition()
 {
-    return entitySprite.getPosition();
+    return sprite.getPosition();
 }
 

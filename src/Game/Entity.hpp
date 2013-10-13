@@ -31,8 +31,8 @@ protected:
 
     sf::Vector2f center;
 
-    sf::Texture entityTexture;
-    sf::Sprite entitySprite;
+    sf::Texture texture;
+    sf::Sprite sprite;
 
 };
 

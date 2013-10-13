@@ -15,6 +15,10 @@ GameState::GameState() :
     fpsText.setCharacterSize(16);
 
 
+    enemies.push_back(new Enemy());
+
+
+
 }
 
 void GameState::onSet()
@@ -33,7 +37,10 @@ void GameState::onUpdate()
     using graphics::window;
 
     player.update(map[1]);
-    e1.update(map[1]);
+
+    for(int i=0; i < enemies.size(); i++)
+            enemies[i]->update(map[1]);
+
 
 
     moveViewTowardsPoint(camera, player.getCenter(), 0.05);
@@ -43,7 +50,9 @@ void GameState::onUpdate()
     map.draw(window, (gridEnabled ? 0 : -1));
     player.display(window);
 
-     e1.display(window);
+    for(int i=0; i < enemies.size(); i++)
+        enemies[i]->display(window);
+
 
 
     graphics::window.setView(sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y)));
@@ -73,8 +82,10 @@ void GameState::onEvent(const sf::Event &event)
             gridEnabled = !gridEnabled;
             break;
 
-        case sf::Keyboard::P:
-
+        case sf::Keyboard::P:{
+            enemies.push_back(new Enemy());
+            int newEnemy = enemies.size();
+        }
             break;
         case sf::Keyboard::O:
             break;
