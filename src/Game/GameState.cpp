@@ -14,7 +14,6 @@ GameState::GameState() :
     fpsText.setFont(graphics::fontbasiclight);
     fpsText.setCharacterSize(16);
 
-
     enemies.push_back(new Enemy());
 
 
@@ -84,7 +83,8 @@ void GameState::onEvent(const sf::Event &event)
 
         case sf::Keyboard::P:{
             enemies.push_back(new Enemy());
-            int newEnemy = enemies.size();
+            int newEnemy = enemies.size() - 1;
+            enemies[newEnemy]->setPosition(player.getPosition().x, player.getPosition().y);
         }
             break;
         case sf::Keyboard::O:
