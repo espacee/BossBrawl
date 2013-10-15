@@ -2,8 +2,6 @@
 
 Entity::Entity()
 {
-    moveSpeed =10;
-    jumpSpeed = 30;
 
     texture.loadFromFile("res/img/GAME/Default.png");
     sprite.setTexture(texture);

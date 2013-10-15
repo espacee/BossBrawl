@@ -8,6 +8,9 @@ Enemy::Enemy()
 void Enemy::onSet()
 {
 
+    moveSpeed =10;
+    jumpSpeed = 10;
+
 texture.loadFromFile("res/img/GAME/Monster.png");
 
 int Seek = math::getRandomValue(1,2);

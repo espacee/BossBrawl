@@ -25,9 +25,8 @@ public:
 protected:
 
     sf::Vector2f movement;
-    float moveSpeed, jumpSpeed;
 
-    float gravity = 16;
+    float gravity = 9.81;
 
     sf::Vector2f center;
 

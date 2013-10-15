@@ -22,6 +22,8 @@ public:
 
 private:
 
+    float moveSpeed, jumpSpeed;
+
 
 
 };
