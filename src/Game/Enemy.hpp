@@ -17,7 +17,7 @@ class Enemy: public Entity
 public:
     Enemy();
     void onSet();
-    void update(Layer &mainLayer);
+    void updateEnemy(Layer &mainLayer);
     void SeekLeft();
     void SeekRight();
     void Follow();

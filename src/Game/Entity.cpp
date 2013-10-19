@@ -15,6 +15,7 @@ Entity::Entity()
 
 void Entity::updateEntity(Layer &mainLayer)
 {
+
         gravitymovement.y+=gravity;
         movement.y+=gravitymovement.y;
 

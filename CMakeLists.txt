@@ -42,8 +42,12 @@ src/Game/Core/stateDriver.cpp
 src/Game/Core/stateDriver.hpp
 src/Game/Enemy.cpp
 src/Game/Enemy.hpp
+src/Game/DefaultEnemy.cpp
+src/Game/DefaultEnemy.hpp
 src/Game/Entity.cpp
 src/Game/Entity.hpp
+src/Game/EntityContainer.cpp
+src/Game/EntityContainer.hpp
 src/Game/GameState.cpp
 src/Game/GameState.hpp
 src/Game/Gui/IconButton.cpp

@@ -11,7 +11,7 @@ void Enemy::onSet()
     moveSpeed =10;
     jumpSpeed = 20;
 
-texture.loadFromFile("res/img/GAME/Monster.png");
+texture.loadFromFile("res/img/GAME/Enemy.png");
 
 int Seek = math::getRandomValue(1,2);
 
@@ -22,7 +22,7 @@ else
 
 
 }
-void Enemy::update(Layer &mainLayer)
+void Enemy::updateEnemy(Layer &mainLayer)
 {
     updateEntity(mainLayer);
 

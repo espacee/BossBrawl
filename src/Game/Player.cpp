@@ -11,7 +11,7 @@ void Player::onSet()
     jumpSpeed = 20;
 
 }
-void Player::update(Layer &mainLayer)
+void Player::updatePlayer(Layer &mainLayer)
 {
     updateEntity(mainLayer);
 

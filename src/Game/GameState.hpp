@@ -6,6 +6,8 @@
 #include "Game/Player.hpp"
 #include "Game/Enemy.hpp"
 #include "Game/Entity.hpp"
+#include "Game/DefaultEnemy.hpp"
+#include "Game/EntityContainer.hpp"
 
 #include <SFML/Graphics.hpp>
 
@@ -31,8 +33,7 @@ private:
 
     Player player;
 
-    std::vector<Enemy*> enemies;
-    Enemy enemy;
+    EntityContainer entityContainer;
 
 
 };

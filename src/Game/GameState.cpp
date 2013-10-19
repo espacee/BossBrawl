@@ -14,10 +14,6 @@ GameState::GameState() :
     fpsText.setFont(graphics::fontbasiclight);
     fpsText.setCharacterSize(16);
 
-    enemies.push_back(new Enemy());
-
-
-
 }
 
 void GameState::onSet()
@@ -35,12 +31,11 @@ void GameState::onUpdate()
 {
     using graphics::window;
 
-    player.update(map[0]);
-
-    for(int i=0; i < enemies.size(); i++)
-            enemies[i]->update(map[0]);
+    player.updatePlayer(map[0]);
 
 
+
+    entityContainer.updateEntities(map[0]);
 
     moveViewTowardsPoint(camera, player.getCenter(), 0.05);
 
@@ -48,9 +43,9 @@ void GameState::onUpdate()
     graphics::window.setView(camera);
     map.draw(window, (gridEnabled ? 0 : -1));
     player.display(window);
+    entityContainer.displayEntities(window);
 
-    for(int i=0; i < enemies.size(); i++)
-        enemies[i]->display(window);
+
 
 
 
@@ -82,9 +77,7 @@ void GameState::onEvent(const sf::Event &event)
             break;
 
         case sf::Keyboard::P:{
-            enemies.push_back(new Enemy());
-            int newEnemy = enemies.size() - 1;
-            enemies[newEnemy]->setPosition(player.getPosition().x, player.getPosition().y);
+
         }
             break;
         case sf::Keyboard::O:
