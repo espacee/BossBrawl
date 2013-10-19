@@ -7,6 +7,7 @@ Entity::Entity()
     sprite.setTexture(texture);
     center = sf::Vector2f(texture.getSize().x / 2, texture.getSize().y / 2);
     movement = sf::Vector2f(0,0);
+    gravitymovement = sf::Vector2f(0,0);
 
     sprite.move(100,200);
 
@@ -14,12 +15,8 @@ Entity::Entity()
 
 void Entity::updateEntity(Layer &mainLayer)
 {
-
-
-
-     movement.y+=gravity;
-
-
+        gravitymovement.y+=gravity;
+        movement.y+=gravitymovement.y;
 
     int maxStepLength = sqrt(movement.x*movement.x+movement.y*movement.y);
     if(maxStepLength>20) maxStepLength = 20;
@@ -130,6 +127,7 @@ void Entity::updateEntity(Layer &mainLayer)
                         if (hitTest(botArea, currentTile))
                         {
                             movement.y = currentTile.top - (boundingBox.top + boundingBox.height);
+                            gravitymovement.y = 0;
                         }
                         if (hitTest(rightArea, currentTile))
                         {

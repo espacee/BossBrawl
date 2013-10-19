@@ -9,7 +9,7 @@ void Enemy::onSet()
 {
 
     moveSpeed =10;
-    jumpSpeed = 10;
+    jumpSpeed = 20;
 
 texture.loadFromFile("res/img/GAME/Monster.png");
 

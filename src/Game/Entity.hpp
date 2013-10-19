@@ -24,9 +24,9 @@ public:
 
 protected:
 
-    sf::Vector2f movement;
+    sf::Vector2f movement, gravitymovement;
 
-    float gravity = 9.81;
+    float gravity = 1;
 
     sf::Vector2f center;
 
