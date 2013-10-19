@@ -8,7 +8,7 @@ EntityContainer::EntityContainer()
 }
 void EntityContainer::onInit()
 {
-   defaultEnemy.push_back(new DefaultEnemy());
+   defaultEnemy.push_back(new DefaultEnemy(200,300));
 
 
 }
@@ -26,3 +26,16 @@ void EntityContainer::displayEntities(sf::RenderWindow &window)
 
 
 }
+
+void EntityContainer::addEntity(std::string entity, float posX, float posY)
+{
+    if(entity == "defaultEnemy")
+    {
+        defaultEnemy.push_back(new DefaultEnemy(posX, posY));
+    }
+
+
+
+
+    }
+

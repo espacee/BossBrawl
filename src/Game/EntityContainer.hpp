@@ -23,6 +23,8 @@ public:
     void updateEntities(Layer &mainLayer);
     void displayEntities(sf::RenderWindow &window);
 
+    void addEntity(std::string entity, float posX, float posY);
+
     std::vector<DefaultEnemy*> defaultEnemy;
 
 

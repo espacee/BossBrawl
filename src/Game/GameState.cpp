@@ -76,8 +76,7 @@ void GameState::onEvent(const sf::Event &event)
             gridEnabled = !gridEnabled;
             break;
 
-        case sf::Keyboard::P:{
-
+        case sf::Keyboard::P:{  
         }
             break;
         case sf::Keyboard::O:
