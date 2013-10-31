@@ -20,7 +20,7 @@ void Player::updatePlayer(Layer &mainLayer)
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         movement.x += moveSpeed;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-        movement.y += -jumpSpeed;
+        isJumping = true;
 
 }
 

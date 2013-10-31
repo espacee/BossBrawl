@@ -27,7 +27,7 @@ public:
 private:
 
     std::string entityState;
-    float moveSpeed, jumpSpeed;
+
 
 
 };

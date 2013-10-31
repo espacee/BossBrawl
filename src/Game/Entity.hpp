@@ -27,6 +27,8 @@ protected:
     sf::Vector2f movement, gravitymovement;
 
     float gravity = 1;
+    bool isJumping;
+    float moveSpeed, jumpSpeed;
 
     sf::Vector2f center;
 
