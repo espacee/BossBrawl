@@ -20,17 +20,18 @@ public:
     EntityContainer();
 
     void onInit();
+
     void updateEntities(Layer &mainLayer);
     void displayEntities(sf::RenderWindow &window);
 
     void addEntity(std::string entity, float posX, float posY);
 
-    std::vector<DefaultEnemy*> defaultEnemy;
+
 
 
 private:
     TileMap* map;
-
+    std::vector<DefaultEnemy*> defaultEnemy;
 };
 
 #endif // GAME_ENTITYCONTAINER_HPP

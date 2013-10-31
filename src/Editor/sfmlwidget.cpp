@@ -21,6 +21,7 @@ SFMLWidget::SFMLWidget(QWidget* Parent, const QPoint& Position, const QSize& Siz
 
     move(Position);
     resize(Size);
+
 }
 
 void SFMLWidget::setTool(int newTool)
@@ -78,6 +79,14 @@ void SFMLWidget::mousePressEvent(QMouseEvent *e)
 
         if (tool == 5)
             m_map[layer].fill(id);
+
+        if(tool == 8)
+        {
+            float x = e->x();
+            float y = e->y();
+            //entityCont->addEntity("defaultEnemy", x, y);
+        }
+
     }
 
     if (e->button() == Qt::RightButton)
@@ -211,9 +220,11 @@ void SFMLWidget::draw(sf::Vector2i mouseCoord)
 
 
         if (m_map[layer].tileExists(x, y))
-            m_map[layer](x, y) = id;
+               m_map[layer](x, y) = id;
+
     }
 }
+
 
 void SFMLWidget::erase(sf::Vector2i mouseCoord)
 {
