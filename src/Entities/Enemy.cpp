@@ -1,4 +1,4 @@
-#include "Game/Enemy.hpp"
+#include "Entities/Enemy.hpp"
 
 
 Enemy::Enemy()
@@ -48,7 +48,7 @@ void Enemy::updateEnemy(Layer &mainLayer)
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
         movement.x = moveSpeed;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
-        movement.y = -jumpSpeed; 
+        isJumping = true;
 //CONTROLS
 }
 

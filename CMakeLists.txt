@@ -20,6 +20,7 @@ src/Map/TileMap.cpp
 src/Map/TileMap.hpp
 )
 
+
 add_library(util
 src/Util/collision.cpp
 src/Util/collision.h
@@ -27,6 +28,17 @@ src/Util/math.hpp
 src/Util/unused.hpp
 src/Util/view.cpp
 src/Util/view.hpp
+
+src/Entities/EntityContainer.cpp
+src/Entities/EntityContainer.hpp
+src/Entities/Entity.cpp
+src/Entities/Entity.hpp
+src/Entities/Enemy.cpp
+src/Entities/Enemy.hpp
+src/Entities/DefaultEnemy.cpp
+src/Entities/DefaultEnemy.hpp
+src/Entities/Player.cpp
+src/Entities/Player.hpp
 )
 
 include_directories(src/Game)
@@ -40,14 +52,6 @@ src/Game/Core/graphics.hpp
 src/Game/Core/main.cpp
 src/Game/Core/stateDriver.cpp
 src/Game/Core/stateDriver.hpp
-src/Game/Enemy.cpp
-src/Game/Enemy.hpp
-src/Game/DefaultEnemy.cpp
-src/Game/DefaultEnemy.hpp
-src/Game/Entity.cpp
-src/Game/Entity.hpp
-src/Game/EntityContainer.cpp
-src/Game/EntityContainer.hpp
 src/Game/GameState.cpp
 src/Game/GameState.hpp
 src/Game/Gui/IconButton.cpp
@@ -62,15 +66,13 @@ src/Game/Menu/MenuState.cpp
 src/Game/Menu/MenuState.hpp
 src/Game/Menu/OptionsMenuState.cpp
 src/Game/Menu/OptionsMenuState.hpp
-src/Game/Player.cpp
-src/Game/Player.hpp
 )
 
-target_link_libraries(bossbrawl map util ${SFML_LIBRARIES})
+target_link_libraries(bossbrawl map util  ${SFML_LIBRARIES})
 
 # Add additional flags to gcc and clang
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_COMPILER_IS_CLANGXX OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-    set_target_properties(bossbrawl map PROPERTIES COMPILE_FLAGS "-std=c++11 -pedantic -Wall -Wextra -Wshadow")
+    set_target_properties(bossbrawl map util PROPERTIES COMPILE_FLAGS "-std=c++11 -pedantic -Wall -Wextra -Wshadow")
 endif()
 
 if(${BUILD_EDITOR})

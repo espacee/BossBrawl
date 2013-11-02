@@ -1,7 +1,8 @@
 #include "Editor/sfmlwidget.h"
 
-SFMLWidget::SFMLWidget(QWidget* Parent, const QPoint& Position, const QSize& Size, TileMap &map, sf::View* cameraP) :
-    m_map(map)
+SFMLWidget::SFMLWidget(QWidget* Parent, const QPoint& Position, const QSize& Size, TileMap &map, sf::View* cameraP, EntityContainer &cont) :
+    m_map(map),
+    m_cont(cont)
 {
     setParent(Parent);
     initialized = false;
@@ -21,7 +22,6 @@ SFMLWidget::SFMLWidget(QWidget* Parent, const QPoint& Position, const QSize& Siz
 
     move(Position);
     resize(Size);
-
 }
 
 void SFMLWidget::setTool(int newTool)
@@ -41,7 +41,6 @@ void SFMLWidget::setCurrentTile(int new_id)
 
 void SFMLWidget::processEvents()
 {
-
 }
 
 void SFMLWidget::showEvent(QShowEvent*)
@@ -81,11 +80,7 @@ void SFMLWidget::mousePressEvent(QMouseEvent *e)
             m_map[layer].fill(id);
 
         if(tool == 8)
-        {
-            float x = e->x();
-            float y = e->y();
-            //entityCont->addEntity("defaultEnemy", x, y);
-        }
+            drawEntity(sf::Vector2i(e->x(), e->y()));
 
     }
 
@@ -95,6 +90,8 @@ void SFMLWidget::mousePressEvent(QMouseEvent *e)
 
         if (tool == 11)
             camera->zoom(2);
+        if(tool == 8)
+            eraseEntity(sf::Vector2i(e->x(), e->y()));
     }
 
     if (e->button() == Qt::MiddleButton)
@@ -226,6 +223,7 @@ void SFMLWidget::draw(sf::Vector2i mouseCoord)
 }
 
 
+
 void SFMLWidget::erase(sf::Vector2i mouseCoord)
 {
     sf::Vector2i windowRelativeCoord = mouseCoord;
@@ -244,5 +242,53 @@ void SFMLWidget::erase(sf::Vector2i mouseCoord)
 
         if (m_map[layer].tileExists(x, y))
             m_map[layer](x, y) = 0;
+    }
+}
+void SFMLWidget::drawEntity(sf::Vector2i mouseCoord)
+{
+    sf::Vector2i windowRelativeCoord = mouseCoord;
+
+    sf::View temp = *camera;
+    temp.setCenter(temp.getCenter().x * m_map[layer].getDepthIndex() - m_map[layer].getPosition().x,
+                   temp.getCenter().y * m_map[layer].getDepthIndex() - m_map[layer].getPosition().y);
+
+    sf::Vector2f worldRelativeCoord =  mapPixelToCoords(windowRelativeCoord, temp);
+    sf::Vector2f layerRelativeCoord = worldRelativeCoord;
+
+    if (layerRelativeCoord.x > 0 && layerRelativeCoord.y > 0)
+    {
+        int x = layerRelativeCoord.x;
+        int y = layerRelativeCoord.y;
+
+
+        if (m_map[layer].tileExists(x/40, y/40))
+            m_cont.addEntity("defaultEnemy", x, y, true);
+
+    }
+}
+
+void SFMLWidget::eraseEntity(sf::Vector2i mouseCoord)
+{
+    sf::Vector2i windowRelativeCoord = mouseCoord;
+
+    sf::View temp = *camera;
+    temp.setCenter(temp.getCenter().x * m_map[layer].getDepthIndex() - m_map[layer].getPosition().x,
+                   temp.getCenter().y * m_map[layer].getDepthIndex() - m_map[layer].getPosition().y);
+
+    sf::Vector2f worldRelativeCoord =  mapPixelToCoords(windowRelativeCoord, temp);
+    sf::Vector2f layerRelativeCoord = worldRelativeCoord;
+
+    if (layerRelativeCoord.x > 0 && layerRelativeCoord.y > 0)
+    {
+        int x = layerRelativeCoord.x;
+        int y = layerRelativeCoord.y;
+
+
+        if (m_map[layer].tileExists(x/40, y/40))
+        {
+            m_cont.deleteEntity(x,y);
+        }
+
+
     }
 }

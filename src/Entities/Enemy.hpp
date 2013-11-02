@@ -1,5 +1,5 @@
-#ifndef GAME_ENEMY_HPP
-#define GAME_ENEMY_HPP
+#ifndef ENTITIES_ENEMY_HPP
+#define ENTITIES_ENEMY_HPP
 
 #include <SFML/Graphics.hpp>
 #include "Map/TileMap.hpp"
@@ -7,7 +7,7 @@
 #include <iostream>
 #include "Util/math.hpp"
 
-#include "Game/Entity.hpp"
+#include "Entities/Entity.hpp"
 
 /**
  * @brief The Enemy Class
@@ -32,4 +32,4 @@ private:
 
 };
 
-#endif // GAME_ENEMY_HPP
+#endif // ENTITIES_ENEMY_HPP

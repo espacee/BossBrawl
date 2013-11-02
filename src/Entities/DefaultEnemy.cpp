@@ -1,10 +1,11 @@
-#include "Game/DefaultEnemy.hpp"
+#include "Entities/DefaultEnemy.hpp"
 
 
-DefaultEnemy::DefaultEnemy(float posX, float posY)
+DefaultEnemy::DefaultEnemy(float posX, float posY, bool editmode)
 {
     texture.loadFromFile("res/img/GAME/Monster.png");
     setPosition(posX, posY);
+    editorMode = editmode;
 }
 
 void DefaultEnemy::update(Layer &mainLayer)

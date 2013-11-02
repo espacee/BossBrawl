@@ -9,6 +9,7 @@
 #include <QMouseEvent>
 #include <QWheelEvent>
 #include "Map/TileMap.hpp"
+#include "Entities/EntityContainer.hpp"
 
 #include <QDebug>
 
@@ -16,12 +17,14 @@ class SFMLWidget  : public QWidget, public sf::RenderWindow
 {
     Q_OBJECT
 public:
-    SFMLWidget(QWidget* Parent, const QPoint& Position, const QSize& Size, TileMap& map, sf::View* cameraP);
+    SFMLWidget(QWidget* Parent, const QPoint& Position, const QSize& Size, TileMap& map, sf::View* cameraP, EntityContainer& cont);
     ~SFMLWidget();
 
     void processEvents();
 
     void draw(sf::Vector2i mouseCoord);
+    void drawEntity(sf::Vector2i mouseCoord);
+    void eraseEntity(sf::Vector2i mouseCoord);
     void erase(sf::Vector2i mouseCoord);
 
 public slots:
@@ -32,6 +35,7 @@ public slots:
 private:
 
     TileMap& m_map;
+    EntityContainer& m_cont;
     sf::View* camera;
     void mousePressEvent(QMouseEvent *e);
     void mouseMoveEvent(QMouseEvent *e);

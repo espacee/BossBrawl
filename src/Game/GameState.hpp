@@ -3,11 +3,11 @@
 
 #include "Core/State.hpp"
 #include "Map/TileMap.hpp"
-#include "Game/Player.hpp"
-#include "Game/Enemy.hpp"
-#include "Game/Entity.hpp"
-#include "Game/DefaultEnemy.hpp"
-#include "Game/EntityContainer.hpp"
+#include "Entities//Player.hpp"
+#include "Entities/Enemy.hpp"
+#include "Entities/Entity.hpp"
+#include "Entities/DefaultEnemy.hpp"
+#include "Entities/EntityContainer.hpp"
 
 #include <SFML/Graphics.hpp>
 

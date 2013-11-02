@@ -14,6 +14,7 @@
 #include "Editor/tilewidget.h"
 #include "Editor/layertab.h"
 #include "Map/TileMap.hpp"
+#include "Entities/EntityContainer.hpp"
 
 class Editor : public QWidget
 {
@@ -60,6 +61,7 @@ public slots:
 private:
 
     TileMap map;
+    EntityContainer cont;
 
     QTimer timer;
     unsigned int frameTime;
@@ -121,7 +123,7 @@ private:
 
     LayerTab* layerTab;
     bool gridEnabled;
-    int currentLayer;
+    int currentLayer, mainLayer;
 
     QFileDialog* fileDialog = new QFileDialog;
     std::string filePath;

@@ -1,5 +1,5 @@
-#ifndef GAME_ENTITY_HPP
-#define GAME_ENTITY_HPP
+#ifndef ENTITIES_ENTITY_HPP
+#define ENTITIES_ENTITY_HPP
 
 #include <SFML/Graphics.hpp>
 #include "Map/TileMap.hpp"
@@ -19,6 +19,9 @@ public:
 
     void setPosition(int x, int y);
     sf::Vector2f getPosition();
+    void toggleEditorMode();
+
+    bool contains(float posX, float posY);
 
 
 
@@ -30,6 +33,8 @@ protected:
     bool isJumping;
     float moveSpeed, jumpSpeed;
 
+    bool editorMode;
+
     sf::Vector2f center;
 
     sf::Texture texture;
@@ -37,4 +42,4 @@ protected:
 
 };
 
-#endif // GAME_ENTITY_HPP
+#endif // ENTITIES_ENTITY_HPP

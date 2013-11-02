@@ -1,9 +1,9 @@
-#ifndef GAME_PLAYER_HPP
-#define GAME_PLAYER_HPP
+#ifndef ENTITIES_PLAYER_HPP
+#define ENTITIES_PLAYER_HPP
 
 #include <SFML/Graphics.hpp>
 #include "Map/TileMap.hpp"
-#include "Game/Entity.hpp"
+#include "Entities/Entity.hpp"
 #include "Util/collision.h"
 #include <iostream>
 
@@ -27,4 +27,4 @@ private:
 
 };
 
-#endif // GAME_PLAYER_HPP
+#endif // ENTITIES_PLAYER_HPP

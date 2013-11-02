@@ -58,6 +58,8 @@ Editor::Editor(QWidget *parent) : QWidget(parent),
     fileDialog->setAcceptMode(QFileDialog::AcceptSave);
 
     onInit();
+
+
 }
 
 Editor::~Editor()
@@ -96,9 +98,14 @@ void Editor::onUpdate()
 
     if (k >= 255 || k <= 0) c = !c;
 
+
     sfmlWidget->processEvents();
+    cont.updateEntities(map[0]);
 
     sfmlWidget->clear(sf::Color(i, j, k));
+    cont.displayEntities(*sfmlWidget);
+
+
 
     sfmlWidget->setView(camera);
     map.draw(*sfmlWidget, (gridEnabled ? currentLayer : - 1));
@@ -355,7 +362,7 @@ void Editor::initCentralWidget()
                                width() - toolBar->x() - toolBar->width() - rightPanelWidth - globalPadding,
                                height() - menuBarHeight - topBarHeight - globalPadding - botBarHeight);
 
-    sfmlWidget = new SFMLWidget(centralWidget, QPoint(0, 0), centralWidget->size(), map, &camera);
+    sfmlWidget = new SFMLWidget(centralWidget, QPoint(0, 0), centralWidget->size(), map, &camera, cont);
 
     tileWidget = new TileWidget(centralWidget);
     tileWidget->move(0, 0);
@@ -556,4 +563,3 @@ void Editor::toggleVisibleButtonClicked()
 {
     layerTab->toggleVisible();
 }
-

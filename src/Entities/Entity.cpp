@@ -1,4 +1,4 @@
-#include "Game/Entity.hpp"
+#include "Entities/Entity.hpp"
 
 Entity::Entity()
 {
@@ -16,7 +16,8 @@ Entity::Entity()
 
 void Entity::updateEntity(Layer &mainLayer)
 {
-
+    if(editorMode == false)
+    {
         gravitymovement.y+=gravity;
         movement.y+=gravitymovement.y;
 
@@ -155,7 +156,7 @@ void Entity::updateEntity(Layer &mainLayer)
     sprite.move(movement);
     movement = sf::Vector2f(0,0);
 
-
+}
 }
 
 void Entity::display(sf::RenderWindow &target)
@@ -174,5 +175,16 @@ void Entity::setPosition(int x, int y)
 sf::Vector2f Entity::getPosition()
 {
     return sprite.getPosition();
+}
+bool Entity::contains(float posX, float posY)
+{
+    if(sprite.getGlobalBounds().contains(posX, posY))
+        return true;
+    else
+        return false;
+
+
+
+
 }
 

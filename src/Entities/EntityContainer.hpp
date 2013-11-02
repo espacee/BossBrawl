@@ -1,12 +1,12 @@
-#ifndef GAME_ENTITYCONTAINER_HPP
-#define GAME_ENTITYCONTAINER_HPP
+#ifndef ENTITIES_ENTITYCONTAINER_HPP
+#define ENTITIES_ENTITYCONTAINER_HPP
 
 #include <SFML/Graphics.hpp>
 #include "Util/math.hpp"
 #include "Map/TileMap.hpp"
-#include "Game/Enemy.hpp"
-#include "Game/Entity.hpp"
-#include "Game/DefaultEnemy.hpp"
+#include "Entities/Enemy.hpp"
+#include "Entities/Entity.hpp"
+#include "Entities/DefaultEnemy.hpp"
 #include <iostream>
 #include <vector>
 
@@ -24,7 +24,8 @@ public:
     void updateEntities(Layer &mainLayer);
     void displayEntities(sf::RenderWindow &window);
 
-    void addEntity(std::string entity, float posX, float posY);
+    void addEntity(std::string entity, float posX, float posY, bool editorMode);
+    void deleteEntity(float posX, float posY);
 
 
 
@@ -34,4 +35,4 @@ private:
     std::vector<DefaultEnemy*> defaultEnemy;
 };
 
-#endif // GAME_ENTITYCONTAINER_HPP
+#endif // ENTITIES_ENTITYCONTAINER_HPP
