@@ -506,6 +506,7 @@ void Editor::tileButtonClicked()
 void Editor::newButtonClicked()
 {
     map.reset();
+    cont.reset();
     layerTab->loadLayersFromMap();
 }
 
@@ -513,9 +514,16 @@ void Editor::openButtonClicked()
 {
     std::string filename = QFileDialog::getOpenFileName(this).toStdString();//getting the file name
 
+
     if (map.loadFromFile(filename))
     {
-        layerTab->loadLayersFromMap();
+        layerTab->loadLayersFromMap(); 
+
+        std::string entityfilename = filename;
+        int entityfilenamesize = entityfilename.size() - 4;
+        entityfilename.replace(entityfilenamesize, 4, ".entity");
+
+        cont.loadFromFile(entityfilename, true);
     }
 
     filePath = filename;
@@ -526,10 +534,17 @@ void Editor::saveButtonClicked()
     {
         filePath = QFileDialog::getSaveFileName(this).toStdString();
         map.saveToFile(filePath + ".map");
+        cont.saveToFile(filePath + ".entity");
     }
     else
     {
         map.saveToFile(filePath);
+
+        std::string entityfilename = filePath;
+        int entityfilenamesize = entityfilename.size() - 4;
+        entityfilename.replace(entityfilenamesize, 4, ".entity");
+
+        cont.saveToFile(entityfilename);
     }
 }
 void Editor::tileSelected(int new_id)

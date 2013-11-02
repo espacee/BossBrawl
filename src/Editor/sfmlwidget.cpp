@@ -97,6 +97,7 @@ void SFMLWidget::mousePressEvent(QMouseEvent *e)
     if (e->button() == Qt::MiddleButton)
     {
         middleButtonDown = true;
+
     }
 
 

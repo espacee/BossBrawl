@@ -9,6 +9,8 @@
 #include "Entities/DefaultEnemy.hpp"
 #include <iostream>
 #include <vector>
+#include "SFML/Graphics.hpp"
+#include <fstream>
 
 
 /**
@@ -26,6 +28,11 @@ public:
 
     void addEntity(std::string entity, float posX, float posY, bool editorMode);
     void deleteEntity(float posX, float posY);
+
+    bool loadFromFile(const std::string& filename, bool editorMode);
+    bool saveToFile(const std::string& filename);
+
+    void reset();
 
 
 
