@@ -23,7 +23,7 @@ public:
     void processEvents();
 
     void draw(sf::Vector2i mouseCoord);
-    void drawEntity(sf::Vector2i mouseCoord);
+    void drawEntity(sf::Vector2i mouseCoord, std::string entity);
     void eraseEntity(sf::Vector2i mouseCoord);
     void erase(sf::Vector2i mouseCoord);
 

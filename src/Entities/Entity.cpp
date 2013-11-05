@@ -182,9 +182,11 @@ bool Entity::contains(float posX, float posY)
         return true;
     else
         return false;
+}
+sf::Vector2f Entity::getSize()
+{
+    sf::Vector2f size(sprite.getGlobalBounds().width, sprite.getGlobalBounds().height);
 
-
-
-
+    return size;
 }
 

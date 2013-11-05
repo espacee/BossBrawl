@@ -22,6 +22,7 @@ public:
     void toggleEditorMode();
 
     bool contains(float posX, float posY);
+    sf::Vector2f getSize();
 
 
 

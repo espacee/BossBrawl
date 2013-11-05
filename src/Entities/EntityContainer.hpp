@@ -34,12 +34,11 @@ public:
 
     void reset();
 
-
-
+std::vector<DefaultEnemy*> defaultEnemy;
 
 private:
     TileMap* map;
-    std::vector<DefaultEnemy*> defaultEnemy;
+
 };
 
 #endif // ENTITIES_ENTITYCONTAINER_HPP

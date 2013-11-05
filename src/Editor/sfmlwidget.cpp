@@ -80,7 +80,7 @@ void SFMLWidget::mousePressEvent(QMouseEvent *e)
             m_map[layer].fill(id);
 
         if(tool == 8)
-            drawEntity(sf::Vector2i(e->x(), e->y()));
+            drawEntity(sf::Vector2i(e->x(), e->y()), "defaultEnemy");
 
     }
 
@@ -245,7 +245,7 @@ void SFMLWidget::erase(sf::Vector2i mouseCoord)
             m_map[layer](x, y) = 0;
     }
 }
-void SFMLWidget::drawEntity(sf::Vector2i mouseCoord)
+void SFMLWidget::drawEntity(sf::Vector2i mouseCoord, std::string entity)
 {
     sf::Vector2i windowRelativeCoord = mouseCoord;
 
@@ -263,7 +263,7 @@ void SFMLWidget::drawEntity(sf::Vector2i mouseCoord)
 
 
         if (m_map[layer].tileExists(x/40, y/40))
-            m_cont.addEntity("defaultEnemy", x, y, true);
+            m_cont.addEntity(entity, (x - (m_cont.defaultEnemy[0]->getSize().x/2)), (y -(m_cont.defaultEnemy[0]->getSize().y /2)), true);
 
     }
 }
