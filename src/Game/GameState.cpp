@@ -15,6 +15,8 @@ GameState::GameState() :
     fpsText.setFont(graphics::fontbasiclight);
     fpsText.setCharacterSize(16);
 
+    ui.onInit();
+
 }
 
 void GameState::onSet()
@@ -33,7 +35,7 @@ void GameState::onUpdate()
     using graphics::window;
 
     player.updatePlayer(map[0]);
-
+    ui.update(player);
 
 
     entityContainer.updateEntities(map[0]);
@@ -47,12 +49,12 @@ void GameState::onUpdate()
     entityContainer.displayEntities(window);
 
 
-
-
-
     graphics::window.setView(sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y)));
     fpsText.setString("Fps: " + std::to_string(stateDriver::getFps()));
+
     window.draw(fpsText);
+    ui.display(window);
+
 }
 
 void GameState::onEvent(const sf::Event &event)
@@ -78,9 +80,15 @@ void GameState::onEvent(const sf::Event &event)
             break;
 
         case sf::Keyboard::P:{  
+            player.heal(10);
+            std::cout<< "PlayerHealth: "<< player.getHealth() << std::endl;
         }
             break;
         case sf::Keyboard::O:
+        {
+            player.damage(10);
+            std::cout<< "PlayerHealth: "<< player.getHealth() << std::endl;
+        }
             break;
 
         default:

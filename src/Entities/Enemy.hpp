@@ -18,15 +18,16 @@ public:
     Enemy();
     void onSet();
     void updateEnemy(Layer &mainLayer);
-    void SeekLeft();
-    void SeekRight();
     void Follow();
     void Attack();
+    void Idle();
+
 
 
 private:
 
     std::string entityState;
+    int random;
 
 
 

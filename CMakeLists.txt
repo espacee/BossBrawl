@@ -54,6 +54,8 @@ src/Game/Core/stateDriver.cpp
 src/Game/Core/stateDriver.hpp
 src/Game/GameState.cpp
 src/Game/GameState.hpp
+src/Game/Gui/UI.cpp
+src/Game/Gui/UI.hpp
 src/Game/Gui/IconButton.cpp
 src/Game/Gui/IconButton.hpp
 src/Game/Gui/TextButton.cpp

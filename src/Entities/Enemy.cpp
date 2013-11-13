@@ -13,32 +13,18 @@ void Enemy::onSet()
 
 texture.loadFromFile("res/img/GAME/Enemy.png");
 
-int Seek = math::getRandomValue(1,2);
 
-if(Seek == 1)
-    entityState = "SeekLeft";
-else
-    entityState = "SeekRight";
-
+entityState = "Idle";
 
 }
 void Enemy::updateEnemy(Layer &mainLayer)
 {
     updateEntity(mainLayer);
 
-    //AI
-    if(entityState == "SeekLeft"){ 
-        SeekLeft();
-    }
-    else if(entityState == "SeekRight"){
-        SeekRight();
-    }
-    else if(entityState == "Follow"){   
-        Follow();
-    }
-    else if(entityState == "Attack"){ 
-        Attack();
-    }
+   //AI
+
+    if(entityState == "Idle")
+        Idle();
 
 
 
@@ -52,14 +38,6 @@ void Enemy::updateEnemy(Layer &mainLayer)
 //CONTROLS
 }
 
-void Enemy::SeekLeft()
-{
-
-}
-void Enemy::SeekRight()
-{
-
-}
 void Enemy::Follow()
 {
 
@@ -68,5 +46,9 @@ void Enemy::Follow()
 void Enemy::Attack()
 {
 
+
+}
+void Enemy::Idle()
+{
 
 }

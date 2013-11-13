@@ -23,12 +23,17 @@ public:
 
     bool contains(float posX, float posY);
     sf::Vector2f getSize();
+    float getHealth();
+    void damage(float dmg);
+    void heal(float healed);
 
 
 
 protected:
 
     sf::Vector2f movement, gravitymovement;
+
+    float health, maxHealth;
 
     float gravity = 1;
     bool isJumping;

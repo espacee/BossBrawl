@@ -8,6 +8,7 @@
 #include "Entities/Entity.hpp"
 #include "Entities/DefaultEnemy.hpp"
 #include "Entities/EntityContainer.hpp"
+#include "Game/Gui/UI.hpp"
 
 #include <SFML/Graphics.hpp>
 
@@ -26,6 +27,8 @@ public:
 
 
 private:
+    UI ui;
+
     sf::View camera;
     TileMap map;
     sf::Text fpsText;

@@ -12,10 +12,17 @@ Entity::Entity()
 
     sprite.move(100,200);
 
+    maxHealth = 100;
+    health = maxHealth;
 }
 
 void Entity::updateEntity(Layer &mainLayer)
 {
+    if( health < 0)
+           health = 0;
+    if(health > maxHealth)
+        health = maxHealth;
+
     if(editorMode == false)
     {
         gravitymovement.y+=gravity;
@@ -188,5 +195,21 @@ sf::Vector2f Entity::getSize()
     sf::Vector2f size(sprite.getGlobalBounds().width, sprite.getGlobalBounds().height);
 
     return size;
+}
+float Entity::getHealth()
+{
+    return health;
+}
+void Entity::damage(float dmg)
+{
+    if((health - dmg) >= 0)
+        health = health - dmg;
+}
+void Entity::heal(float healed)
+{
+    if((health + healed) > maxHealth)
+        health = maxHealth;
+    else
+        health = health + healed;
 }
 
