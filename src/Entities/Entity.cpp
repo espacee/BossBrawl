@@ -14,6 +14,7 @@ Entity::Entity()
 
     maxHealth = 100;
     health = maxHealth;
+    editorMode = false;
 }
 
 void Entity::updateEntity(Layer &mainLayer)
