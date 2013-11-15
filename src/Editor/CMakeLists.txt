@@ -15,9 +15,9 @@ LayerTabWidget.cpp
 LayerTabWidget.hpp
 LayerWidget.cpp
 LayerWidget.hpp
+SFMLWidget.cpp
+SFMLWidget.hpp
 main.cpp
-sfmlwidget.cpp
-sfmlwidget.h
 tilewidget.cpp
 tilewidget.h
 ${UIS_HDRS}

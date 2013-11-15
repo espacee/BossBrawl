@@ -1,4 +1,4 @@
-#include "sfmlwidget.h"
+#include "SFMLWidget.hpp"
 
 SFMLWidget::SFMLWidget(QWidget* Parent, const QPoint& Position, const QSize& Size, TileMap &map, sf::View* cameraP, EntityContainer &cont) :
     m_map(map),

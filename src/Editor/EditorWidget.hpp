@@ -10,7 +10,7 @@
 #include <QTimer>
 #include <QFileDialog>
 
-#include "sfmlwidget.h"
+#include "SFMLWidget.hpp"
 #include "tilewidget.h"
 #include "LayerTabWidget.hpp"
 #include "Map/TileMap.hpp"
