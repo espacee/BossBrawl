@@ -1,5 +1,5 @@
-#ifndef LAYERSETTINGS_H
-#define LAYERSETTINGS_H
+#ifndef LAYERSETTINGSDIALOG_HPP
+#define LAYERSETTINGSDIALOG_HPP
 
 #include <QDialog>
 #include "Map/TileMap.hpp"
@@ -8,13 +8,13 @@ namespace Ui {
 class LayerSettings;
 }
 
-class LayerSettings : public QDialog
+class LayerSettingsDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit LayerSettings(QWidget *parent = 0);
-    ~LayerSettings();
+    explicit LayerSettingsDialog(QWidget *parent = 0);
+    ~LayerSettingsDialog();
 
     Ui::LayerSettings* getUi();
 
@@ -26,4 +26,4 @@ private:
     Ui::LayerSettings *ui;
 };
 
-#endif // LAYERSETTINGS_H
+#endif // LAYERSETTINGSDIALOG_HPP

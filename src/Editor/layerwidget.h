@@ -6,7 +6,7 @@
 #include <QPushButton>
 #include <QResizeEvent>
 
-#include "layersettings.h"
+#include "LayerSettingsDialog.hpp"
 #include "Map/TileMap.hpp"
 
 class LayerWidget : public QWidget
@@ -43,7 +43,7 @@ private:
 
     QLabel* title;
     QPushButton* propertiesButton;
-    LayerSettings* dialog;
+    LayerSettingsDialog* dialog;
 
     int index;
 };

@@ -19,7 +19,7 @@ LayerWidget::LayerWidget(QWidget *parent_, TileMap &map) : QWidget(parent_),
     propertiesButton = new QPushButton(">>", this);
     propertiesButton->setObjectName("button");
 
-    dialog = new LayerSettings();
+    dialog = new LayerSettingsDialog();
 
     connect(dialog->getUi()->nameEdit, SIGNAL(textChanged(QString)), this, SLOT(rename(QString)));
     connect(dialog->getUi()->widthSpinBox, SIGNAL(valueChanged(int)), this, SLOT(changeWidth(int)));

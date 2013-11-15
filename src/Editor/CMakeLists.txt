@@ -9,8 +9,8 @@ layersettings.ui
 add_executable(brawledit
 EditorWidget.cpp
 EditorWidget.hpp
-layersettings.cpp
-layersettings.h
+LayerSettingsDialog.cpp
+LayerSettingsDialog.hpp
 layertab.cpp
 layertab.h
 layerwidget.cpp

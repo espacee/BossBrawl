@@ -1,8 +1,8 @@
-#include "layersettings.h"
+#include "LayerSettingsDialog.hpp"
 #include "ui_layersettings.h"
 #include <QString>
 
-LayerSettings::LayerSettings(QWidget *parent_) :
+LayerSettingsDialog::LayerSettingsDialog(QWidget *parent_) :
     QDialog(parent_),
     ui(new Ui::LayerSettings)
 {
@@ -11,17 +11,17 @@ LayerSettings::LayerSettings(QWidget *parent_) :
     layout()->setSizeConstraint(QLayout::SetFixedSize);
 }
 
-Ui::LayerSettings *LayerSettings::getUi()
+Ui::LayerSettings *LayerSettingsDialog::getUi()
 {
     return ui;
 }
 
-LayerSettings::~LayerSettings()
+LayerSettingsDialog::~LayerSettingsDialog()
 {
     delete ui;
 }
 
-void LayerSettings::on_OKButton_clicked()
+void LayerSettingsDialog::on_OKButton_clicked()
 {
     accept();
 }

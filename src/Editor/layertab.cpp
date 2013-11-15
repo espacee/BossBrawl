@@ -1,5 +1,5 @@
 #include "layertab.h"
-#include "layersettings.h"
+#include "LayerSettingsDialog.hpp"
 
 LayerTab::LayerTab(QWidget *parent_, TileMap &map) :
     m_map(map)
