@@ -52,7 +52,7 @@ Editor::Editor(QWidget *parent) : QWidget(parent),
     connect(layerTab, SIGNAL(layerSelected(int)), sfmlWidget, SLOT(setCurrentLayer(int)));
     connect(layerTab, SIGNAL(layerSelected(int)), this, SLOT(setCurrentLayer(int)));
 
-    i = j = k = 127;
+    clear_red = clear_green = clear_blue = 127;
     a = b = c = true;
 
     fileDialog->setAcceptMode(QFileDialog::AcceptSave);
@@ -83,26 +83,26 @@ void Editor::onInit()
 void Editor::onUpdate()
 {
 
-    if (a) i += 0.001;
-    else i -= 0.001;
+    if (a) clear_red += 0.001;
+    else clear_red -= 0.001;
 
-    if (i >= 255 || i <= 0) a = !a;
+    if (clear_red >= 255 || clear_red <= 0) a = !a;
 
-    if (b) j += 0.015;
-    else j -= 0.015;
+    if (b) clear_green += 0.015;
+    else clear_green -= 0.015;
 
-    if (j >= 255 || j <= 0) b = !b;
+    if (clear_green >= 255 || clear_green <= 0) b = !b;
 
-    if (c) k += 0.005;
-    else k -= 0.005;
+    if (c) clear_blue += 0.005;
+    else clear_blue -= 0.005;
 
-    if (k >= 255 || k <= 0) c = !c;
+    if (clear_blue >= 255 || clear_blue <= 0) c = !c;
 
 
     sfmlWidget->processEvents();
     cont.updateEntities(map[0]);
 
-    sfmlWidget->clear(sf::Color(i, j, k));
+    sfmlWidget->clear(sf::Color::White);
     cont.displayEntities(*sfmlWidget);
 
 

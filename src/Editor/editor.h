@@ -79,7 +79,7 @@ private:
     int rightPanelWidth;
     int botBarHeight;
 
-    float i, j, k;
+    float clear_red, clear_green, clear_blue;
     bool a, b, c;
 
     SFMLWidget* sfmlWidget;
