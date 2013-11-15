@@ -19,7 +19,7 @@ entityState = "Idle";
 }
 void Enemy::updateEnemy(Layer &mainLayer)
 {
-    updateEntity(mainLayer);
+    update(mainLayer);
 
    //AI
 

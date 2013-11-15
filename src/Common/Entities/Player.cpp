@@ -13,7 +13,7 @@ void Player::onSet()
 }
 void Player::updatePlayer(Layer &mainLayer)
 {
-    updateEntity(mainLayer);
+    update(mainLayer);
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         movement.x += -moveSpeed;

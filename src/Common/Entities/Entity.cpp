@@ -17,7 +17,7 @@ Entity::Entity()
     editorMode = false;
 }
 
-void Entity::updateEntity(Layer &mainLayer)
+void Entity::update(Layer &mainLayer)
 {
     if( health < 0)
            health = 0;
