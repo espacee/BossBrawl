@@ -315,7 +315,7 @@ void EditorWidget::initRightPanel()
                             rightPanelWidth,
                             height() - menuBarHeight - globalPadding);
 
-    layerTab = new LayerTab(rightPanel, map);
+    layerTab = new LayerTabWidget(rightPanel, map);
     layerTab->resize(rightPanel->size());
 }
 

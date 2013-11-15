@@ -11,10 +11,10 @@ EditorWidget.cpp
 EditorWidget.hpp
 LayerSettingsDialog.cpp
 LayerSettingsDialog.hpp
-layertab.cpp
-layertab.h
-layerwidget.cpp
-layerwidget.h
+LayerTabWidget.cpp
+LayerTabWidget.hpp
+LayerWidget.cpp
+LayerWidget.hpp
 main.cpp
 sfmlwidget.cpp
 sfmlwidget.h

@@ -12,7 +12,7 @@
 
 #include "sfmlwidget.h"
 #include "tilewidget.h"
-#include "layertab.h"
+#include "LayerTabWidget.hpp"
 #include "Map/TileMap.hpp"
 #include "Entities/EntityContainer.hpp"
 
@@ -121,7 +121,7 @@ private:
 
     QPushButton* tileButton;
 
-    LayerTab* layerTab;
+    LayerTabWidget* layerTab;
     bool gridEnabled;
     int currentLayer, mainLayer;
 

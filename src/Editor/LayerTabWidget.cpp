@@ -1,7 +1,7 @@
-#include "layertab.h"
+#include "LayerTabWidget.hpp"
 #include "LayerSettingsDialog.hpp"
 
-LayerTab::LayerTab(QWidget *parent_, TileMap &map) :
+LayerTabWidget::LayerTabWidget(QWidget *parent_, TileMap &map) :
     m_map(map)
 {
     setParent(parent_);
@@ -65,18 +65,18 @@ LayerTab::LayerTab(QWidget *parent_, TileMap &map) :
     currentVisibleOnly = false;
 }
 
-void LayerTab::reset()
+void LayerTabWidget::reset()
 {
 
 }
 
-void LayerTab::addLayer()
+void LayerTabWidget::addLayer()
 {
     m_map.addLayer(currentLayer + 1);
     loadLayersFromMap();
 }
 
-void LayerTab::addLayerWidget()
+void LayerTabWidget::addLayerWidget()
 {
     int newLayer;
 
@@ -99,7 +99,7 @@ void LayerTab::addLayerWidget()
     layerID++;
 }
 
-void LayerTab::loadLayersFromMap()
+void LayerTabWidget::loadLayersFromMap()
 {
     for (auto w : layerWidgets)
         delete w;
@@ -112,7 +112,7 @@ void LayerTab::loadLayersFromMap()
     }
 }
 
-void LayerTab::removeLayer()
+void LayerTabWidget::removeLayer()
 {
     if (layerWidgets.size() > 1)
     {
@@ -129,7 +129,7 @@ void LayerTab::removeLayer()
         reorder();
     }
 }
-void LayerTab::moveBg()
+void LayerTabWidget::moveBg()
 {
     if (currentLayer > 0)
     {
@@ -143,7 +143,7 @@ void LayerTab::moveBg()
     }
 }
 
-void LayerTab::moveFg()
+void LayerTabWidget::moveFg()
 {
     if (currentLayer < layerWidgets.size() - 1)
     {
@@ -157,7 +157,7 @@ void LayerTab::moveFg()
     }
 }
 
-void LayerTab::reorder()
+void LayerTabWidget::reorder()
 {
     pan->setFixedHeight(layerWidgets.size() * (layerWidgetHeigth + offset));
 
@@ -172,7 +172,7 @@ void LayerTab::reorder()
     updateVisible();
 }
 
-void LayerTab::resizeEvent(QResizeEvent *e)
+void LayerTabWidget::resizeEvent(QResizeEvent *e)
 {
     e->ignore();
     addLayerButton->resize(40, 40);
@@ -192,12 +192,12 @@ void LayerTab::resizeEvent(QResizeEvent *e)
     reorder();
 }
 
-void LayerTab::mousePressEvent(QMouseEvent *e)
+void LayerTabWidget::mousePressEvent(QMouseEvent *e)
 {
     e->ignore();
 }
 
-void LayerTab::keyPressEvent(QKeyEvent* e)
+void LayerTabWidget::keyPressEvent(QKeyEvent* e)
 {
     if (e->key() == Qt::Key_Delete)
     {
@@ -205,7 +205,7 @@ void LayerTab::keyPressEvent(QKeyEvent* e)
     }
 }
 
-void LayerTab::selectLayer(int layer)
+void LayerTabWidget::selectLayer(int layer)
 {
     for (int i = 0; i < layerWidgets.size(); i++)
     {
@@ -220,13 +220,13 @@ void LayerTab::selectLayer(int layer)
     updateVisible();
 }
 
-void LayerTab::toggleVisible()
+void LayerTabWidget::toggleVisible()
 {
     currentVisibleOnly = !currentVisibleOnly;
     updateVisible();
 }
 
-void LayerTab::updateVisible()
+void LayerTabWidget::updateVisible()
 {
     if (currentVisibleOnly)
     {
