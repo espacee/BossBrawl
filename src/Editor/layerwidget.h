@@ -24,10 +24,10 @@ signals:
 
 public slots:
     void rename(QString new_name);
-    void changeWidth(int width);
-    void changeHeigth(int height);
-    void changeX(int x);
-    void changeY(int y);
+    void changeWidth(int value);
+    void changeHeigth(int value);
+    void changeX(int value);
+    void changeY(int value);
     void changeDepthIndex(double depthIndex);
     void changeGridColor(QColor color);
     void clearLayer();

@@ -1,7 +1,7 @@
 #include "Editor/layerwidget.h"
 #include "ui_layersettings.h"
 
-LayerWidget::LayerWidget(QWidget *parent, TileMap &map) : QWidget(parent),
+LayerWidget::LayerWidget(QWidget *parent_, TileMap &map) : QWidget(parent_),
     m_map(map)
 {
     setObjectName("layer");
@@ -76,24 +76,24 @@ void LayerWidget::rename(QString new_name)
     title->setText(new_name);
 }
 
-void LayerWidget::changeWidth(int width)
+void LayerWidget::changeWidth(int value)
 {
-    m_map[index].resize(width, m_map[index].getVLength());
+    m_map[index].resize(value, m_map[index].getVLength());
 }
 
-void LayerWidget::changeHeigth(int height)
+void LayerWidget::changeHeigth(int value)
 {
-    m_map[index].resize(m_map[index].getHLength(), height);
+    m_map[index].resize(m_map[index].getHLength(), value);
 }
 
-void LayerWidget::changeX(int x)
+void LayerWidget::changeX(int value)
 {
-    m_map[index].setPosition(x, m_map[index].getPosition().y);
+    m_map[index].setPosition(value, m_map[index].getPosition().y);
 }
 
-void LayerWidget::changeY(int y)
+void LayerWidget::changeY(int value)
 {
-    m_map[index].setPosition(m_map[index].getPosition().x, y);
+    m_map[index].setPosition(m_map[index].getPosition().x, value);
 }
 
 void LayerWidget::changeDepthIndex(double depthIndex)

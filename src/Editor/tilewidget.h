@@ -12,7 +12,7 @@ class TileWidget : public QScrollArea
     Q_OBJECT
 public:
     TileWidget(QWidget *parent = 0);
-    void select(int x, int y);
+    void select(int xpos, int ypos);
     int round40(int nb);
 
 signals:

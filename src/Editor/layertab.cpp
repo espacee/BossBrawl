@@ -1,10 +1,10 @@
 #include "Editor/layertab.h"
 #include "layersettings.h"
 
-LayerTab::LayerTab(QWidget *parent, TileMap &map) :
+LayerTab::LayerTab(QWidget *parent_, TileMap &map) :
     m_map(map)
 {
-    setParent(parent);
+    setParent(parent_);
 
     setAutoFillBackground(true);
     QPalette pal(palette());

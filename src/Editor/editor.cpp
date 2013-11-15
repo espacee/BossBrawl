@@ -1,6 +1,6 @@
 #include "editor.h"
 
-Editor::Editor(QWidget *parent) : QWidget(parent),
+Editor::Editor(QWidget *parent_) : QWidget(parent_),
     gridEnabled(false),
     currentLayer(0)
 {

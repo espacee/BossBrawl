@@ -1,8 +1,8 @@
 #include "Editor/tilewidget.h"
 
-TileWidget::TileWidget(QWidget *parent)
+TileWidget::TileWidget(QWidget *parent_)
 {
-    setParent(parent);
+    setParent(parent_);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 
@@ -33,27 +33,27 @@ TileWidget::TileWidget(QWidget *parent)
     leftButtonDown = false;
 }
 
-void TileWidget::select(int x, int y)
+void TileWidget::select(int xpos, int ypos)
 {
-    x += horizontalScrollBar()->value();
-    y += verticalScrollBar()->value();
+    xpos += horizontalScrollBar()->value();
+    ypos += verticalScrollBar()->value();
 
-    if (x < 40) x = 40;
+    if (xpos < 40) xpos = 40;
 
-    if (x >= 40 + tileSetLabel->width()) x = tileSetLabel->width();
+    if (xpos >= 40 + tileSetLabel->width()) xpos = tileSetLabel->width();
 
-    if (y < 40) y = 40;
+    if (ypos < 40) ypos = 40;
 
-    if (y >= 40 + tileSetLabel->height()) y = tileSetLabel->height();
+    if (ypos >= 40 + tileSetLabel->height()) ypos = tileSetLabel->height();
 
-    x = round40(x);
-    y = round40(y);
-    cursor->move(x, y);
+    xpos = round40(xpos);
+    ypos = round40(ypos);
+    cursor->move(xpos, ypos);
 
-    id = (y - 40) / 40 * (tileSetLabel->width() / 40) + (x - 40) / 40 + 1;
+    id = (ypos - 40) / 40 * (tileSetLabel->width() / 40) + (xpos - 40) / 40 + 1;
 
     emit selected(id);
-    emit selected(tileSetPixmap.copy(x - 40, y - 40, 40, 40));
+    emit selected(tileSetPixmap.copy(xpos - 40, ypos - 40, 40, 40));
 
 }
 

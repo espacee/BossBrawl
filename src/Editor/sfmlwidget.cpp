@@ -213,12 +213,12 @@ void SFMLWidget::draw(sf::Vector2i mouseCoord)
 
     if (layerRelativeCoord.x > 0 && layerRelativeCoord.y > 0)
     {
-        int x = layerRelativeCoord.x / GRID_SIZE ;
-        int y = layerRelativeCoord.y / GRID_SIZE ;
+        int xpos = layerRelativeCoord.x / GRID_SIZE ;
+        int ypos = layerRelativeCoord.y / GRID_SIZE ;
 
 
-        if (m_map[layer].tileExists(x, y))
-               m_map[layer](x, y) = id;
+        if (m_map[layer].tileExists(xpos, ypos))
+               m_map[layer](xpos, ypos) = id;
 
     }
 }
@@ -238,11 +238,11 @@ void SFMLWidget::erase(sf::Vector2i mouseCoord)
 
     if (layerRelativeCoord.x > 0 && layerRelativeCoord.y > 0)
     {
-        int x = layerRelativeCoord.x / GRID_SIZE ;
-        int y = layerRelativeCoord.y / GRID_SIZE ;
+        int xpos = layerRelativeCoord.x / GRID_SIZE ;
+        int ypos = layerRelativeCoord.y / GRID_SIZE ;
 
-        if (m_map[layer].tileExists(x, y))
-            m_map[layer](x, y) = 0;
+        if (m_map[layer].tileExists(xpos, ypos))
+            m_map[layer](xpos, ypos) = 0;
     }
 }
 void SFMLWidget::drawEntity(sf::Vector2i mouseCoord, std::string entity)
@@ -258,12 +258,12 @@ void SFMLWidget::drawEntity(sf::Vector2i mouseCoord, std::string entity)
 
     if (layerRelativeCoord.x > 0 && layerRelativeCoord.y > 0)
     {
-        int x = layerRelativeCoord.x;
-        int y = layerRelativeCoord.y;
+        int xpos = layerRelativeCoord.x;
+        int ypos = layerRelativeCoord.y;
 
 
-        if (m_map[layer].tileExists(x/40, y/40))
-            m_cont.addEntity(entity, (x - (m_cont.defaultEnemy[0]->getSize().x/2)), (y -(m_cont.defaultEnemy[0]->getSize().y /2)), true);
+        if (m_map[layer].tileExists(xpos/40, ypos/40))
+            m_cont.addEntity(entity, (xpos - (m_cont.defaultEnemy[0]->getSize().x/2)), (ypos -(m_cont.defaultEnemy[0]->getSize().y /2)), true);
 
     }
 }
@@ -281,13 +281,13 @@ void SFMLWidget::eraseEntity(sf::Vector2i mouseCoord)
 
     if (layerRelativeCoord.x > 0 && layerRelativeCoord.y > 0)
     {
-        int x = layerRelativeCoord.x;
-        int y = layerRelativeCoord.y;
+        int xpos = layerRelativeCoord.x;
+        int ypos = layerRelativeCoord.y;
 
 
-        if (m_map[layer].tileExists(x/40, y/40))
+        if (m_map[layer].tileExists(xpos/40, ypos/40))
         {
-            m_cont.deleteEntity(x,y);
+            m_cont.deleteEntity(xpos,ypos);
         }
 
 

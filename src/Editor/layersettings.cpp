@@ -2,8 +2,8 @@
 #include "ui_layersettings.h"
 #include <QString>
 
-LayerSettings::LayerSettings(QWidget *parent) :
-    QDialog(parent),
+LayerSettings::LayerSettings(QWidget *parent_) :
+    QDialog(parent_),
     ui(new Ui::LayerSettings)
 {
     ui->setupUi(this);
