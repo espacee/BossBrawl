@@ -20,7 +20,7 @@ public:
     IconButton downArrowButton;
     IconButton liftButton;
 private:
-    int liftStart, liftEnd, liftPos, mouse, offsetY;
+    int liftStart, liftEnd, mouse, offsetY;
     float pos;
 };
 

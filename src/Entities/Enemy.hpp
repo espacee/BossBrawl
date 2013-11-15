@@ -21,16 +21,8 @@ public:
     void Follow();
     void Attack();
     void Idle();
-
-
-
 private:
-
     std::string entityState;
-    int random;
-
-
-
 };
 
 #endif // ENTITIES_ENEMY_HPP
