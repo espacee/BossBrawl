@@ -20,6 +20,7 @@ class EntityContainer
 {
 public:
     EntityContainer();
+    ~EntityContainer();
 
     void onInit();
 

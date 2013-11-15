@@ -4,26 +4,26 @@
 EntityContainer::EntityContainer()
 {
     onInit();
-
 }
+
+EntityContainer::~EntityContainer()
+{
+    reset();
+}
+
 void EntityContainer::onInit()
 {
-
-
 }
+
 void EntityContainer::updateEntities(Layer &mainLayer)
 {
     for(unsigned int i = 0; i < defaultEnemy.size(); i++ )
         defaultEnemy[i]->update(mainLayer);
-
-
 }
 void EntityContainer::displayEntities(sf::RenderWindow &window)
 {
     for(unsigned int i = 0; i < defaultEnemy.size(); i++)
         defaultEnemy[i]->display(window);
-
-
 }
 
 void EntityContainer::addEntity(std::string entity, float posX, float posY, bool editorMode)
