@@ -22,10 +22,10 @@ public:
 
     void processEvents();
 
-    void draw(sf::Vector2i mouseCoord);
-    void drawEntity(sf::Vector2i mouseCoord, std::string entity);
+    void putTile(sf::Vector2i mouseCoord);
+    void eraseTile(sf::Vector2i mouseCoord);
+    void putEntity(sf::Vector2i mouseCoord, std::string entity);
     void eraseEntity(sf::Vector2i mouseCoord);
-    void erase(sf::Vector2i mouseCoord);
 
 public slots:
     void setTool(int newTool);

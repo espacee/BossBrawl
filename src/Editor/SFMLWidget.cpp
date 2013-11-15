@@ -80,7 +80,7 @@ void SFMLWidget::mousePressEvent(QMouseEvent *e)
             m_map[layer].fill(id);
 
         if(tool == 8)
-            drawEntity(sf::Vector2i(e->x(), e->y()), "defaultEnemy");
+            putEntity(sf::Vector2i(e->x(), e->y()), "defaultEnemy");
 
     }
 
@@ -112,16 +112,16 @@ void SFMLWidget::mouseMoveEvent(QMouseEvent *e)
     if (rightButtonDown)
     {
         if (tool == 1)
-            erase(sf::Vector2i(e->x(), e->y()));
+            eraseTile(sf::Vector2i(e->x(), e->y()));
     }
 
     if (leftButtonDown && !spaceKeyDown)
     {
         if (tool == 1)
-            draw(sf::Vector2i(e->x(), e->y()));
+            putTile(sf::Vector2i(e->x(), e->y()));
 
         if (tool == 4)
-            erase(sf::Vector2i(e->x(), e->y()));
+            eraseTile(sf::Vector2i(e->x(), e->y()));
 
         if (tool == 10)
         {
@@ -200,7 +200,7 @@ SFMLWidget::~SFMLWidget()
 
 }
 
-void SFMLWidget::draw(sf::Vector2i mouseCoord)
+void SFMLWidget::putTile(sf::Vector2i mouseCoord)
 {
     sf::Vector2i windowRelativeCoord = mouseCoord;
 
@@ -225,7 +225,7 @@ void SFMLWidget::draw(sf::Vector2i mouseCoord)
 
 
 
-void SFMLWidget::erase(sf::Vector2i mouseCoord)
+void SFMLWidget::eraseTile(sf::Vector2i mouseCoord)
 {
     sf::Vector2i windowRelativeCoord = mouseCoord;
 
@@ -245,7 +245,7 @@ void SFMLWidget::erase(sf::Vector2i mouseCoord)
             m_map[layer](xpos, ypos) = 0;
     }
 }
-void SFMLWidget::drawEntity(sf::Vector2i mouseCoord, std::string entity)
+void SFMLWidget::putEntity(sf::Vector2i mouseCoord, std::string entity)
 {
     sf::Vector2i windowRelativeCoord = mouseCoord;
 
