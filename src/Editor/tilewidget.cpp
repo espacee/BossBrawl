@@ -93,7 +93,7 @@ void TileWidget::keyPressEvent(QKeyEvent* e)
         hide();
 }
 
-void TileWidget::showEvent(QShowEvent)
+void TileWidget::showEvent(QShowEvent*)
 {
 
 }
