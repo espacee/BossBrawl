@@ -31,9 +31,16 @@ def updatecmakelists(filename, begin_where, ls_what):
     f.write(newstr)
     f.close()
 
-updatecmakelists('CMakeLists.txt', 'add_library(map\n', ['src/Map'])
-updatecmakelists('CMakeLists.txt', 'add_library(util\n', ['src/Util'])
-updatecmakelists('CMakeLists.txt', 'add_library(entities\n', ['src/Entities'])
-updatecmakelists('CMakeLists.txt', 'add_executable(bossbrawl\n', ['src/Game'])
+# Update CMake build files
+
+# Common modules
+updatecmakelists('src/Common/CMakeLists.txt', 'add_library(map\n', ['Map'])
+updatecmakelists('src/Common/CMakeLists.txt', 'add_library(util\n', ['Util'])
+updatecmakelists('src/Common/CMakeLists.txt', 'add_library(entities\n', ['Entities'])
+
+# Game
+updatecmakelists('src/Game/CMakeLists.txt', 'add_executable(bossbrawl\n', ['Core', 'Gui', 'States'])
+
+# Editor
 updatecmakelists('src/Editor/CMakeLists.txt', 'add_executable(brawledit\n', ['*.cpp', '*.h'])
 updatecmakelists('src/Editor/CMakeLists.txt', 'qt5_wrap_ui(UIS_HDRS\n', ['*.ui'])

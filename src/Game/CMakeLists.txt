@@ -9,8 +9,6 @@ Core/graphics.hpp
 Core/main.cpp
 Core/stateDriver.cpp
 Core/stateDriver.hpp
-States/GameState.cpp
-States/GameState.hpp
 Gui/IconButton.cpp
 Gui/IconButton.hpp
 Gui/TextButton.cpp
@@ -21,6 +19,8 @@ Gui/VerticalScrollBar.cpp
 Gui/VerticalScrollBar.hpp
 Gui/Widget.cpp
 Gui/Widget.hpp
+States/GameState.cpp
+States/GameState.hpp
 States/MenuState.cpp
 States/MenuState.hpp
 States/OptionsMenuState.cpp
