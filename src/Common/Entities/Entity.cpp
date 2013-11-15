@@ -14,23 +14,20 @@ Entity::Entity()
 
     maxHealth = 100;
     health = maxHealth;
-    editorMode = false;
 }
 
 void Entity::update(Layer &mainLayer)
 {
     if( health < 0)
-           health = 0;
+        health = 0;
     if(health > maxHealth)
         health = maxHealth;
 
-    if(editorMode == false)
-    {
-        gravitymovement.y+=gravity;
-        movement.y+=gravitymovement.y;
+    gravitymovement.y+=gravity;
+    movement.y+=gravitymovement.y;
 
-        if(isJumping == true)
-            movement.y+= -jumpSpeed;
+    if(isJumping == true)
+        movement.y+= -jumpSpeed;
 
     int maxStepLength = sqrt(movement.x*movement.x+movement.y*movement.y);
     if(maxStepLength>20) maxStepLength = 20;
@@ -86,7 +83,7 @@ void Entity::update(Layer &mainLayer)
         }
     }
 
-    label_exit:
+label_exit:
 
     if(collisionDetected)
     {
@@ -108,9 +105,9 @@ void Entity::update(Layer &mainLayer)
                                               texture.getSize().y/2);
 
         sf::FloatRect topArea = sf::FloatRect(sprite.getPosition().x+1,
-                                             sprite.getPosition().y+movement.y,
-                                             texture.getSize().x-2,
-                                             texture.getSize().y/2);
+                                              sprite.getPosition().y+movement.y,
+                                              texture.getSize().x-2,
+                                              texture.getSize().y/2);
 
         sf::FloatRect leftArea = sf::FloatRect(sprite.getPosition().x+movement.x,
                                                sprite.getPosition().y+1,
@@ -163,8 +160,6 @@ void Entity::update(Layer &mainLayer)
     }
     sprite.move(movement);
     movement = sf::Vector2f(0,0);
-
-}
 }
 
 void Entity::display(sf::RenderWindow &target)

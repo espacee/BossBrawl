@@ -27,10 +27,10 @@ public:
     void updateEntities(Layer &mainLayer);
     void displayEntities(sf::RenderWindow &window);
 
-    void addEntity(std::string entity, float posX, float posY, bool editorMode);
+    void addEntity(std::string entity, float posX, float posY);
     void deleteEntity(float posX, float posY);
 
-    bool loadFromFile(const std::string& filename, bool editorMode);
+    bool loadFromFile(const std::string& filename);
     bool saveToFile(const std::string& filename);
 
     void reset();

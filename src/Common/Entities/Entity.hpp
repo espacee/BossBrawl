@@ -39,8 +39,6 @@ protected:
     bool isJumping;
     float moveSpeed, jumpSpeed;
 
-    bool editorMode;
-
     sf::Vector2f center;
 
     sf::Texture texture;

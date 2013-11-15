@@ -98,9 +98,7 @@ void Editor::onUpdate()
 
     if (clear_blue >= 255 || clear_blue <= 0) c = !c;
 
-
     sfmlWidget->processEvents();
-    cont.updateEntities(map[0]);
 
     sfmlWidget->clear(sf::Color(clear_red, clear_green, clear_blue));
     cont.displayEntities(*sfmlWidget);
@@ -523,7 +521,7 @@ void Editor::openButtonClicked()
         int entityfilenamesize = entityfilename.size() - 4;
         entityfilename.replace(entityfilenamesize, 4, ".entity");
 
-        cont.loadFromFile(entityfilename, true);
+        cont.loadFromFile(entityfilename);
     }
 
     filePath = filename;

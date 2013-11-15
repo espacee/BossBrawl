@@ -263,7 +263,7 @@ void SFMLWidget::drawEntity(sf::Vector2i mouseCoord, std::string entity)
 
 
         if (m_map[layer].tileExists(xpos/40, ypos/40))
-            m_cont.addEntity(entity, (xpos - (m_cont.defaultEnemy[0]->getSize().x/2)), (ypos -(m_cont.defaultEnemy[0]->getSize().y /2)), true);
+            m_cont.addEntity(entity, (xpos - (m_cont.defaultEnemy[0]->getSize().x/2)), (ypos -(m_cont.defaultEnemy[0]->getSize().y /2)));
 
     }
 }

@@ -9,7 +9,7 @@ GameState::GameState() :
     gridEnabled(false)
 {
     map.loadFromFile("res/maps/test.map");
-    entityContainer.loadFromFile("res/maps/test.entity", false);
+    entityContainer.loadFromFile("res/maps/test.entity");
 
     camera = sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y));
     fpsText.setFont(graphics::fontbasiclight);

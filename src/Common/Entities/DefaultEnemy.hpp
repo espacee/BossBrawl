@@ -14,7 +14,7 @@
 class DefaultEnemy: public Enemy
 {
 public:
-    DefaultEnemy(float posX, float posY, bool editmode);
+    DefaultEnemy(float posX, float posY);
 
     void update(Layer &mainLayer);
 

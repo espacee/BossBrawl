@@ -26,11 +26,11 @@ void EntityContainer::displayEntities(sf::RenderWindow &window)
         defaultEnemy[i]->display(window);
 }
 
-void EntityContainer::addEntity(std::string entity, float posX, float posY, bool editorMode)
+void EntityContainer::addEntity(std::string entity, float posX, float posY)
 {
     if(entity == "defaultEnemy")
     {
-        defaultEnemy.push_back(new DefaultEnemy( posX, posY, editorMode));
+        defaultEnemy.push_back(new DefaultEnemy( posX, posY));
     }
 }
 void EntityContainer::deleteEntity(float posX, float posY)
@@ -60,7 +60,7 @@ bool EntityContainer::saveToFile(const std::string &filename)
 
     return true;
 }
-bool EntityContainer::loadFromFile(const std::string &filename, bool editorMode)
+bool EntityContainer::loadFromFile(const std::string &filename)
 {
     std::ifstream file(filename);
 
@@ -79,7 +79,7 @@ bool EntityContainer::loadFromFile(const std::string &filename, bool editorMode)
     {
         int x, y;
         file >> x >> y;
-        defaultEnemy.push_back(new DefaultEnemy(x,y,editorMode));
+        defaultEnemy.push_back(new DefaultEnemy(x,y));
     }
 
     if (!file) {
