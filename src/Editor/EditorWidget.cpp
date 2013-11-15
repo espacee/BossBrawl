@@ -1,4 +1,5 @@
 #include "EditorWidget.hpp"
+#include <QMessageBox>
 
 EditorWidget::EditorWidget(QWidget *parent_) : QWidget(parent_),
     gridEnabled(false),
@@ -387,6 +388,11 @@ void EditorWidget::loadMapFromFile(const QString &filename)
         entityfilename.replace(entityfilenamesize, 4, ".entity");
 
         cont.loadFromFile(entityfilename);
+    }
+    else
+    {
+        QMessageBox::critical(this, "Error", tr("Could not load \"%1\" as a map").arg(filename));
+        return;
     }
 
     filePath = filename.toStdString();
