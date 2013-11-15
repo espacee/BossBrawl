@@ -102,7 +102,7 @@ void Editor::onUpdate()
     sfmlWidget->processEvents();
     cont.updateEntities(map[0]);
 
-    sfmlWidget->clear(sf::Color::White);
+    sfmlWidget->clear(sf::Color(clear_red, clear_green, clear_blue));
     cont.displayEntities(*sfmlWidget);
 
 
