@@ -1,5 +1,5 @@
-#ifndef TILEWIDGET_H
-#define TILEWIDGET_H
+#ifndef TILEWIDGET_HPP
+#define TILEWIDGET_HPP
 
 #include <QScrollArea>
 #include <QScrollBar>
@@ -40,4 +40,4 @@ private:
     bool leftButtonDown;
 };
 
-#endif // TILEWIDGET_H
+#endif // TILEWIDGET_HPP

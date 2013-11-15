@@ -11,7 +11,7 @@
 #include <QFileDialog>
 
 #include "SFMLWidget.hpp"
-#include "tilewidget.h"
+#include "TileWidget.hpp"
 #include "LayerTabWidget.hpp"
 #include "Map/TileMap.hpp"
 #include "Entities/EntityContainer.hpp"
