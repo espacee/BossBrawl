@@ -1,6 +1,6 @@
-#include "Game/Gui/UI.hpp"
-#include "Game/Core/graphics.hpp"
-#include "Game/Core/graphics.hpp"
+#include "Gui/UI.hpp"
+#include "Core/graphics.hpp"
+#include "Core/graphics.hpp"
 
 UI::UI()
 {

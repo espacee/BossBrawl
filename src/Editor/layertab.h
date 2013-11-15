@@ -13,7 +13,7 @@
 #include <QLabel>
 
 #include "Map/TileMap.hpp"
-#include "Editor/layerwidget.h"
+#include "layerwidget.h"
 
 class LayerTab : public QWidget
 {

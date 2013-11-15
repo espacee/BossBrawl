@@ -1,4 +1,4 @@
-#include "Game/Core/config.hpp"
+#include "config.hpp"
 
 #include <fstream>
 #include <sstream>

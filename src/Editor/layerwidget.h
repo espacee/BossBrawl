@@ -6,7 +6,7 @@
 #include <QPushButton>
 #include <QResizeEvent>
 
-#include "Editor/layersettings.h"
+#include "layersettings.h"
 #include "Map/TileMap.hpp"
 
 class LayerWidget : public QWidget

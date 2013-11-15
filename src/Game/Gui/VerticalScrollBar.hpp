@@ -1,8 +1,8 @@
 #ifndef SCROLLBAR_HPP
 #define SCROLLBAR_HPP
 
-#include "Game/Gui/Widget.hpp"
-#include "Game/Gui/IconButton.hpp"
+#include "Gui/Widget.hpp"
+#include "Gui/IconButton.hpp"
 
 class VerticalScrollBar : public Widget
 {

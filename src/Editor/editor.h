@@ -10,9 +10,9 @@
 #include <QTimer>
 #include <QFileDialog>
 
-#include "Editor/sfmlwidget.h"
-#include "Editor/tilewidget.h"
-#include "Editor/layertab.h"
+#include "sfmlwidget.h"
+#include "tilewidget.h"
+#include "layertab.h"
 #include "Map/TileMap.hpp"
 #include "Entities/EntityContainer.hpp"
 

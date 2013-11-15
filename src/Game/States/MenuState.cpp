@@ -1,8 +1,8 @@
-#include "Game/Menu/MenuState.hpp"
+#include "MenuState.hpp"
 
-#include "Game/Core/graphics.hpp"
-#include "Game/Core/stateDriver.hpp"
-#include "Game/Core/config.hpp"
+#include "Core/graphics.hpp"
+#include "Core/stateDriver.hpp"
+#include "Core/config.hpp"
 
 void MenuState::onSet()
 {

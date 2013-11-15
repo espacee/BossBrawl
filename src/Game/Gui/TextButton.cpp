@@ -1,6 +1,6 @@
-#include "Game/Gui/TextButton.hpp"
+#include "Gui/TextButton.hpp"
 
-#include "Game/Core/graphics.hpp"
+#include "Core/graphics.hpp"
 
 TextButton::TextButton()
 {

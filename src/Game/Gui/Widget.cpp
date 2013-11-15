@@ -1,6 +1,6 @@
-#include "Game/Gui/Widget.hpp"
+#include "Gui/Widget.hpp"
 
-#include "Game/Core/graphics.hpp"
+#include "Core/graphics.hpp"
 
 Widget::Widget()
 {

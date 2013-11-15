@@ -1,4 +1,4 @@
-#include "Editor/layerwidget.h"
+#include "layerwidget.h"
 #include "ui_layersettings.h"
 
 LayerWidget::LayerWidget(QWidget *parent_, TileMap &map) : QWidget(parent_),

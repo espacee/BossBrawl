@@ -1,4 +1,4 @@
-#include "Editor/tilewidget.h"
+#include "tilewidget.h"
 
 TileWidget::TileWidget(QWidget *parent_)
 {

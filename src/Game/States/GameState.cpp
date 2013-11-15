@@ -1,4 +1,4 @@
-#include "Game/GameState.hpp"
+#include "GameState.hpp"
 #include "Core/graphics.hpp"
 #include "Core/stateDriver.hpp"
 #include "Core/config.hpp"

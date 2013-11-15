@@ -1,11 +1,11 @@
 #include <SFML/Graphics.hpp>
 
-#include "Game/Core/stateDriver.hpp"
-#include "Game/Core/config.hpp"
-#include "Game/Core/graphics.hpp"
-#include "Game/Menu/MenuState.hpp"
-#include "Game/Menu/OptionsMenuState.hpp"
-#include "Game/GameState.hpp"
+#include "Core/stateDriver.hpp"
+#include "Core/config.hpp"
+#include "Core/graphics.hpp"
+#include "States/MenuState.hpp"
+#include "States/OptionsMenuState.hpp"
+#include "States/GameState.hpp"
 
 int main(int argc, char* argv[])
 {

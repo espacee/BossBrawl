@@ -1,6 +1,6 @@
-#include "Game/Gui/IconButton.hpp"
+#include "Gui/IconButton.hpp"
 
-#include "Game/Core/graphics.hpp"
+#include "Core/graphics.hpp"
 
 IconButton::IconButton()
 {

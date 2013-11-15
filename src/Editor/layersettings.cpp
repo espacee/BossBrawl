@@ -1,4 +1,4 @@
-#include "Editor/layersettings.h"
+#include "layersettings.h"
 #include "ui_layersettings.h"
 #include <QString>
 
