@@ -1,5 +1,5 @@
-#ifndef LAYERWIDGET_H
-#define LAYERWIDGET_H
+#ifndef LAYERWIDGET_HPP
+#define LAYERWIDGET_HPP
 
 #include <QWidget>
 #include <QLabel>
@@ -48,4 +48,4 @@ private:
     int index;
 };
 
-#endif // LAYERWIDGET_H
+#endif // LAYERWIDGET_HPP

@@ -1,5 +1,5 @@
-#ifndef SFMLWIDGET_H
-#define SFMLWIDGET_H
+#ifndef SFMLWIDGET_HPP
+#define SFMLWIDGET_HPP
 
 #include <SFML/Graphics.hpp>
 #include <QWidget>
@@ -55,4 +55,4 @@ private:
     float x1, x2, y1, y2, dx, dy;
 };
 
-#endif // SFMLWIDGET_H
+#endif // SFMLWIDGET_HPP
