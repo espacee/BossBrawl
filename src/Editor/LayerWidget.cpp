@@ -1,5 +1,5 @@
 #include "LayerWidget.hpp"
-#include "ui_layersettings.h"
+#include "ui_LayerSettingsDialog.h"
 
 LayerWidget::LayerWidget(QWidget *parent_, TileMap &map) : QWidget(parent_),
     m_map(map)

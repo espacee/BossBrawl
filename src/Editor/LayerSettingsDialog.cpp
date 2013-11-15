@@ -1,5 +1,5 @@
 #include "LayerSettingsDialog.hpp"
-#include "ui_layersettings.h"
+#include "ui_LayerSettingsDialog.h"
 #include <QString>
 
 LayerSettingsDialog::LayerSettingsDialog(QWidget *parent_) :

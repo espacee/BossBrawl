@@ -3,7 +3,7 @@ find_package(Qt5Widgets REQUIRED)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 qt5_wrap_ui(UIS_HDRS
-layersettings.ui
+LayerSettingsDialog.ui
 )
 
 add_executable(brawledit
