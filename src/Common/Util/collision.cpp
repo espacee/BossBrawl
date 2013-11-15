@@ -1,4 +1,4 @@
-#include <Util/collision.h>
+#include "collision.hpp"
 
 // Test if a point is in an Axis Aligned Bounding Box
 bool hitTest(sf::Vector2f point, sf::FloatRect AABB)

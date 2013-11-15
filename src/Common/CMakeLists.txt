@@ -7,7 +7,7 @@ Map/TileMap.hpp
 
 add_library(util
 Util/collision.cpp
-Util/collision.h
+Util/collision.hpp
 Util/math.hpp
 Util/unused.hpp
 Util/view.cpp

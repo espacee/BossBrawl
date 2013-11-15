@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Map/TileMap.hpp"
-#include "Util/collision.h"
+#include "Util/collision.hpp"
 #include <iostream>
 
 /**
