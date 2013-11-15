@@ -26,7 +26,7 @@ ${UIS_HDRS}
 find_package(X11)
 
 if(X11_FOUND)
-    set_target_properties(brawledit PROPERTIES COMPILE_DEFINITIONS BRAWL_X11)
+    add_definitions(-DBRAWL_X11)
 endif()
 
 qt5_use_modules(brawledit Widgets)
