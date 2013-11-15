@@ -44,14 +44,17 @@ src/Util/math.hpp
 src/Util/unused.hpp
 src/Util/view.cpp
 src/Util/view.hpp
-src/Entities/EntityContainer.cpp
-src/Entities/EntityContainer.hpp
-src/Entities/Entity.cpp
-src/Entities/Entity.hpp
-src/Entities/Enemy.cpp
-src/Entities/Enemy.hpp
+)
+
+add_library(entities
 src/Entities/DefaultEnemy.cpp
 src/Entities/DefaultEnemy.hpp
+src/Entities/Enemy.cpp
+src/Entities/Enemy.hpp
+src/Entities/Entity.cpp
+src/Entities/Entity.hpp
+src/Entities/EntityContainer.cpp
+src/Entities/EntityContainer.hpp
 src/Entities/Player.cpp
 src/Entities/Player.hpp
 )
@@ -69,12 +72,12 @@ src/Game/Core/stateDriver.cpp
 src/Game/Core/stateDriver.hpp
 src/Game/GameState.cpp
 src/Game/GameState.hpp
-src/Game/Gui/UI.cpp
-src/Game/Gui/UI.hpp
 src/Game/Gui/IconButton.cpp
 src/Game/Gui/IconButton.hpp
 src/Game/Gui/TextButton.cpp
 src/Game/Gui/TextButton.hpp
+src/Game/Gui/UI.cpp
+src/Game/Gui/UI.hpp
 src/Game/Gui/VerticalScrollBar.cpp
 src/Game/Gui/VerticalScrollBar.hpp
 src/Game/Gui/Widget.cpp
@@ -85,7 +88,7 @@ src/Game/Menu/OptionsMenuState.cpp
 src/Game/Menu/OptionsMenuState.hpp
 )
 
-target_link_libraries(bossbrawl map util  ${SFML_LIBRARIES})
+target_link_libraries(bossbrawl map entities util ${SFML_LIBRARIES})
 
 if(${BUILD_EDITOR})
     add_subdirectory(src/Editor)

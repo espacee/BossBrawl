@@ -31,4 +31,4 @@ endif()
 
 qt5_use_modules(brawledit Widgets)
 
-target_link_libraries(brawledit map util ${SFML_LIBRARIES})
+target_link_libraries(brawledit map entities util ${SFML_LIBRARIES})

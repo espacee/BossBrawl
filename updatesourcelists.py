@@ -33,6 +33,7 @@ def updatecmakelists(filename, begin_where, ls_what):
 
 updatecmakelists('CMakeLists.txt', 'add_library(map\n', ['src/Map'])
 updatecmakelists('CMakeLists.txt', 'add_library(util\n', ['src/Util'])
+updatecmakelists('CMakeLists.txt', 'add_library(entities\n', ['src/Entities'])
 updatecmakelists('CMakeLists.txt', 'add_executable(bossbrawl\n', ['src/Game'])
 updatecmakelists('src/Editor/CMakeLists.txt', 'add_executable(brawledit\n', ['*.cpp', '*.h'])
 updatecmakelists('src/Editor/CMakeLists.txt', 'qt5_wrap_ui(UIS_HDRS\n', ['*.ui'])
