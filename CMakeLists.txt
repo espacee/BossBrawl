@@ -1,17 +1,34 @@
 project(BossBrawl)
-cmake_minimum_required(VERSION 2.8.8)
+cmake_minimum_required(VERSION 2.8.12.1)
 
 option(BUILD_EDITOR "Build the editor. Requires Qt" OFF)
+
+# Detect compiler
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+    set(USING_GCC 1)
+elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+    set(USING_CLANG 1)
+endif()
+
+# For GCC and Clang, enable C++11 support and add some other flags
+if(USING_GCC OR USING_CLANG)
+  add_compile_options(-std=c++11 -pedantic -Wall -Wextra -Wshadow)
+endif()
+
+# Disable Clang warnings about nested anon types
+if(USING_CLANG)
+  add_compile_options(-Wno-nested-anon-types)
+endif()
+
+if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
+    add_definitions(-DBRAWL_DEBUG)
+endif()
 
 # Find SFML
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake/Modules" ${CMAKE_MODULE_PATH})
 find_package(SFML 2 COMPONENTS graphics window audio system REQUIRED)
 include_directories(${SFML_INCLUDE_DIR})
 include_directories(src)
-
-if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
-    add_definitions(-DBRAWL_DEBUG)
-endif()
 
 add_library(map
 src/Map/Layer.cpp
@@ -20,7 +37,6 @@ src/Map/TileMap.cpp
 src/Map/TileMap.hpp
 )
 
-
 add_library(util
 src/Util/collision.cpp
 src/Util/collision.h
@@ -28,7 +44,6 @@ src/Util/math.hpp
 src/Util/unused.hpp
 src/Util/view.cpp
 src/Util/view.hpp
-
 src/Entities/EntityContainer.cpp
 src/Entities/EntityContainer.hpp
 src/Entities/Entity.cpp
@@ -71,11 +86,6 @@ src/Game/Menu/OptionsMenuState.hpp
 )
 
 target_link_libraries(bossbrawl map util  ${SFML_LIBRARIES})
-
-# Add additional flags to gcc and clang
-if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_COMPILER_IS_CLANGXX OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-    set_target_properties(bossbrawl map util PROPERTIES COMPILE_FLAGS "-std=c++11 -pedantic -Wall -Wextra -Wshadow")
-endif()
 
 if(${BUILD_EDITOR})
     add_subdirectory(src/Editor)
