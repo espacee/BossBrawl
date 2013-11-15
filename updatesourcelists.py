@@ -42,5 +42,5 @@ updatecmakelists('src/Common/CMakeLists.txt', 'add_library(entities\n', ['Entiti
 updatecmakelists('src/Game/CMakeLists.txt', 'add_executable(bossbrawl\n', ['Core', 'Gui', 'States'])
 
 # Editor
-updatecmakelists('src/Editor/CMakeLists.txt', 'add_executable(brawledit\n', ['*.cpp', '*.h'])
+updatecmakelists('src/Editor/CMakeLists.txt', 'add_executable(brawledit\n', ['*.cpp', '*.h', '*.hpp'])
 updatecmakelists('src/Editor/CMakeLists.txt', 'qt5_wrap_ui(UIS_HDRS\n', ['*.ui'])

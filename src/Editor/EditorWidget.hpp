@@ -1,5 +1,5 @@
-#ifndef WINDOW_H
-#define WINDOW_H
+#ifndef EDITORWIDGET_HPP
+#define EDITORWIDGET_HPP
 
 #include <QWidget>
 #include <QPushButton>
@@ -16,13 +16,13 @@
 #include "Map/TileMap.hpp"
 #include "Entities/EntityContainer.hpp"
 
-class Editor : public QWidget
+class EditorWidget : public QWidget
 {
     Q_OBJECT
 
 public:
-    Editor(QWidget *parent = 0);
-    ~Editor();
+    EditorWidget(QWidget *parent = 0);
+    ~EditorWidget();
 
 public slots:
     void onInit();
@@ -130,4 +130,4 @@ private:
 
 };
 
-#endif // WINDOW_H
+#endif // EDITORWIDGET_HPP

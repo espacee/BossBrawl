@@ -7,8 +7,8 @@ layersettings.ui
 )
 
 add_executable(brawledit
-editor.cpp
-editor.h
+EditorWidget.cpp
+EditorWidget.hpp
 layersettings.cpp
 layersettings.h
 layertab.cpp

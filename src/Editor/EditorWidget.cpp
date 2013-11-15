@@ -1,6 +1,6 @@
-#include "editor.h"
+#include "EditorWidget.hpp"
 
-Editor::Editor(QWidget *parent_) : QWidget(parent_),
+EditorWidget::EditorWidget(QWidget *parent_) : QWidget(parent_),
     gridEnabled(false),
     currentLayer(0)
 {
@@ -62,12 +62,12 @@ Editor::Editor(QWidget *parent_) : QWidget(parent_),
 
 }
 
-Editor::~Editor()
+EditorWidget::~EditorWidget()
 {
 
 }
 
-void Editor::onInit()
+void EditorWidget::onInit()
 {
 
 
@@ -80,7 +80,7 @@ void Editor::onInit()
     camera.setCenter(0, 0);
 }
 
-void Editor::onUpdate()
+void EditorWidget::onUpdate()
 {
 
     if (a) clear_red += 0.001;
@@ -111,7 +111,7 @@ void Editor::onUpdate()
     sfmlWidget->sf::RenderWindow::display();
 }
 
-void Editor::initWindow()
+void EditorWidget::initWindow()
 {
     windowIcon = new QLabel("", this);
     windowIcon->setPixmap(QPixmap("res/img/GUI/windowIcon.png"));
@@ -144,7 +144,7 @@ void Editor::initWindow()
     connect(saveButton, SIGNAL(clicked()), this, SLOT(saveButtonClicked()));
 }
 
-void Editor::initToolBar()
+void EditorWidget::initToolBar()
 {
     toolBar = new QWidget(this);
     toolBar->setGeometry(globalPadding,
@@ -291,7 +291,7 @@ void Editor::initToolBar()
 
 }
 
-void Editor::initTopBar()
+void EditorWidget::initTopBar()
 {
     topBar = new QWidget(this);
     topBar->setGeometry(globalPadding + toolBarWidth,
@@ -307,7 +307,7 @@ void Editor::initTopBar()
     connect(tileButton, SIGNAL(clicked()), this, SLOT(tileButtonClicked()));
 }
 
-void Editor::initRightPanel()
+void EditorWidget::initRightPanel()
 {
     rightPanel = new QWidget(this);
     rightPanel->setGeometry(width() - globalPadding - rightPanelWidth,
@@ -319,7 +319,7 @@ void Editor::initRightPanel()
     layerTab->resize(rightPanel->size());
 }
 
-void Editor::initBotBar()
+void EditorWidget::initBotBar()
 {
     botBar = new QWidget(this);
     botBar->setGeometry(globalPadding + toolBarWidth,
@@ -352,7 +352,7 @@ void Editor::initBotBar()
 
 }
 
-void Editor::initCentralWidget()
+void EditorWidget::initCentralWidget()
 {
     centralWidget = new QWidget(this);
     centralWidget->setGeometry(toolBar->x() + toolBar->width(),
@@ -370,17 +370,17 @@ void Editor::initCentralWidget()
     tileWidget->hide();
 }
 
-void Editor::quitClicked()
+void EditorWidget::quitClicked()
 {
     close();
 }
 
-void Editor::minimizeClicked()
+void EditorWidget::minimizeClicked()
 {
     setWindowState(Qt::WindowMinimized);
 }
 
-void Editor::pointerToolButtonClicked()
+void EditorWidget::pointerToolButtonClicked()
 {
     uncheckToolButtons();
     pointerToolButton->setChecked(true);
@@ -388,7 +388,7 @@ void Editor::pointerToolButtonClicked()
     sfmlWidget->setTool(tool);
 }
 
-void Editor::penToolButtonClicked()
+void EditorWidget::penToolButtonClicked()
 {
     uncheckToolButtons();
     penToolButton->setChecked(true);
@@ -396,7 +396,7 @@ void Editor::penToolButtonClicked()
     sfmlWidget->setTool(tool);
 }
 
-void Editor::randomPenToolButtonClicked()
+void EditorWidget::randomPenToolButtonClicked()
 {
     uncheckToolButtons();
     randomPenToolButton->setChecked(true);
@@ -404,7 +404,7 @@ void Editor::randomPenToolButtonClicked()
     sfmlWidget->setTool(tool);
 }
 
-void Editor::patternBrushToolButtonClicked()
+void EditorWidget::patternBrushToolButtonClicked()
 {
     uncheckToolButtons();
     patternBrushToolButton->setChecked(true);
@@ -412,7 +412,7 @@ void Editor::patternBrushToolButtonClicked()
     sfmlWidget->setTool(tool);
 }
 
-void Editor::eraserToolButtonClicked()
+void EditorWidget::eraserToolButtonClicked()
 {
     uncheckToolButtons();
     eraserToolButton->setChecked(true);
@@ -420,7 +420,7 @@ void Editor::eraserToolButtonClicked()
     sfmlWidget->setTool(tool);
 }
 
-void Editor::fillShapeToolButtonClicked()
+void EditorWidget::fillShapeToolButtonClicked()
 {
     uncheckToolButtons();
     fillShapeToolButton->setChecked(true);
@@ -428,7 +428,7 @@ void Editor::fillShapeToolButtonClicked()
     sfmlWidget->setTool(tool);
 }
 
-void Editor::selectAreaToolButtonClicked()
+void EditorWidget::selectAreaToolButtonClicked()
 {
     uncheckToolButtons();
     selectAreaToolButton->setChecked(true);
@@ -436,7 +436,7 @@ void Editor::selectAreaToolButtonClicked()
     sfmlWidget->setTool(tool);
 }
 
-void Editor::arrowToolButtonClicked()
+void EditorWidget::arrowToolButtonClicked()
 {
     uncheckToolButtons();
     arrowToolButton->setChecked(true);
@@ -444,7 +444,7 @@ void Editor::arrowToolButtonClicked()
     sfmlWidget->setTool(tool);
 }
 
-void Editor::entityToolButtonClicked()
+void EditorWidget::entityToolButtonClicked()
 {
     uncheckToolButtons();
     entityToolButton->setChecked(true);
@@ -452,7 +452,7 @@ void Editor::entityToolButtonClicked()
     sfmlWidget->setTool(tool);
 }
 
-void Editor::objectToolButtonClicked()
+void EditorWidget::objectToolButtonClicked()
 {
     uncheckToolButtons();
     objectToolButton->setChecked(true);
@@ -460,7 +460,7 @@ void Editor::objectToolButtonClicked()
     sfmlWidget->setTool(tool);
 }
 
-void Editor::handToolButtonClicked()
+void EditorWidget::handToolButtonClicked()
 {
     uncheckToolButtons();
     handToolButton->setChecked(true);
@@ -468,7 +468,7 @@ void Editor::handToolButtonClicked()
     sfmlWidget->setTool(tool);
 }
 
-void Editor::zoomToolButtonClicked()
+void EditorWidget::zoomToolButtonClicked()
 {
     uncheckToolButtons();
     zoomToolButton->setChecked(true);
@@ -477,7 +477,7 @@ void Editor::zoomToolButtonClicked()
 }
 
 
-void Editor::uncheckToolButtons()
+void EditorWidget::uncheckToolButtons()
 {
     pointerToolButton->setChecked(false);
     arrowToolButton->setChecked(false);
@@ -494,21 +494,21 @@ void Editor::uncheckToolButtons()
 }
 
 
-void Editor::tileButtonClicked()
+void EditorWidget::tileButtonClicked()
 {
     if (tileWidget->isVisible())
         tileWidget->hide();
     else
         tileWidget->show();
 }
-void Editor::newButtonClicked()
+void EditorWidget::newButtonClicked()
 {
     map.reset();
     cont.reset();
     layerTab->loadLayersFromMap();
 }
 
-void Editor::openButtonClicked()
+void EditorWidget::openButtonClicked()
 {
     std::string filename = QFileDialog::getOpenFileName(this).toStdString();//getting the file name
 
@@ -526,7 +526,7 @@ void Editor::openButtonClicked()
 
     filePath = filename;
 }
-void Editor::saveButtonClicked()
+void EditorWidget::saveButtonClicked()
 {
     if (filePath.empty() == true)
     {
@@ -545,34 +545,34 @@ void Editor::saveButtonClicked()
         cont.saveToFile(entityfilename);
     }
 }
-void Editor::tileSelected(int new_id)
+void EditorWidget::tileSelected(int new_id)
 {
     id = new_id;
     sfmlWidget->setCurrentTile(new_id);
 }
 
-void Editor::tileSelected(QPixmap tile)
+void EditorWidget::tileSelected(QPixmap tile)
 {
     tileButton->setIcon(QIcon(tile));
 }
 
-void Editor::setCurrentLayer(int layer)
+void EditorWidget::setCurrentLayer(int layer)
 {
     currentLayer = layer;
 }
 
-void Editor::resetCameraButtonClicked()
+void EditorWidget::resetCameraButtonClicked()
 {
     camera = sf::View(sf::FloatRect(0, 0, sfmlWidget->width() - 1, sfmlWidget->height() - 1));
     camera.setCenter(0, 0);
 }
 
-void Editor::toggleGridButtonClicked()
+void EditorWidget::toggleGridButtonClicked()
 {
     gridEnabled = !gridEnabled;
 }
 
-void Editor::toggleVisibleButtonClicked()
+void EditorWidget::toggleVisibleButtonClicked()
 {
     layerTab->toggleVisible();
 }
