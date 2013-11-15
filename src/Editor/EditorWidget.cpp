@@ -59,7 +59,13 @@ EditorWidget::EditorWidget(QWidget *parent_) : QWidget(parent_),
 
     onInit();
 
+    // If given a command line argument, load it as a map
+    auto args = QApplication::arguments();
 
+    if (args.size() > 1)
+    {
+        loadMapFromFile(args.at(1).toStdString());
+    }
 }
 
 EditorWidget::~EditorWidget()
@@ -370,6 +376,22 @@ void EditorWidget::initCentralWidget()
     tileWidget->hide();
 }
 
+void EditorWidget::loadMapFromFile(const std::string &filename)
+{
+    if (map.loadFromFile(filename))
+    {
+        layerTab->loadLayersFromMap();
+
+        std::string entityfilename = filename;
+        int entityfilenamesize = entityfilename.size() - 4;
+        entityfilename.replace(entityfilenamesize, 4, ".entity");
+
+        cont.loadFromFile(entityfilename);
+    }
+
+    filePath = filename;
+}
+
 void EditorWidget::quitClicked()
 {
     close();
@@ -510,21 +532,8 @@ void EditorWidget::newButtonClicked()
 
 void EditorWidget::openButtonClicked()
 {
-    std::string filename = QFileDialog::getOpenFileName(this).toStdString();//getting the file name
-
-
-    if (map.loadFromFile(filename))
-    {
-        layerTab->loadLayersFromMap(); 
-
-        std::string entityfilename = filename;
-        int entityfilenamesize = entityfilename.size() - 4;
-        entityfilename.replace(entityfilenamesize, 4, ".entity");
-
-        cont.loadFromFile(entityfilename);
-    }
-
-    filePath = filename;
+    std::string filename = QFileDialog::getOpenFileName(this).toStdString();
+    loadMapFromFile(filename);
 }
 void EditorWidget::saveButtonClicked()
 {

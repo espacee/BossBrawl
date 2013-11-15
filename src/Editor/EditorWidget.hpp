@@ -72,6 +72,7 @@ private:
     void initRightPanel();
     void initBotBar();
     void initCentralWidget();
+    void loadMapFromFile(const std::string& filename);
 
     int menuBarHeight, globalPadding;
     int toolBarWidth, toolButtonSize, toolButtonPadding, toolBarTopOffset, toolSeparatorSize;
