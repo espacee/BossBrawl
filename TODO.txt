@@ -1,0 +1,15 @@
+STill need to do:
+
+- Particle Engine
+
+- Talent System (Talent Tree for Personalization)
+
+- Inventory System 
+
+- Write out a Story!
+
+- Basic Light Engine
+
+- AI for Entities
+
+- Improve collision Response
