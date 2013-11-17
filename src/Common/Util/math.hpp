@@ -40,6 +40,8 @@ int getRandomValue(T min, T max)
     std::uniform_int_distribution<int> distribution(min,max);
 
     return distribution(reng);
+
+    delete seed, reng, distribution;
 }
 
 }
