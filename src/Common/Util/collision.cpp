@@ -1,5 +1,7 @@
 #include "collision.hpp"
 
+namespace util {
+
 // Test if a point is in an Axis Aligned Bounding Box
 bool hitTest(sf::Vector2f point, sf::FloatRect AABB)
 {
@@ -25,3 +27,5 @@ bool hitTest(sf::Vector2f Acenter, int Aradius, sf::Vector2f Bcenter, int Bradiu
     int d = (Acenter.x - Bcenter.x) * (Acenter.x - Bcenter.x) + (Acenter.y - Bcenter.y) * (Acenter.y - Bcenter.y);
     return (d > (Aradius + Bradius) * (Aradius + Bradius));
 }
+
+} // end of namespace util

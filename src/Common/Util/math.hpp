@@ -8,7 +8,7 @@
 /**
  * @brief Math utility functions
  */
-namespace math {
+namespace util {
 
 template <typename T>
 /**
@@ -44,6 +44,6 @@ int getRandomValue(T min, T max)
     delete seed, reng, distribution;
 }
 
-}
+} // end of namespace util
 
 #endif // UTIL_MATH_HPP

@@ -3,6 +3,10 @@
 
 #include <SFML/Graphics.hpp>
 
+namespace util {
+
 void moveViewTowardsPoint(sf::View& view, sf::Vector2f point, float speed);
+
+}
 
 #endif // UTIL_VIEW_HPP

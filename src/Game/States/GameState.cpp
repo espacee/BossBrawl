@@ -40,7 +40,7 @@ void GameState::onUpdate()
 
     entityContainer.updateEntities(map[0]);
 
-    moveViewTowardsPoint(camera, player.getCenter(), 0.05);
+    util::moveViewTowardsPoint(camera, player.getCenter(), 0.05);
 
     window.clear(sf::Color(80, 80, 80));
     graphics::window.setView(camera);

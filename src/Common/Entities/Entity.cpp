@@ -68,7 +68,7 @@ void Entity::update(Layer &mainLayer)
                 {
                     if (mainLayer(i, j))
                     {
-                        if (hitTest(futureBoundingBox, currentTile))
+                        if (util::hitTest(futureBoundingBox, currentTile))
                         {
                             if(collisionDetected == false)
                             {
@@ -135,21 +135,21 @@ label_exit:
                     if (mainLayer(i, j))
                     {
 
-                        if (hitTest(botArea, currentTile))
+                        if (util::hitTest(botArea, currentTile))
                         {
                             movement.y = currentTile.top - (boundingBox.top + boundingBox.height);
                             gravitymovement.y = 0;
                             isJumping = false;
                         }
-                        if (hitTest(rightArea, currentTile))
+                        if (util::hitTest(rightArea, currentTile))
                         {
                             movement.x = currentTile.left - (boundingBox.left + boundingBox.width);
                         }
-                        if (hitTest(leftArea, currentTile))
+                        if (util::hitTest(leftArea, currentTile))
                         {
                             movement.x = (currentTile.left+currentTile.width) - boundingBox.left;
                         }
-                        if (hitTest(topArea, currentTile))
+                        if (util::hitTest(topArea, currentTile))
                         {
                             movement.y = (currentTile.top+currentTile.height) - boundingBox.top;
                         }
