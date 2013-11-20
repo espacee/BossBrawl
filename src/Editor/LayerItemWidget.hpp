@@ -1,5 +1,5 @@
-#ifndef LAYERWIDGET_HPP
-#define LAYERWIDGET_HPP
+#ifndef LAYERITEMWIDGET_HPP
+#define LAYERITEMWIDGET_HPP
 
 #include <QWidget>
 #include <QLabel>
@@ -9,11 +9,11 @@
 #include "LayerSettingsDialog.hpp"
 #include "Map/TileMap.hpp"
 
-class LayerWidget : public QWidget
+class LayerItemWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit LayerWidget(QWidget *parent, TileMap& m_map);
+    explicit LayerItemWidget(QWidget *parent, TileMap& m_map);
     void setIndex(int i);
     void setCurrent();
     void unsetCurrent();
@@ -46,4 +46,4 @@ private:
     int index;
 };
 
-#endif // LAYERWIDGET_HPP
+#endif // LAYERITEMWIDGET_HPP

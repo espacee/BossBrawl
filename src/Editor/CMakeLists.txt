@@ -9,12 +9,12 @@ LayerSettingsDialog.ui
 add_executable(brawledit
 EditorWidget.cpp
 EditorWidget.hpp
+LayerItemWidget.cpp
+LayerItemWidget.hpp
 LayerSettingsDialog.cpp
 LayerSettingsDialog.hpp
 LayerTabWidget.cpp
 LayerTabWidget.hpp
-LayerWidget.cpp
-LayerWidget.hpp
 SFMLWidget.cpp
 SFMLWidget.hpp
 TileSelectionWidget.cpp

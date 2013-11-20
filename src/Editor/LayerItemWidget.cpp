@@ -1,7 +1,7 @@
-#include "LayerWidget.hpp"
+#include "LayerItemWidget.hpp"
 #include "ui_LayerSettingsDialog.h"
 
-LayerWidget::LayerWidget(QWidget *parent_, TileMap &map) : QWidget(parent_),
+LayerItemWidget::LayerItemWidget(QWidget *parent_, TileMap &map) : QWidget(parent_),
     m_map(map)
 {
     setObjectName("layer");
@@ -25,7 +25,7 @@ LayerWidget::LayerWidget(QWidget *parent_, TileMap &map) : QWidget(parent_),
     connect(propertiesButton, SIGNAL(clicked()), this, SLOT(activateDialog()));
 }
 
-void LayerWidget::setIndex(int i)
+void LayerItemWidget::setIndex(int i)
 {
     index = i;
     dialog->getUi()->nameEdit->setText(QString::fromStdString(m_map[index].getName()));
@@ -36,7 +36,7 @@ void LayerWidget::setIndex(int i)
     dialog->getUi()->depthIndexSpinBox->setValue(m_map[index].getDepthIndex());
 }
 
-void LayerWidget::setCurrent()
+void LayerItemWidget::setCurrent()
 {
     setAutoFillBackground(true);
     QPalette pal(palette());
@@ -44,7 +44,7 @@ void LayerWidget::setCurrent()
     setPalette(pal);
 }
 
-void LayerWidget::unsetCurrent()
+void LayerItemWidget::unsetCurrent()
 {
     setAutoFillBackground(true);
     QPalette pal(palette());
@@ -52,58 +52,58 @@ void LayerWidget::unsetCurrent()
     setPalette(pal);
 }
 
-void LayerWidget::mousePressEvent(QMouseEvent *)
+void LayerItemWidget::mousePressEvent(QMouseEvent *)
 {
     emit selected(index);
 }
 
-void LayerWidget::resizeEvent(QResizeEvent *)
+void LayerItemWidget::resizeEvent(QResizeEvent *)
 {
     title->setFixedSize(width() - 30, height());
     propertiesButton->setGeometry(width() - 30, 0, 30, height());
 }
 
-void LayerWidget::rename(QString new_name)
+void LayerItemWidget::rename(QString new_name)
 {
     m_map[index].setName(new_name.toStdString());
     title->setText(new_name);
 }
 
-void LayerWidget::changeWidth(int value)
+void LayerItemWidget::changeWidth(int value)
 {
     m_map[index].resize(value, m_map[index].getVLength());
 }
 
-void LayerWidget::changeHeigth(int value)
+void LayerItemWidget::changeHeigth(int value)
 {
     m_map[index].resize(m_map[index].getHLength(), value);
 }
 
-void LayerWidget::changeX(int value)
+void LayerItemWidget::changeX(int value)
 {
     m_map[index].setPosition(value, m_map[index].getPosition().y);
 }
 
-void LayerWidget::changeY(int value)
+void LayerItemWidget::changeY(int value)
 {
     m_map[index].setPosition(m_map[index].getPosition().x, value);
 }
 
-void LayerWidget::changeDepthIndex(double depthIndex)
+void LayerItemWidget::changeDepthIndex(double depthIndex)
 {
     m_map[index].setDepthIndex(depthIndex);
 }
 
-void LayerWidget::changeGridColor(QColor color)
+void LayerItemWidget::changeGridColor(QColor color)
 {
     m_map[index].setGridColor(sf::Color(color.red(), color.green(), color.blue()));
 }
-void LayerWidget::clearLayer()
+void LayerItemWidget::clearLayer()
 {
     m_map[index].fill(0);
 }
 
-void LayerWidget::activateDialog()
+void LayerItemWidget::activateDialog()
 {
     dialog->setModal(true);
     dialog->show();

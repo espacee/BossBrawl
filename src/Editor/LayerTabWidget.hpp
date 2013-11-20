@@ -13,7 +13,7 @@
 #include <QLabel>
 
 #include "Map/TileMap.hpp"
-#include "LayerWidget.hpp"
+#include "LayerItemWidget.hpp"
 
 class LayerTabWidget : public QWidget
 {
@@ -48,7 +48,7 @@ private:
     int layerWidgetHeigth, offset;
     bool currentGridOnly, currentVisibleOnly;
 
-    QVector<LayerWidget*> layerWidgets;
+    QVector<LayerItemWidget*> layerWidgets;
 
     QScrollArea* layerScrollArea;
     QPushButton* addLayerButton;

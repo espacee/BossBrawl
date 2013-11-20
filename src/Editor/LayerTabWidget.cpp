@@ -69,12 +69,12 @@ void LayerTabWidget::addLayerWidget()
     if (layerWidgets.size() == 0)
     {
         newLayer = 0;
-        layerWidgets.push_back(new LayerWidget(pan, m_map));
+        layerWidgets.push_back(new LayerItemWidget(pan, m_map));
     }
     else
     {
         newLayer = currentLayer + 1;
-        layerWidgets.insert(layerWidgets.begin() + newLayer, new LayerWidget(pan, m_map));
+        layerWidgets.insert(layerWidgets.begin() + newLayer, new LayerItemWidget(pan, m_map));
     }
 
     connect(layerWidgets[newLayer], SIGNAL(selected(int)), this, SLOT(selectLayer(int)));
@@ -113,7 +113,7 @@ void LayerTabWidget::moveBg()
 {
     if (currentLayer > 0)
     {
-        LayerWidget* temp = layerWidgets[currentLayer];
+        LayerItemWidget* temp = layerWidgets[currentLayer];
         layerWidgets[currentLayer] = layerWidgets[currentLayer - 1];
         layerWidgets[currentLayer - 1] = temp;
         m_map.moveLayerBackground(currentLayer);
@@ -126,7 +126,7 @@ void LayerTabWidget::moveFg()
 {
     if (currentLayer < layerWidgets.size() - 1)
     {
-        LayerWidget* temp = layerWidgets[currentLayer];
+        LayerItemWidget* temp = layerWidgets[currentLayer];
         layerWidgets[currentLayer] = layerWidgets[currentLayer + 1];
         layerWidgets[currentLayer + 1] = temp;
         m_map.moveLayerForeground(currentLayer);
