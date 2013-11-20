@@ -156,6 +156,7 @@ void SFMLWidget::mouseReleaseEvent(QMouseEvent *e)
         middleButtonDown = false;
     }
 }
+
 void SFMLWidget::keyPressEvent(QKeyEvent *e)
 {
     if (e->key() == Qt::Key_Control)
@@ -208,8 +209,6 @@ void SFMLWidget::putTile(sf::Vector2i mouseCoord)
     }
 }
 
-
-
 void SFMLWidget::eraseTile(sf::Vector2i mouseCoord)
 {
     sf::Vector2i windowRelativeCoord = mouseCoord;
@@ -228,6 +227,7 @@ void SFMLWidget::eraseTile(sf::Vector2i mouseCoord)
             m_map[layer](xpos, ypos) = 0;
     }
 }
+
 void SFMLWidget::putEntity(sf::Vector2i mouseCoord, std::string entity)
 {
     sf::Vector2i windowRelativeCoord = mouseCoord;
