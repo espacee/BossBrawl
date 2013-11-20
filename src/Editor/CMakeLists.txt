@@ -17,8 +17,8 @@ LayerWidget.cpp
 LayerWidget.hpp
 SFMLWidget.cpp
 SFMLWidget.hpp
-TileWidget.cpp
-TileWidget.hpp
+TileSelectionWidget.cpp
+TileSelectionWidget.hpp
 main.cpp
 ${UIS_HDRS}
 )

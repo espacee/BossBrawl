@@ -1,6 +1,6 @@
-#include "TileWidget.hpp"
+#include "TileSelectionWidget.hpp"
 
-TileWidget::TileWidget(QWidget *parent_)
+TileSelectionWidget::TileSelectionWidget(QWidget *parent_)
 {
     setParent(parent_);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
@@ -25,7 +25,7 @@ TileWidget::TileWidget(QWidget *parent_)
     leftButtonDown = false;
 }
 
-void TileWidget::select(int xpos, int ypos)
+void TileSelectionWidget::select(int xpos, int ypos)
 {
     xpos += horizontalScrollBar()->value();
     ypos += verticalScrollBar()->value();
@@ -46,12 +46,12 @@ void TileWidget::select(int xpos, int ypos)
     emit selected(tileSetPixmap.copy(xpos - 40, ypos - 40, 40, 40));
 }
 
-int TileWidget::round40(int nb)
+int TileSelectionWidget::round40(int nb)
 {
     return ((int)nb / 40) * 40;
 }
 
-void TileWidget::mousePressEvent(QMouseEvent *e)
+void TileSelectionWidget::mousePressEvent(QMouseEvent *e)
 {
     if (e->buttons() == Qt::LeftButton)
     {
@@ -60,7 +60,7 @@ void TileWidget::mousePressEvent(QMouseEvent *e)
     }
 }
 
-void TileWidget::mouseReleaseEvent(QMouseEvent *e)
+void TileSelectionWidget::mouseReleaseEvent(QMouseEvent *e)
 {
     if (e->buttons() == Qt::LeftButton)
     {
@@ -68,7 +68,7 @@ void TileWidget::mouseReleaseEvent(QMouseEvent *e)
     }
 }
 
-void TileWidget::mouseMoveEvent(QMouseEvent *e)
+void TileSelectionWidget::mouseMoveEvent(QMouseEvent *e)
 {
     if (leftButtonDown)
     {
@@ -76,12 +76,12 @@ void TileWidget::mouseMoveEvent(QMouseEvent *e)
     }
 }
 
-void TileWidget::keyPressEvent(QKeyEvent* e)
+void TileSelectionWidget::keyPressEvent(QKeyEvent* e)
 {
     if (e->key() == Qt::Key_Escape)
         hide();
 }
 
-void TileWidget::showEvent(QShowEvent*)
+void TileSelectionWidget::showEvent(QShowEvent*)
 {
 }

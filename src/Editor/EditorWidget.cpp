@@ -314,7 +314,7 @@ void EditorWidget::initCentralWidget()
                                width() - toolBar->x() - toolBar->width() - rightPanelWidth - globalPadding,
                                height() - menuBarHeight - topBarHeight - globalPadding - botBarHeight);
     sfmlWidget = new SFMLWidget(centralWidget, QPoint(0, 0), centralWidget->size(), map, &camera, cont);
-    tileWidget = new TileWidget(centralWidget);
+    tileWidget = new TileSelectionWidget(centralWidget);
     tileWidget->move(0, 0);
     tileWidget->resize(centralWidget->size());
     connect(tileWidget, SIGNAL(selected(int)), this, SLOT(tileSelected(int)));

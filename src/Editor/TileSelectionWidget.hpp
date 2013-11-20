@@ -1,5 +1,5 @@
-#ifndef TILEWIDGET_HPP
-#define TILEWIDGET_HPP
+#ifndef TILESELECTIONWIDGET_HPP
+#define TILESELECTIONWIDGET_HPP
 
 #include <QScrollArea>
 #include <QScrollBar>
@@ -7,11 +7,11 @@
 #include <QLabel>
 #include <QMouseEvent>
 
-class TileWidget : public QScrollArea
+class TileSelectionWidget : public QScrollArea
 {
     Q_OBJECT
 public:
-    TileWidget(QWidget *parent = 0);
+    TileSelectionWidget(QWidget *parent = 0);
     void select(int xpos, int ypos);
     int round40(int nb);
 
@@ -40,4 +40,4 @@ private:
     bool leftButtonDown;
 };
 
-#endif // TILEWIDGET_HPP
+#endif // TILESELECTIONWIDGET_HPP

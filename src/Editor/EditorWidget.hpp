@@ -11,7 +11,7 @@
 #include <QFileDialog>
 
 #include "SFMLWidget.hpp"
-#include "TileWidget.hpp"
+#include "TileSelectionWidget.hpp"
 #include "LayerTabWidget.hpp"
 #include "Map/TileMap.hpp"
 #include "Entities/EntityContainer.hpp"
@@ -117,7 +117,7 @@ private:
     QPushButton* toggleGridButton;
     QPushButton* toggleVisibleButton;
 
-    TileWidget* tileWidget;
+    TileSelectionWidget* tileWidget;
     int id;
 
     QPushButton* tileButton;
