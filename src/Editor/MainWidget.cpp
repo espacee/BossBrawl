@@ -1,7 +1,7 @@
-#include "EditorWidget.hpp"
+#include "MainWidget.hpp"
 #include <QMessageBox>
 
-EditorWidget::EditorWidget(QWidget *parent_) : QWidget(parent_),
+MainWidget::MainWidget(QWidget *parent_) : QWidget(parent_),
     gridEnabled(false),
     currentLayer(0)
 {
@@ -55,11 +55,11 @@ EditorWidget::EditorWidget(QWidget *parent_) : QWidget(parent_),
     }
 }
 
-EditorWidget::~EditorWidget()
+MainWidget::~MainWidget()
 {
 }
 
-void EditorWidget::onInit()
+void MainWidget::onInit()
 {
     tileWidget->select(0, 0);
     penToolButton->click();
@@ -69,7 +69,7 @@ void EditorWidget::onInit()
     camera.setCenter(0, 0);
 }
 
-void EditorWidget::onUpdate()
+void MainWidget::onUpdate()
 {
     if (a) clear_red += 0.001;
     else clear_red -= 0.001;
@@ -94,7 +94,7 @@ void EditorWidget::onUpdate()
     sfmlWidget->sf::RenderWindow::display();
 }
 
-void EditorWidget::initWindow()
+void MainWidget::initWindow()
 {
     windowIcon = new QLabel("", this);
     windowIcon->setPixmap(QPixmap("res/img/GUI/windowIcon.png"));
@@ -121,7 +121,7 @@ void EditorWidget::initWindow()
     connect(saveButton, SIGNAL(clicked()), this, SLOT(saveButtonClicked()));
 }
 
-void EditorWidget::initToolBar()
+void MainWidget::initToolBar()
 {
     toolBar = new QWidget(this);
     toolBar->setGeometry(globalPadding,
@@ -252,7 +252,7 @@ void EditorWidget::initToolBar()
     connect(zoomToolButton, SIGNAL(clicked()), this, SLOT(zoomToolButtonClicked()));
 }
 
-void EditorWidget::initTopBar()
+void MainWidget::initTopBar()
 {
     topBar = new QWidget(this);
     topBar->setGeometry(globalPadding + toolBarWidth,
@@ -267,7 +267,7 @@ void EditorWidget::initTopBar()
     connect(tileButton, SIGNAL(clicked()), this, SLOT(tileButtonClicked()));
 }
 
-void EditorWidget::initRightPanel()
+void MainWidget::initRightPanel()
 {
     rightPanel = new QWidget(this);
     rightPanel->setGeometry(width() - globalPadding - rightPanelWidth,
@@ -278,7 +278,7 @@ void EditorWidget::initRightPanel()
     layerTab->resize(rightPanel->size());
 }
 
-void EditorWidget::initBotBar()
+void MainWidget::initBotBar()
 {
     botBar = new QWidget(this);
     botBar->setGeometry(globalPadding + toolBarWidth,
@@ -306,7 +306,7 @@ void EditorWidget::initBotBar()
     connect(toggleVisibleButton, SIGNAL(clicked()), this, SLOT(toggleVisibleButtonClicked()));
 }
 
-void EditorWidget::initCentralWidget()
+void MainWidget::initCentralWidget()
 {
     centralWidget = new QWidget(this);
     centralWidget->setGeometry(toolBar->x() + toolBar->width(),
@@ -322,7 +322,7 @@ void EditorWidget::initCentralWidget()
     tileWidget->hide();
 }
 
-void EditorWidget::loadMapFromFile(const QString &filename)
+void MainWidget::loadMapFromFile(const QString &filename)
 {
     if (map.loadFromFile(filename.toStdString()))
     {
@@ -341,17 +341,17 @@ void EditorWidget::loadMapFromFile(const QString &filename)
     filePath = filename.toStdString();
 }
 
-void EditorWidget::quitClicked()
+void MainWidget::quitClicked()
 {
     close();
 }
 
-void EditorWidget::minimizeClicked()
+void MainWidget::minimizeClicked()
 {
     setWindowState(Qt::WindowMinimized);
 }
 
-void EditorWidget::pointerToolButtonClicked()
+void MainWidget::pointerToolButtonClicked()
 {
     uncheckToolButtons();
     pointerToolButton->setChecked(true);
@@ -359,7 +359,7 @@ void EditorWidget::pointerToolButtonClicked()
     sfmlWidget->setTool(tool);
 }
 
-void EditorWidget::penToolButtonClicked()
+void MainWidget::penToolButtonClicked()
 {
     uncheckToolButtons();
     penToolButton->setChecked(true);
@@ -367,7 +367,7 @@ void EditorWidget::penToolButtonClicked()
     sfmlWidget->setTool(tool);
 }
 
-void EditorWidget::randomPenToolButtonClicked()
+void MainWidget::randomPenToolButtonClicked()
 {
     uncheckToolButtons();
     randomPenToolButton->setChecked(true);
@@ -375,7 +375,7 @@ void EditorWidget::randomPenToolButtonClicked()
     sfmlWidget->setTool(tool);
 }
 
-void EditorWidget::patternBrushToolButtonClicked()
+void MainWidget::patternBrushToolButtonClicked()
 {
     uncheckToolButtons();
     patternBrushToolButton->setChecked(true);
@@ -383,7 +383,7 @@ void EditorWidget::patternBrushToolButtonClicked()
     sfmlWidget->setTool(tool);
 }
 
-void EditorWidget::eraserToolButtonClicked()
+void MainWidget::eraserToolButtonClicked()
 {
     uncheckToolButtons();
     eraserToolButton->setChecked(true);
@@ -391,7 +391,7 @@ void EditorWidget::eraserToolButtonClicked()
     sfmlWidget->setTool(tool);
 }
 
-void EditorWidget::fillShapeToolButtonClicked()
+void MainWidget::fillShapeToolButtonClicked()
 {
     uncheckToolButtons();
     fillShapeToolButton->setChecked(true);
@@ -399,7 +399,7 @@ void EditorWidget::fillShapeToolButtonClicked()
     sfmlWidget->setTool(tool);
 }
 
-void EditorWidget::selectAreaToolButtonClicked()
+void MainWidget::selectAreaToolButtonClicked()
 {
     uncheckToolButtons();
     selectAreaToolButton->setChecked(true);
@@ -407,7 +407,7 @@ void EditorWidget::selectAreaToolButtonClicked()
     sfmlWidget->setTool(tool);
 }
 
-void EditorWidget::arrowToolButtonClicked()
+void MainWidget::arrowToolButtonClicked()
 {
     uncheckToolButtons();
     arrowToolButton->setChecked(true);
@@ -415,7 +415,7 @@ void EditorWidget::arrowToolButtonClicked()
     sfmlWidget->setTool(tool);
 }
 
-void EditorWidget::entityToolButtonClicked()
+void MainWidget::entityToolButtonClicked()
 {
     uncheckToolButtons();
     entityToolButton->setChecked(true);
@@ -423,7 +423,7 @@ void EditorWidget::entityToolButtonClicked()
     sfmlWidget->setTool(tool);
 }
 
-void EditorWidget::objectToolButtonClicked()
+void MainWidget::objectToolButtonClicked()
 {
     uncheckToolButtons();
     objectToolButton->setChecked(true);
@@ -431,7 +431,7 @@ void EditorWidget::objectToolButtonClicked()
     sfmlWidget->setTool(tool);
 }
 
-void EditorWidget::handToolButtonClicked()
+void MainWidget::handToolButtonClicked()
 {
     uncheckToolButtons();
     handToolButton->setChecked(true);
@@ -439,7 +439,7 @@ void EditorWidget::handToolButtonClicked()
     sfmlWidget->setTool(tool);
 }
 
-void EditorWidget::zoomToolButtonClicked()
+void MainWidget::zoomToolButtonClicked()
 {
     uncheckToolButtons();
     zoomToolButton->setChecked(true);
@@ -448,7 +448,7 @@ void EditorWidget::zoomToolButtonClicked()
 }
 
 
-void EditorWidget::uncheckToolButtons()
+void MainWidget::uncheckToolButtons()
 {
     pointerToolButton->setChecked(false);
     arrowToolButton->setChecked(false);
@@ -465,28 +465,28 @@ void EditorWidget::uncheckToolButtons()
 }
 
 
-void EditorWidget::tileButtonClicked()
+void MainWidget::tileButtonClicked()
 {
     if (tileWidget->isVisible())
         tileWidget->hide();
     else
         tileWidget->show();
 }
-void EditorWidget::newButtonClicked()
+void MainWidget::newButtonClicked()
 {
     map.reset();
     cont.reset();
     layerTab->loadLayersFromMap();
 }
 
-void EditorWidget::openButtonClicked()
+void MainWidget::openButtonClicked()
 {
     QString filename = QFileDialog::getOpenFileName(this);
 
     if (!filename.isNull())
         loadMapFromFile(filename);
 }
-void EditorWidget::saveButtonClicked()
+void MainWidget::saveButtonClicked()
 {
     if (filePath.empty() == true)
     {
@@ -503,34 +503,34 @@ void EditorWidget::saveButtonClicked()
         cont.saveToFile(entityfilename);
     }
 }
-void EditorWidget::tileSelected(int new_id)
+void MainWidget::tileSelected(int new_id)
 {
     id = new_id;
     sfmlWidget->setCurrentTile(new_id);
 }
 
-void EditorWidget::tileSelected(QPixmap tile)
+void MainWidget::tileSelected(QPixmap tile)
 {
     tileButton->setIcon(QIcon(tile));
 }
 
-void EditorWidget::setCurrentLayer(int layer)
+void MainWidget::setCurrentLayer(int layer)
 {
     currentLayer = layer;
 }
 
-void EditorWidget::resetCameraButtonClicked()
+void MainWidget::resetCameraButtonClicked()
 {
     camera = sf::View(sf::FloatRect(0, 0, sfmlWidget->width() - 1, sfmlWidget->height() - 1));
     camera.setCenter(0, 0);
 }
 
-void EditorWidget::toggleGridButtonClicked()
+void MainWidget::toggleGridButtonClicked()
 {
     gridEnabled = !gridEnabled;
 }
 
-void EditorWidget::toggleVisibleButtonClicked()
+void MainWidget::toggleVisibleButtonClicked()
 {
     layerTab->toggleVisible();
 }
