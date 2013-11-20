@@ -200,8 +200,8 @@ void SFMLWidget::putTile(sf::Vector2i mouseCoord)
 
     if (layerRelativeCoord.x > 0 && layerRelativeCoord.y > 0)
     {
-        int xpos = layerRelativeCoord.x / Layer::GRID_SIZE ;
-        int ypos = layerRelativeCoord.y / Layer::GRID_SIZE ;
+        int xpos = layerRelativeCoord.x / Layer::TILE_SIZE ;
+        int ypos = layerRelativeCoord.y / Layer::TILE_SIZE ;
 
         if (m_map[layer].tileExists(xpos, ypos))
             m_map[layer](xpos, ypos) = id;
@@ -221,8 +221,8 @@ void SFMLWidget::eraseTile(sf::Vector2i mouseCoord)
 
     if (layerRelativeCoord.x > 0 && layerRelativeCoord.y > 0)
     {
-        int xpos = layerRelativeCoord.x / Layer::GRID_SIZE ;
-        int ypos = layerRelativeCoord.y / Layer::GRID_SIZE ;
+        int xpos = layerRelativeCoord.x / Layer::TILE_SIZE ;
+        int ypos = layerRelativeCoord.y / Layer::TILE_SIZE ;
 
         if (m_map[layer].tileExists(xpos, ypos))
             m_map[layer](xpos, ypos) = 0;

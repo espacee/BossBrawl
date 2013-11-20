@@ -24,11 +24,11 @@ void TileMap::loadTileset()
         int ts_width = tileSet.getSize().x;
         int ts_height = tileSet.getSize().y;
 
-        for (int j = 0; j < ts_height; j += Layer::GRID_SIZE)
+        for (int j = 0; j < ts_height; j += Layer::TILE_SIZE)
         {
-            for (int i = 0; i < ts_width; i += Layer::GRID_SIZE)
+            for (int i = 0; i < ts_width; i += Layer::TILE_SIZE)
             {
-                sprites.push_back(sf::Sprite(tileSet, sf::IntRect(i, j, Layer::GRID_SIZE, Layer::GRID_SIZE)));
+                sprites.push_back(sf::Sprite(tileSet, sf::IntRect(i, j, Layer::TILE_SIZE, Layer::TILE_SIZE)));
             }
         }
     }
@@ -196,10 +196,10 @@ void TileMap::draw(sf::RenderWindow &target, unsigned int drawGridForLayer)
             camera.setCenter((saveCamera.getCenter().x * layers[k]->getDepthIndex() - layers[k]->getPosition().x),
                              (saveCamera.getCenter().y * layers[k]->getDepthIndex() - layers[k]->getPosition().y));
             target.setView(camera);
-            int xmin = (int)(camera.getCenter().x - camera.getSize().x / 2) / Layer::GRID_SIZE;
-            int ymin = (int)(camera.getCenter().y - camera.getSize().y / 2) / Layer::GRID_SIZE;
-            int xmax = (int)(camera.getCenter().x + camera.getSize().x / 2) / Layer::GRID_SIZE + 1;
-            int ymax = (int)(camera.getCenter().y + camera.getSize().y / 2) / Layer::GRID_SIZE + 1;
+            int xmin = (int)(camera.getCenter().x - camera.getSize().x / 2) / Layer::TILE_SIZE;
+            int ymin = (int)(camera.getCenter().y - camera.getSize().y / 2) / Layer::TILE_SIZE;
+            int xmax = (int)(camera.getCenter().x + camera.getSize().x / 2) / Layer::TILE_SIZE + 1;
+            int ymax = (int)(camera.getCenter().y + camera.getSize().y / 2) / Layer::TILE_SIZE + 1;
 
             if (xmin < 0) xmin = 0;
 
@@ -237,8 +237,8 @@ void TileMap::draw(sf::RenderWindow &target, unsigned int drawGridForLayer)
 
                     if (id)
                     {
-                        sprites[id].setPosition((i * Layer::GRID_SIZE),
-                                                (j * Layer::GRID_SIZE));
+                        sprites[id].setPosition((i * Layer::TILE_SIZE),
+                                                (j * Layer::TILE_SIZE));
                         target.draw(sprites[id]);
                     }
 
@@ -246,8 +246,8 @@ void TileMap::draw(sf::RenderWindow &target, unsigned int drawGridForLayer)
                     {
                         sf::Vertex hLine[] =
                         {
-                            sf::Vertex(sf::Vector2f(xmin * Layer::GRID_SIZE, j * Layer::GRID_SIZE), layers[k]->getGridColor()),
-                            sf::Vertex(sf::Vector2f((xmax)*Layer::GRID_SIZE, j * Layer::GRID_SIZE), layers[k]->getGridColor())
+                            sf::Vertex(sf::Vector2f(xmin * Layer::TILE_SIZE, j * Layer::TILE_SIZE), layers[k]->getGridColor()),
+                            sf::Vertex(sf::Vector2f((xmax)*Layer::TILE_SIZE, j * Layer::TILE_SIZE), layers[k]->getGridColor())
                         };
                         target.draw(hLine, 2, sf::Lines);
                     }
@@ -257,8 +257,8 @@ void TileMap::draw(sf::RenderWindow &target, unsigned int drawGridForLayer)
                 {
                     sf::Vertex vLine[] =
                     {
-                        sf::Vertex(sf::Vector2f(i * Layer::GRID_SIZE, ymin * Layer::GRID_SIZE), layers[k]->getGridColor()),
-                        sf::Vertex(sf::Vector2f(i * Layer::GRID_SIZE, (ymax)*Layer::GRID_SIZE), layers[k]->getGridColor())
+                        sf::Vertex(sf::Vector2f(i * Layer::TILE_SIZE, ymin * Layer::TILE_SIZE), layers[k]->getGridColor()),
+                        sf::Vertex(sf::Vector2f(i * Layer::TILE_SIZE, (ymax)*Layer::TILE_SIZE), layers[k]->getGridColor())
                     };
                     target.draw(vLine, 2, sf::Lines);
                 }

@@ -58,16 +58,16 @@ void Entity::update(Layer &mainLayer)
                                           sprite.getPosition().y + virtualMovement.y,
                                           texture.getSize().x,
                                           texture.getSize().y);
-        int xmin = futureBoundingBox.left / Layer::GRID_SIZE;
-        int ymin = futureBoundingBox.top / Layer::GRID_SIZE;
-        int xmax = (futureBoundingBox.left + futureBoundingBox.width) / Layer::GRID_SIZE + 1;
-        int ymax = (futureBoundingBox.top + futureBoundingBox.height) / Layer::GRID_SIZE + 1;
+        int xmin = futureBoundingBox.left / Layer::TILE_SIZE;
+        int ymin = futureBoundingBox.top / Layer::TILE_SIZE;
+        int xmax = (futureBoundingBox.left + futureBoundingBox.width) / Layer::TILE_SIZE + 1;
+        int ymax = (futureBoundingBox.top + futureBoundingBox.height) / Layer::TILE_SIZE + 1;
 
         for (int i = xmin; i < xmax; i++)
         {
             for (int j = ymin; j < ymax; j++)
             {
-                sf::FloatRect currentTile(i * Layer::GRID_SIZE, j * Layer::GRID_SIZE, Layer::GRID_SIZE, Layer::GRID_SIZE);
+                sf::FloatRect currentTile(i * Layer::TILE_SIZE, j * Layer::TILE_SIZE, Layer::TILE_SIZE, Layer::TILE_SIZE);
 
                 if (mainLayer.tileExists(i, j))
                 {
@@ -117,16 +117,16 @@ label_exit:
                                                 sprite.getPosition().y + 1,
                                                 texture.getSize().x / 2 + 1,
                                                 texture.getSize().y - 2);
-        int xmin = futureBoundingBox.left / Layer::GRID_SIZE;
-        int ymin = futureBoundingBox.top / Layer::GRID_SIZE;
-        int xmax = (futureBoundingBox.left + futureBoundingBox.width) / Layer::GRID_SIZE + 1;
-        int ymax = (futureBoundingBox.top + futureBoundingBox.height) / Layer::GRID_SIZE + 1;
+        int xmin = futureBoundingBox.left / Layer::TILE_SIZE;
+        int ymin = futureBoundingBox.top / Layer::TILE_SIZE;
+        int xmax = (futureBoundingBox.left + futureBoundingBox.width) / Layer::TILE_SIZE + 1;
+        int ymax = (futureBoundingBox.top + futureBoundingBox.height) / Layer::TILE_SIZE + 1;
 
         for (int i = xmin; i < xmax; i++)
         {
             for (int j = ymin; j < ymax; j++)
             {
-                sf::FloatRect currentTile(i * Layer::GRID_SIZE, j * Layer::GRID_SIZE, Layer::GRID_SIZE, Layer::GRID_SIZE);
+                sf::FloatRect currentTile(i * Layer::TILE_SIZE, j * Layer::TILE_SIZE, Layer::TILE_SIZE, Layer::TILE_SIZE);
 
                 if (mainLayer.tileExists(i, j))
                 {

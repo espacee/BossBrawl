@@ -71,12 +71,12 @@ public:
 
     inline int getWidth() const
     {
-        return getHLength() * GRID_SIZE;
+        return getHLength() * TILE_SIZE;
     }
 
     inline int getHeight() const
     {
-        return getVLength() * GRID_SIZE;
+        return getVLength() * TILE_SIZE;
     }
 
     inline void setName(const std::string& name)
@@ -123,7 +123,7 @@ public:
         return m_tiles[x][y];
     }
 
-    static constexpr int GRID_SIZE = 40;
+    static constexpr int TILE_SIZE = 40;
 
 private:
     std::string m_name;
