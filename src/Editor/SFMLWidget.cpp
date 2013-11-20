@@ -1,10 +1,10 @@
 #include "SFMLWidget.hpp"
 
 SFMLWidget::SFMLWidget(QWidget* Parent, const QPoint& Position, const QSize& Size, TileMap &map, sf::View* cameraP, EntityContainer &cont) :
+    QWidget(Parent),
     m_map(map),
     m_cont(cont)
 {
-    setParent(Parent);
     initialized = false;
     leftButtonDown = false;
     rightButtonDown = false;
