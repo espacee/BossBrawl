@@ -11,6 +11,7 @@ File naming:
 - Source files have the extension .cpp
 
 Symbol naming:
+- Variables are camelCase
 - Function names are camelCase()
 - Class names are CamelCase
 - Macro names are UPPER_CASE
