@@ -1,5 +1,5 @@
-#ifndef SFMLWIDGET_HPP
-#define SFMLWIDGET_HPP
+#ifndef MAPWIDGET_HPP
+#define MAPWIDGET_HPP
 
 #include <SFML/Graphics.hpp>
 #include <QWidget>
@@ -13,12 +13,12 @@
 
 #include <QDebug>
 
-class SFMLWidget  : public QWidget, public sf::RenderWindow
+class MapWidget  : public QWidget, public sf::RenderWindow
 {
     Q_OBJECT
 public:
-    SFMLWidget(QWidget* parent_, const QPoint& position, const QSize& size, TileMap& map, sf::View* cameraP, EntityContainer& cont);
-    ~SFMLWidget();
+    MapWidget(QWidget* parent_, const QPoint& position, const QSize& size, TileMap& map, sf::View* cameraP, EntityContainer& cont);
+    ~MapWidget();
 
     void processEvents();
 
@@ -55,4 +55,4 @@ private:
     float x1, x2, y1, y2, dx, dy;
 };
 
-#endif // SFMLWIDGET_HPP
+#endif // MAPWIDGET_HPP

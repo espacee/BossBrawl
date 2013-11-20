@@ -1,6 +1,6 @@
-#include "SFMLWidget.hpp"
+#include "MapWidget.hpp"
 
-SFMLWidget::SFMLWidget(QWidget* parent_, const QPoint& position, const QSize& size_, TileMap &map, sf::View* cameraP, EntityContainer &cont) :
+MapWidget::MapWidget(QWidget* parent_, const QPoint& position, const QSize& size_, TileMap &map, sf::View* cameraP, EntityContainer &cont) :
     QWidget(parent_),
     m_map(map),
     m_cont(cont)
@@ -20,26 +20,26 @@ SFMLWidget::SFMLWidget(QWidget* parent_, const QPoint& position, const QSize& si
     resize(size_);
 }
 
-void SFMLWidget::setTool(int newTool)
+void MapWidget::setTool(int newTool)
 {
     tool = newTool;
 }
 
-void SFMLWidget::setCurrentLayer(int newLayer)
+void MapWidget::setCurrentLayer(int newLayer)
 {
     layer = newLayer;
 }
 
-void SFMLWidget::setCurrentTile(int new_id)
+void MapWidget::setCurrentTile(int new_id)
 {
     id = new_id;
 }
 
-void SFMLWidget::processEvents()
+void MapWidget::processEvents()
 {
 }
 
-void SFMLWidget::showEvent(QShowEvent*)
+void MapWidget::showEvent(QShowEvent*)
 {
     if (!initialized)
     {
@@ -52,16 +52,16 @@ void SFMLWidget::showEvent(QShowEvent*)
     }
 }
 
-QPaintEngine* SFMLWidget::paintEngine() const
+QPaintEngine* MapWidget::paintEngine() const
 {
     return 0;
 }
 
-void SFMLWidget::paintEvent(QPaintEvent*)
+void MapWidget::paintEvent(QPaintEvent*)
 {
 }
 
-void SFMLWidget::mousePressEvent(QMouseEvent *e)
+void MapWidget::mousePressEvent(QMouseEvent *e)
 {
     if (e->button() == Qt::LeftButton)
     {
@@ -99,7 +99,7 @@ void SFMLWidget::mousePressEvent(QMouseEvent *e)
     mouseMoveEvent(e);
 }
 
-void SFMLWidget::mouseMoveEvent(QMouseEvent *e)
+void MapWidget::mouseMoveEvent(QMouseEvent *e)
 {
     if (rightButtonDown)
     {
@@ -139,7 +139,7 @@ void SFMLWidget::mouseMoveEvent(QMouseEvent *e)
     }
 }
 
-void SFMLWidget::mouseReleaseEvent(QMouseEvent *e)
+void MapWidget::mouseReleaseEvent(QMouseEvent *e)
 {
     if (e->button() == Qt::LeftButton)
     {
@@ -157,7 +157,7 @@ void SFMLWidget::mouseReleaseEvent(QMouseEvent *e)
     }
 }
 
-void SFMLWidget::keyPressEvent(QKeyEvent *e)
+void MapWidget::keyPressEvent(QKeyEvent *e)
 {
     if (e->key() == Qt::Key_Control)
         ctrlKeyDown = true;
@@ -166,7 +166,7 @@ void SFMLWidget::keyPressEvent(QKeyEvent *e)
         spaceKeyDown = true;
 }
 
-void SFMLWidget::keyReleaseEvent(QKeyEvent *e)
+void MapWidget::keyReleaseEvent(QKeyEvent *e)
 {
     if (e->key() == Qt::Key_Control)
         ctrlKeyDown = false;
@@ -175,7 +175,7 @@ void SFMLWidget::keyReleaseEvent(QKeyEvent *e)
         spaceKeyDown = false;
 }
 
-void SFMLWidget::wheelEvent(QWheelEvent *e)
+void MapWidget::wheelEvent(QWheelEvent *e)
 {
     if (ctrlKeyDown)
     {
@@ -186,11 +186,11 @@ void SFMLWidget::wheelEvent(QWheelEvent *e)
     }
 }
 
-SFMLWidget::~SFMLWidget()
+MapWidget::~MapWidget()
 {
 }
 
-void SFMLWidget::putTile(sf::Vector2i mouseCoord)
+void MapWidget::putTile(sf::Vector2i mouseCoord)
 {
     sf::Vector2i windowRelativeCoord = mouseCoord;
     sf::View temp = *camera;
@@ -209,7 +209,7 @@ void SFMLWidget::putTile(sf::Vector2i mouseCoord)
     }
 }
 
-void SFMLWidget::eraseTile(sf::Vector2i mouseCoord)
+void MapWidget::eraseTile(sf::Vector2i mouseCoord)
 {
     sf::Vector2i windowRelativeCoord = mouseCoord;
     sf::View temp = *camera;
@@ -228,7 +228,7 @@ void SFMLWidget::eraseTile(sf::Vector2i mouseCoord)
     }
 }
 
-void SFMLWidget::putEntity(sf::Vector2i mouseCoord, std::string entity)
+void MapWidget::putEntity(sf::Vector2i mouseCoord, std::string entity)
 {
     sf::Vector2i windowRelativeCoord = mouseCoord;
     sf::View temp = *camera;
@@ -247,7 +247,7 @@ void SFMLWidget::putEntity(sf::Vector2i mouseCoord, std::string entity)
     }
 }
 
-void SFMLWidget::eraseEntity(sf::Vector2i mouseCoord)
+void MapWidget::eraseEntity(sf::Vector2i mouseCoord)
 {
     sf::Vector2i windowRelativeCoord = mouseCoord;
     sf::View temp = *camera;

@@ -15,8 +15,8 @@ LayerSettingsDialog.cpp
 LayerSettingsDialog.hpp
 MainWidget.cpp
 MainWidget.hpp
-SFMLWidget.cpp
-SFMLWidget.hpp
+MapWidget.cpp
+MapWidget.hpp
 TileSelectionWidget.cpp
 TileSelectionWidget.hpp
 main.cpp

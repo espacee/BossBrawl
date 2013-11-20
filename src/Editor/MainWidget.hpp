@@ -10,7 +10,7 @@
 #include <QTimer>
 #include <QFileDialog>
 
-#include "SFMLWidget.hpp"
+#include "MapWidget.hpp"
 #include "TileSelectionWidget.hpp"
 #include "LayerListWidget.hpp"
 #include "Map/TileMap.hpp"
@@ -83,7 +83,7 @@ private:
     float clear_red, clear_green, clear_blue;
     bool a, b, c;
 
-    SFMLWidget* sfmlWidget;
+    MapWidget* sfmlWidget;
     sf::View camera;
 
     QWidget *toolBar;
