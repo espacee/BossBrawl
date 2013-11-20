@@ -40,7 +40,7 @@ MainWidget::MainWidget(QWidget *parent_) : QWidget(parent_),
     timer.setInterval(frameTime);
     connect(&timer, SIGNAL(timeout()), this, SLOT(onUpdate()));
     timer.start();
-    connect(layerTab, SIGNAL(layerSelected(int)), sfmlWidget, SLOT(setCurrentLayer(int)));
+    connect(layerTab, SIGNAL(layerSelected(int)), m_mapWidget, SLOT(setCurrentLayer(int)));
     connect(layerTab, SIGNAL(layerSelected(int)), this, SLOT(setCurrentLayer(int)));
     clear_red = clear_green = clear_blue = 127;
     a = b = c = true;
@@ -65,7 +65,7 @@ void MainWidget::onInit()
     penToolButton->click();
     toggleGridButton->click();
     newButton->click();
-    camera = sf::View(sf::FloatRect(0, 0, sfmlWidget->width() - 1, sfmlWidget->height() - 1));
+    camera = sf::View(sf::FloatRect(0, 0, m_mapWidget->width() - 1, m_mapWidget->height() - 1));
     camera.setCenter(0, 0);
 }
 
@@ -86,12 +86,12 @@ void MainWidget::onUpdate()
 
     if (clear_blue >= 255 || clear_blue <= 0) c = !c;
 
-    sfmlWidget->processEvents();
-    sfmlWidget->clear(sf::Color(clear_red, clear_green, clear_blue));
-    cont.displayEntities(*sfmlWidget);
-    sfmlWidget->setView(camera);
-    map.draw(*sfmlWidget, (gridEnabled ? currentLayer : - 1));
-    sfmlWidget->sf::RenderWindow::display();
+    m_mapWidget->processEvents();
+    m_mapWidget->clear(sf::Color(clear_red, clear_green, clear_blue));
+    cont.displayEntities(*m_mapWidget);
+    m_mapWidget->setView(camera);
+    map.draw(*m_mapWidget, (gridEnabled ? currentLayer : - 1));
+    m_mapWidget->sf::RenderWindow::display();
 }
 
 void MainWidget::initWindow()
@@ -313,7 +313,7 @@ void MainWidget::initCentralWidget()
                                topBar->y() + topBar->height(),
                                width() - toolBar->x() - toolBar->width() - rightPanelWidth - globalPadding,
                                height() - menuBarHeight - topBarHeight - globalPadding - botBarHeight);
-    sfmlWidget = new MapWidget(centralWidget, QPoint(0, 0), centralWidget->size(), map, &camera, cont);
+    m_mapWidget = new MapWidget(centralWidget, QPoint(0, 0), centralWidget->size(), map, &camera, cont);
     tileWidget = new TileSelectionWidget(centralWidget);
     tileWidget->move(0, 0);
     tileWidget->resize(centralWidget->size());
@@ -356,7 +356,7 @@ void MainWidget::pointerToolButtonClicked()
     uncheckToolButtons();
     pointerToolButton->setChecked(true);
     tool = 0;
-    sfmlWidget->setTool(tool);
+    m_mapWidget->setTool(tool);
 }
 
 void MainWidget::penToolButtonClicked()
@@ -364,7 +364,7 @@ void MainWidget::penToolButtonClicked()
     uncheckToolButtons();
     penToolButton->setChecked(true);
     tool = 1;
-    sfmlWidget->setTool(tool);
+    m_mapWidget->setTool(tool);
 }
 
 void MainWidget::randomPenToolButtonClicked()
@@ -372,7 +372,7 @@ void MainWidget::randomPenToolButtonClicked()
     uncheckToolButtons();
     randomPenToolButton->setChecked(true);
     tool = 2;
-    sfmlWidget->setTool(tool);
+    m_mapWidget->setTool(tool);
 }
 
 void MainWidget::patternBrushToolButtonClicked()
@@ -380,7 +380,7 @@ void MainWidget::patternBrushToolButtonClicked()
     uncheckToolButtons();
     patternBrushToolButton->setChecked(true);
     tool = 3;
-    sfmlWidget->setTool(tool);
+    m_mapWidget->setTool(tool);
 }
 
 void MainWidget::eraserToolButtonClicked()
@@ -388,7 +388,7 @@ void MainWidget::eraserToolButtonClicked()
     uncheckToolButtons();
     eraserToolButton->setChecked(true);
     tool = 4;
-    sfmlWidget->setTool(tool);
+    m_mapWidget->setTool(tool);
 }
 
 void MainWidget::fillShapeToolButtonClicked()
@@ -396,7 +396,7 @@ void MainWidget::fillShapeToolButtonClicked()
     uncheckToolButtons();
     fillShapeToolButton->setChecked(true);
     tool = 5;
-    sfmlWidget->setTool(tool);
+    m_mapWidget->setTool(tool);
 }
 
 void MainWidget::selectAreaToolButtonClicked()
@@ -404,7 +404,7 @@ void MainWidget::selectAreaToolButtonClicked()
     uncheckToolButtons();
     selectAreaToolButton->setChecked(true);
     tool = 6;
-    sfmlWidget->setTool(tool);
+    m_mapWidget->setTool(tool);
 }
 
 void MainWidget::arrowToolButtonClicked()
@@ -412,7 +412,7 @@ void MainWidget::arrowToolButtonClicked()
     uncheckToolButtons();
     arrowToolButton->setChecked(true);
     tool = 7;
-    sfmlWidget->setTool(tool);
+    m_mapWidget->setTool(tool);
 }
 
 void MainWidget::entityToolButtonClicked()
@@ -420,7 +420,7 @@ void MainWidget::entityToolButtonClicked()
     uncheckToolButtons();
     entityToolButton->setChecked(true);
     tool = 8;
-    sfmlWidget->setTool(tool);
+    m_mapWidget->setTool(tool);
 }
 
 void MainWidget::objectToolButtonClicked()
@@ -428,7 +428,7 @@ void MainWidget::objectToolButtonClicked()
     uncheckToolButtons();
     objectToolButton->setChecked(true);
     tool = 9;
-    sfmlWidget->setTool(tool);
+    m_mapWidget->setTool(tool);
 }
 
 void MainWidget::handToolButtonClicked()
@@ -436,7 +436,7 @@ void MainWidget::handToolButtonClicked()
     uncheckToolButtons();
     handToolButton->setChecked(true);
     tool = 10;
-    sfmlWidget->setTool(tool);
+    m_mapWidget->setTool(tool);
 }
 
 void MainWidget::zoomToolButtonClicked()
@@ -444,7 +444,7 @@ void MainWidget::zoomToolButtonClicked()
     uncheckToolButtons();
     zoomToolButton->setChecked(true);
     tool = 11;
-    sfmlWidget->setTool(tool);
+    m_mapWidget->setTool(tool);
 }
 
 
@@ -506,7 +506,7 @@ void MainWidget::saveButtonClicked()
 void MainWidget::tileSelected(int new_id)
 {
     id = new_id;
-    sfmlWidget->setCurrentTile(new_id);
+    m_mapWidget->setCurrentTile(new_id);
 }
 
 void MainWidget::tileSelected(QPixmap tile)
@@ -521,7 +521,7 @@ void MainWidget::setCurrentLayer(int layer)
 
 void MainWidget::resetCameraButtonClicked()
 {
-    camera = sf::View(sf::FloatRect(0, 0, sfmlWidget->width() - 1, sfmlWidget->height() - 1));
+    camera = sf::View(sf::FloatRect(0, 0, m_mapWidget->width() - 1, m_mapWidget->height() - 1));
     camera.setCenter(0, 0);
 }
 

@@ -83,7 +83,7 @@ private:
     float clear_red, clear_green, clear_blue;
     bool a, b, c;
 
-    MapWidget* sfmlWidget;
+    MapWidget* m_mapWidget;
     sf::View camera;
 
     QWidget *toolBar;
