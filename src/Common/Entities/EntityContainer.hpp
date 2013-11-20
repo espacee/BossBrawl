@@ -12,7 +12,6 @@
 #include "SFML/Graphics.hpp"
 #include <fstream>
 
-
 /**
  * @brief The Entity Container Class
  */

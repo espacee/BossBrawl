@@ -29,7 +29,6 @@ public:
     void moveLayerBackground(int pos);
     void moveLayerForeground(int pos);
 
-
     inline int size()
     {
         return layers.size();

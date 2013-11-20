@@ -14,7 +14,6 @@ public:
     virtual void onEvent(const sf::Event &event);
 
 private:
-
     sf::Text windowLabel;
     std::vector<TextButton> resoButtons;
     void addResoButtons();

@@ -128,7 +128,6 @@ private:
 
     QFileDialog* fileDialog = new QFileDialog;
     std::string filePath;
-
 };
 
 #endif // EDITORWIDGET_HPP

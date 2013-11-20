@@ -16,14 +16,11 @@ public:
     void display(sf::RenderWindow& window);
     void update(Player& player);
 
-
-
     float playerhealth;
 
     sf::Text healthtext;
     sf::RectangleShape healthbarout;
     sf::RectangleShape healthbarin;
-
 };
 
 #endif // GUI_UI_HPP

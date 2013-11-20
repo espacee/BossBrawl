@@ -17,7 +17,6 @@ public:
     DefaultEnemy(float posX, float posY);
 
     void update(Layer &mainLayer);
-
 };
 
 #endif // ENTITIES_DEFAULTENEMY_HPP

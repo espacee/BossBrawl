@@ -16,15 +16,7 @@ public:
     Player();
     void onSet();
     void updatePlayer(Layer &mainLayer);
-
-
-
-
 private:
-
-
-
-
 };
 
 #endif // ENTITIES_PLAYER_HPP

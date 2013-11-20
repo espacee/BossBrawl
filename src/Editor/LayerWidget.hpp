@@ -18,7 +18,6 @@ public:
     void setCurrent();
     void unsetCurrent();
 
-
 signals:
     void selected(int);
 
@@ -32,7 +31,6 @@ public slots:
     void changeGridColor(QColor color);
     void clearLayer();
     void activateDialog();
-
 
 protected:
     void mousePressEvent(QMouseEvent *);

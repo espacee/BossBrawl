@@ -1,6 +1,5 @@
 #include "Entities/Enemy.hpp"
 
-
 Enemy::Enemy()
 {
     onSet();

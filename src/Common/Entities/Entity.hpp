@@ -26,11 +26,7 @@ public:
     float getHealth();
     void damage(float dmg);
     void heal(float healed);
-
-
-
 protected:
-
     sf::Vector2f movement, gravitymovement;
 
     float health, maxHealth;

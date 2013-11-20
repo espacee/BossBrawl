@@ -25,7 +25,6 @@ public:
     void onUpdate();
     void onEvent(const sf::Event &event);
 
-
 private:
     UI ui;
 
@@ -37,8 +36,6 @@ private:
     Player player;
 
     EntityContainer entityContainer;
-
-
 };
 
 #endif // GAME_GAMESTATE_HPP
