@@ -17,7 +17,7 @@ class SFMLWidget  : public QWidget, public sf::RenderWindow
 {
     Q_OBJECT
 public:
-    SFMLWidget(QWidget* Parent, const QPoint& Position, const QSize& Size, TileMap& map, sf::View* cameraP, EntityContainer& cont);
+    SFMLWidget(QWidget* parent_, const QPoint& position, const QSize& size, TileMap& map, sf::View* cameraP, EntityContainer& cont);
     ~SFMLWidget();
 
     void processEvents();

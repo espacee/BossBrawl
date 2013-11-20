@@ -1,7 +1,7 @@
 #include "SFMLWidget.hpp"
 
-SFMLWidget::SFMLWidget(QWidget* Parent, const QPoint& Position, const QSize& Size, TileMap &map, sf::View* cameraP, EntityContainer &cont) :
-    QWidget(Parent),
+SFMLWidget::SFMLWidget(QWidget* parent_, const QPoint& position, const QSize& size_, TileMap &map, sf::View* cameraP, EntityContainer &cont) :
+    QWidget(parent_),
     m_map(map),
     m_cont(cont)
 {
@@ -16,8 +16,8 @@ SFMLWidget::SFMLWidget(QWidget* Parent, const QPoint& Position, const QSize& Siz
     setAttribute(Qt::WA_NoSystemBackground);
     setFocusPolicy(Qt::StrongFocus);
     camera = cameraP;
-    move(Position);
-    resize(Size);
+    move(position);
+    resize(size_);
 }
 
 void SFMLWidget::setTool(int newTool)
