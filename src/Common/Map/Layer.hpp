@@ -5,8 +5,6 @@
 
 #include <cassert>
 
-constexpr int GRID_SIZE = 40;
-
 /**
  * @brief A layer of tiles
  */
@@ -124,6 +122,8 @@ public:
 #endif
         return m_tiles[x][y];
     }
+
+    static constexpr int GRID_SIZE = 40;
 
 private:
     std::string m_name;
