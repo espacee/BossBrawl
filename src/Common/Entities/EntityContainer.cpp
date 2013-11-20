@@ -52,7 +52,6 @@ bool EntityContainer::saveToFile(const std::string &filename)
     file << "defaultEnemy" << '\n';
     file << defaultEnemy.size() << '\n';
 
-
     for (unsigned int i = 0; i < defaultEnemy.size(); i++)
     {
         file << defaultEnemy[i]->getPosition().x << ' ' << defaultEnemy[i]->getPosition().y << '\n';
@@ -73,8 +72,6 @@ bool EntityContainer::loadFromFile(const std::string &filename)
     int vectorsize;
     file >> vectorsize;
 
-
-
     for (int i = 0; i < vectorsize; ++i)
     {
         int x, y;
@@ -87,8 +84,6 @@ bool EntityContainer::loadFromFile(const std::string &filename)
     }
 
     return true;
-
-
 }
 void EntityContainer::reset()
 {

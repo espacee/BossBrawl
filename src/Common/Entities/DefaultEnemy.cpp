@@ -10,6 +10,5 @@ DefaultEnemy::DefaultEnemy(float posX, float posY)
 void DefaultEnemy::update(Layer &mainLayer)
 {
     updateEnemy(mainLayer);
-
 }
 

@@ -132,7 +132,6 @@ void Widget::setBackgroundColor(sf::Color new_color)
     {
         backgroundColor = new_color;
     }
-
 }
 
 sf::Color Widget::getBackgroundColor() const
@@ -216,7 +215,6 @@ void Widget::update()
     backgroundColor = sf::Color(backgroundColor.r + (targetBackgroundColor.r - backgroundColor.r) * transitionSpeed,
                                 backgroundColor.g + (targetBackgroundColor.g - backgroundColor.g) * transitionSpeed,
                                 backgroundColor.b + (targetBackgroundColor.b - backgroundColor.b) * transitionSpeed);
-
     background.setPosition(x, y);
     background.setSize(sf::Vector2f(width, height));
     background.setFillColor(backgroundColor);
@@ -225,7 +223,6 @@ void Widget::update()
 void Widget::display(sf::RenderTarget& target)
 {
     update();
-
     target.draw(background);
 }
 

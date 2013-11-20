@@ -2,16 +2,13 @@
 
 Entity::Entity()
 {
-
     texture.loadFromFile("res/img/GAME/Default.png");
     sprite.setTexture(texture);
     center = sf::Vector2f(texture.getSize().x / 2, texture.getSize().y / 2);
     movement = sf::Vector2f(0, 0);
     gravitymovement = sf::Vector2f(0, 0);
     isJumping = false;
-
     sprite.move(100, 200);
-
     maxHealth = 100;
     health = maxHealth;
 }
@@ -52,18 +49,15 @@ void Entity::update(Layer &mainLayer)
     float vStepsLength = movement.y / steps;
     int firstHitStep = -1;
     bool collisionDetected = false;
-
     sf::Vector2f virtualMovement;
 
     for (int k = 0; k <= steps; k++)
     {
         virtualMovement = sf::Vector2f(k * hStepsLength, k * vStepsLength);
-
         sf::FloatRect futureBoundingBox = sf::FloatRect(sprite.getPosition().x + virtualMovement.x,
                                           sprite.getPosition().y + virtualMovement.y,
                                           texture.getSize().x,
                                           texture.getSize().y);
-
         int xmin = futureBoundingBox.left / GRID_SIZE;
         int ymin = futureBoundingBox.top / GRID_SIZE;
         int xmax = (futureBoundingBox.left + futureBoundingBox.width) / GRID_SIZE + 1;
@@ -99,37 +93,30 @@ label_exit:
     if (collisionDetected)
     {
         movement = sf::Vector2f(firstHitStep * hStepsLength, firstHitStep * vStepsLength);
-
         sf::FloatRect boundingBox = sf::FloatRect(sprite.getPosition().x,
                                     sprite.getPosition().y,
                                     texture.getSize().x,
                                     texture.getSize().y);
-
         sf::FloatRect futureBoundingBox = sf::FloatRect(sprite.getPosition().x + movement.x,
                                           sprite.getPosition().y + movement.y,
                                           texture.getSize().x,
                                           texture.getSize().y);
-
         sf::FloatRect botArea = sf::FloatRect(sprite.getPosition().x + 1,
                                               sprite.getPosition().y + texture.getSize().y / 2 + movement.y,
                                               texture.getSize().x - 2,
                                               texture.getSize().y / 2);
-
         sf::FloatRect topArea = sf::FloatRect(sprite.getPosition().x + 1,
                                               sprite.getPosition().y + movement.y,
                                               texture.getSize().x - 2,
                                               texture.getSize().y / 2);
-
         sf::FloatRect leftArea = sf::FloatRect(sprite.getPosition().x + movement.x,
                                                sprite.getPosition().y + 1,
                                                texture.getSize().x / 2,
                                                texture.getSize().y - 2);
-
         sf::FloatRect rightArea = sf::FloatRect(sprite.getPosition().x + texture.getSize().x / 2 + movement.x,
                                                 sprite.getPosition().y + 1,
                                                 texture.getSize().x / 2 + 1,
                                                 texture.getSize().y - 2);
-
         int xmin = futureBoundingBox.left / GRID_SIZE;
         int ymin = futureBoundingBox.top / GRID_SIZE;
         int xmax = (futureBoundingBox.left + futureBoundingBox.width) / GRID_SIZE + 1;
@@ -145,7 +132,6 @@ label_exit:
                 {
                     if (mainLayer(i, j))
                     {
-
                         if (util::hitTest(botArea, currentTile))
                         {
                             movement.y = currentTile.top - (boundingBox.top + boundingBox.height);
@@ -204,7 +190,6 @@ bool Entity::contains(float posX, float posY)
 sf::Vector2f Entity::getSize()
 {
     sf::Vector2f size(sprite.getGlobalBounds().width, sprite.getGlobalBounds().height);
-
     return size;
 }
 float Entity::getHealth()

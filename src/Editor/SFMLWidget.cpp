@@ -11,15 +11,11 @@ SFMLWidget::SFMLWidget(QWidget* Parent, const QPoint& Position, const QSize& Siz
     middleButtonDown = false;
     ctrlKeyDown = false;
     spaceKeyDown = false;
-
     setAttribute(Qt::WA_PaintOnScreen);
     setAttribute(Qt::WA_OpaquePaintEvent);
     setAttribute(Qt::WA_NoSystemBackground);
-
     setFocusPolicy(Qt::StrongFocus);
-
     camera = cameraP;
-
     move(Position);
     resize(Size);
 }
@@ -63,12 +59,10 @@ QPaintEngine* SFMLWidget::paintEngine() const
 
 void SFMLWidget::paintEvent(QPaintEvent*)
 {
-
 }
 
 void SFMLWidget::mousePressEvent(QMouseEvent *e)
 {
-
     if (e->button() == Qt::LeftButton)
     {
         leftButtonDown = true;
@@ -81,7 +75,6 @@ void SFMLWidget::mousePressEvent(QMouseEvent *e)
 
         if (tool == 8)
             putEntity(sf::Vector2i(e->x(), e->y()), "defaultEnemy");
-
     }
 
     if (e->button() == Qt::RightButton)
@@ -98,9 +91,7 @@ void SFMLWidget::mousePressEvent(QMouseEvent *e)
     if (e->button() == Qt::MiddleButton)
     {
         middleButtonDown = true;
-
     }
-
 
     x1 = x2 = e->x();
     y1 = y2 = e->y();
@@ -146,8 +137,6 @@ void SFMLWidget::mouseMoveEvent(QMouseEvent *e)
         y1 = e->y();
         camera->move(dx, dy);
     }
-
-
 }
 
 void SFMLWidget::mouseReleaseEvent(QMouseEvent *e)
@@ -198,17 +187,14 @@ void SFMLWidget::wheelEvent(QWheelEvent *e)
 
 SFMLWidget::~SFMLWidget()
 {
-
 }
 
 void SFMLWidget::putTile(sf::Vector2i mouseCoord)
 {
     sf::Vector2i windowRelativeCoord = mouseCoord;
-
     sf::View temp = *camera;
     temp.setCenter(temp.getCenter().x * m_map[layer].getDepthIndex() - m_map[layer].getPosition().x,
                    temp.getCenter().y * m_map[layer].getDepthIndex() - m_map[layer].getPosition().y);
-
     sf::Vector2f worldRelativeCoord =  mapPixelToCoords(windowRelativeCoord, temp);
     sf::Vector2f layerRelativeCoord = worldRelativeCoord;
 
@@ -217,10 +203,8 @@ void SFMLWidget::putTile(sf::Vector2i mouseCoord)
         int xpos = layerRelativeCoord.x / GRID_SIZE ;
         int ypos = layerRelativeCoord.y / GRID_SIZE ;
 
-
         if (m_map[layer].tileExists(xpos, ypos))
             m_map[layer](xpos, ypos) = id;
-
     }
 }
 
@@ -229,11 +213,9 @@ void SFMLWidget::putTile(sf::Vector2i mouseCoord)
 void SFMLWidget::eraseTile(sf::Vector2i mouseCoord)
 {
     sf::Vector2i windowRelativeCoord = mouseCoord;
-
     sf::View temp = *camera;
     temp.setCenter(temp.getCenter().x * m_map[layer].getDepthIndex() - m_map[layer].getPosition().x,
                    temp.getCenter().y * m_map[layer].getDepthIndex() - m_map[layer].getPosition().y);
-
     sf::Vector2f worldRelativeCoord =  mapPixelToCoords(windowRelativeCoord, temp);
     sf::Vector2f layerRelativeCoord = worldRelativeCoord;
 
@@ -249,11 +231,9 @@ void SFMLWidget::eraseTile(sf::Vector2i mouseCoord)
 void SFMLWidget::putEntity(sf::Vector2i mouseCoord, std::string entity)
 {
     sf::Vector2i windowRelativeCoord = mouseCoord;
-
     sf::View temp = *camera;
     temp.setCenter(temp.getCenter().x * m_map[layer].getDepthIndex() - m_map[layer].getPosition().x,
                    temp.getCenter().y * m_map[layer].getDepthIndex() - m_map[layer].getPosition().y);
-
     sf::Vector2f worldRelativeCoord =  mapPixelToCoords(windowRelativeCoord, temp);
     sf::Vector2f layerRelativeCoord = worldRelativeCoord;
 
@@ -262,21 +242,17 @@ void SFMLWidget::putEntity(sf::Vector2i mouseCoord, std::string entity)
         int xpos = layerRelativeCoord.x;
         int ypos = layerRelativeCoord.y;
 
-
         if (m_map[layer].tileExists(xpos / 40, ypos / 40))
             m_cont.addEntity(entity, (xpos - (m_cont.defaultEnemy[0]->getSize().x / 2)), (ypos - (m_cont.defaultEnemy[0]->getSize().y / 2)));
-
     }
 }
 
 void SFMLWidget::eraseEntity(sf::Vector2i mouseCoord)
 {
     sf::Vector2i windowRelativeCoord = mouseCoord;
-
     sf::View temp = *camera;
     temp.setCenter(temp.getCenter().x * m_map[layer].getDepthIndex() - m_map[layer].getPosition().x,
                    temp.getCenter().y * m_map[layer].getDepthIndex() - m_map[layer].getPosition().y);
-
     sf::Vector2f worldRelativeCoord =  mapPixelToCoords(windowRelativeCoord, temp);
     sf::Vector2f layerRelativeCoord = worldRelativeCoord;
 
@@ -285,12 +261,9 @@ void SFMLWidget::eraseEntity(sf::Vector2i mouseCoord)
         int xpos = layerRelativeCoord.x;
         int ypos = layerRelativeCoord.y;
 
-
         if (m_map[layer].tileExists(xpos / 40, ypos / 40))
         {
             m_cont.deleteEntity(xpos, ypos);
         }
-
-
     }
 }

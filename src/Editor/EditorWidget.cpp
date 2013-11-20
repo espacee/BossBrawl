@@ -9,57 +9,43 @@ EditorWidget::EditorWidget(QWidget *parent_) : QWidget(parent_),
     setGeometry(QApplication::desktop()->availableGeometry());
     setWindowTitle("Editor");
     setWindowIcon(QIcon("res/img/GUI/windowIcon.png"));
-
     menuBarHeight = 50;
     globalPadding = 5;
-
     toolBarWidth = 34;
     toolButtonSize = 30;
     toolButtonPadding = 2;
     toolBarTopOffset = 44;
     toolSeparatorSize = 10;
-
     topBarHeight = 44;
     topButtonSize = 42;
-
     rightPanelWidth = 300;
-
     botBarHeight = 22;
-
     initWindow();
     initToolBar();
     initRightPanel();
     initTopBar();
     initBotBar();
     initCentralWidget();
-
     setObjectName("window");
     toolBar->setObjectName("toolBar");
     rightPanel->setObjectName("rightPanel");
     topBar->setObjectName("topBar");
     botBar->setObjectName("botBar");
     centralWidget->setObjectName("centralWidget");
-
     QFile styleSheetFile("res/style/editor-stylesheet.qss");
     styleSheetFile.open(QFile::ReadOnly);
     QString styleSheetString = QLatin1String(styleSheetFile.readAll());
     setStyleSheet(styleSheetString);
-
     frameTime = 16; // 62.5 ms = 16 fps    40 ms = 25 fps    16.6 ms = 60 fps    12.5 ms = 80 fps
     timer.setInterval(frameTime);
     connect(&timer, SIGNAL(timeout()), this, SLOT(onUpdate()));
     timer.start();
-
     connect(layerTab, SIGNAL(layerSelected(int)), sfmlWidget, SLOT(setCurrentLayer(int)));
     connect(layerTab, SIGNAL(layerSelected(int)), this, SLOT(setCurrentLayer(int)));
-
     clear_red = clear_green = clear_blue = 127;
     a = b = c = true;
-
     fileDialog->setAcceptMode(QFileDialog::AcceptSave);
-
     onInit();
-
     // If given a command line argument, load it as a map
     auto args = QApplication::arguments();
 
@@ -71,25 +57,20 @@ EditorWidget::EditorWidget(QWidget *parent_) : QWidget(parent_),
 
 EditorWidget::~EditorWidget()
 {
-
 }
 
 void EditorWidget::onInit()
 {
-
-
     tileWidget->select(0, 0);
     penToolButton->click();
     toggleGridButton->click();
     newButton->click();
-
     camera = sf::View(sf::FloatRect(0, 0, sfmlWidget->width() - 1, sfmlWidget->height() - 1));
     camera.setCenter(0, 0);
 }
 
 void EditorWidget::onUpdate()
 {
-
     if (a) clear_red += 0.001;
     else clear_red -= 0.001;
 
@@ -106,15 +87,10 @@ void EditorWidget::onUpdate()
     if (clear_blue >= 255 || clear_blue <= 0) c = !c;
 
     sfmlWidget->processEvents();
-
     sfmlWidget->clear(sf::Color(clear_red, clear_green, clear_blue));
     cont.displayEntities(*sfmlWidget);
-
-
-
     sfmlWidget->setView(camera);
     map.draw(*sfmlWidget, (gridEnabled ? currentLayer : - 1));
-
     sfmlWidget->sf::RenderWindow::display();
 }
 
@@ -123,29 +99,23 @@ void EditorWidget::initWindow()
     windowIcon = new QLabel("", this);
     windowIcon->setPixmap(QPixmap("res/img/GUI/windowIcon.png"));
     windowIcon->setGeometry(0, 0, menuBarHeight, menuBarHeight);
-
     closeButton = new QPushButton(QIcon("res/img/GUI/close.png"), "", this);
     closeButton->setGeometry(width() - 32, 0, 30, 20);
     closeButton->setObjectName("closeButton");
     connect(closeButton, SIGNAL(clicked()), this, SLOT(quitClicked()));
-
     minimizeButton = new QPushButton(QIcon("res/img/GUI/minimize.png"), "", this);
     minimizeButton->setGeometry(closeButton->x() - 31, 0, 30, 20);
     minimizeButton->setObjectName("minimizeButton");
     connect(minimizeButton, SIGNAL(clicked()), this, SLOT(minimizeClicked()));
-
     newButton = new QPushButton("New", this);
     newButton->setGeometry(windowIcon->x() + windowIcon->width() + 10, 13, 120, 25);
     newButton->setObjectName("menuButton");
-
     openButton = new QPushButton("Open", this);
     openButton->setGeometry(newButton->x() + newButton->width() + 5, newButton->y(), newButton->width(), newButton->height());
     openButton->setObjectName("menuButton");
-
     saveButton = new QPushButton("Save", this);
     saveButton->setGeometry(openButton->x() + openButton->width() + 5, openButton->y(), openButton->width(), openButton->height());
     saveButton->setObjectName("menuButton");
-
     connect(newButton, SIGNAL(clicked()), this, SLOT(newButtonClicked()));
     connect(openButton, SIGNAL(clicked()), this, SLOT(openButtonClicked()));
     connect(saveButton, SIGNAL(clicked()), this, SLOT(saveButtonClicked()));
@@ -158,7 +128,6 @@ void EditorWidget::initToolBar()
                          menuBarHeight,
                          toolBarWidth,
                          height() - menuBarHeight - globalPadding);
-
     pointerToolButton = new QPushButton(QIcon("res/img/GUI/pointer.png"), "", toolBar);
     pointerToolButton->setGeometry(
         toolButtonPadding,
@@ -168,7 +137,6 @@ void EditorWidget::initToolBar()
     pointerToolButton->setIconSize(QSize(toolButtonSize, toolButtonSize));
     pointerToolButton->setObjectName("toolButton");
     pointerToolButton->setCheckable(true);
-
     penToolButton = new QPushButton(QIcon("res/img/GUI/pen.png"), "", toolBar);
     penToolButton->setGeometry(
         toolButtonPadding,
@@ -178,7 +146,6 @@ void EditorWidget::initToolBar()
     penToolButton->setIconSize(QSize(toolButtonSize, toolButtonSize));
     penToolButton->setObjectName("toolButton");
     penToolButton->setCheckable(true);
-
     randomPenToolButton = new QPushButton(QIcon("res/img/GUI/randomPen.png"), "", toolBar);
     randomPenToolButton->setGeometry(
         toolButtonPadding,
@@ -188,7 +155,6 @@ void EditorWidget::initToolBar()
     randomPenToolButton->setIconSize(QSize(toolButtonSize, toolButtonSize));
     randomPenToolButton->setObjectName("toolButton");
     randomPenToolButton->setCheckable(true);
-
     patternBrushToolButton = new QPushButton(QIcon("res/img/GUI/patternBrush.png"), "", toolBar);
     patternBrushToolButton->setGeometry(
         toolButtonPadding,
@@ -198,7 +164,6 @@ void EditorWidget::initToolBar()
     patternBrushToolButton->setIconSize(QSize(toolButtonSize, toolButtonSize));
     patternBrushToolButton->setObjectName("toolButton");
     patternBrushToolButton->setCheckable(true);
-
     eraserToolButton = new QPushButton(QIcon("res/img/GUI/eraser.png"), "", toolBar);
     eraserToolButton->setGeometry(
         toolButtonPadding,
@@ -208,7 +173,6 @@ void EditorWidget::initToolBar()
     eraserToolButton->setIconSize(QSize(toolButtonSize, toolButtonSize));
     eraserToolButton->setObjectName("toolButton");
     eraserToolButton->setCheckable(true);
-
     fillShapeToolButton = new QPushButton(QIcon("res/img/GUI/fillShape.png"), "", toolBar);
     fillShapeToolButton->setGeometry(
         toolButtonPadding,
@@ -218,7 +182,6 @@ void EditorWidget::initToolBar()
     fillShapeToolButton->setIconSize(QSize(toolButtonSize, toolButtonSize));
     fillShapeToolButton->setObjectName("toolButton");
     fillShapeToolButton->setCheckable(true);
-
     selectAreaToolButton = new QPushButton(QIcon("res/img/GUI/selectArea.png"), "", toolBar);
     selectAreaToolButton->setGeometry(
         toolButtonPadding,
@@ -228,9 +191,7 @@ void EditorWidget::initToolBar()
     selectAreaToolButton->setIconSize(QSize(toolButtonSize, toolButtonSize));
     selectAreaToolButton->setObjectName("toolButton");
     selectAreaToolButton->setCheckable(true);
-
     //
-
     arrowToolButton = new QPushButton(QIcon("res/img/GUI/arrow.png"), "", toolBar);
     arrowToolButton->setGeometry(
         toolButtonPadding,
@@ -240,7 +201,6 @@ void EditorWidget::initToolBar()
     arrowToolButton->setIconSize(QSize(toolButtonSize, toolButtonSize));
     arrowToolButton->setObjectName("toolButton");
     arrowToolButton->setCheckable(true);
-
     entityToolButton = new QPushButton(QIcon("res/img/GUI/entity.png"), "", toolBar);
     entityToolButton->setGeometry(
         toolButtonPadding,
@@ -250,7 +210,6 @@ void EditorWidget::initToolBar()
     entityToolButton->setIconSize(QSize(toolButtonSize, toolButtonSize));
     entityToolButton->setObjectName("toolButton");
     entityToolButton->setCheckable(true);
-
     objectToolButton = new QPushButton(QIcon("res/img/GUI/object.png"), "", toolBar);
     objectToolButton->setGeometry(
         toolButtonPadding,
@@ -260,9 +219,7 @@ void EditorWidget::initToolBar()
     objectToolButton->setIconSize(QSize(toolButtonSize, toolButtonSize));
     objectToolButton->setObjectName("toolButton");
     objectToolButton->setCheckable(true);
-
     //
-
     handToolButton = new QPushButton(QIcon("res/img/GUI/hand.png"), "", toolBar);
     handToolButton->setGeometry(
         toolButtonPadding,
@@ -272,7 +229,6 @@ void EditorWidget::initToolBar()
     handToolButton->setIconSize(QSize(toolButtonSize, toolButtonSize));
     handToolButton->setObjectName("toolButton");
     handToolButton->setCheckable(true);
-
     zoomToolButton = new QPushButton(QIcon("res/img/GUI/zoom.png"), "", toolBar);
     zoomToolButton->setGeometry(
         toolButtonPadding,
@@ -282,7 +238,6 @@ void EditorWidget::initToolBar()
     zoomToolButton->setIconSize(QSize(toolButtonSize, toolButtonSize));
     zoomToolButton->setObjectName("toolButton");
     zoomToolButton->setCheckable(true);
-
     connect(pointerToolButton, SIGNAL(clicked()), this, SLOT(pointerToolButtonClicked()));
     connect(arrowToolButton, SIGNAL(clicked()), this, SLOT(arrowToolButtonClicked()));
     connect(penToolButton, SIGNAL(clicked()), this, SLOT(penToolButtonClicked()));
@@ -295,7 +250,6 @@ void EditorWidget::initToolBar()
     connect(objectToolButton, SIGNAL(clicked()), this, SLOT(objectToolButtonClicked()));
     connect(handToolButton, SIGNAL(clicked()), this, SLOT(handToolButtonClicked()));
     connect(zoomToolButton, SIGNAL(clicked()), this, SLOT(zoomToolButtonClicked()));
-
 }
 
 void EditorWidget::initTopBar()
@@ -305,7 +259,6 @@ void EditorWidget::initTopBar()
                         menuBarHeight,
                         width() - toolBarWidth - rightPanelWidth - globalPadding * 2,
                         topBarHeight);
-
     tileButton = new QPushButton(topBar);
     tileButton->setGeometry(2, 1, topButtonSize, topButtonSize);
     tileButton->setIconSize(QSize(40, 40));
@@ -321,7 +274,6 @@ void EditorWidget::initRightPanel()
                             menuBarHeight,
                             rightPanelWidth,
                             height() - menuBarHeight - globalPadding);
-
     layerTab = new LayerTabWidget(rightPanel, map);
     layerTab->resize(rightPanel->size());
 }
@@ -333,30 +285,25 @@ void EditorWidget::initBotBar()
                         height() - globalPadding - botBarHeight,
                         width() - toolBarWidth - rightPanelWidth - globalPadding * 2,
                         botBarHeight);
-
     resetCameraButton = new QPushButton(QIcon("res/img/GUI/camera.png"), "", botBar);
     resetCameraButton->setGeometry(1, 2, botBarHeight - 2, botBarHeight - 2);
     resetCameraButton->setIconSize(resetCameraButton->size());
     resetCameraButton->setObjectName("toolButton");
-
     toggleGridButton = new QPushButton(QIcon("res/img/GUI/grid.png"), "", botBar);
     toggleGridButton->setGeometry(resetCameraButton->x() + resetCameraButton->width() + 2, 1, botBarHeight - 2, botBarHeight - 2);
     toggleGridButton->setIconSize(toggleGridButton->size());
     toggleGridButton->setObjectName("toolButton");
     toggleGridButton->setCheckable(true);
     toggleGridButton->setShortcut(QKeySequence("Ctrl+G"));
-
     toggleVisibleButton = new QPushButton(QIcon("res/img/GUI/eye.png"), "", botBar);
     toggleVisibleButton->setGeometry(toggleGridButton->x() + toggleGridButton->width() + 2, 1, botBarHeight - 2, botBarHeight - 2);
     toggleVisibleButton->setIconSize(toggleVisibleButton->size());
     toggleVisibleButton->setObjectName("toolButton");
     toggleVisibleButton->setCheckable(true);
     toggleVisibleButton->setShortcut(QKeySequence("Ctrl+V"));
-
     connect(resetCameraButton, SIGNAL(clicked()), this, SLOT(resetCameraButtonClicked()));
     connect(toggleGridButton, SIGNAL(clicked()), this, SLOT(toggleGridButtonClicked()));
     connect(toggleVisibleButton, SIGNAL(clicked()), this, SLOT(toggleVisibleButtonClicked()));
-
 }
 
 void EditorWidget::initCentralWidget()
@@ -366,9 +313,7 @@ void EditorWidget::initCentralWidget()
                                topBar->y() + topBar->height(),
                                width() - toolBar->x() - toolBar->width() - rightPanelWidth - globalPadding,
                                height() - menuBarHeight - topBarHeight - globalPadding - botBarHeight);
-
     sfmlWidget = new SFMLWidget(centralWidget, QPoint(0, 0), centralWidget->size(), map, &camera, cont);
-
     tileWidget = new TileWidget(centralWidget);
     tileWidget->move(0, 0);
     tileWidget->resize(centralWidget->size());
@@ -382,11 +327,9 @@ void EditorWidget::loadMapFromFile(const QString &filename)
     if (map.loadFromFile(filename.toStdString()))
     {
         layerTab->loadLayersFromMap();
-
         std::string entityfilename = filename.toStdString();
         int entityfilenamesize = entityfilename.size() - 4;
         entityfilename.replace(entityfilenamesize, 4, ".entity");
-
         cont.loadFromFile(entityfilename);
     }
     else
@@ -554,11 +497,9 @@ void EditorWidget::saveButtonClicked()
     else
     {
         map.saveToFile(filePath);
-
         std::string entityfilename = filePath;
         int entityfilenamesize = entityfilename.size() - 4;
         entityfilename.replace(entityfilenamesize, 4, ".entity");
-
         cont.saveToFile(entityfilename);
     }
 }

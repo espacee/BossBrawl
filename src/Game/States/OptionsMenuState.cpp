@@ -10,12 +10,10 @@ OptionsMenuState::OptionsMenuState()
     screenSizeButton.setText("Borderless, screen size");
     screenSizeButton.setSize(300, 35);
     screenSizeButton.setPosition(15, 220);
-
     windowLabel.setFont(graphics::fontbasiclight);
     windowLabel.setCharacterSize(14);
     windowLabel.setPosition(20, 40);
     windowLabel.setString("Window size");
-
     backButton.setText("<< BACK");
     backButton.resetGeometry();
     backButton.setPosition(graphics::window.getSize().x - backButton.getWidth(), 0);
@@ -26,7 +24,6 @@ void OptionsMenuState::onSet()
 {
     graphics::window.setTitle("options");
     graphics::window.setView(sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y)));
-
     backButton.setPosition(graphics::window.getSize().x - backButton.getWidth(), 0);
 }
 
@@ -64,9 +61,7 @@ void OptionsMenuState::onUpdate()
         graphics::setDesktopResolution();
 
     backButton.setPosition(graphics::window.getSize().x - backButton.getWidth(), 0);
-
     window.clear(sf::Color(65, 60, 60));
-
     window.draw(windowLabel);
     backButton.display(window);
 

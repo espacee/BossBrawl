@@ -23,7 +23,6 @@ void init()
 {
     m_title = "BossBrawl";
     setResolutionMode(config::resolutionMode);
-
     fontarial.loadFromFile("res/font/arial.ttf");
     fontbasiclight.loadFromFile("res/font/basiclight.ttf");
 }
@@ -38,7 +37,6 @@ void setResolutionMode(unsigned int index)
 
     const sf::Vector2i& res = m_resolutionModes.at(index);
     window.create(sf::VideoMode(res.x, res.y), m_title, sf::Style::Close);
-
     window.setFramerateLimit(60);
 }
 

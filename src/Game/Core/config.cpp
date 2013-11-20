@@ -53,7 +53,6 @@ void load()
         {
             extract_assert(stream, resolutionMode);
         }
-
         else
         {
             std::cerr << "Unknown key: \"" << key << "\"\n";
@@ -72,7 +71,6 @@ void save()
     }
 
     file << "resolutionMode " << resolutionMode << '\n';
-
 }
 
 } // end namespace config

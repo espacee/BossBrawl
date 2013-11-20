@@ -13,7 +13,6 @@ TextButton::TextButton()
     hoverColor = sf::Color(0, 170, 240);
     pressColor = sf::Color(0, 80, 170);
     backgroundColor = normalColor;
-
     resetGeometry();
 }
 
@@ -61,6 +60,5 @@ void TextButton::display(sf::RenderTarget &target)
 {
     Widget::display(target);
     update();
-
     target.draw(text);
 }

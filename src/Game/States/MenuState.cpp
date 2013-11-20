@@ -8,24 +8,18 @@ void MenuState::onSet()
 {
     graphics::window.setTitle("menu");
     graphics::window.setView(sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y)));
-
     int hc = graphics::window.getSize().x / 2, vc = graphics::window.getSize().y / 2;
-
     playButton.setText("Play");
     playButton.setColorScheme(sf::Color(220, 100, 130), sf::Color(250, 170, 210), sf::Color(200, 15, 50));
     playButton.setSize(200, 40);
-
     optionButton.setText("Options");
     optionButton.setSize(200, 40);
     optionButton.setColorScheme(sf::Color(40, 180, 80), sf::Color(180, 230, 30), sf::Color(50, 120, 100));
-
     quitButton.setText("Quit");
     quitButton.setSize(200, 40);
-
     playButton.setPosition(hc - 100, vc - 160);
     optionButton.setPosition(hc - 100, playButton.getY() + playButton.getHeight());
     quitButton.setPosition(hc - 100, optionButton.getY() + optionButton.getHeight());
-
     playButton.enableTransition(true);
     optionButton.enableTransition(true);
     quitButton.enableTransition(true);
@@ -78,7 +72,6 @@ void MenuState::onUpdate()
         stateDriver::requestQuit();
 
     window.clear(sf::Color(65, 60, 60));
-
     playButton.display(window);
     optionButton.display(window);
     quitButton.display(window);

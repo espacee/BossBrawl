@@ -9,7 +9,6 @@ void Player::onSet()
     texture.loadFromFile("res/img/GAME/Default.png");
     moveSpeed = 10;
     jumpSpeed = 20;
-
 }
 void Player::updatePlayer(Layer &mainLayer)
 {
@@ -23,7 +22,6 @@ void Player::updatePlayer(Layer &mainLayer)
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         isJumping = true;
-
 }
 
 

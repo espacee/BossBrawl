@@ -10,7 +10,6 @@ IconButton::IconButton()
     hoverColor = sf::Color(0, 170, 240);
     pressColor = sf::Color(0, 80, 170);
     backgroundColor = normalColor;
-
     resetGeometry();
 }
 
@@ -22,7 +21,6 @@ void IconButton::resetGeometry()
 
 void IconButton::setIcon(std::string iconPath)
 {
-
     if (iconTexture.loadFromFile(iconPath))
     {
         iconSprite.setTexture(iconTexture, true);
@@ -52,6 +50,5 @@ void IconButton::display(sf::RenderTarget &target)
 {
     Widget::display(target);
     update();
-
     target.draw(iconSprite);
 }

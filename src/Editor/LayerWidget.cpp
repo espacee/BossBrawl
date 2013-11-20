@@ -5,36 +5,29 @@ LayerWidget::LayerWidget(QWidget *parent_, TileMap &map) : QWidget(parent_),
     m_map(map)
 {
     setObjectName("layer");
-
     setAutoFillBackground(true);
     QPalette pal(palette());
     pal.setColor(QPalette::Background, QColor(133, 70, 56));
     setPalette(pal);
-
     title = new QLabel(this);
     title->move(10, 0);
     title->setStyleSheet("color:white;");
     index = 0;
-
     propertiesButton = new QPushButton(">>", this);
     propertiesButton->setObjectName("button");
-
     dialog = new LayerSettingsDialog();
-
     connect(dialog->getUi()->nameEdit, SIGNAL(textChanged(QString)), this, SLOT(rename(QString)));
     connect(dialog->getUi()->widthSpinBox, SIGNAL(valueChanged(int)), this, SLOT(changeWidth(int)));
     connect(dialog->getUi()->heightSpinBox, SIGNAL(valueChanged(int)), this, SLOT(changeHeigth(int)));
     connect(dialog->getUi()->xSpinBox, SIGNAL(valueChanged(int)), this, SLOT(changeX(int)));
     connect(dialog->getUi()->ySpinBox, SIGNAL(valueChanged(int)), this, SLOT(changeY(int)));
     connect(dialog->getUi()->depthIndexSpinBox, SIGNAL(valueChanged(double)), this, SLOT(changeDepthIndex(double)));
-
     connect(propertiesButton, SIGNAL(clicked()), this, SLOT(activateDialog()));
 }
 
 void LayerWidget::setIndex(int i)
 {
     index = i;
-
     dialog->getUi()->nameEdit->setText(QString::fromStdString(m_map[index].getName()));
     dialog->getUi()->widthSpinBox->setValue(m_map[index].getHLength());
     dialog->getUi()->heightSpinBox->setValue(m_map[index].getVLength());

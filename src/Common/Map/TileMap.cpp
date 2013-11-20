@@ -44,7 +44,6 @@ bool TileMap::loadFromFile(const std::string &filename)
     // How many layers
     int nLayers;
     file >> nLayers;
-
     layers.resize(nLayers);
 
     for (int i = 0; i < nLayers; ++i)
@@ -53,9 +52,7 @@ bool TileMap::loadFromFile(const std::string &filename)
         std::string name;
         file.get(); // Discard newline character
         std::getline(file, name);
-
         Layer* l = new Layer(name);
-
         // Visibility
         file >> l->m_visible;
         // Grid color
@@ -69,7 +66,6 @@ bool TileMap::loadFromFile(const std::string &filename)
         // Number of columns, rows
         int columns, rows;
         file >> columns >> rows;
-
         auto& map = l->m_tiles;
         map.resize(columns);
 
@@ -144,7 +140,6 @@ void TileMap::reset()
     }
 
     layers.clear();
-
     addLayer(0);
 }
 
@@ -191,23 +186,18 @@ bool TileMap::layerExists(unsigned int layer) const
 }
 void TileMap::draw(sf::RenderWindow &target, unsigned int drawGridForLayer)
 {
-
     sf::View saveCamera = target.getView();
     sf::View camera = saveCamera;
 
     for (unsigned int k = 0; k < layers.size(); k++)
     {
-
         if (layers[k]->isVisible())
         {
             camera.setCenter((saveCamera.getCenter().x * layers[k]->getDepthIndex() - layers[k]->getPosition().x),
                              (saveCamera.getCenter().y * layers[k]->getDepthIndex() - layers[k]->getPosition().y));
-
             target.setView(camera);
-
             int xmin = (int)(camera.getCenter().x - camera.getSize().x / 2) / GRID_SIZE;
             int ymin = (int)(camera.getCenter().y - camera.getSize().y / 2) / GRID_SIZE;
-
             int xmax = (int)(camera.getCenter().x + camera.getSize().x / 2) / GRID_SIZE + 1;
             int ymax = (int)(camera.getCenter().y + camera.getSize().y / 2) / GRID_SIZE + 1;
 

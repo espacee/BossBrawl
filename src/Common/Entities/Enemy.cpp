@@ -7,15 +7,10 @@ Enemy::Enemy()
 }
 void Enemy::onSet()
 {
-
     moveSpeed = 10;
     jumpSpeed = 20;
-
     texture.loadFromFile("res/img/GAME/Enemy.png");
-
-
     entityState = "Idle";
-
 }
 void Enemy::updateEnemy(Layer &mainLayer)
 {
@@ -25,8 +20,6 @@ void Enemy::updateEnemy(Layer &mainLayer)
 
     if (entityState == "Idle")
         Idle();
-
-
 
 // CONTROLS
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
@@ -43,15 +36,10 @@ void Enemy::updateEnemy(Layer &mainLayer)
 
 void Enemy::Follow()
 {
-
-
 }
 void Enemy::Attack()
 {
-
-
 }
 void Enemy::Idle()
 {
-
 }
