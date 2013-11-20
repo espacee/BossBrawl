@@ -1,5 +1,5 @@
-#ifndef LAYERTABWIDGET_HPP
-#define LAYERTABWIDGET_HPP
+#ifndef LAYERLISTWIDGET_HPP
+#define LAYERLISTWIDGET_HPP
 
 #include <QWidget>
 #include <QPushButton>
@@ -15,11 +15,11 @@
 #include "Map/TileMap.hpp"
 #include "LayerItemWidget.hpp"
 
-class LayerTabWidget : public QWidget
+class LayerListWidget : public QWidget
 {
     Q_OBJECT
 public:
-    LayerTabWidget(QWidget *parent, TileMap& m_map);
+    LayerListWidget(QWidget *parent, TileMap& m_map);
     void toggleVisible();
 
 signals:
@@ -58,4 +58,4 @@ private:
     QWidget* pan;
 };
 
-#endif // LAYERTABWIDGET_HPP
+#endif // LAYERLISTWIDGET_HPP

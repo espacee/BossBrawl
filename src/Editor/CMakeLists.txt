@@ -11,10 +11,10 @@ EditorWidget.cpp
 EditorWidget.hpp
 LayerItemWidget.cpp
 LayerItemWidget.hpp
+LayerListWidget.cpp
+LayerListWidget.hpp
 LayerSettingsDialog.cpp
 LayerSettingsDialog.hpp
-LayerTabWidget.cpp
-LayerTabWidget.hpp
 SFMLWidget.cpp
 SFMLWidget.hpp
 TileSelectionWidget.cpp
