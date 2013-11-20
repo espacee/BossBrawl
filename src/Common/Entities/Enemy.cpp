@@ -8,22 +8,22 @@ Enemy::Enemy()
 void Enemy::onSet()
 {
 
-    moveSpeed =10;
+    moveSpeed = 10;
     jumpSpeed = 20;
 
-texture.loadFromFile("res/img/GAME/Enemy.png");
+    texture.loadFromFile("res/img/GAME/Enemy.png");
 
 
-entityState = "Idle";
+    entityState = "Idle";
 
 }
 void Enemy::updateEnemy(Layer &mainLayer)
 {
     update(mainLayer);
 
-   //AI
+    //AI
 
-    if(entityState == "Idle")
+    if (entityState == "Idle")
         Idle();
 
 
@@ -31,10 +31,13 @@ void Enemy::updateEnemy(Layer &mainLayer)
 // CONTROLS
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
         movement.x = -moveSpeed;
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
         movement.x = moveSpeed;
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
         isJumping = true;
+
 //CONTROLS
 }
 

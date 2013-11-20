@@ -79,7 +79,7 @@ void SFMLWidget::mousePressEvent(QMouseEvent *e)
         if (tool == 5)
             m_map[layer].fill(id);
 
-        if(tool == 8)
+        if (tool == 8)
             putEntity(sf::Vector2i(e->x(), e->y()), "defaultEnemy");
 
     }
@@ -90,7 +90,8 @@ void SFMLWidget::mousePressEvent(QMouseEvent *e)
 
         if (tool == 11)
             camera->zoom(2);
-        if(tool == 8)
+
+        if (tool == 8)
             eraseEntity(sf::Vector2i(e->x(), e->y()));
     }
 
@@ -218,7 +219,7 @@ void SFMLWidget::putTile(sf::Vector2i mouseCoord)
 
 
         if (m_map[layer].tileExists(xpos, ypos))
-               m_map[layer](xpos, ypos) = id;
+            m_map[layer](xpos, ypos) = id;
 
     }
 }
@@ -262,8 +263,8 @@ void SFMLWidget::putEntity(sf::Vector2i mouseCoord, std::string entity)
         int ypos = layerRelativeCoord.y;
 
 
-        if (m_map[layer].tileExists(xpos/40, ypos/40))
-            m_cont.addEntity(entity, (xpos - (m_cont.defaultEnemy[0]->getSize().x/2)), (ypos -(m_cont.defaultEnemy[0]->getSize().y /2)));
+        if (m_map[layer].tileExists(xpos / 40, ypos / 40))
+            m_cont.addEntity(entity, (xpos - (m_cont.defaultEnemy[0]->getSize().x / 2)), (ypos - (m_cont.defaultEnemy[0]->getSize().y / 2)));
 
     }
 }
@@ -285,9 +286,9 @@ void SFMLWidget::eraseEntity(sf::Vector2i mouseCoord)
         int ypos = layerRelativeCoord.y;
 
 
-        if (m_map[layer].tileExists(xpos/40, ypos/40))
+        if (m_map[layer].tileExists(xpos / 40, ypos / 40))
         {
-            m_cont.deleteEntity(xpos,ypos);
+            m_cont.deleteEntity(xpos, ypos);
         }
 
 

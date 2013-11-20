@@ -79,17 +79,18 @@ void GameState::onEvent(const sf::Event &event)
             gridEnabled = !gridEnabled;
             break;
 
-        case sf::Keyboard::P:{  
+        case sf::Keyboard::P: {
             player.heal(10);
-            std::cout<< "PlayerHealth: "<< player.getHealth() << std::endl;
+            std::cout << "PlayerHealth: " << player.getHealth() << std::endl;
         }
-            break;
+        break;
+
         case sf::Keyboard::O:
         {
             player.damage(10);
-            std::cout<< "PlayerHealth: "<< player.getHealth() << std::endl;
+            std::cout << "PlayerHealth: " << player.getHealth() << std::endl;
         }
-            break;
+        break;
 
         default:
             ;

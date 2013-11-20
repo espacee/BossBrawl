@@ -18,11 +18,11 @@ public:
 
 
 
-float playerhealth;
+    float playerhealth;
 
-sf::Text healthtext;
-sf::RectangleShape healthbarout;
-sf::RectangleShape healthbarin;
+    sf::Text healthtext;
+    sf::RectangleShape healthbarout;
+    sf::RectangleShape healthbarin;
 
 };
 
