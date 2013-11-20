@@ -9,7 +9,6 @@ add_library(util
 Util/collision.cpp
 Util/collision.hpp
 Util/math.hpp
-Util/unused.hpp
 Util/view.cpp
 Util/view.hpp
 )
