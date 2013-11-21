@@ -48,7 +48,6 @@ MainWidget::MainWidget(QWidget *parent_) :
     clear_red = clear_green = clear_blue = 127;
     a = b = c = true;
     fileDialog->setAcceptMode(QFileDialog::AcceptSave);
-    onInit();
     // If given a command line argument, load it as a map
     auto args = QApplication::arguments();
 
@@ -56,10 +55,13 @@ MainWidget::MainWidget(QWidget *parent_) :
     {
         loadMapFromFile(args.at(1));
     }
+    
+    onInit();
 }
 
 MainWidget::~MainWidget()
 {
+    maps::cleanup();
 }
 
 void MainWidget::onInit()
@@ -67,7 +69,6 @@ void MainWidget::onInit()
     tileWidget->select(0, 0);
     penToolButton->click();
     toggleGridButton->click();
-    newButton->click();
     camera = sf::View(sf::FloatRect(0, 0, m_mapWidget->width() - 1, m_mapWidget->height() - 1));
     camera.setCenter(0, 0);
 }
@@ -327,7 +328,7 @@ void MainWidget::initCentralWidget()
 
 void MainWidget::loadMapFromFile(const QString &filename)
 {
-    if (maps::current().loadFromFile(filename.toStdString()))
+    if (maps::loadFromFile(filename))
     {
         layerTab->loadLayersFromMap();
         std::string entityfilename = filename.toStdString();

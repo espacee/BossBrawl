@@ -3,17 +3,34 @@
 
 namespace maps {
 
-std::vector<TileMap> m_tilemaps;
-int m_active = 0;
+std::vector<TileMap*> m_tilemaps;
+unsigned m_active = 0;
+
+bool loadFromFile(QString filename)
+{
+    TileMap *map = new TileMap;
+    if (map->loadFromFile(filename.toStdString())) {
+        m_tilemaps.push_back(map);
+        return true;
+    }
+    delete map;
+    return false;
+}
 
 TileMap& current()
 {
-    static bool inited;
-    if (!inited) {
-        m_tilemaps.emplace_back();
-        inited = true;
-    }
-    return m_tilemaps[m_active];
+#ifdef BRAWL_DEBUG
+    assert(m_active < m_tilemaps.size());
+#endif
+    return *(m_tilemaps[m_active]);
 }
+
+void cleanup()
+{
+    for (auto m : m_tilemaps)
+        delete m;
+}
+
+
 
 }
