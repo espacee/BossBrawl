@@ -3,7 +3,8 @@
 #include "tools.hpp"
 #include "maps.hpp"
 
-MainWidget::MainWidget(QWidget *parent_) : QWidget(parent_),
+MainWidget::MainWidget(QWidget *parent_) : 
+    QWidget(parent_),
     gridEnabled(false),
     currentLayer(0)
 {
@@ -276,7 +277,7 @@ void MainWidget::initRightPanel()
                             menuBarHeight,
                             rightPanelWidth,
                             height() - menuBarHeight - globalPadding);
-    layerTab = new LayerListWidget(rightPanel, maps::current());
+    layerTab = new LayerListWidget(rightPanel);
     layerTab->resize(rightPanel->size());
 }
 

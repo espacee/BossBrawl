@@ -1,8 +1,8 @@
 #include "LayerListWidget.hpp"
 #include "LayerSettingsDialog.hpp"
+#include "maps.hpp"
 
-LayerListWidget::LayerListWidget(QWidget *parent_, TileMap &map) :
-    m_map(map)
+LayerListWidget::LayerListWidget(QWidget *parent_)
 {
     setParent(parent_);
     setAutoFillBackground(true);
@@ -58,7 +58,7 @@ void LayerListWidget::reset()
 
 void LayerListWidget::addLayer()
 {
-    m_map.addLayer(currentLayer + 1);
+    maps::current().addLayer(currentLayer + 1);
     loadLayersFromMap();
 }
 
@@ -90,7 +90,7 @@ void LayerListWidget::loadLayersFromMap()
 
     layerWidgets.clear();
 
-    for (int i = 0; i < m_map.size(); ++i)
+    for (int i = 0; i < maps::current().size(); ++i)
     {
         addLayerWidget();
     }
@@ -104,7 +104,7 @@ void LayerListWidget::removeLayer()
         selectLayer(deletedLayer == layerWidgets.size() ? deletedLayer - 1 : deletedLayer);
         delete layerWidgets[deletedLayer];
         layerWidgets.erase(layerWidgets.begin() + deletedLayer);
-        m_map.removeLayer(deletedLayer);
+        maps::current().removeLayer(deletedLayer);
         selectLayer(deletedLayer == layerWidgets.size() ? deletedLayer - 1 : deletedLayer);
         reorder();
     }
@@ -116,7 +116,7 @@ void LayerListWidget::moveBg()
         LayerItemWidget* temp = layerWidgets[currentLayer];
         layerWidgets[currentLayer] = layerWidgets[currentLayer - 1];
         layerWidgets[currentLayer - 1] = temp;
-        m_map.moveLayerBackground(currentLayer);
+        maps::current().moveLayerBackground(currentLayer);
         selectLayer(currentLayer - 1);
         reorder();
     }
@@ -129,7 +129,7 @@ void LayerListWidget::moveFg()
         LayerItemWidget* temp = layerWidgets[currentLayer];
         layerWidgets[currentLayer] = layerWidgets[currentLayer + 1];
         layerWidgets[currentLayer + 1] = temp;
-        m_map.moveLayerForeground(currentLayer);
+        maps::current().moveLayerForeground(currentLayer);
         selectLayer(currentLayer + 1);
         reorder();
     }
@@ -203,18 +203,18 @@ void LayerListWidget::updateVisible()
 {
     if (currentVisibleOnly)
     {
-        for (int i = 0; i < m_map.size(); i++)
+        for (int i = 0; i < maps::current().size(); i++)
         {
-            m_map[i].setVisible(false);
+            maps::current()[i].setVisible(false);
         }
 
-        m_map[currentLayer].setVisible(true);
+        maps::current()[currentLayer].setVisible(true);
     }
     else
     {
-        for (int i = 0; i < m_map.size(); i++)
+        for (int i = 0; i < maps::current().size(); i++)
         {
-            m_map[i].setVisible(true);
+            maps::current()[i].setVisible(true);
         }
     }
 }

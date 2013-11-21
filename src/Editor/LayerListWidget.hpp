@@ -19,7 +19,7 @@ class LayerListWidget : public QWidget
 {
     Q_OBJECT
 public:
-    LayerListWidget(QWidget *parent, TileMap& m_map);
+    LayerListWidget(QWidget *parent);
     void toggleVisible();
 
 signals:
@@ -43,7 +43,6 @@ private:
     void mousePressEvent(QMouseEvent *e);
     void keyPressEvent(QKeyEvent* e);
 
-    TileMap& m_map;
     int currentLayer, layerID;
     int layerWidgetHeigth, offset;
     bool currentGridOnly, currentVisibleOnly;
