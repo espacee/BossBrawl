@@ -72,6 +72,7 @@ private:
     void initBotBar();
     void initCentralWidget();
     void loadMapFromFile(const QString &filename);
+    void newMap();
 
     int menuBarHeight, globalPadding;
     int toolBarWidth, toolButtonSize, toolButtonPadding, toolBarTopOffset, toolSeparatorSize;

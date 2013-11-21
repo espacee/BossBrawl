@@ -55,6 +55,10 @@ MainWidget::MainWidget(QWidget *parent_) :
     {
         loadMapFromFile(args.at(1));
     }
+    else
+    {
+        newMap();
+    }
     
     onInit();
 }
@@ -328,21 +332,24 @@ void MainWidget::initCentralWidget()
 
 void MainWidget::loadMapFromFile(const QString &filename)
 {
-    if (maps::loadFromFile(filename))
-    {
-        layerTab->loadLayersFromMap();
-        std::string entityfilename = filename.toStdString();
-        int entityfilenamesize = entityfilename.size() - 4;
-        entityfilename.replace(entityfilenamesize, 4, ".entity");
-        cont.loadFromFile(entityfilename);
-    }
-    else
+    if (!maps::loadFromFile(filename))
     {
         QMessageBox::critical(this, "Error", tr("Could not load \"%1\" as a map").arg(filename));
         return;
     }
-
+    maps::setActive(maps::size() - 1);
+    layerTab->loadLayersFromMap();
+    std::string entityfilename = filename.toStdString();
+    int entityfilenamesize = entityfilename.size() - 4;
+    entityfilename.replace(entityfilenamesize, 4, ".entity");
+    cont.loadFromFile(entityfilename);
     filePath = filename.toStdString();
+}
+
+void MainWidget::newMap()
+{
+    maps::addNew();
+    maps::setActive(maps::size() - 1);
 }
 
 void MainWidget::quitClicked()

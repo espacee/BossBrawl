@@ -31,6 +31,23 @@ void cleanup()
         delete m;
 }
 
+void addNew()
+{
+    TileMap *map = new TileMap;
+    map->addLayer(0);
+    m_tilemaps.push_back(map);
+}
+
+int size()
+{
+    return m_tilemaps.size();
+}
+
+void setActive(int index)
+{
+    m_active = index;
+}
+
 
 
 }

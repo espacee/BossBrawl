@@ -7,8 +7,11 @@
 namespace maps {
 
 bool loadFromFile(QString filename);
+void addNew();
 TileMap& current();
 void cleanup();
+int size();
+void setActive(int index);
 
 }
 
