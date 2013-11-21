@@ -69,12 +69,12 @@ void LayerListWidget::addLayerWidget()
     if (layerWidgets.size() == 0)
     {
         newLayer = 0;
-        layerWidgets.push_back(new LayerItemWidget(pan, m_map));
+        layerWidgets.push_back(new LayerItemWidget(pan));
     }
     else
     {
         newLayer = currentLayer + 1;
-        layerWidgets.insert(layerWidgets.begin() + newLayer, new LayerItemWidget(pan, m_map));
+        layerWidgets.insert(layerWidgets.begin() + newLayer, new LayerItemWidget(pan));
     }
 
     connect(layerWidgets[newLayer], SIGNAL(selected(int)), this, SLOT(selectLayer(int)));

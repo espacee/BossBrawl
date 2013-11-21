@@ -1,8 +1,9 @@
 #include "LayerItemWidget.hpp"
 #include "ui_LayerSettingsDialog.h"
+#include "maps.hpp"
 
-LayerItemWidget::LayerItemWidget(QWidget *parent_, TileMap &map) : QWidget(parent_),
-    m_map(map)
+LayerItemWidget::LayerItemWidget(QWidget *parent_) : 
+    QWidget(parent_)
 {
     setObjectName("layer");
     setAutoFillBackground(true);
@@ -28,12 +29,12 @@ LayerItemWidget::LayerItemWidget(QWidget *parent_, TileMap &map) : QWidget(paren
 void LayerItemWidget::setIndex(int i)
 {
     index = i;
-    dialog->getUi()->nameEdit->setText(QString::fromStdString(m_map[index].getName()));
-    dialog->getUi()->widthSpinBox->setValue(m_map[index].getHLength());
-    dialog->getUi()->heightSpinBox->setValue(m_map[index].getVLength());
-    dialog->getUi()->xSpinBox->setValue(m_map[index].getPosition().x);
-    dialog->getUi()->ySpinBox->setValue(m_map[index].getPosition().y);
-    dialog->getUi()->depthIndexSpinBox->setValue(m_map[index].getDepthIndex());
+    dialog->getUi()->nameEdit->setText(QString::fromStdString(maps::current()[index].getName()));
+    dialog->getUi()->widthSpinBox->setValue(maps::current()[index].getHLength());
+    dialog->getUi()->heightSpinBox->setValue(maps::current()[index].getVLength());
+    dialog->getUi()->xSpinBox->setValue(maps::current()[index].getPosition().x);
+    dialog->getUi()->ySpinBox->setValue(maps::current()[index].getPosition().y);
+    dialog->getUi()->depthIndexSpinBox->setValue(maps::current()[index].getDepthIndex());
 }
 
 void LayerItemWidget::setCurrent()
@@ -65,42 +66,42 @@ void LayerItemWidget::resizeEvent(QResizeEvent *)
 
 void LayerItemWidget::rename(QString new_name)
 {
-    m_map[index].setName(new_name.toStdString());
+    maps::current()[index].setName(new_name.toStdString());
     title->setText(new_name);
 }
 
 void LayerItemWidget::changeWidth(int value)
 {
-    m_map[index].resize(value, m_map[index].getVLength());
+    maps::current()[index].resize(value, maps::current()[index].getVLength());
 }
 
 void LayerItemWidget::changeHeigth(int value)
 {
-    m_map[index].resize(m_map[index].getHLength(), value);
+    maps::current()[index].resize(maps::current()[index].getHLength(), value);
 }
 
 void LayerItemWidget::changeX(int value)
 {
-    m_map[index].setPosition(value, m_map[index].getPosition().y);
+    maps::current()[index].setPosition(value, maps::current()[index].getPosition().y);
 }
 
 void LayerItemWidget::changeY(int value)
 {
-    m_map[index].setPosition(m_map[index].getPosition().x, value);
+    maps::current()[index].setPosition(maps::current()[index].getPosition().x, value);
 }
 
 void LayerItemWidget::changeDepthIndex(double depthIndex)
 {
-    m_map[index].setDepthIndex(depthIndex);
+    maps::current()[index].setDepthIndex(depthIndex);
 }
 
 void LayerItemWidget::changeGridColor(QColor color)
 {
-    m_map[index].setGridColor(sf::Color(color.red(), color.green(), color.blue()));
+    maps::current()[index].setGridColor(sf::Color(color.red(), color.green(), color.blue()));
 }
 void LayerItemWidget::clearLayer()
 {
-    m_map[index].fill(0);
+    maps::current()[index].fill(0);
 }
 
 void LayerItemWidget::activateDialog()
