@@ -20,6 +20,7 @@ MapWidget.hpp
 TileSelectionWidget.cpp
 TileSelectionWidget.hpp
 main.cpp
+tools.hpp
 ${UIS_HDRS}
 )
 

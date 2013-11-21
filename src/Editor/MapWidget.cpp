@@ -20,7 +20,7 @@ MapWidget::MapWidget(QWidget* parent_, const QPoint& position, const QSize& size
     resize(size_);
 }
 
-void MapWidget::setTool(int newTool)
+void MapWidget::setTool(Tool newTool)
 {
     tool = newTool;
 }
@@ -67,13 +67,13 @@ void MapWidget::mousePressEvent(QMouseEvent *e)
     {
         leftButtonDown = true;
 
-        if (tool == 11)
+        if (tool == Tool::Zoom)
             camera->zoom(0.5);
 
-        if (tool == 5)
+        if (tool == Tool::FillShape)
             m_map[layer].fill(id);
 
-        if (tool == 8)
+        if (tool == Tool::Entity)
             putEntity(sf::Vector2i(e->x(), e->y()), "defaultEnemy");
     }
 
@@ -81,10 +81,10 @@ void MapWidget::mousePressEvent(QMouseEvent *e)
     {
         rightButtonDown = true;
 
-        if (tool == 11)
+        if (tool == Tool::Zoom)
             camera->zoom(2);
 
-        if (tool == 8)
+        if (tool == Tool::Entity)
             eraseEntity(sf::Vector2i(e->x(), e->y()));
     }
 
@@ -103,19 +103,19 @@ void MapWidget::mouseMoveEvent(QMouseEvent *e)
 {
     if (rightButtonDown)
     {
-        if (tool == 1)
+        if (tool == Tool::Pen)
             eraseTile(sf::Vector2i(e->x(), e->y()));
     }
 
     if (leftButtonDown && !spaceKeyDown)
     {
-        if (tool == 1)
+        if (tool == Tool::Pen)
             putTile(sf::Vector2i(e->x(), e->y()));
 
-        if (tool == 4)
+        if (tool == Tool::Eraser)
             eraseTile(sf::Vector2i(e->x(), e->y()));
 
-        if (tool == 10)
+        if (tool == Tool::Hand)
         {
             x2 = e->x();
             y2 = e->y();

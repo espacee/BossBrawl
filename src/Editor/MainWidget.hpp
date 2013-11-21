@@ -99,7 +99,6 @@ private:
     QPushButton* openButton;
     QPushButton* saveButton;
 
-    int tool;
     QPushButton* pointerToolButton;
     QPushButton* penToolButton;
     QPushButton* randomPenToolButton;

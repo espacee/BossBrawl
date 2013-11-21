@@ -1,5 +1,6 @@
 #include "MainWidget.hpp"
 #include <QMessageBox>
+#include "tools.hpp"
 
 MainWidget::MainWidget(QWidget *parent_) : QWidget(parent_),
     gridEnabled(false),
@@ -355,96 +356,84 @@ void MainWidget::pointerToolButtonClicked()
 {
     uncheckToolButtons();
     pointerToolButton->setChecked(true);
-    tool = 0;
-    m_mapWidget->setTool(tool);
+    m_mapWidget->setTool(Tool::Pointer);
 }
 
 void MainWidget::penToolButtonClicked()
 {
     uncheckToolButtons();
     penToolButton->setChecked(true);
-    tool = 1;
-    m_mapWidget->setTool(tool);
+    m_mapWidget->setTool(Tool::Pen);
 }
 
 void MainWidget::randomPenToolButtonClicked()
 {
     uncheckToolButtons();
     randomPenToolButton->setChecked(true);
-    tool = 2;
-    m_mapWidget->setTool(tool);
+    m_mapWidget->setTool(Tool::RandomPen);
 }
 
 void MainWidget::patternBrushToolButtonClicked()
 {
     uncheckToolButtons();
     patternBrushToolButton->setChecked(true);
-    tool = 3;
-    m_mapWidget->setTool(tool);
+    m_mapWidget->setTool(Tool::PatternBrush);
 }
 
 void MainWidget::eraserToolButtonClicked()
 {
     uncheckToolButtons();
     eraserToolButton->setChecked(true);
-    tool = 4;
-    m_mapWidget->setTool(tool);
+    m_mapWidget->setTool(Tool::Eraser);
 }
 
 void MainWidget::fillShapeToolButtonClicked()
 {
     uncheckToolButtons();
     fillShapeToolButton->setChecked(true);
-    tool = 5;
-    m_mapWidget->setTool(tool);
+    m_mapWidget->setTool(Tool::FillShape);
 }
 
 void MainWidget::selectAreaToolButtonClicked()
 {
     uncheckToolButtons();
     selectAreaToolButton->setChecked(true);
-    tool = 6;
-    m_mapWidget->setTool(tool);
+    m_mapWidget->setTool(Tool::SelectArea);
 }
 
 void MainWidget::arrowToolButtonClicked()
 {
     uncheckToolButtons();
     arrowToolButton->setChecked(true);
-    tool = 7;
-    m_mapWidget->setTool(tool);
+    m_mapWidget->setTool(Tool::Arrow);
 }
 
 void MainWidget::entityToolButtonClicked()
 {
     uncheckToolButtons();
     entityToolButton->setChecked(true);
-    tool = 8;
-    m_mapWidget->setTool(tool);
+    m_mapWidget->setTool(Tool::Entity);
 }
 
 void MainWidget::objectToolButtonClicked()
 {
     uncheckToolButtons();
     objectToolButton->setChecked(true);
-    tool = 9;
-    m_mapWidget->setTool(tool);
+    m_mapWidget->setTool(Tool::Object);
 }
 
 void MainWidget::handToolButtonClicked()
 {
     uncheckToolButtons();
     handToolButton->setChecked(true);
-    tool = 10;
-    m_mapWidget->setTool(tool);
+    m_mapWidget->setTool(Tool::Hand);
 }
 
 void MainWidget::zoomToolButtonClicked()
 {
     uncheckToolButtons();
     zoomToolButton->setChecked(true);
-    tool = 11;
-    m_mapWidget->setTool(tool);
+    m_mapWidget->setTool(Tool::Zoom);
 }
 
 

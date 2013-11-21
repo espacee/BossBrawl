@@ -10,6 +10,7 @@
 #include <QWheelEvent>
 #include "Map/TileMap.hpp"
 #include "Entities/EntityContainer.hpp"
+#include "tools.hpp"
 
 #include <QDebug>
 
@@ -28,7 +29,7 @@ public:
     void eraseEntity(sf::Vector2i mouseCoord);
 
 public slots:
-    void setTool(int newTool);
+    void setTool(Tool newTool);
     void setCurrentTile(int new_id);
     void setCurrentLayer(int newLayer);
 
@@ -49,7 +50,7 @@ private:
     void paintEvent(QPaintEvent*);
 
     bool initialized, leftButtonDown, rightButtonDown, middleButtonDown, ctrlKeyDown, spaceKeyDown;
-    int tool, saveTool;
+    Tool tool, saveTool;
     int layer;
     int id;
     float x1, x2, y1, y2, dx, dy;
