@@ -50,7 +50,7 @@ private:
     void paintEvent(QPaintEvent*);
 
     bool initialized, leftButtonDown, rightButtonDown, middleButtonDown, ctrlKeyDown, spaceKeyDown;
-    Tool tool, saveTool;
+    Tool tool;
     int layer;
     int id;
     float x1, x2, y1, y2, dx, dy;
