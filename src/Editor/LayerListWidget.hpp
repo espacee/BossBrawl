@@ -12,7 +12,6 @@
 #include <QRadioButton>
 #include <QLabel>
 
-#include "Map/TileMap.hpp"
 #include "LayerItemWidget.hpp"
 
 class LayerListWidget : public QWidget

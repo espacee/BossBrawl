@@ -8,7 +8,6 @@
 #include <QKeyEvent>
 #include <QMouseEvent>
 #include <QWheelEvent>
-#include "Map/TileMap.hpp"
 #include "tools.hpp"
 
 #include <QDebug>

@@ -7,7 +7,6 @@
 #include <QResizeEvent>
 
 #include "LayerSettingsDialog.hpp"
-#include "Map/TileMap.hpp"
 
 class LayerItemWidget : public QWidget
 {

@@ -2,7 +2,6 @@
 #define LAYERSETTINGSDIALOG_HPP
 
 #include <QDialog>
-#include "Map/TileMap.hpp"
 
 namespace Ui {
 class LayerSettings;

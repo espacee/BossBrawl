@@ -13,7 +13,6 @@
 #include "MapWidget.hpp"
 #include "TileSelectionWidget.hpp"
 #include "LayerListWidget.hpp"
-#include "Map/TileMap.hpp"
 
 class MainWidget : public QWidget
 {
