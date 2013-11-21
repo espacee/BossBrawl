@@ -316,7 +316,7 @@ void MainWidget::initCentralWidget()
                                topBar->y() + topBar->height(),
                                width() - toolBar->x() - toolBar->width() - rightPanelWidth - globalPadding,
                                height() - menuBarHeight - topBarHeight - globalPadding - botBarHeight);
-    m_mapWidget = new MapWidget(centralWidget, QPoint(0, 0), centralWidget->size(), maps::current(), &camera, cont);
+    m_mapWidget = new MapWidget(centralWidget, QPoint(0, 0), centralWidget->size(), &camera, cont);
     tileWidget = new TileSelectionWidget(centralWidget);
     tileWidget->move(0, 0);
     tileWidget->resize(centralWidget->size());

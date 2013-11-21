@@ -1,8 +1,8 @@
 #include "MapWidget.hpp"
+#include "maps.hpp"
 
-MapWidget::MapWidget(QWidget* parent_, const QPoint& position, const QSize& size_, TileMap &map, sf::View* cameraP, EntityContainer &cont) :
+MapWidget::MapWidget(QWidget* parent_, const QPoint& position, const QSize& size_, sf::View* cameraP, EntityContainer &cont) :
     QWidget(parent_),
-    m_map(map),
     m_cont(cont)
 {
     initialized = false;
@@ -71,7 +71,7 @@ void MapWidget::mousePressEvent(QMouseEvent *e)
             camera->zoom(0.5);
 
         if (tool == Tool::FillShape)
-            m_map[layer].fill(id);
+            maps::current()[layer].fill(id);
 
         if (tool == Tool::Entity)
             putEntity(sf::Vector2i(e->x(), e->y()), "defaultEnemy");
@@ -194,8 +194,8 @@ void MapWidget::putTile(sf::Vector2i mouseCoord)
 {
     sf::Vector2i windowRelativeCoord = mouseCoord;
     sf::View temp = *camera;
-    temp.setCenter(temp.getCenter().x * m_map[layer].getDepthIndex() - m_map[layer].getPosition().x,
-                   temp.getCenter().y * m_map[layer].getDepthIndex() - m_map[layer].getPosition().y);
+    temp.setCenter(temp.getCenter().x * maps::current()[layer].getDepthIndex() - maps::current()[layer].getPosition().x,
+                   temp.getCenter().y * maps::current()[layer].getDepthIndex() - maps::current()[layer].getPosition().y);
     sf::Vector2f worldRelativeCoord =  mapPixelToCoords(windowRelativeCoord, temp);
     sf::Vector2f layerRelativeCoord = worldRelativeCoord;
 
@@ -204,8 +204,8 @@ void MapWidget::putTile(sf::Vector2i mouseCoord)
         int xpos = layerRelativeCoord.x / Layer::TILE_SIZE ;
         int ypos = layerRelativeCoord.y / Layer::TILE_SIZE ;
 
-        if (m_map[layer].tileExists(xpos, ypos))
-            m_map[layer](xpos, ypos) = id;
+        if (maps::current()[layer].tileExists(xpos, ypos))
+            maps::current()[layer](xpos, ypos) = id;
     }
 }
 
@@ -213,8 +213,8 @@ void MapWidget::eraseTile(sf::Vector2i mouseCoord)
 {
     sf::Vector2i windowRelativeCoord = mouseCoord;
     sf::View temp = *camera;
-    temp.setCenter(temp.getCenter().x * m_map[layer].getDepthIndex() - m_map[layer].getPosition().x,
-                   temp.getCenter().y * m_map[layer].getDepthIndex() - m_map[layer].getPosition().y);
+    temp.setCenter(temp.getCenter().x * maps::current()[layer].getDepthIndex() - maps::current()[layer].getPosition().x,
+                   temp.getCenter().y * maps::current()[layer].getDepthIndex() - maps::current()[layer].getPosition().y);
     sf::Vector2f worldRelativeCoord =  mapPixelToCoords(windowRelativeCoord, temp);
     sf::Vector2f layerRelativeCoord = worldRelativeCoord;
 
@@ -223,8 +223,8 @@ void MapWidget::eraseTile(sf::Vector2i mouseCoord)
         int xpos = layerRelativeCoord.x / Layer::TILE_SIZE ;
         int ypos = layerRelativeCoord.y / Layer::TILE_SIZE ;
 
-        if (m_map[layer].tileExists(xpos, ypos))
-            m_map[layer](xpos, ypos) = 0;
+        if (maps::current()[layer].tileExists(xpos, ypos))
+            maps::current()[layer](xpos, ypos) = 0;
     }
 }
 
@@ -232,8 +232,8 @@ void MapWidget::putEntity(sf::Vector2i mouseCoord, std::string entity)
 {
     sf::Vector2i windowRelativeCoord = mouseCoord;
     sf::View temp = *camera;
-    temp.setCenter(temp.getCenter().x * m_map[layer].getDepthIndex() - m_map[layer].getPosition().x,
-                   temp.getCenter().y * m_map[layer].getDepthIndex() - m_map[layer].getPosition().y);
+    temp.setCenter(temp.getCenter().x * maps::current()[layer].getDepthIndex() - maps::current()[layer].getPosition().x,
+                   temp.getCenter().y * maps::current()[layer].getDepthIndex() - maps::current()[layer].getPosition().y);
     sf::Vector2f worldRelativeCoord =  mapPixelToCoords(windowRelativeCoord, temp);
     sf::Vector2f layerRelativeCoord = worldRelativeCoord;
 
@@ -242,7 +242,7 @@ void MapWidget::putEntity(sf::Vector2i mouseCoord, std::string entity)
         int xpos = layerRelativeCoord.x;
         int ypos = layerRelativeCoord.y;
 
-        if (m_map[layer].tileExists(xpos / 40, ypos / 40))
+        if (maps::current()[layer].tileExists(xpos / 40, ypos / 40))
             m_cont.addEntity(entity, (xpos - (m_cont.defaultEnemy[0]->getSize().x / 2)), (ypos - (m_cont.defaultEnemy[0]->getSize().y / 2)));
     }
 }
@@ -251,8 +251,8 @@ void MapWidget::eraseEntity(sf::Vector2i mouseCoord)
 {
     sf::Vector2i windowRelativeCoord = mouseCoord;
     sf::View temp = *camera;
-    temp.setCenter(temp.getCenter().x * m_map[layer].getDepthIndex() - m_map[layer].getPosition().x,
-                   temp.getCenter().y * m_map[layer].getDepthIndex() - m_map[layer].getPosition().y);
+    temp.setCenter(temp.getCenter().x * maps::current()[layer].getDepthIndex() - maps::current()[layer].getPosition().x,
+                   temp.getCenter().y * maps::current()[layer].getDepthIndex() - maps::current()[layer].getPosition().y);
     sf::Vector2f worldRelativeCoord =  mapPixelToCoords(windowRelativeCoord, temp);
     sf::Vector2f layerRelativeCoord = worldRelativeCoord;
 
@@ -261,7 +261,7 @@ void MapWidget::eraseEntity(sf::Vector2i mouseCoord)
         int xpos = layerRelativeCoord.x;
         int ypos = layerRelativeCoord.y;
 
-        if (m_map[layer].tileExists(xpos / 40, ypos / 40))
+        if (maps::current()[layer].tileExists(xpos / 40, ypos / 40))
         {
             m_cont.deleteEntity(xpos, ypos);
         }

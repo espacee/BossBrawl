@@ -18,7 +18,7 @@ class MapWidget  : public QWidget, public sf::RenderWindow
 {
     Q_OBJECT
 public:
-    MapWidget(QWidget* parent_, const QPoint& position, const QSize& size, TileMap& map, sf::View* cameraP, EntityContainer& cont);
+    MapWidget(QWidget* parent_, const QPoint& position, const QSize& size, sf::View* cameraP, EntityContainer& cont);
     ~MapWidget();
 
     void processEvents();
@@ -34,8 +34,6 @@ public slots:
     void setCurrentLayer(int newLayer);
 
 private:
-
-    TileMap& m_map;
     EntityContainer& m_cont;
     sf::View* camera;
     void mousePressEvent(QMouseEvent *e);
