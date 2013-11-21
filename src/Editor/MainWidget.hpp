@@ -14,7 +14,6 @@
 #include "TileSelectionWidget.hpp"
 #include "LayerListWidget.hpp"
 #include "Map/TileMap.hpp"
-#include "Entities/EntityContainer.hpp"
 
 class MainWidget : public QWidget
 {
@@ -59,9 +58,6 @@ public slots:
     void setCurrentLayer(int layer);
 
 private:
-
-    EntityContainer cont;
-
     QTimer timer;
     unsigned int frameTime;
 

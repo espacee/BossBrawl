@@ -1,9 +1,8 @@
 #include "MapWidget.hpp"
 #include "maps.hpp"
 
-MapWidget::MapWidget(QWidget* parent_, const QPoint& position, const QSize& size_, sf::View* cameraP, EntityContainer &cont) :
-    QWidget(parent_),
-    m_cont(cont)
+MapWidget::MapWidget(QWidget* parent_, const QPoint& position, const QSize& size_, sf::View* cameraP) :
+    QWidget(parent_)
 {
     initialized = false;
     leftButtonDown = false;
@@ -243,7 +242,7 @@ void MapWidget::putEntity(sf::Vector2i mouseCoord, std::string entity)
         int ypos = layerRelativeCoord.y;
 
         if (maps::current()[layer].tileExists(xpos / 40, ypos / 40))
-            m_cont.addEntity(entity, (xpos - (m_cont.defaultEnemy[0]->getSize().x / 2)), (ypos - (m_cont.defaultEnemy[0]->getSize().y / 2)));
+            maps::currentEntityContainer().addEntity(entity, (xpos - (maps::currentEntityContainer().defaultEnemy[0]->getSize().x / 2)), (ypos - (maps::currentEntityContainer().defaultEnemy[0]->getSize().y / 2)));
     }
 }
 
@@ -263,7 +262,7 @@ void MapWidget::eraseEntity(sf::Vector2i mouseCoord)
 
         if (maps::current()[layer].tileExists(xpos / 40, ypos / 40))
         {
-            m_cont.deleteEntity(xpos, ypos);
+            maps::currentEntityContainer().deleteEntity(xpos, ypos);
         }
     }
 }

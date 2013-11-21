@@ -9,7 +9,6 @@
 #include <QMouseEvent>
 #include <QWheelEvent>
 #include "Map/TileMap.hpp"
-#include "Entities/EntityContainer.hpp"
 #include "tools.hpp"
 
 #include <QDebug>
@@ -18,7 +17,7 @@ class MapWidget  : public QWidget, public sf::RenderWindow
 {
     Q_OBJECT
 public:
-    MapWidget(QWidget* parent_, const QPoint& position, const QSize& size, sf::View* cameraP, EntityContainer& cont);
+    MapWidget(QWidget* parent_, const QPoint& position, const QSize& size, sf::View* cameraP);
     ~MapWidget();
 
     void processEvents();
@@ -34,7 +33,6 @@ public slots:
     void setCurrentLayer(int newLayer);
 
 private:
-    EntityContainer& m_cont;
     sf::View* camera;
     void mousePressEvent(QMouseEvent *e);
     void mouseMoveEvent(QMouseEvent *e);

@@ -96,7 +96,7 @@ void MainWidget::onUpdate()
 
     m_mapWidget->processEvents();
     m_mapWidget->clear(sf::Color(clear_red, clear_green, clear_blue));
-    cont.displayEntities(*m_mapWidget);
+    maps::currentEntityContainer().displayEntities(*m_mapWidget);
     m_mapWidget->setView(camera);
     maps::current().draw(*m_mapWidget, (gridEnabled ? currentLayer : - 1));
     m_mapWidget->sf::RenderWindow::display();
@@ -321,7 +321,7 @@ void MainWidget::initCentralWidget()
                                topBar->y() + topBar->height(),
                                width() - toolBar->x() - toolBar->width() - rightPanelWidth - globalPadding,
                                height() - menuBarHeight - topBarHeight - globalPadding - botBarHeight);
-    m_mapWidget = new MapWidget(centralWidget, QPoint(0, 0), centralWidget->size(), &camera, cont);
+    m_mapWidget = new MapWidget(centralWidget, QPoint(0, 0), centralWidget->size(), &camera);
     tileWidget = new TileSelectionWidget(centralWidget);
     tileWidget->move(0, 0);
     tileWidget->resize(centralWidget->size());
@@ -342,7 +342,7 @@ void MainWidget::loadMapFromFile(const QString &filename)
     std::string entityfilename = filename.toStdString();
     int entityfilenamesize = entityfilename.size() - 4;
     entityfilename.replace(entityfilenamesize, 4, ".entity");
-    cont.loadFromFile(entityfilename);
+    maps::currentEntityContainer().loadFromFile(entityfilename);
     filePath = filename.toStdString();
 }
 
@@ -474,7 +474,7 @@ void MainWidget::tileButtonClicked()
 void MainWidget::newButtonClicked()
 {
     maps::current().reset();
-    cont.reset();
+    maps::currentEntityContainer().reset();
     layerTab->loadLayersFromMap();
 }
 
@@ -491,7 +491,7 @@ void MainWidget::saveButtonClicked()
     {
         filePath = QFileDialog::getSaveFileName(this).toStdString();
         maps::current().saveToFile(filePath + ".map");
-        cont.saveToFile(filePath + ".entity");
+        maps::currentEntityContainer().saveToFile(filePath + ".entity");
     }
     else
     {
@@ -499,7 +499,7 @@ void MainWidget::saveButtonClicked()
         std::string entityfilename = filePath;
         int entityfilenamesize = entityfilename.size() - 4;
         entityfilename.replace(entityfilenamesize, 4, ".entity");
-        cont.saveToFile(entityfilename);
+        maps::currentEntityContainer().saveToFile(entityfilename);
     }
 }
 void MainWidget::tileSelected(int new_id)
