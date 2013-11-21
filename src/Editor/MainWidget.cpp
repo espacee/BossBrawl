@@ -1,6 +1,7 @@
 #include "MainWidget.hpp"
 #include <QMessageBox>
 #include "tools.hpp"
+#include "maps.hpp"
 
 MainWidget::MainWidget(QWidget *parent_) : QWidget(parent_),
     gridEnabled(false),
@@ -91,7 +92,7 @@ void MainWidget::onUpdate()
     m_mapWidget->clear(sf::Color(clear_red, clear_green, clear_blue));
     cont.displayEntities(*m_mapWidget);
     m_mapWidget->setView(camera);
-    map.draw(*m_mapWidget, (gridEnabled ? currentLayer : - 1));
+    maps::current().draw(*m_mapWidget, (gridEnabled ? currentLayer : - 1));
     m_mapWidget->sf::RenderWindow::display();
 }
 
@@ -275,7 +276,7 @@ void MainWidget::initRightPanel()
                             menuBarHeight,
                             rightPanelWidth,
                             height() - menuBarHeight - globalPadding);
-    layerTab = new LayerListWidget(rightPanel, map);
+    layerTab = new LayerListWidget(rightPanel, maps::current());
     layerTab->resize(rightPanel->size());
 }
 
@@ -314,7 +315,7 @@ void MainWidget::initCentralWidget()
                                topBar->y() + topBar->height(),
                                width() - toolBar->x() - toolBar->width() - rightPanelWidth - globalPadding,
                                height() - menuBarHeight - topBarHeight - globalPadding - botBarHeight);
-    m_mapWidget = new MapWidget(centralWidget, QPoint(0, 0), centralWidget->size(), map, &camera, cont);
+    m_mapWidget = new MapWidget(centralWidget, QPoint(0, 0), centralWidget->size(), maps::current(), &camera, cont);
     tileWidget = new TileSelectionWidget(centralWidget);
     tileWidget->move(0, 0);
     tileWidget->resize(centralWidget->size());
@@ -325,7 +326,7 @@ void MainWidget::initCentralWidget()
 
 void MainWidget::loadMapFromFile(const QString &filename)
 {
-    if (map.loadFromFile(filename.toStdString()))
+    if (maps::current().loadFromFile(filename.toStdString()))
     {
         layerTab->loadLayersFromMap();
         std::string entityfilename = filename.toStdString();
@@ -463,7 +464,7 @@ void MainWidget::tileButtonClicked()
 }
 void MainWidget::newButtonClicked()
 {
-    map.reset();
+    maps::current().reset();
     cont.reset();
     layerTab->loadLayersFromMap();
 }
@@ -480,12 +481,12 @@ void MainWidget::saveButtonClicked()
     if (filePath.empty() == true)
     {
         filePath = QFileDialog::getSaveFileName(this).toStdString();
-        map.saveToFile(filePath + ".map");
+        maps::current().saveToFile(filePath + ".map");
         cont.saveToFile(filePath + ".entity");
     }
     else
     {
-        map.saveToFile(filePath);
+        maps::current().saveToFile(filePath);
         std::string entityfilename = filePath;
         int entityfilenamesize = entityfilename.size() - 4;
         entityfilename.replace(entityfilenamesize, 4, ".entity");

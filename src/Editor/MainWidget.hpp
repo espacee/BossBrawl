@@ -60,7 +60,6 @@ public slots:
 
 private:
 
-    TileMap map;
     EntityContainer cont;
 
     QTimer timer;
