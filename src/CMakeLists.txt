@@ -1,5 +1,7 @@
 include_directories(Common)
 add_subdirectory(Common)
 add_subdirectory(Game)
-add_subdirectory(Editor)
+if(BUILD_EDITOR)
+	add_subdirectory(Editor)
+endif()
 
