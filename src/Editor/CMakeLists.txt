@@ -7,6 +7,8 @@ LayerSettingsDialog.ui
 )
 
 add_executable(brawledit
+BottomBarWidget.cpp
+BottomBarWidget.hpp
 LayerItemWidget.cpp
 LayerItemWidget.hpp
 LayerListWidget.cpp

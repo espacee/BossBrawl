@@ -28,6 +28,7 @@ MainWidget::MainWidget(QWidget *parent_) :
     initBotBar();
     initCentralWidget();
     toolBar->setMapWidget(m_mapWidget);
+    botBar->setMapWidgetAndLayerListWidget(m_mapWidget, layerTab);
     setObjectName("window");
     toolBar->setObjectName("toolBar");
     rightPanel->setObjectName("rightPanel");
@@ -67,7 +68,7 @@ void MainWidget::onInit()
 {
     tileWidget->select(0, 0);
     toolBar->doInitialClicks();
-    toggleGridButton->click();
+    botBar->doInitialClicks();
 }
 
 void MainWidget::onUpdate()
@@ -130,30 +131,11 @@ void MainWidget::initRightPanel()
 
 void MainWidget::initBotBar()
 {
-    botBar = new QWidget(this);
+    botBar = new BottomBarWidget(this);
     botBar->setGeometry(globalPadding + toolBarWidth,
                         height() - globalPadding - botBarHeight,
                         width() - toolBarWidth - rightPanelWidth - globalPadding * 2,
                         botBarHeight);
-    resetCameraButton = new QPushButton(QIcon("res/img/GUI/camera.png"), "", botBar);
-    resetCameraButton->setGeometry(1, 2, botBarHeight - 2, botBarHeight - 2);
-    resetCameraButton->setIconSize(resetCameraButton->size());
-    resetCameraButton->setObjectName("toolButton");
-    toggleGridButton = new QPushButton(QIcon("res/img/GUI/grid.png"), "", botBar);
-    toggleGridButton->setGeometry(resetCameraButton->x() + resetCameraButton->width() + 2, 1, botBarHeight - 2, botBarHeight - 2);
-    toggleGridButton->setIconSize(toggleGridButton->size());
-    toggleGridButton->setObjectName("toolButton");
-    toggleGridButton->setCheckable(true);
-    toggleGridButton->setShortcut(QKeySequence("Ctrl+G"));
-    toggleVisibleButton = new QPushButton(QIcon("res/img/GUI/eye.png"), "", botBar);
-    toggleVisibleButton->setGeometry(toggleGridButton->x() + toggleGridButton->width() + 2, 1, botBarHeight - 2, botBarHeight - 2);
-    toggleVisibleButton->setIconSize(toggleVisibleButton->size());
-    toggleVisibleButton->setObjectName("toolButton");
-    toggleVisibleButton->setCheckable(true);
-    toggleVisibleButton->setShortcut(QKeySequence("Ctrl+V"));
-    connect(resetCameraButton, SIGNAL(clicked()), this, SLOT(resetCameraButtonClicked()));
-    connect(toggleGridButton, SIGNAL(clicked()), this, SLOT(toggleGridButtonClicked()));
-    connect(toggleVisibleButton, SIGNAL(clicked()), this, SLOT(toggleVisibleButtonClicked()));
 }
 
 void MainWidget::initCentralWidget()
@@ -251,19 +233,4 @@ void MainWidget::tileSelected(int new_id)
 void MainWidget::tileSelected(QPixmap tile)
 {
     tileButton->setIcon(QIcon(tile));
-}
-
-void MainWidget::resetCameraButtonClicked()
-{
-    m_mapWidget->resetCamera();
-}
-
-void MainWidget::toggleGridButtonClicked()
-{
-    m_mapWidget->toggleGrid();
-}
-
-void MainWidget::toggleVisibleButtonClicked()
-{
-    layerTab->toggleVisible();
 }

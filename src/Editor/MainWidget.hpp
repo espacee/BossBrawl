@@ -14,6 +14,7 @@
 #include "TileSelectionWidget.hpp"
 #include "LayerListWidget.hpp"
 #include "ToolbarWidget.hpp"
+#include "BottomBarWidget.hpp"
 
 class MainWidget : public QWidget
 {
@@ -32,10 +33,6 @@ public slots:
     void newButtonClicked();
     void openButtonClicked();
     void saveButtonClicked();
-
-    void resetCameraButtonClicked();
-    void toggleGridButtonClicked();
-    void toggleVisibleButtonClicked();
 
     void tileButtonClicked();
     void tileSelected(int new_id);
@@ -64,7 +61,7 @@ private:
     ToolbarWidget *toolBar;
     QWidget *topBar;
     QWidget *rightPanel;
-    QWidget *botBar;
+    BottomBarWidget *botBar;
     QWidget *centralWidget;
 
     QLabel* windowIcon;
@@ -73,10 +70,6 @@ private:
     QPushButton* newButton;
     QPushButton* openButton;
     QPushButton* saveButton;
-
-    QPushButton* resetCameraButton;
-    QPushButton* toggleGridButton;
-    QPushButton* toggleVisibleButton;
 
     TileSelectionWidget* tileWidget;
     int id;
