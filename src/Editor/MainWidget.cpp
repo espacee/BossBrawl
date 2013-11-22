@@ -27,7 +27,7 @@ MainWidget::MainWidget(QWidget *parent_) :
     initTopBar();
     initBotBar();
     initCentralWidget();
-    toolBar->setMapidget(m_mapWidget);
+    toolBar->setMapWidget(m_mapWidget);
     setObjectName("window");
     toolBar->setObjectName("toolBar");
     rightPanel->setObjectName("rightPanel");

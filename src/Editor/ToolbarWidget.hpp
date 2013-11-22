@@ -11,7 +11,7 @@ public:
     ToolbarWidget(QWidget *parent_);
     void uncheckAll();
     void doInitialClicks();
-    void setMapidget(MapWidget *mw);
+    void setMapWidget(MapWidget *mw);
 private slots:
     void pointerToolButtonClicked();
     void arrowToolButtonClicked();

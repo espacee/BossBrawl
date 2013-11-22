@@ -154,7 +154,7 @@ void ToolbarWidget::doInitialClicks()
     penToolButton->click();
 }
 
-void ToolbarWidget::setMapidget(MapWidget *mw)
+void ToolbarWidget::setMapWidget(MapWidget *mw)
 {
     m_mapWidget = mw;
 }
