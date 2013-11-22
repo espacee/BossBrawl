@@ -56,7 +56,7 @@ private:
     int rightPanelWidth;
     int botBarHeight;
 
-    MapWidget* m_mapWidget;
+    MapWidget *m_mapWidget;
 
     ToolbarWidget *toolBar;
     QWidget *topBar;
@@ -64,19 +64,19 @@ private:
     BottomBarWidget *botBar;
     QWidget *centralWidget;
 
-    QLabel* windowIcon;
-    QPushButton* minimizeButton;
-    QPushButton* closeButton;
-    QPushButton* newButton;
-    QPushButton* openButton;
-    QPushButton* saveButton;
+    QLabel *windowIcon;
+    QPushButton *minimizeButton;
+    QPushButton *closeButton;
+    QPushButton *newButton;
+    QPushButton *openButton;
+    QPushButton *saveButton;
 
-    TileSelectionWidget* tileWidget;
+    TileSelectionWidget *tileWidget;
     int id;
 
-    QPushButton* tileButton;
+    QPushButton *tileButton;
 
-    LayerListWidget* layerTab;
+    LayerListWidget *layerTab;
     int mainLayer;
 
     std::string filePath;

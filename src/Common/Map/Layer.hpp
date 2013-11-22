@@ -11,7 +11,7 @@
 class Layer
 {
 public:
-    Layer(const std::string& name);
+    Layer(const std::string &name);
 
     void resize(unsigned int w, unsigned int h);
 
@@ -79,12 +79,12 @@ public:
         return getVLength() * TILE_SIZE;
     }
 
-    inline void setName(const std::string& name)
+    inline void setName(const std::string &name)
     {
         m_name = name;
     }
 
-    inline const std::string& getName() const
+    inline const std::string &getName() const
     {
         return m_name;
     }
@@ -114,7 +114,7 @@ public:
         return x >= 0 && x < getHLength() && y >= 0 && y < getVLength();
     }
 
-    inline unsigned int& operator()(unsigned x, unsigned y)
+    inline unsigned int &operator()(unsigned x, unsigned y)
     {
 #ifdef BRAWL_DEBUG
         assert(x < m_tiles.size());

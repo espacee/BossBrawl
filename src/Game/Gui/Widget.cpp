@@ -220,7 +220,7 @@ void Widget::update()
     background.setFillColor(backgroundColor);
 }
 
-void Widget::display(sf::RenderTarget& target)
+void Widget::display(sf::RenderTarget &target)
 {
     update();
     target.draw(background);

@@ -29,12 +29,12 @@ public:
     void addEntity(std::string entity, float posX, float posY);
     void deleteEntity(float posX, float posY);
 
-    bool loadFromFile(const std::string& filename);
-    bool saveToFile(const std::string& filename);
+    bool loadFromFile(const std::string &filename);
+    bool saveToFile(const std::string &filename);
 
     void reset();
 
-    std::vector<DefaultEnemy*> defaultEnemy;
+    std::vector<DefaultEnemy *> defaultEnemy;
 };
 
 #endif // ENTITIES_ENTITYCONTAINER_HPP

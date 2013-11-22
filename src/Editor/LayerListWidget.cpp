@@ -113,7 +113,7 @@ void LayerListWidget::moveBg()
 {
     if (currentLayer > 0)
     {
-        LayerItemWidget* temp = layerWidgets[currentLayer];
+        LayerItemWidget *temp = layerWidgets[currentLayer];
         layerWidgets[currentLayer] = layerWidgets[currentLayer - 1];
         layerWidgets[currentLayer - 1] = temp;
         maps::current().moveLayerBackground(currentLayer);
@@ -126,7 +126,7 @@ void LayerListWidget::moveFg()
 {
     if (currentLayer < layerWidgets.size() - 1)
     {
-        LayerItemWidget* temp = layerWidgets[currentLayer];
+        LayerItemWidget *temp = layerWidgets[currentLayer];
         layerWidgets[currentLayer] = layerWidgets[currentLayer + 1];
         layerWidgets[currentLayer + 1] = temp;
         maps::current().moveLayerForeground(currentLayer);
@@ -172,7 +172,7 @@ void LayerListWidget::mousePressEvent(QMouseEvent *e)
     e->ignore();
 }
 
-void LayerListWidget::keyPressEvent(QKeyEvent* e)
+void LayerListWidget::keyPressEvent(QKeyEvent *e)
 {
     if (e->key() == Qt::Key_Delete)
     {

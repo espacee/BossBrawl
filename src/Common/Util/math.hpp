@@ -13,7 +13,7 @@ template <typename T>
  * @param min Minimum value the variable can have
  * @param max Maximum value the variable can have
  */
-void clamp(T& var, T min, T max)
+void clamp(T &var, T min, T max)
 {
     if (var < min)
         var = min;

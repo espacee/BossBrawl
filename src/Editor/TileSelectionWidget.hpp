@@ -25,16 +25,16 @@ protected:
     void mousePressEvent(QMouseEvent *e);
     void mouseReleaseEvent(QMouseEvent *e);
     void mouseMoveEvent(QMouseEvent *e);
-    void keyPressEvent(QKeyEvent* e);
-    void showEvent(QShowEvent*);
+    void keyPressEvent(QKeyEvent *e);
+    void showEvent(QShowEvent *);
 
 private:
 
-    QWidget* container;
+    QWidget *container;
     QPixmap tileSetPixmap;
-    QLabel* tileSetLabel;
+    QLabel *tileSetLabel;
 
-    QLabel* cursor;
+    QLabel *cursor;
 
     int id;
     bool leftButtonDown;

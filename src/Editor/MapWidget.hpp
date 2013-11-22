@@ -16,7 +16,7 @@ class MapWidget  : public QWidget, public sf::RenderWindow
 {
     Q_OBJECT
 public:
-    MapWidget(QWidget* parent_, const QPoint& position, const QSize& size);
+    MapWidget(QWidget *parent_, const QPoint &position, const QSize &size);
     ~MapWidget();
 
     void processEvents();
@@ -43,10 +43,10 @@ private:
     void keyReleaseEvent(QKeyEvent *e);
     void wheelEvent(QWheelEvent *e);
 
-    QPaintEngine* paintEngine() const;
-    void showEvent(QShowEvent*);
-    void paintEvent(QPaintEvent*);
-    
+    QPaintEngine *paintEngine() const;
+    void showEvent(QShowEvent *);
+    void paintEvent(QPaintEvent *);
+
     float clear_red, clear_green, clear_blue;
     bool a, b, c;
     bool m_gridEnabled;

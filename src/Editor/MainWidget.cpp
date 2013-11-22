@@ -3,7 +3,7 @@
 #include "tools.hpp"
 #include "maps.hpp"
 
-MainWidget::MainWidget(QWidget *parent_) : 
+MainWidget::MainWidget(QWidget *parent_) :
     QWidget(parent_)
 {
     setWindowFlags(Qt::FramelessWindowHint | Qt::WindowMinimizeButtonHint);
@@ -55,7 +55,7 @@ MainWidget::MainWidget(QWidget *parent_) :
     {
         newMap();
     }
-    
+
     onInit();
 }
 
@@ -161,6 +161,7 @@ void MainWidget::loadMapFromFile(const QString &filename)
         QMessageBox::critical(this, "Error", tr("Could not load \"%1\" as a map").arg(filename));
         return;
     }
+
     maps::setActive(maps::size() - 1);
     layerTab->loadLayersFromMap();
     std::string entityfilename = filename.toStdString();

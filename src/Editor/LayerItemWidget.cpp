@@ -2,7 +2,7 @@
 #include "ui_LayerSettingsDialog.h"
 #include "maps.hpp"
 
-LayerItemWidget::LayerItemWidget(QWidget *parent_) : 
+LayerItemWidget::LayerItemWidget(QWidget *parent_) :
     QWidget(parent_)
 {
     setObjectName("layer");

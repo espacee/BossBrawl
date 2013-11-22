@@ -36,9 +36,9 @@ protected:
     void resizeEvent(QResizeEvent *);
 
 private:
-    QLabel* title;
-    QPushButton* propertiesButton;
-    LayerSettingsDialog* dialog;
+    QLabel *title;
+    QPushButton *propertiesButton;
+    LayerSettingsDialog *dialog;
 
     int index;
 };

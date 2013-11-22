@@ -38,7 +38,7 @@ void OptionsMenuState::onUpdate()
 
     for (decltype(resoButtons)::size_type i = 0; i < resoButtons.size(); ++i)
     {
-        TextButton& b = resoButtons[i];
+        TextButton &b = resoButtons[i];
 
         if (i == config::resolutionMode)
         {

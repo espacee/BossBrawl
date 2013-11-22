@@ -9,8 +9,8 @@ namespace maps {
 
 bool loadFromFile(QString filename);
 void addNew();
-TileMap& current();
-EntityContainer& currentEntityContainer();
+TileMap &current();
+EntityContainer &currentEntityContainer();
 void cleanup();
 int size();
 void setActive(int index);

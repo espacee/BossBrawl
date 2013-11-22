@@ -1,7 +1,7 @@
 #include "MapWidget.hpp"
 #include "maps.hpp"
 
-MapWidget::MapWidget(QWidget* parent_, const QPoint& position, const QSize& size_) :
+MapWidget::MapWidget(QWidget *parent_, const QPoint &position, const QSize &size_) :
     QWidget(parent_)
 {
     initialized = false;
@@ -42,7 +42,7 @@ void MapWidget::processEvents()
 {
 }
 
-void MapWidget::showEvent(QShowEvent*)
+void MapWidget::showEvent(QShowEvent *)
 {
     if (!initialized)
     {
@@ -55,12 +55,12 @@ void MapWidget::showEvent(QShowEvent*)
     }
 }
 
-QPaintEngine* MapWidget::paintEngine() const
+QPaintEngine *MapWidget::paintEngine() const
 {
     return 0;
 }
 
-void MapWidget::paintEvent(QPaintEvent*)
+void MapWidget::paintEvent(QPaintEvent *)
 {
 }
 

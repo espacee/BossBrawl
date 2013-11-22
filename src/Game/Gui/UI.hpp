@@ -13,8 +13,8 @@ public:
     UI();
 
     void onInit();
-    void display(sf::RenderWindow& window);
-    void update(Player& player);
+    void display(sf::RenderWindow &window);
+    void update(Player &player);
 
     float playerhealth;
 

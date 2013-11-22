@@ -15,7 +15,7 @@ public:
     explicit LayerSettingsDialog(QWidget *parent = 0);
     ~LayerSettingsDialog();
 
-    Ui::LayerSettings* getUi();
+    Ui::LayerSettings *getUi();
 
 private slots:
 

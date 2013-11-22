@@ -76,12 +76,12 @@ void TileSelectionWidget::mouseMoveEvent(QMouseEvent *e)
     }
 }
 
-void TileSelectionWidget::keyPressEvent(QKeyEvent* e)
+void TileSelectionWidget::keyPressEvent(QKeyEvent *e)
 {
     if (e->key() == Qt::Key_Escape)
         hide();
 }
 
-void TileSelectionWidget::showEvent(QShowEvent*)
+void TileSelectionWidget::showEvent(QShowEvent *)
 {
 }

@@ -15,7 +15,7 @@ extern sf::Font fontbasiclight;
 void init();
 void setResolutionMode(unsigned int index);
 void setDesktopResolution();
-const std::vector<sf::Vector2i>& getResolutionModes();
+const std::vector<sf::Vector2i> &getResolutionModes();
 
 }
 

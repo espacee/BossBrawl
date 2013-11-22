@@ -40,20 +40,20 @@ private:
 
     void resizeEvent(QResizeEvent *e);
     void mousePressEvent(QMouseEvent *e);
-    void keyPressEvent(QKeyEvent* e);
+    void keyPressEvent(QKeyEvent *e);
 
     int currentLayer, layerID;
     int layerWidgetHeigth, offset;
     bool currentGridOnly, currentVisibleOnly;
 
-    QVector<LayerItemWidget*> layerWidgets;
+    QVector<LayerItemWidget *> layerWidgets;
 
-    QScrollArea* layerScrollArea;
-    QPushButton* addLayerButton;
-    QPushButton* removeLayerButton;
-    QPushButton* moveBgButton;
-    QPushButton* moveFgButton;
-    QWidget* pan;
+    QScrollArea *layerScrollArea;
+    QPushButton *addLayerButton;
+    QPushButton *removeLayerButton;
+    QPushButton *moveBgButton;
+    QPushButton *moveFgButton;
+    QWidget *pan;
 };
 
 #endif // LAYERLISTWIDGET_HPP

@@ -20,8 +20,8 @@ public:
     TileMap();
     ~TileMap();
 
-    bool loadFromFile(const std::string& filename);
-    bool saveToFile(const std::string& filename);
+    bool loadFromFile(const std::string &filename);
+    bool saveToFile(const std::string &filename);
     void reset();
 
     void addLayer(int pos);
@@ -34,7 +34,7 @@ public:
         return layers.size();
     }
 
-    inline Layer& operator[](unsigned int index)
+    inline Layer &operator[](unsigned int index)
     {
 #ifdef BRAWL_DEBUG
         assert(index < layers.size());
@@ -45,12 +45,12 @@ public:
     bool spriteExists(unsigned int id) const;
     bool layerExists(unsigned int layer) const;
 
-    void draw(sf::RenderWindow& target, unsigned int drawGridForLayer = -1);
+    void draw(sf::RenderWindow &target, unsigned int drawGridForLayer = -1);
 
 private:
     void loadTileset();
 
-    std::vector<Layer*> layers;
+    std::vector<Layer *> layers;
     std::vector<sf::Sprite> sprites;
     sf::Texture tileSet;
 };

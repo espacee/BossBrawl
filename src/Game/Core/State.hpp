@@ -22,7 +22,7 @@ public :
     /**
      * @brief Called every time an event happens
      */
-    virtual void onEvent(const sf::Event& /*event*/) {
+    virtual void onEvent(const sf::Event & /*event*/) {
     }
 
     virtual ~State() {}

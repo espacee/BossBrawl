@@ -9,7 +9,7 @@ namespace config
 
 unsigned int resolutionMode;
 
-const char* const DEFAULT_CONFIG_FILENAME = "settings.cfg";
+const char *const DEFAULT_CONFIG_FILENAME = "settings.cfg";
 
 void setDefaults()
 {
@@ -17,7 +17,7 @@ void setDefaults()
 }
 
 template <typename T>
-void extract_assert(std::istream& stream, T& value)
+void extract_assert(std::istream &stream, T &value)
 {
     if (!(stream >> value))
     {

@@ -35,7 +35,7 @@ void setResolutionMode(unsigned int index)
         index = 0;
     }
 
-    const sf::Vector2i& res = m_resolutionModes.at(index);
+    const sf::Vector2i &res = m_resolutionModes.at(index);
     window.create(sf::VideoMode(res.x, res.y), m_title, sf::Style::Close);
     window.setFramerateLimit(60);
 }
@@ -46,7 +46,7 @@ void setDesktopResolution()
     window.setVerticalSyncEnabled(true);
 }
 
-const std::vector<sf::Vector2i>& getResolutionModes()
+const std::vector<sf::Vector2i> &getResolutionModes()
 {
     return m_resolutionModes;
 }

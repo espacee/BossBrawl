@@ -30,7 +30,7 @@ public:
 
     void processEvents(const sf::Event &event);
     void update();
-    void display(sf::RenderTarget& target);
+    void display(sf::RenderTarget &target);
 
     bool isHovered() const;
     bool isPressed() const;

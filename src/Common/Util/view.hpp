@@ -5,7 +5,7 @@
 
 namespace util {
 
-void moveViewTowardsPoint(sf::View& view, sf::Vector2f point, float speed);
+void moveViewTowardsPoint(sf::View &view, sf::Vector2f point, float speed);
 
 }
 

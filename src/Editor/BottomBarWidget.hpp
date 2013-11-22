@@ -17,9 +17,9 @@ private slots:
     void toggleGridButtonClicked();
     void toggleVisibleButtonClicked();
 private:
-    QPushButton* resetCameraButton;
-    QPushButton* toggleGridButton;
-    QPushButton* toggleVisibleButton;
+    QPushButton *resetCameraButton;
+    QPushButton *toggleGridButton;
+    QPushButton *toggleVisibleButton;
     LayerListWidget *layerTab;
     MapWidget *m_mapWidget;
 };

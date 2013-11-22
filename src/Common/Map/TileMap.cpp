@@ -52,7 +52,7 @@ bool TileMap::loadFromFile(const std::string &filename)
         std::string name;
         file.get(); // Discard newline character
         std::getline(file, name);
-        Layer* l = new Layer(name);
+        Layer *l = new Layer(name);
         // Visibility
         file >> l->m_visible;
         // Grid color
@@ -66,7 +66,7 @@ bool TileMap::loadFromFile(const std::string &filename)
         // Number of columns, rows
         int columns, rows;
         file >> columns >> rows;
-        auto& map = l->m_tiles;
+        auto &map = l->m_tiles;
         map.resize(columns);
 
         // Fetch the tile data
@@ -102,13 +102,13 @@ bool TileMap::saveToFile(const std::string &filename)
 
     for (const Layer * layer : layers)
     {
-        const Layer& l = *layer;
+        const Layer &l = *layer;
         // Name
         file << l.m_name << '\n';
         // Visibility
         file << l.m_visible << '\n';
         // Grid color
-        const sf::Color& gc = l.m_gridColor;
+        const sf::Color &gc = l.m_gridColor;
         file << (int) gc.r << ' ' << (int) gc.g << ' ' << (int) gc.b << ' ' << (int) gc.a << '\n';
         // x/y offsets
         file << l.m_x << ' ' << l.m_y << '\n';
@@ -163,14 +163,14 @@ void TileMap::removeLayer(int pos)
 
 void TileMap::moveLayerBackground(int pos)
 {
-    Layer* temp = layers[pos];
+    Layer *temp = layers[pos];
     layers[pos] = layers[pos - 1];
     layers[pos - 1] = temp;
 }
 
 void TileMap::moveLayerForeground(int pos)
 {
-    Layer* temp = layers[pos];
+    Layer *temp = layers[pos];
     layers[pos] = layers[pos + 1];
     layers[pos + 1] = temp;
 }

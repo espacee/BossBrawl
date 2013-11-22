@@ -9,8 +9,8 @@ namespace stateDriver
 {
 
 bool m_running;
-std::map<std::string, State*> m_states;
-State* m_currentState;
+std::map<std::string, State *> m_states;
+State *m_currentState;
 int m_fps;
 
 int exec()

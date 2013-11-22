@@ -20,13 +20,13 @@ void UI::onInit()
     healthtext.setString("Health");
     healthtext.setColor(sf::Color::Cyan);
 }
-void UI::display(sf::RenderWindow& window)
+void UI::display(sf::RenderWindow &window)
 {
     window.draw(healthbarout);
     window.draw(healthbarin);
     window.draw(healthtext);
 }
-void UI::update(Player& player)
+void UI::update(Player &player)
 {
     playerhealth = player.getHealth();
 
