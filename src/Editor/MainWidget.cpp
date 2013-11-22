@@ -4,9 +4,7 @@
 #include "maps.hpp"
 
 MainWidget::MainWidget(QWidget *parent_) : 
-    QWidget(parent_),
-    gridEnabled(false),
-    currentLayer(0)
+    QWidget(parent_)
 {
     setWindowFlags(Qt::FramelessWindowHint | Qt::WindowMinimizeButtonHint);
     setGeometry(QApplication::desktop()->availableGeometry());
@@ -44,9 +42,6 @@ MainWidget::MainWidget(QWidget *parent_) :
     connect(&timer, SIGNAL(timeout()), this, SLOT(onUpdate()));
     timer.start();
     connect(layerTab, SIGNAL(layerSelected(int)), m_mapWidget, SLOT(setCurrentLayer(int)));
-    connect(layerTab, SIGNAL(layerSelected(int)), this, SLOT(setCurrentLayer(int)));
-    clear_red = clear_green = clear_blue = 127;
-    a = b = c = true;
     fileDialog->setAcceptMode(QFileDialog::AcceptSave);
     // If given a command line argument, load it as a map
     auto args = QApplication::arguments();
@@ -73,33 +68,12 @@ void MainWidget::onInit()
     tileWidget->select(0, 0);
     penToolButton->click();
     toggleGridButton->click();
-    camera = sf::View(sf::FloatRect(0, 0, m_mapWidget->width() - 1, m_mapWidget->height() - 1));
-    camera.setCenter(0, 0);
+    
 }
 
 void MainWidget::onUpdate()
 {
-    if (a) clear_red += 0.001;
-    else clear_red -= 0.001;
-
-    if (clear_red >= 255 || clear_red <= 0) a = !a;
-
-    if (b) clear_green += 0.015;
-    else clear_green -= 0.015;
-
-    if (clear_green >= 255 || clear_green <= 0) b = !b;
-
-    if (c) clear_blue += 0.005;
-    else clear_blue -= 0.005;
-
-    if (clear_blue >= 255 || clear_blue <= 0) c = !c;
-
-    m_mapWidget->processEvents();
-    m_mapWidget->clear(sf::Color(clear_red, clear_green, clear_blue));
-    maps::currentEntityContainer().displayEntities(*m_mapWidget);
-    m_mapWidget->setView(camera);
-    maps::current().draw(*m_mapWidget, (gridEnabled ? currentLayer : - 1));
-    m_mapWidget->sf::RenderWindow::display();
+    m_mapWidget->render();
 }
 
 void MainWidget::initWindow()
@@ -321,7 +295,7 @@ void MainWidget::initCentralWidget()
                                topBar->y() + topBar->height(),
                                width() - toolBar->x() - toolBar->width() - rightPanelWidth - globalPadding,
                                height() - menuBarHeight - topBarHeight - globalPadding - botBarHeight);
-    m_mapWidget = new MapWidget(centralWidget, QPoint(0, 0), centralWidget->size(), &camera);
+    m_mapWidget = new MapWidget(centralWidget, QPoint(0, 0), centralWidget->size());
     tileWidget = new TileSelectionWidget(centralWidget);
     tileWidget->move(0, 0);
     tileWidget->resize(centralWidget->size());
@@ -513,20 +487,14 @@ void MainWidget::tileSelected(QPixmap tile)
     tileButton->setIcon(QIcon(tile));
 }
 
-void MainWidget::setCurrentLayer(int layer)
-{
-    currentLayer = layer;
-}
-
 void MainWidget::resetCameraButtonClicked()
 {
-    camera = sf::View(sf::FloatRect(0, 0, m_mapWidget->width() - 1, m_mapWidget->height() - 1));
-    camera.setCenter(0, 0);
+    m_mapWidget->resetCamera();
 }
 
 void MainWidget::toggleGridButtonClicked()
 {
-    gridEnabled = !gridEnabled;
+    m_mapWidget->toggleGrid();
 }
 
 void MainWidget::toggleVisibleButtonClicked()

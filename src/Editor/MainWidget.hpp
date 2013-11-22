@@ -54,8 +54,6 @@ public slots:
     void tileSelected(int new_id);
     void tileSelected(QPixmap tile);
 
-    void setCurrentLayer(int layer);
-
 private:
     QTimer timer;
     unsigned int frameTime;
@@ -75,11 +73,7 @@ private:
     int rightPanelWidth;
     int botBarHeight;
 
-    float clear_red, clear_green, clear_blue;
-    bool a, b, c;
-
     MapWidget* m_mapWidget;
-    sf::View camera;
 
     QWidget *toolBar;
     QWidget *topBar;
@@ -117,8 +111,7 @@ private:
     QPushButton* tileButton;
 
     LayerListWidget* layerTab;
-    bool gridEnabled;
-    int currentLayer, mainLayer;
+    int mainLayer;
 
     QFileDialog* fileDialog = new QFileDialog;
     std::string filePath;

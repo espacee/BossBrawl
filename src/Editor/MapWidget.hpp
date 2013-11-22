@@ -16,7 +16,7 @@ class MapWidget  : public QWidget, public sf::RenderWindow
 {
     Q_OBJECT
 public:
-    MapWidget(QWidget* parent_, const QPoint& position, const QSize& size, sf::View* cameraP);
+    MapWidget(QWidget* parent_, const QPoint& position, const QSize& size);
     ~MapWidget();
 
     void processEvents();
@@ -25,6 +25,9 @@ public:
     void eraseTile(sf::Vector2i mouseCoord);
     void putEntity(sf::Vector2i mouseCoord, std::string entity);
     void eraseEntity(sf::Vector2i mouseCoord);
+    void render();
+    void resetCamera();
+    void toggleGrid();
 
 public slots:
     void setTool(Tool newTool);
@@ -32,7 +35,7 @@ public slots:
     void setCurrentLayer(int newLayer);
 
 private:
-    sf::View* camera;
+    sf::View camera;
     void mousePressEvent(QMouseEvent *e);
     void mouseMoveEvent(QMouseEvent *e);
     void mouseReleaseEvent(QMouseEvent *e);
@@ -43,7 +46,10 @@ private:
     QPaintEngine* paintEngine() const;
     void showEvent(QShowEvent*);
     void paintEvent(QPaintEvent*);
-
+    
+    float clear_red, clear_green, clear_blue;
+    bool a, b, c;
+    bool m_gridEnabled;
     bool initialized, leftButtonDown, rightButtonDown, middleButtonDown, ctrlKeyDown, spaceKeyDown;
     Tool tool;
     int layer;

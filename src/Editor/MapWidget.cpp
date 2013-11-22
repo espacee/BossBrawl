@@ -1,7 +1,7 @@
 #include "MapWidget.hpp"
 #include "maps.hpp"
 
-MapWidget::MapWidget(QWidget* parent_, const QPoint& position, const QSize& size_, sf::View* cameraP) :
+MapWidget::MapWidget(QWidget* parent_, const QPoint& position, const QSize& size_) :
     QWidget(parent_)
 {
     initialized = false;
@@ -14,9 +14,13 @@ MapWidget::MapWidget(QWidget* parent_, const QPoint& position, const QSize& size
     setAttribute(Qt::WA_OpaquePaintEvent);
     setAttribute(Qt::WA_NoSystemBackground);
     setFocusPolicy(Qt::StrongFocus);
-    camera = cameraP;
     move(position);
     resize(size_);
+    clear_red = clear_green = clear_blue = 127;
+    a = b = c = true;
+    camera = sf::View(sf::FloatRect(0, 0, width() - 1, height() - 1));
+    camera.setCenter(0, 0);
+    m_gridEnabled = false;
 }
 
 void MapWidget::setTool(Tool newTool)
@@ -67,7 +71,7 @@ void MapWidget::mousePressEvent(QMouseEvent *e)
         leftButtonDown = true;
 
         if (tool == Tool::Zoom)
-            camera->zoom(0.5);
+            camera.zoom(0.5);
 
         if (tool == Tool::FillShape)
             maps::current()[layer].fill(id);
@@ -81,7 +85,7 @@ void MapWidget::mousePressEvent(QMouseEvent *e)
         rightButtonDown = true;
 
         if (tool == Tool::Zoom)
-            camera->zoom(2);
+            camera.zoom(2);
 
         if (tool == Tool::Entity)
             eraseEntity(sf::Vector2i(e->x(), e->y()));
@@ -122,7 +126,7 @@ void MapWidget::mouseMoveEvent(QMouseEvent *e)
             dy = y1 - y2;
             x1 = e->x();
             y1 = e->y();
-            camera->move(dx, dy);
+            camera.move(dx, dy);
         }
     }
 
@@ -134,7 +138,7 @@ void MapWidget::mouseMoveEvent(QMouseEvent *e)
         dy = y1 - y2;
         x1 = e->x();
         y1 = e->y();
-        camera->move(dx, dy);
+        camera.move(dx, dy);
     }
 }
 
@@ -179,9 +183,9 @@ void MapWidget::wheelEvent(QWheelEvent *e)
     if (ctrlKeyDown)
     {
         if (e->angleDelta().y() > 0)
-            camera->zoom(0.5);
+            camera.zoom(0.5);
         else if (e->angleDelta().y() < 0)
-            camera->zoom(2);
+            camera.zoom(2);
     }
 }
 
@@ -192,7 +196,7 @@ MapWidget::~MapWidget()
 void MapWidget::putTile(sf::Vector2i mouseCoord)
 {
     sf::Vector2i windowRelativeCoord = mouseCoord;
-    sf::View temp = *camera;
+    sf::View temp = camera;
     temp.setCenter(temp.getCenter().x * maps::current()[layer].getDepthIndex() - maps::current()[layer].getPosition().x,
                    temp.getCenter().y * maps::current()[layer].getDepthIndex() - maps::current()[layer].getPosition().y);
     sf::Vector2f worldRelativeCoord =  mapPixelToCoords(windowRelativeCoord, temp);
@@ -211,7 +215,7 @@ void MapWidget::putTile(sf::Vector2i mouseCoord)
 void MapWidget::eraseTile(sf::Vector2i mouseCoord)
 {
     sf::Vector2i windowRelativeCoord = mouseCoord;
-    sf::View temp = *camera;
+    sf::View temp = camera;
     temp.setCenter(temp.getCenter().x * maps::current()[layer].getDepthIndex() - maps::current()[layer].getPosition().x,
                    temp.getCenter().y * maps::current()[layer].getDepthIndex() - maps::current()[layer].getPosition().y);
     sf::Vector2f worldRelativeCoord =  mapPixelToCoords(windowRelativeCoord, temp);
@@ -230,7 +234,7 @@ void MapWidget::eraseTile(sf::Vector2i mouseCoord)
 void MapWidget::putEntity(sf::Vector2i mouseCoord, std::string entity)
 {
     sf::Vector2i windowRelativeCoord = mouseCoord;
-    sf::View temp = *camera;
+    sf::View temp = camera;
     temp.setCenter(temp.getCenter().x * maps::current()[layer].getDepthIndex() - maps::current()[layer].getPosition().x,
                    temp.getCenter().y * maps::current()[layer].getDepthIndex() - maps::current()[layer].getPosition().y);
     sf::Vector2f worldRelativeCoord =  mapPixelToCoords(windowRelativeCoord, temp);
@@ -249,7 +253,7 @@ void MapWidget::putEntity(sf::Vector2i mouseCoord, std::string entity)
 void MapWidget::eraseEntity(sf::Vector2i mouseCoord)
 {
     sf::Vector2i windowRelativeCoord = mouseCoord;
-    sf::View temp = *camera;
+    sf::View temp = camera;
     temp.setCenter(temp.getCenter().x * maps::current()[layer].getDepthIndex() - maps::current()[layer].getPosition().x,
                    temp.getCenter().y * maps::current()[layer].getDepthIndex() - maps::current()[layer].getPosition().y);
     sf::Vector2f worldRelativeCoord =  mapPixelToCoords(windowRelativeCoord, temp);
@@ -265,4 +269,40 @@ void MapWidget::eraseEntity(sf::Vector2i mouseCoord)
             maps::currentEntityContainer().deleteEntity(xpos, ypos);
         }
     }
+}
+
+void MapWidget::render()
+{
+    if (a) clear_red += 0.001;
+    else clear_red -= 0.001;
+
+    if (clear_red >= 255 || clear_red <= 0) a = !a;
+
+    if (b) clear_green += 0.015;
+    else clear_green -= 0.015;
+
+    if (clear_green >= 255 || clear_green <= 0) b = !b;
+
+    if (c) clear_blue += 0.005;
+    else clear_blue -= 0.005;
+
+    if (clear_blue >= 255 || clear_blue <= 0) c = !c;
+
+    processEvents();
+    clear(sf::Color(clear_red, clear_green, clear_blue));
+    maps::currentEntityContainer().displayEntities(*this);
+    setView(camera);
+    maps::current().draw(*this, (m_gridEnabled ? layer : - 1));
+    display();
+}
+
+void MapWidget::resetCamera()
+{
+    camera = sf::View(sf::FloatRect(0, 0, width() - 1, height() - 1));
+    camera.setCenter(0, 0);
+}
+
+void MapWidget::toggleGrid()
+{
+    m_gridEnabled = !m_gridEnabled;
 }
