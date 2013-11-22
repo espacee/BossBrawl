@@ -27,5 +27,8 @@ Formatting:
 - Insert a space after between if/for/while/etc. and the opening paren
   Example: "if (condition == true)" instead of "if(condition == true)"
 
+- Pointers and references are aligned to the name
+  Example: MyType *myObject; MyType &myReference;
+
 You don't have to worry too much about the formatting, as the source code
 is periodically formatted with Artistic Style (http://astyle.sourceforge.net/).
