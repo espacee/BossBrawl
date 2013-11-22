@@ -13,20 +13,21 @@ MainWidget::MainWidget(QWidget *parent_) :
     menuBarHeight = 50;
     globalPadding = 5;
     toolBarWidth = 34;
-    toolButtonSize = 30;
-    toolButtonPadding = 2;
-    toolBarTopOffset = 44;
-    toolSeparatorSize = 10;
     topBarHeight = 44;
     topButtonSize = 42;
     rightPanelWidth = 300;
     botBarHeight = 22;
     initWindow();
-    initToolBar();
+    toolBar = new ToolbarWidget(this);
+    toolBar->setGeometry(globalPadding,
+                         menuBarHeight,
+                         toolBarWidth,
+                         height() - menuBarHeight - globalPadding);
     initRightPanel();
     initTopBar();
     initBotBar();
     initCentralWidget();
+    toolBar->setMapidget(m_mapWidget);
     setObjectName("window");
     toolBar->setObjectName("toolBar");
     rightPanel->setObjectName("rightPanel");
@@ -66,9 +67,8 @@ MainWidget::~MainWidget()
 void MainWidget::onInit()
 {
     tileWidget->select(0, 0);
-    penToolButton->click();
+    toolBar->doInitialClicks();
     toggleGridButton->click();
-    
 }
 
 void MainWidget::onUpdate()
@@ -101,137 +101,6 @@ void MainWidget::initWindow()
     connect(newButton, SIGNAL(clicked()), this, SLOT(newButtonClicked()));
     connect(openButton, SIGNAL(clicked()), this, SLOT(openButtonClicked()));
     connect(saveButton, SIGNAL(clicked()), this, SLOT(saveButtonClicked()));
-}
-
-void MainWidget::initToolBar()
-{
-    toolBar = new QWidget(this);
-    toolBar->setGeometry(globalPadding,
-                         menuBarHeight,
-                         toolBarWidth,
-                         height() - menuBarHeight - globalPadding);
-    pointerToolButton = new QPushButton(QIcon("res/img/GUI/pointer.png"), "", toolBar);
-    pointerToolButton->setGeometry(
-        toolButtonPadding,
-        toolButtonPadding + toolBarTopOffset,
-        toolButtonSize,
-        toolButtonSize);
-    pointerToolButton->setIconSize(QSize(toolButtonSize, toolButtonSize));
-    pointerToolButton->setObjectName("toolButton");
-    pointerToolButton->setCheckable(true);
-    penToolButton = new QPushButton(QIcon("res/img/GUI/pen.png"), "", toolBar);
-    penToolButton->setGeometry(
-        toolButtonPadding,
-        pointerToolButton->y() + pointerToolButton->height() + toolButtonPadding,
-        toolButtonSize,
-        toolButtonSize);
-    penToolButton->setIconSize(QSize(toolButtonSize, toolButtonSize));
-    penToolButton->setObjectName("toolButton");
-    penToolButton->setCheckable(true);
-    randomPenToolButton = new QPushButton(QIcon("res/img/GUI/randomPen.png"), "", toolBar);
-    randomPenToolButton->setGeometry(
-        toolButtonPadding,
-        penToolButton->y() + penToolButton->height() + toolButtonPadding,
-        toolButtonSize,
-        toolButtonSize);
-    randomPenToolButton->setIconSize(QSize(toolButtonSize, toolButtonSize));
-    randomPenToolButton->setObjectName("toolButton");
-    randomPenToolButton->setCheckable(true);
-    patternBrushToolButton = new QPushButton(QIcon("res/img/GUI/patternBrush.png"), "", toolBar);
-    patternBrushToolButton->setGeometry(
-        toolButtonPadding,
-        randomPenToolButton->y() + randomPenToolButton->height() + toolButtonPadding,
-        toolButtonSize,
-        toolButtonSize);
-    patternBrushToolButton->setIconSize(QSize(toolButtonSize, toolButtonSize));
-    patternBrushToolButton->setObjectName("toolButton");
-    patternBrushToolButton->setCheckable(true);
-    eraserToolButton = new QPushButton(QIcon("res/img/GUI/eraser.png"), "", toolBar);
-    eraserToolButton->setGeometry(
-        toolButtonPadding,
-        patternBrushToolButton->y() + patternBrushToolButton->height() + toolButtonPadding,
-        toolButtonSize,
-        toolButtonSize);
-    eraserToolButton->setIconSize(QSize(toolButtonSize, toolButtonSize));
-    eraserToolButton->setObjectName("toolButton");
-    eraserToolButton->setCheckable(true);
-    fillShapeToolButton = new QPushButton(QIcon("res/img/GUI/fillShape.png"), "", toolBar);
-    fillShapeToolButton->setGeometry(
-        toolButtonPadding,
-        eraserToolButton->y() + eraserToolButton->height() + toolButtonPadding,
-        toolButtonSize,
-        toolButtonSize);
-    fillShapeToolButton->setIconSize(QSize(toolButtonSize, toolButtonSize));
-    fillShapeToolButton->setObjectName("toolButton");
-    fillShapeToolButton->setCheckable(true);
-    selectAreaToolButton = new QPushButton(QIcon("res/img/GUI/selectArea.png"), "", toolBar);
-    selectAreaToolButton->setGeometry(
-        toolButtonPadding,
-        fillShapeToolButton->y() + fillShapeToolButton->height() + toolButtonPadding,
-        toolButtonSize,
-        toolButtonSize);
-    selectAreaToolButton->setIconSize(QSize(toolButtonSize, toolButtonSize));
-    selectAreaToolButton->setObjectName("toolButton");
-    selectAreaToolButton->setCheckable(true);
-    //
-    arrowToolButton = new QPushButton(QIcon("res/img/GUI/arrow.png"), "", toolBar);
-    arrowToolButton->setGeometry(
-        toolButtonPadding,
-        toolSeparatorSize + selectAreaToolButton->y() + selectAreaToolButton->height() + toolButtonPadding,
-        toolButtonSize,
-        toolButtonSize);
-    arrowToolButton->setIconSize(QSize(toolButtonSize, toolButtonSize));
-    arrowToolButton->setObjectName("toolButton");
-    arrowToolButton->setCheckable(true);
-    entityToolButton = new QPushButton(QIcon("res/img/GUI/entity.png"), "", toolBar);
-    entityToolButton->setGeometry(
-        toolButtonPadding,
-        arrowToolButton->y() + arrowToolButton->height() + toolButtonPadding,
-        toolButtonSize,
-        toolButtonSize);
-    entityToolButton->setIconSize(QSize(toolButtonSize, toolButtonSize));
-    entityToolButton->setObjectName("toolButton");
-    entityToolButton->setCheckable(true);
-    objectToolButton = new QPushButton(QIcon("res/img/GUI/object.png"), "", toolBar);
-    objectToolButton->setGeometry(
-        toolButtonPadding,
-        entityToolButton->y() + entityToolButton->height() + toolButtonPadding,
-        toolButtonSize,
-        toolButtonSize);
-    objectToolButton->setIconSize(QSize(toolButtonSize, toolButtonSize));
-    objectToolButton->setObjectName("toolButton");
-    objectToolButton->setCheckable(true);
-    //
-    handToolButton = new QPushButton(QIcon("res/img/GUI/hand.png"), "", toolBar);
-    handToolButton->setGeometry(
-        toolButtonPadding,
-        toolSeparatorSize + objectToolButton->y() + objectToolButton->height() + toolButtonPadding,
-        toolButtonSize,
-        toolButtonSize);
-    handToolButton->setIconSize(QSize(toolButtonSize, toolButtonSize));
-    handToolButton->setObjectName("toolButton");
-    handToolButton->setCheckable(true);
-    zoomToolButton = new QPushButton(QIcon("res/img/GUI/zoom.png"), "", toolBar);
-    zoomToolButton->setGeometry(
-        toolButtonPadding,
-        handToolButton->y() + handToolButton->height() + toolButtonPadding,
-        toolButtonSize,
-        toolButtonSize);
-    zoomToolButton->setIconSize(QSize(toolButtonSize, toolButtonSize));
-    zoomToolButton->setObjectName("toolButton");
-    zoomToolButton->setCheckable(true);
-    connect(pointerToolButton, SIGNAL(clicked()), this, SLOT(pointerToolButtonClicked()));
-    connect(arrowToolButton, SIGNAL(clicked()), this, SLOT(arrowToolButtonClicked()));
-    connect(penToolButton, SIGNAL(clicked()), this, SLOT(penToolButtonClicked()));
-    connect(randomPenToolButton, SIGNAL(clicked()), this, SLOT(randomPenToolButtonClicked()));
-    connect(patternBrushToolButton, SIGNAL(clicked()), this, SLOT(patternBrushToolButtonClicked()));
-    connect(eraserToolButton, SIGNAL(clicked()), this, SLOT(eraserToolButtonClicked()));
-    connect(fillShapeToolButton, SIGNAL(clicked()), this, SLOT(fillShapeToolButtonClicked()));
-    connect(selectAreaToolButton, SIGNAL(clicked()), this, SLOT(selectAreaToolButtonClicked()));
-    connect(entityToolButton, SIGNAL(clicked()), this, SLOT(entityToolButtonClicked()));
-    connect(objectToolButton, SIGNAL(clicked()), this, SLOT(objectToolButtonClicked()));
-    connect(handToolButton, SIGNAL(clicked()), this, SLOT(handToolButtonClicked()));
-    connect(zoomToolButton, SIGNAL(clicked()), this, SLOT(zoomToolButtonClicked()));
 }
 
 void MainWidget::initTopBar()
@@ -335,108 +204,6 @@ void MainWidget::minimizeClicked()
 {
     setWindowState(Qt::WindowMinimized);
 }
-
-void MainWidget::pointerToolButtonClicked()
-{
-    uncheckToolButtons();
-    pointerToolButton->setChecked(true);
-    m_mapWidget->setTool(Tool::Pointer);
-}
-
-void MainWidget::penToolButtonClicked()
-{
-    uncheckToolButtons();
-    penToolButton->setChecked(true);
-    m_mapWidget->setTool(Tool::Pen);
-}
-
-void MainWidget::randomPenToolButtonClicked()
-{
-    uncheckToolButtons();
-    randomPenToolButton->setChecked(true);
-    m_mapWidget->setTool(Tool::RandomPen);
-}
-
-void MainWidget::patternBrushToolButtonClicked()
-{
-    uncheckToolButtons();
-    patternBrushToolButton->setChecked(true);
-    m_mapWidget->setTool(Tool::PatternBrush);
-}
-
-void MainWidget::eraserToolButtonClicked()
-{
-    uncheckToolButtons();
-    eraserToolButton->setChecked(true);
-    m_mapWidget->setTool(Tool::Eraser);
-}
-
-void MainWidget::fillShapeToolButtonClicked()
-{
-    uncheckToolButtons();
-    fillShapeToolButton->setChecked(true);
-    m_mapWidget->setTool(Tool::FillShape);
-}
-
-void MainWidget::selectAreaToolButtonClicked()
-{
-    uncheckToolButtons();
-    selectAreaToolButton->setChecked(true);
-    m_mapWidget->setTool(Tool::SelectArea);
-}
-
-void MainWidget::arrowToolButtonClicked()
-{
-    uncheckToolButtons();
-    arrowToolButton->setChecked(true);
-    m_mapWidget->setTool(Tool::Arrow);
-}
-
-void MainWidget::entityToolButtonClicked()
-{
-    uncheckToolButtons();
-    entityToolButton->setChecked(true);
-    m_mapWidget->setTool(Tool::Entity);
-}
-
-void MainWidget::objectToolButtonClicked()
-{
-    uncheckToolButtons();
-    objectToolButton->setChecked(true);
-    m_mapWidget->setTool(Tool::Object);
-}
-
-void MainWidget::handToolButtonClicked()
-{
-    uncheckToolButtons();
-    handToolButton->setChecked(true);
-    m_mapWidget->setTool(Tool::Hand);
-}
-
-void MainWidget::zoomToolButtonClicked()
-{
-    uncheckToolButtons();
-    zoomToolButton->setChecked(true);
-    m_mapWidget->setTool(Tool::Zoom);
-}
-
-
-void MainWidget::uncheckToolButtons()
-{
-    pointerToolButton->setChecked(false);
-    arrowToolButton->setChecked(false);
-    penToolButton->setChecked(false);
-    randomPenToolButton->setChecked(false);
-    patternBrushToolButton->setChecked(false);
-    eraserToolButton->setChecked(false);
-    fillShapeToolButton->setChecked(false);
-    selectAreaToolButton->setChecked(false);
-    entityToolButton->setChecked(false);
-    objectToolButton->setChecked(false);
-    handToolButton->setChecked(false);
-    zoomToolButton->setChecked(false);
-}
-
 
 void MainWidget::tileButtonClicked()
 {

@@ -19,6 +19,8 @@ MapWidget.cpp
 MapWidget.hpp
 TileSelectionWidget.cpp
 TileSelectionWidget.hpp
+ToolbarWidget.cpp
+ToolbarWidget.hpp
 main.cpp
 maps.cpp
 maps.hpp

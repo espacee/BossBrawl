@@ -13,6 +13,7 @@
 #include "MapWidget.hpp"
 #include "TileSelectionWidget.hpp"
 #include "LayerListWidget.hpp"
+#include "ToolbarWidget.hpp"
 
 class MainWidget : public QWidget
 {
@@ -28,18 +29,6 @@ public slots:
     void quitClicked();
     void minimizeClicked();
 
-    void pointerToolButtonClicked();
-    void arrowToolButtonClicked();
-    void penToolButtonClicked();
-    void randomPenToolButtonClicked();
-    void patternBrushToolButtonClicked();
-    void eraserToolButtonClicked();
-    void fillShapeToolButtonClicked();
-    void selectAreaToolButtonClicked();
-    void entityToolButtonClicked();
-    void objectToolButtonClicked();
-    void handToolButtonClicked();
-    void zoomToolButtonClicked();
     void newButtonClicked();
     void openButtonClicked();
     void saveButtonClicked();
@@ -47,8 +36,6 @@ public slots:
     void resetCameraButtonClicked();
     void toggleGridButtonClicked();
     void toggleVisibleButtonClicked();
-
-    void uncheckToolButtons();
 
     void tileButtonClicked();
     void tileSelected(int new_id);
@@ -59,7 +46,6 @@ private:
     unsigned int frameTime;
 
     void initWindow();
-    void initToolBar();
     void initTopBar();
     void initRightPanel();
     void initBotBar();
@@ -68,14 +54,14 @@ private:
     void newMap();
 
     int menuBarHeight, globalPadding;
-    int toolBarWidth, toolButtonSize, toolButtonPadding, toolBarTopOffset, toolSeparatorSize;
+    int toolBarWidth;
     int topBarHeight, topButtonSize;
     int rightPanelWidth;
     int botBarHeight;
 
     MapWidget* m_mapWidget;
 
-    QWidget *toolBar;
+    ToolbarWidget *toolBar;
     QWidget *topBar;
     QWidget *rightPanel;
     QWidget *botBar;
@@ -87,19 +73,6 @@ private:
     QPushButton* newButton;
     QPushButton* openButton;
     QPushButton* saveButton;
-
-    QPushButton* pointerToolButton;
-    QPushButton* penToolButton;
-    QPushButton* randomPenToolButton;
-    QPushButton* patternBrushToolButton;
-    QPushButton* eraserToolButton;
-    QPushButton* fillShapeToolButton;
-    QPushButton* selectAreaToolButton;
-    QPushButton* arrowToolButton;
-    QPushButton* entityToolButton;
-    QPushButton* objectToolButton;
-    QPushButton* handToolButton;
-    QPushButton* zoomToolButton;
 
     QPushButton* resetCameraButton;
     QPushButton* toggleGridButton;

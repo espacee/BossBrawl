@@ -51,7 +51,7 @@ private:
     bool a, b, c;
     bool m_gridEnabled;
     bool initialized, leftButtonDown, rightButtonDown, middleButtonDown, ctrlKeyDown, spaceKeyDown;
-    Tool tool;
+    Tool m_tool;
     int layer;
     int id;
     float x1, x2, y1, y2, dx, dy;
