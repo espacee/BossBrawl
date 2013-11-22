@@ -86,7 +86,6 @@ private:
     LayerListWidget* layerTab;
     int mainLayer;
 
-    QFileDialog* fileDialog = new QFileDialog;
     std::string filePath;
 };
 

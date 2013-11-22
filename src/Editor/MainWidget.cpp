@@ -43,7 +43,6 @@ MainWidget::MainWidget(QWidget *parent_) :
     connect(&timer, SIGNAL(timeout()), this, SLOT(onUpdate()));
     timer.start();
     connect(layerTab, SIGNAL(layerSelected(int)), m_mapWidget, SLOT(setCurrentLayer(int)));
-    fileDialog->setAcceptMode(QFileDialog::AcceptSave);
     // If given a command line argument, load it as a map
     auto args = QApplication::arguments();
 
