@@ -1,5 +1,4 @@
 #include "ToolbarWidget.hpp"
-#include <QDebug>
 
 ToolbarWidget::ToolbarWidget(QWidget *parent_) :
     QWidget(parent_)
