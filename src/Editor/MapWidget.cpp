@@ -1,6 +1,8 @@
 #include "MapWidget.hpp"
 #include "maps.hpp"
 
+MapWidget *mapWidget;
+
 MapWidget::MapWidget(QWidget *parent_, const QPoint &position, const QSize &size_) :
     QWidget(parent_)
 {

@@ -3,7 +3,6 @@
 
 #include <QWidget>
 #include <QPushButton>
-#include "MapWidget.hpp"
 #include "tools.hpp"
 
 class ToolbarWidget : public QWidget {
@@ -11,10 +10,8 @@ class ToolbarWidget : public QWidget {
 public:
     ToolbarWidget(QWidget *parent_);
     void doInitialClicks();
-    void setMapWidget(MapWidget *mw);
 private:
     QPushButton *m_buttons[TOOL_COUNT];
-    MapWidget *m_mapWidget;
 };
 
 #endif // TOOLBARWIDGET_HPP

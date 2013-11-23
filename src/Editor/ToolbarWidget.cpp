@@ -1,4 +1,5 @@
 #include "ToolbarWidget.hpp"
+#include "MapWidget.hpp"
 
 ToolbarWidget::ToolbarWidget(QWidget *parent_) :
     QWidget(parent_)
@@ -49,7 +50,7 @@ ToolbarWidget::ToolbarWidget(QWidget *parent_) :
                 b2->setChecked(false);
 
             b->setChecked(true);
-            m_mapWidget->setTool(static_cast<Tool>(i));
+            mapWidget->setTool(static_cast<Tool>(i));
         });
     }
 }
@@ -57,9 +58,4 @@ ToolbarWidget::ToolbarWidget(QWidget *parent_) :
 void ToolbarWidget::doInitialClicks()
 {
     m_buttons[static_cast<size_t>(Tool::Pen)]->click();
-}
-
-void ToolbarWidget::setMapWidget(MapWidget *mw)
-{
-    m_mapWidget = mw;
 }

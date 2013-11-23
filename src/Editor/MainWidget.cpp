@@ -2,6 +2,7 @@
 #include <QMessageBox>
 #include "tools.hpp"
 #include "maps.hpp"
+#include "MapWidget.hpp"
 
 MainWidget::MainWidget(QWidget *parent_) :
     QWidget(parent_)
@@ -27,8 +28,7 @@ MainWidget::MainWidget(QWidget *parent_) :
     initTopBar();
     initBotBar();
     initCentralWidget();
-    toolBar->setMapWidget(m_mapWidget);
-    botBar->setMapWidgetAndLayerListWidget(m_mapWidget, layerTab);
+    botBar->setLayerListWidget(layerTab);
     setObjectName("window");
     toolBar->setObjectName("toolBar");
     rightPanel->setObjectName("rightPanel");
@@ -43,7 +43,7 @@ MainWidget::MainWidget(QWidget *parent_) :
     timer.setInterval(frameTime);
     connect(&timer, SIGNAL(timeout()), this, SLOT(onUpdate()));
     timer.start();
-    connect(layerTab, SIGNAL(layerSelected(int)), m_mapWidget, SLOT(setCurrentLayer(int)));
+    connect(layerTab, SIGNAL(layerSelected(int)), mapWidget, SLOT(setCurrentLayer(int)));
     // If given a command line argument, load it as a map
     auto args = QApplication::arguments();
 
@@ -73,7 +73,7 @@ void MainWidget::onInit()
 
 void MainWidget::onUpdate()
 {
-    m_mapWidget->render();
+    mapWidget->render();
 }
 
 void MainWidget::initWindow()
@@ -145,7 +145,7 @@ void MainWidget::initCentralWidget()
                                topBar->y() + topBar->height(),
                                width() - toolBar->x() - toolBar->width() - rightPanelWidth - globalPadding,
                                height() - menuBarHeight - topBarHeight - globalPadding - botBarHeight);
-    m_mapWidget = new MapWidget(centralWidget, QPoint(0, 0), centralWidget->size());
+    mapWidget = new MapWidget(centralWidget, QPoint(0, 0), centralWidget->size());
     tileWidget = new TileSelectionWidget(centralWidget);
     tileWidget->move(0, 0);
     tileWidget->resize(centralWidget->size());
@@ -228,7 +228,7 @@ void MainWidget::saveButtonClicked()
 void MainWidget::tileSelected(int new_id)
 {
     id = new_id;
-    m_mapWidget->setCurrentTile(new_id);
+    mapWidget->setCurrentTile(new_id);
 }
 
 void MainWidget::tileSelected(QPixmap tile)

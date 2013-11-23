@@ -4,14 +4,13 @@
 #include <QWidget>
 #include <QPushButton>
 #include "LayerListWidget.hpp"
-#include "MapWidget.hpp"
 
 class BottomBarWidget : public QWidget {
     Q_OBJECT
 public:
     BottomBarWidget(QWidget *parent_);
     void doInitialClicks();
-    void setMapWidgetAndLayerListWidget(MapWidget *mw, LayerListWidget *llw);
+    void setLayerListWidget(LayerListWidget *llw);
 private slots:
     void resetCameraButtonClicked();
     void toggleGridButtonClicked();
@@ -21,7 +20,6 @@ private:
     QPushButton *toggleGridButton;
     QPushButton *toggleVisibleButton;
     LayerListWidget *layerTab;
-    MapWidget *m_mapWidget;
 };
 
 #endif // BOTTOMBARWIDGET_HPP

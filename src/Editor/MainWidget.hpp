@@ -10,7 +10,6 @@
 #include <QTimer>
 #include <QFileDialog>
 
-#include "MapWidget.hpp"
 #include "TileSelectionWidget.hpp"
 #include "LayerListWidget.hpp"
 #include "ToolbarWidget.hpp"
@@ -55,8 +54,6 @@ private:
     int topBarHeight, topButtonSize;
     int rightPanelWidth;
     int botBarHeight;
-
-    MapWidget *m_mapWidget;
 
     ToolbarWidget *toolBar;
     QWidget *topBar;

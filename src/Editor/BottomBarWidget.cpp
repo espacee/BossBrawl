@@ -1,4 +1,5 @@
 #include "BottomBarWidget.hpp"
+#include "MapWidget.hpp"
 
 BottomBarWidget::BottomBarWidget(QWidget *parent_) :
     QWidget(parent_)
@@ -30,20 +31,19 @@ void BottomBarWidget::doInitialClicks()
     toggleGridButton->click();
 }
 
-void BottomBarWidget::setMapWidgetAndLayerListWidget(MapWidget *mw, LayerListWidget *llw)
+void BottomBarWidget::setLayerListWidget(LayerListWidget *llw)
 {
-    m_mapWidget = mw;
     layerTab = llw;
 }
 
 void BottomBarWidget::resetCameraButtonClicked()
 {
-    m_mapWidget->resetCamera();
+    mapWidget->resetCamera();
 }
 
 void BottomBarWidget::toggleGridButtonClicked()
 {
-    m_mapWidget->toggleGrid();
+    mapWidget->toggleGrid();
 }
 
 void BottomBarWidget::toggleVisibleButtonClicked()
