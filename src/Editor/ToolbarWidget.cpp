@@ -23,10 +23,10 @@ const char *images[TOOL_COUNT] {
 ToolbarWidget::ToolbarWidget(QWidget *parent_) :
     QWidget(parent_)
 {
-    constexpr int toolButtonSize = 30;
-    constexpr int toolButtonPadding = 2;
-    constexpr int toolBarTopOffset = 44;
-    constexpr int toolSeparatorSize = 10;
+    constexpr QSize btnsize(30, 30); // Button size
+    constexpr int   padding = 2;     // Padding around buttons
+    constexpr int   voffset = 44;    // Vertical offset from where buttons are laid out
+    constexpr int   sep = 10;        // Separator space between button cagegories
     auto getCateg = [](size_t index) {
         if (index < static_cast<size_t>(Tool::Arrow))
             return 0;
@@ -39,12 +39,12 @@ ToolbarWidget::ToolbarWidget(QWidget *parent_) :
     for (size_t i = 0; i < TOOL_COUNT; ++i) {
         QPushButton *&b = m_buttons[i];
         b = new QPushButton(QIcon(images[i]), "", this);
-        b->setGeometry(toolButtonPadding,
-                       toolBarTopOffset + (i * (toolButtonSize + toolButtonPadding)) + getCateg(i) * toolSeparatorSize,
-                       toolButtonSize,
-                       toolButtonSize
+        b->setGeometry(padding,
+                       voffset + (i * (btnsize.height() + padding)) + getCateg(i) * sep,
+                       btnsize.width(),
+                       btnsize.height()
                       );
-        b->setIconSize(QSize(toolButtonSize, toolButtonSize));
+        b->setIconSize(btnsize);
         b->setObjectName("toolButton");
         b->setCheckable(true);
         connect(b, &QPushButton::clicked, [ = ]() {
