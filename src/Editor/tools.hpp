@@ -13,7 +13,10 @@ enum class Tool {
     Entity,
     Object,
     Hand,
-    Zoom
+    Zoom,
+    Count
 };
+
+constexpr auto TOOL_COUNT = static_cast<size_t>(Tool::Count);
 
 #endif // TOOLS_HPP
