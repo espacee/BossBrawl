@@ -27,7 +27,6 @@ ToolbarWidget::ToolbarWidget(QWidget *parent_) :
     constexpr int toolButtonPadding = 2;
     constexpr int toolBarTopOffset = 44;
     constexpr int toolSeparatorSize = 10;
-    
     auto getCateg = [](size_t index) {
         if (index < static_cast<size_t>(Tool::Arrow))
             return 0;
@@ -44,15 +43,16 @@ ToolbarWidget::ToolbarWidget(QWidget *parent_) :
                        toolBarTopOffset + (i * (toolButtonSize + toolButtonPadding)) + getCateg(i) * toolSeparatorSize,
                        toolButtonSize,
                        toolButtonSize
-                       );
+                      );
         b->setIconSize(QSize(toolButtonSize, toolButtonSize));
         b->setObjectName("toolButton");
         b->setCheckable(true);
-        connect(b, &QPushButton::clicked, [=](){
-           for (auto b2 : m_buttons)
-               b2->setChecked(false);
-           b->setChecked(true);
-           m_mapWidget->setTool(static_cast<Tool>(i));
+        connect(b, &QPushButton::clicked, [ = ]() {
+            for (auto b2 : m_buttons)
+                b2->setChecked(false);
+
+            b->setChecked(true);
+            m_mapWidget->setTool(static_cast<Tool>(i));
         });
     }
 }
