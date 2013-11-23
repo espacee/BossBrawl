@@ -67,7 +67,7 @@ MainWidget::~MainWidget()
 void MainWidget::onInit()
 {
     tileWidget->select(0, 0);
-    toolBar->doInitialClicks();
+    toolBar->getButton(Tool::Pen)->click();
     botBar->doInitialClicks();
 }
 

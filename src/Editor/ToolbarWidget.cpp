@@ -33,6 +33,7 @@ ToolbarWidget::ToolbarWidget(QWidget *parent_) :
         else
             return 2;
     };
+
     // Create a button for each tool
     for (size_t i = 0; i < TOOL_COUNT; ++i) {
         QPushButton *&b = m_buttons[i];
@@ -55,7 +56,7 @@ ToolbarWidget::ToolbarWidget(QWidget *parent_) :
     }
 }
 
-void ToolbarWidget::doInitialClicks()
+QPushButton *ToolbarWidget::getButton(Tool t)
 {
-    m_buttons[static_cast<size_t>(Tool::Pen)]->click();
+    return m_buttons[static_cast<size_t>(t)];
 }

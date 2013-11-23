@@ -9,7 +9,7 @@ class ToolbarWidget : public QWidget {
     Q_OBJECT
 public:
     ToolbarWidget(QWidget *parent_);
-    void doInitialClicks();
+    QPushButton *getButton(Tool t);
 private:
     QPushButton *m_buttons[TOOL_COUNT];
 };
