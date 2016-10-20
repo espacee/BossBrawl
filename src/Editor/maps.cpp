@@ -15,6 +15,7 @@ bool loadFromFile(QString filename)
         m_tilemaps.push_back(map);
         EntityContainer *cont = new EntityContainer;
         m_entityContainers.push_back(cont);
+
         return true;
     }
 

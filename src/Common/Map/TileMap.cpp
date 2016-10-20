@@ -86,6 +86,8 @@ bool TileMap::loadFromFile(const std::string &filename)
             return false;
         }
     }
+	// DEBUG ON SCREEN
+	std::cout << "Map succesfully loaded";
 
     return true;
 }
@@ -128,6 +130,8 @@ bool TileMap::saveToFile(const std::string &filename)
 
         file << '\n';
     }
+	// DEBUG ON SCREEN
+	std::cout << "Map succesfully saved";
 
     return true;
 }

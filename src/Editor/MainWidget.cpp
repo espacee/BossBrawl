@@ -4,6 +4,12 @@
 #include "maps.hpp"
 #include "MapWidget.hpp"
 
+/*
+
+MAIN EDITOR WINDOW CLASS
+
+*/
+
 MainWidget::MainWidget(QWidget *parent_) :
     QWidget(parent_)
 {

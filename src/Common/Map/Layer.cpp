@@ -24,6 +24,9 @@ void Layer::resize(unsigned int w, unsigned int h)
     }
 }
 
+/*
+VULT DE LAYER MET TILES
+*/
 void Layer::fill(unsigned int id)
 {
     for (int i = 0; i < getHLength(); i++)
@@ -33,4 +36,21 @@ void Layer::fill(unsigned int id)
             m_tiles[i][j] = id;
         }
     }
+}
+
+/*
+VERWIJDERT ALLE TILES VAN EEN LAYER
+*/
+
+void Layer::clear(unsigned int id)
+{
+	for (int i = 0; i < getHLength(); i++)
+	{
+		for (int j = 0; j < getVLength(); j++)
+		{
+			m_tiles[i][j] = NULL;
+		}
+	}
+
+
 }

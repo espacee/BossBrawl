@@ -2,6 +2,13 @@
 #include "LayerSettingsDialog.hpp"
 #include "maps.hpp"
 
+/*
+
+LAYER LIJST
+
+*/
+
+
 LayerListWidget::LayerListWidget(QWidget *parent_)
 {
     setParent(parent_);

@@ -21,6 +21,7 @@ public:
      *           fill the layer with empty tiles, i.e. clear the layer.
      */
     void fill(unsigned int id);
+	void clear(unsigned int id);
 
     inline void move(int xoff, int yoff)
     {

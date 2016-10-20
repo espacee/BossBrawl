@@ -2,6 +2,12 @@
 #include "ui_LayerSettingsDialog.h"
 #include "maps.hpp"
 
+/**
+
+LAYER SETTINGS
+
+**/
+
 LayerItemWidget::LayerItemWidget(QWidget *parent_) :
     QWidget(parent_)
 {

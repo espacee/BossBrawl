@@ -89,6 +89,9 @@ void MapWidget::mousePressEvent(QMouseEvent *e)
         if (m_tool == Tool::Zoom)
             camera.zoom(2);
 
+		if (m_tool == Tool::FillShape)
+			maps::current()[layer].clear(id);
+
         if (m_tool == Tool::Entity)
             eraseEntity(sf::Vector2i(e->x(), e->y()));
     }

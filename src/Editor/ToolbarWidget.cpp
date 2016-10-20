@@ -20,7 +20,7 @@ ToolbarWidget::ToolbarWidget(QWidget *parent_) :
         "res/img/GUI/zoom.png"
     };
     // Define some metrics for laying out buttons
-    constexpr QSize btnsize(30, 30); // Button size
+    QSize btnsize(30, 30); // Button size
     constexpr int   padding = 2;     // Padding around buttons
     constexpr int   voffset = 44;    // Vertical offset from where buttons are laid out
     constexpr int   sep = 10;        // Separator space between button cagegories

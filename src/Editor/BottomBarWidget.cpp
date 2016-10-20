@@ -1,6 +1,12 @@
 #include "BottomBarWidget.hpp"
 #include "MapWidget.hpp"
 
+/**
+
+BOTTOM BAR 
+
+**/
+
 BottomBarWidget::BottomBarWidget(QWidget *parent_) :
     QWidget(parent_)
 {
@@ -36,11 +42,17 @@ void BottomBarWidget::setLayerListWidget(LayerListWidget *llw)
     layerTab = llw;
 }
 
+/**
+RESET DE CAMERA 
+**/
 void BottomBarWidget::resetCameraButtonClicked()
 {
     mapWidget->resetCamera();
 }
 
+/**
+Toggle GRID
+**/
 void BottomBarWidget::toggleGridButtonClicked()
 {
     mapWidget->toggleGrid();
