@@ -8,12 +8,12 @@
 GameState::GameState() :
     gridEnabled(false)
 {
-    map.loadFromFile("res/maps/test.map");
-    entityContainer.loadFromFile("res/maps/test.entity");
+    map.loadFromFile("res/maps/test.map"); //LOADS MAP
+    entityContainer.loadFromFile("res/maps/test.entity"); //LOADS ENTITIES
     camera = sf::View(sf::FloatRect(0, 0, graphics::window.getSize().x, graphics::window.getSize().y));
     fpsText.setFont(graphics::fontbasiclight);
     fpsText.setCharacterSize(16);
-    ui.onInit();
+    ui.onInit(); //INIT VAN UI
 }
 
 void GameState::onSet()
@@ -27,12 +27,13 @@ void GameState::onSet()
 void GameState::onUpdate()
 {
     using graphics::window;
-    player.updatePlayer(map[0]);
-    ui.update(player);
-    entityContainer.updateEntities(map[0]);
-    util::moveViewTowardsPoint(camera, player.getCenter(), 0.05);
+
+    player.updatePlayer(map[0]); //Update player op MAINLayer **MAINLAYER(VOOR COLLISION) IS STEEDS 0**
+    ui.update(player); //Update UI met parameter Player voor HEALTH
+    entityContainer.updateEntities(map[0]); //Update alle entities op MAINlayer **MAIN steeds 0**
+    util::moveViewTowardsPoint(camera, player.getCenter(), 0.05); //Camera volgt PLAYER
     window.clear(sf::Color(80, 80, 80));
-    graphics::window.setView(camera);
+    graphics::window.setView(camera); //BIND CAMERA OP WINDOW
     map.draw(window, (gridEnabled ? 0 : -1));
     player.display(window);
     entityContainer.displayEntities(window);
@@ -52,12 +53,12 @@ void GameState::onEvent(const sf::Event &event)
             stateDriver::setState("menu");
             break;
 
-        case sf::Keyboard::Numpad8:
-            camera.zoom(0.5);
+		case sf::Keyboard::Subtract:
+			camera.zoom(0.5f);
             break;
 
-        case sf::Keyboard::Numpad5:
-            camera.zoom(2);
+		case sf::Keyboard::Add:
+			camera.zoom(2);
             break;
 
         case sf::Keyboard::G:
@@ -68,7 +69,7 @@ void GameState::onEvent(const sf::Event &event)
             player.heal(10);
             std::cout << "PlayerHealth: " << player.getHealth() << std::endl;
         }
-        break;
+		 break;
 
         case sf::Keyboard::O:
         {
@@ -76,6 +77,32 @@ void GameState::onEvent(const sf::Event &event)
             std::cout << "PlayerHealth: " << player.getHealth() << std::endl;
         }
         break;
+		case sf::Keyboard::V:
+		{
+			viewerEnabled = !viewerEnabled;
+		}
+		break;
+
+		case sf::Keyboard::Numpad8: //START HERE FOR VIEWER
+		{
+
+		}
+		break;
+		case sf::Keyboard::Numpad6:
+		{
+			viewerEnabled = !viewerEnabled;
+		}
+		break;
+		case sf::Keyboard::Numpad2:
+		{
+			viewerEnabled = !viewerEnabled;
+		}
+		break;
+		case sf::Keyboard::Numpad4:
+		{
+			viewerEnabled = !viewerEnabled;
+		}
+		break;
 
         default:
             ;

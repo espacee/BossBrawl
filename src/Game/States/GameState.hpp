@@ -32,6 +32,7 @@ private:
     TileMap map;
     sf::Text fpsText;
     bool gridEnabled;
+	bool viewerEnabled;
 
     Player player;
 

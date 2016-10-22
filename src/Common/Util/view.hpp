@@ -6,6 +6,7 @@
 namespace util {
 
 void moveViewTowardsPoint(sf::View &view, sf::Vector2f point, float speed);
+void mapViewerUpdate(sf::View &view, sf::Vector2f factor);
 
 }
 
