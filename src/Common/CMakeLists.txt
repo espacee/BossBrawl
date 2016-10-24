@@ -24,4 +24,6 @@ Entities/EntityContainer.cpp
 Entities/EntityContainer.hpp
 Entities/Player.cpp
 Entities/Player.hpp
+Entities/EnemyPepijn.hpp
+Entities/EnemyPepijn.cpp
 )

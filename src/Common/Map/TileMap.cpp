@@ -87,7 +87,7 @@ bool TileMap::loadFromFile(const std::string &filename)
         }
     }
 	// DEBUG ON SCREEN
-	std::cout << "Map succesfully loaded";
+	std::cout << "Map succesfully loaded" << std::endl;
 
     return true;
 }

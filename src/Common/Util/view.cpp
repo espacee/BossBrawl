@@ -8,8 +8,8 @@ void moveViewTowardsPoint(sf::View &view, sf::Vector2f point, float speed)
                    (int)(view.getCenter().y + (point.y - view.getCenter().y) * speed));
 }
 
-void mapViewerUpdate(sf::View & view, float x, float y)
+void gameViewerMove(sf::View & view, sf::Vector2f direction, float speed)
 {
-	view.move(x, y);
+	view.move(direction.x * speed, direction.y*speed);
 }
 	}

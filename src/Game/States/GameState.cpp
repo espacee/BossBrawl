@@ -31,7 +31,9 @@ void GameState::onUpdate()
     player.updatePlayer(map[0]); //Update player op MAINLayer **MAINLAYER(VOOR COLLISION) IS STEEDS 0**
     ui.update(player); //Update UI met parameter Player voor HEALTH
     entityContainer.updateEntities(map[0]); //Update alle entities op MAINlayer **MAIN steeds 0**
-    util::moveViewTowardsPoint(camera, player.getCenter(), 0.05); //Camera volgt PLAYER
+	if (!viewerEnabled) { //ALS VIEWERMODE TRUE IS, VIEW NIET UPDATEN
+		util::moveViewTowardsPoint(camera, player.getCenter(), 0.05); //Camera volgt PLAYER
+	}
     window.clear(sf::Color(80, 80, 80));
     graphics::window.setView(camera); //BIND CAMERA OP WINDOW
     map.draw(window, (gridEnabled ? 0 : -1));
@@ -41,6 +43,8 @@ void GameState::onUpdate()
     fpsText.setString("Fps: " + std::to_string(stateDriver::getFps()));
     window.draw(fpsText);
     ui.display(window);
+
+	
 }
 
 void GameState::onEvent(const sf::Event &event)
@@ -80,27 +84,29 @@ void GameState::onEvent(const sf::Event &event)
 		case sf::Keyboard::V:
 		{
 			viewerEnabled = !viewerEnabled;
+			std::cout << "Viewermode: " << viewerEnabled <<  std::endl;
 		}
 		break;
 
 		case sf::Keyboard::Numpad8: //START HERE FOR VIEWER
 		{
+			util::gameViewerMove(camera, sf::Vector2f(0,-40), 1);
 
 		}
 		break;
 		case sf::Keyboard::Numpad6:
 		{
-			viewerEnabled = !viewerEnabled;
+			util::gameViewerMove(camera, sf::Vector2f(20, 0), 1);
 		}
 		break;
 		case sf::Keyboard::Numpad2:
 		{
-			viewerEnabled = !viewerEnabled;
+			util::gameViewerMove(camera, sf::Vector2f(0, 20), 1);
 		}
 		break;
 		case sf::Keyboard::Numpad4:
 		{
-			viewerEnabled = !viewerEnabled;
+			util::gameViewerMove(camera, sf::Vector2f(-20, 0), 1);
 		}
 		break;
 

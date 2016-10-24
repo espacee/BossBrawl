@@ -8,7 +8,7 @@ void Player::onSet()
 {
     texture.loadFromFile("res/img/GAME/Default.png");
     moveSpeed = 10;
-    jumpSpeed = 40;
+    jumpSpeed = 24;
 }
 void Player::updatePlayer(Layer &mainLayer)
 {

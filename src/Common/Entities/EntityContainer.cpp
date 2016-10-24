@@ -32,6 +32,9 @@ void EntityContainer::addEntity(std::string entity, float posX, float posY)
     {
         defaultEnemy.push_back(new DefaultEnemy(posX, posY));
     }
+
+
+
 }
 void EntityContainer::deleteEntity(float posX, float posY)
 {
@@ -39,6 +42,7 @@ void EntityContainer::deleteEntity(float posX, float posY)
     {
         if (defaultEnemy[i]->contains(posX, posY))
             defaultEnemy.erase(defaultEnemy.begin() + i);
+		
     }
 }
 bool EntityContainer::saveToFile(const std::string &filename)
